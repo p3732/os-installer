@@ -1,0 +1,10 @@
+data/com.github.p3732.OS-Installer.desktop.in
+data/com.github.p3732.OS-Installer.appdata.xml.in
+data/com.github.p3732.OS-Installer.gschema.xml
+
+data/resources/ui/disk_confirmation_dialog.ui
+data/resources/ui/widgets/partition_row.ui
+data/resources/ui/pages/keyboard_layout.ui
+data/resources/ui/pages/internet.ui
+data/resources/ui/pages/disk.ui
+

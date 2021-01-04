@@ -1,0 +1,11 @@
+.large-button {
+  border-radius: 9999px;
+  -gtk-outline-radius: 9999px;
+  padding: 6px 32px;
+}
+
+.big-button {
+  border-radius: 9999px;
+  -gtk-outline-radius: 9999px;
+  padding: 6px 12px;
+}

@@ -1,0 +1,10 @@
+# build folder
+build/
+# temporary folder
+tmp/
+# compiled python files
+*.pyc
+# temporary files
+*~
+# temporary glade files
+\#*

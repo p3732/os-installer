@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/p3732/os-installer/">
+    <!-- App Icon -->
+    <file preprocess="xml-stripblanks" alias="OS-Installer.svg">../app_icon/com.github.p3732.OS-Installer.svg</file>
+    <file preprocess="xml-stripblanks" alias="OS-Installer-symbolic.svg">../app_icon/com.github.p3732.OS-Installer-symbolic.svg</file>
+
+    <!-- CSS -->
+    <file>css/style.css</file>
+
+    <!-- JSON -->
+    <file preprocess="json-stripblanks">json/supported_languages.json</file>
+
+    <!-- UI Files -->
+    <file preprocess="xml-stripblanks">ui/disk_confirmation_dialog.ui</file>
+    <file preprocess="xml-stripblanks">ui/main_window.ui</file>
+    <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
+
+    <file preprocess="xml-stripblanks">ui/pages/additional_software.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/copy.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/disk.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/done.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/encrypt.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/install.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/internet.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/keyboard_layout.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/language.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/locale.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
+
+    <file preprocess="xml-stripblanks">ui/widgets/disk_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/label_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/partition_row.ui</file>
+  </gresource>
+</gresources>
