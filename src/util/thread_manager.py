@@ -32,8 +32,12 @@ class ThreadManager:
 
     ### public methods ###
 
-    def new_thread(self, function, daemon, params=()):
+    def new_thread(self, function, daemon, params=None):
         with self.sync_lock:
-            thread = Thread(target=function, daemon=daemon, args=params)
+            if params:
+                args = [params]
+            else:
+                args = ()
+            thread = Thread(target=function, daemon=daemon, args=args)
             thread.start()
             self.threads.append(thread)

@@ -63,7 +63,7 @@ class GlobalState:
         # TODO use correct language setting
         self.thread_manager.new_thread(subprocess.run, True, ['gnome-control-center', page])
 
-    def start_standalone_thread(self, function, daemon=False, args=()):
+    def start_standalone_thread(self, function, daemon=False, args=None):
         self.thread_manager.new_thread(function, daemon, args)
 
     ### stack methods ###
