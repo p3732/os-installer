@@ -53,6 +53,12 @@ class GlobalState:
     def open_disks(self):
         self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
 
+    def set_disk(self, name, size, device_path, is_partition):
+        self.config.disk_name = name
+        self.config.disk_size = size
+        self.config.disk_device_path = device_path
+        self.config.disk_is_partition = is_partition
+
     ### general helper functions ###
 
     def get_future_from(self, function, **params):

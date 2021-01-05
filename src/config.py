@@ -9,3 +9,8 @@ class Config:
     locale = 'en_US.UTF-8'
     keyboard_layout = 'English (United States)'
     keyboard_layout_short_hand = 'us'
+
+    disk_name = 'Disk Name'
+    disk_size = 'Size Gb'
+    disk_device_path = '/dev/sda1'
+    disk_is_partition = True

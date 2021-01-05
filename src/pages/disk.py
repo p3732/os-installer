@@ -80,12 +80,12 @@ class DiskPage(Gtk.Box):
             row.destroy()
 
     def _continue_with_partition(self, name, size, device_path):
-        # TODO
-        return
+        self.global_state.set_disk(name, size, device_path, True)
+        self.global_state.advance()
 
     def _continue_with_disk(self, name, size, device_path):
-        # TODO
-        return
+        self.global_state.set_disk(name, size, device_path, False)
+        self.global_state.advance()
 
     ### callbacks ###
 
