@@ -1,11 +1,11 @@
 from threading import Thread
 import time
-import urllib
+from urllib.request import urlopen
 
 
 def check_connection(url):
     try:
-        urllib.request.urlopen(url, timeout=50)
+        urlopen(url, timeout=50)
         return True
     except:
         return False
