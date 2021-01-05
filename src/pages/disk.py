@@ -36,16 +36,16 @@ class DiskPage(Gtk.Box):
         self.partition_list.connect('row-activated', self._on_partition_row_activated)
 
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
-        self.refresh_button.connect('clicked', self.load
+        self.refresh_button.connect('clicked', self.load)
 
     def _setup_disks_list(self):
         # clear list
         self._cleanup_disk_list()
 
         # fill list
-        disks=self.disk_provider.get_disks()
+        disks = self.disk_provider.get_disks()
         for name, size, device_path in disks:
-            row=DiskRow(name, size, device_path)
+            row = DiskRow(name, size, device_path)
             self.disk_list.add(row)
 
         # show
@@ -56,9 +56,9 @@ class DiskPage(Gtk.Box):
         self._cleanup_partition_list()
 
         # fill list
-        partitions=self.disk_provider.get_partitions(device_path)
+        partitions = self.disk_provider.get_partitions(device_path)
         for name, size, device_path in partitions:
-            row=PartitionRow(name, size, device_path)
+            row = PartitionRow(name, size, device_path)
             self.layout_list.add(row)
 
         # set label
@@ -75,7 +75,7 @@ class DiskPage(Gtk.Box):
     def _cleanup_partition_list(self):
         # remove all but back row and whole disk row
         for row in self.partition_list:
-            name=row.get_name()
+            name = row.get_name()
             if not name == 'back_row' and not name == 'whole_disk_row':
                 row.destroy()
 
@@ -94,10 +94,10 @@ class DiskPage(Gtk.Box):
 
     def _on_disk_row_activated(self, list_box, row):
         # load partition list if not already loading
-        if self.list_creation_lock.aquire(blocking=False):
-            name=row.get_disk_name()
-            size=row.get_disk_size()
-            device_path=row.get_device_path()
+        if self.list_creation_lock.acquire(blocking=False):
+            name = row.get_disk_name()
+            size = row.get_disk_size()
+            device_path = row.get_device_path()
             self._setup_partition_list(name, size, device_path)
 
             self.list_creation_lock.release()
@@ -107,9 +107,9 @@ class DiskPage(Gtk.Box):
             with self.list_creation_lock:
                 self.stack.set_visible_child_name('disks')
         else:
-            name=row.get_partition_name()
-            size=row.get_partition_size()
-            device_path=row.get_info()
+            name = row.get_partition_name()
+            size = row.get_partition_size()
+            device_path = row.get_info()
             if row.get_name() == 'whole_disk_row':
                 self._continue_with_disk(name, size, device_path)
             else:
@@ -119,6 +119,6 @@ class DiskPage(Gtk.Box):
 
     def load(self):
         # reload disk list if not already loading
-        if self.list_creation_lock.aquire(blocking=False):
+        if self.list_creation_lock.acquire(blocking=False):
             self._setup_disks_list()
             self.list_creation_lock.release()
