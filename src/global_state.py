@@ -41,6 +41,9 @@ class GlobalState:
 
     ### internet page ###
 
+    def get_internet_checker_url(self):
+        return self.config.internet_checker_url
+
     def set_connected(self):
         subprocess.run(['timedatectl', 'set-ntp', 'true'])
         # TODO start syncing of mirrors

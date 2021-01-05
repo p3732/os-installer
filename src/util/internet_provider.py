@@ -15,10 +15,7 @@ class InternetProvider(Thread):
     def __init__(self, global_state, callback):
         self.global_state = global_state
         self.callback = callback
-
-        # TODO get from config
-        # self.url = self.global_state.get_internet_checker_url()
-        self.url = 'http://nmcheck.gnome.org/check_network_status.txt'
+        self.url = self.global_state.get_internet_checker_url()
 
         # connection locking
         self.connected = False
