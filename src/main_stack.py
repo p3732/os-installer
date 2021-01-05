@@ -35,7 +35,7 @@ class MainStack(Gtk.Box):
 
     def _go_to_next(self):
         if self.current == self.maximum:
-            self._load_seciton(self.current_section + 1)
+            self._load_section(self.current_section + 1)
         else:
             self._make_accessible(self.current + 1)
             self._load_page(self.current + 1)
