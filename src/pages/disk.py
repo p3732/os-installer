@@ -36,9 +36,9 @@ class DiskPage(Gtk.Box):
         self.partition_list.connect('row-activated', self._on_partition_row_activated)
 
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
-        self.refresh_button.connect('clicked', self.load)
+        self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
-    def _setup_disks_list(self):
+    def _setup_disk_list(self):
         # clear list
         self._cleanup_disk_list()
 
@@ -51,22 +51,22 @@ class DiskPage(Gtk.Box):
         # show
         self.stack.set_visible_child_name('disks')
 
-    def _setup_partition_list(self, name, size, device_path):
+    def _setup_partition_list(self, disk_name, disk_size, disk_device_path):
         # clear list
         self._cleanup_partition_list()
 
         # fill list
-        partitions = self.disk_provider.get_partitions(device_path)
+        partitions = self.disk_provider.get_partitions(disk_device_path)
         for name, size, device_path in partitions:
             row = PartitionRow(name, size, device_path)
-            self.layout_list.add(row)
+            self.partition_list.add(row)
 
         # set label
-        self.disk_label.set_label(name)
-        self.disk_size_label.set_label(size)
+        self.disk_label.set_label(disk_name)
+        self.disk_size_label.set_label(disk_size)
 
         # show
-        self.stack.set_visible_child_name('layouts')
+        self.stack.set_visible_child_name('partitions')
 
     def _cleanup_disk_list(self):
         for row in self.disk_list:
@@ -91,6 +91,9 @@ class DiskPage(Gtk.Box):
 
     def _on_clicked_disks_button(self, button):
         self.global_state.open_disks()
+
+    def _on_clicked_reload_button(self, button):
+        self.load()
 
     def _on_disk_row_activated(self, list_box, row):
         # load partition list if not already loading
@@ -120,5 +123,5 @@ class DiskPage(Gtk.Box):
     def load(self):
         # reload disk list if not already loading
         if self.list_creation_lock.acquire(blocking=False):
-            self._setup_disks_list()
+            self._setup_disk_list()
             self.list_creation_lock.release()
