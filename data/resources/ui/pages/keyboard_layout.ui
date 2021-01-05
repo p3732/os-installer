@@ -17,6 +17,7 @@
           <object class="GtkScrolledWindow">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="vscrollbar-policy">external</property>
             <property name="min-content-height">300</property>
             <child>
               <object class="GtkViewport">
