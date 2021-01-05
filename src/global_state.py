@@ -68,6 +68,11 @@ class GlobalState:
         self.config.encrypt = state
         self.config.encryption_pin = pin
 
+    ### confirm page ###
+
+    def get_disk_name(self):
+        return self.config.disk_name
+
     ### general helper functions ###
 
     def get_future_from(self, function, **params):

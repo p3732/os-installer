@@ -12,12 +12,12 @@
     <file preprocess="json-stripblanks">json/supported_languages.json</file>
 
     <!-- UI Files -->
-    <file preprocess="xml-stripblanks">ui/disk_confirmation_dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
 
     <file preprocess="xml-stripblanks">ui/pages/additional_software.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/copy.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/disk.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/done.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/encrypt.ui</file>

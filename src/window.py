@@ -1,5 +1,6 @@
 from .main_stack import MainStack
 
+from .confirm import ConfirmPage
 from .disk import DiskPage
 from .encrypt import EncryptPage
 from .internet import InternetPage
@@ -31,6 +32,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
                 InternetPage(global_state),
                 DiskPage(global_state),
                 EncryptPage(global_state),
+                ConfirmPage(global_state)
             ],
             [  # section configuration
                 # LocalePage(global_state),

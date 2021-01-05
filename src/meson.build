@@ -26,6 +26,7 @@ os_installer_sources = [
   'global_state.py',
   'main.py',
   'main_stack.py',
+  'pages/confirm.py',
   'pages/disk.py',
   'pages/encrypt.py',
   'pages/internet.py',
