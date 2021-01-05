@@ -57,7 +57,6 @@ class InternetPage(Gtk.Box):
         with self.connected_lock:
             self.can_proceed_automatically = True
             if self.connected:
-                print('yess')
                 return 'automatic'
             else:
                 return 'waiting'

@@ -1,6 +1,6 @@
 from .main_stack import MainStack
 
-#from .disk import DiskPage
+from .disk import DiskPage
 #from .encrypt import EncryptPage
 from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
@@ -29,7 +29,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
                 LanguagePage(global_state),
                 KeyboardLayoutPage(global_state),
                 InternetPage(global_state),
-               # DiskPage(global_state),
+                DiskPage(global_state),
                 # EncryptPage(global_state),
             ],
             [  # section configuration
