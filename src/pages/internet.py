@@ -55,8 +55,12 @@ class InternetPage(Gtk.Box):
 
     def load(self):
         with self.connected_lock:
-            self.can_proceed_automatically = True
             if self.connected:
-                return 'automatic'
+                if self.can_proceed_automatically:
+                    # page was already loaded once, do not skip automatically
+                    return
+                else:
+                    self.can_proceed_automatically = True
+                    return 'automatic'
             else:
                 return 'waiting'
