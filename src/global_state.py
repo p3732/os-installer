@@ -59,6 +59,15 @@ class GlobalState:
         self.config.disk_device_path = device_path
         self.config.disk_is_partition = is_partition
 
+    ### encrypt page ###
+
+    def set_encrypt(self, state):
+        self.config.encrypt = state
+
+    def set_encryption(self, state, pin=None):
+        self.config.encrypt = state
+        self.config.encryption_pin = pin
+
     ### general helper functions ###
 
     def get_future_from(self, function, **params):

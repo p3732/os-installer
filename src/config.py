@@ -14,3 +14,6 @@ class Config:
     disk_size = 'Size Gb'
     disk_device_path = '/dev/sda1'
     disk_is_partition = True
+
+    encrypt = False
+    encryption_pin = None
