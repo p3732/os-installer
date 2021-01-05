@@ -37,7 +37,7 @@ class MainStack(Gtk.Box):
         if self.current == self.maximum:
             self._load_seciton(self.current_section + 1)
         else:
-            self.accessible = max(self.accessible, self.current + 1)
+            self._make_accessible(self.current + 1)
             self._load_page(self.current + 1)
 
     def _go_to_previous(self):
@@ -59,7 +59,7 @@ class MainStack(Gtk.Box):
         assert page_number <= self.maximum, 'Tried to go to non-existent page (overflow)'
 
         self.current = page_number
-        self.accessible = max(self.accessible, self.current)
+        self._make_accessible(self.current)
 
         # load page
         page = self.pages[self.current_section][self.current]
@@ -68,7 +68,7 @@ class MainStack(Gtk.Box):
 
         if retVal == 'ok_to_proceed':
             assert self.current < self.maximum, 'Tried oking of inaccessible next page'
-            self.accessible = max(self.accessible, self.current + 1)
+            self._make_accessible(self.current + 1)
             self._update_buttons()
         elif retVal == 'waiting':
             self.next_stack.set_visible_child_name('waiting')
@@ -76,6 +76,9 @@ class MainStack(Gtk.Box):
             self._load_page(self.current + 1)
         else:
             self._update_buttons()
+
+    def _make_accessible(self, page):
+        self.accessible = max(self.accessible, page)
 
     def _update_buttons(self):
         # previous
