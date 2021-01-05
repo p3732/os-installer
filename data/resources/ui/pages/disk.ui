@@ -27,15 +27,6 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="receives-default">True</property>
-                    <child type="placeholder">
-                      <object class="GtkSpinner">
-                        <property name="width-request">64</property>
-                        <property name="height-request">64</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="active">True</property>
-                      </object>
-                    </child>
                     <style>
                       <class name="content"/>
                     </style>
