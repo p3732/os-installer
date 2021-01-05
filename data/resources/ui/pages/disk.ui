@@ -21,6 +21,7 @@
               <object class="GtkStack" id="stack">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="valign">center</property>
                 <property name="transition-type">slide-left-right</property>
                 <child>
                   <object class="GtkListBox" id="disk_list">
@@ -53,7 +54,6 @@
                             <property name="spacing">18</property>
                             <child type="center">
                               <object class="GtkLabel" id="disk_label">
-                                <property name="width-request">180</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="width-chars">8</property>
