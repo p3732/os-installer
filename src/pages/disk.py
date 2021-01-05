@@ -1,5 +1,5 @@
 from .disk_provider import DiskProvider
-from .widgets import DiskRow, PartitionRow
+from .widgets import BackRow, DiskRow, PartitionRow, WholeDiskRow
 
 import threading
 
@@ -14,9 +14,6 @@ class DiskPage(Gtk.Box):
 
     disk_list = Gtk.Template.Child()
     partition_list = Gtk.Template.Child()
-
-    disk_label = Gtk.Template.Child()
-    disk_size_label = Gtk.Template.Child()
 
     settings_button = Gtk.Template.Child()
     refresh_button = Gtk.Template.Child()
@@ -56,14 +53,19 @@ class DiskPage(Gtk.Box):
         self._cleanup_partition_list()
 
         # fill list
+        # back row
+        row = BackRow(disk_name)
+        self.partition_list.add(row)
+
+        # whole disk row
+        row = WholeDiskRow(disk_name, disk_size, disk_device_path)
+        self.partition_list.add(row)
+
+        # partition rows
         partitions = self.disk_provider.get_partitions(disk_device_path)
         for name, size, device_path in partitions:
             row = PartitionRow(name, size, device_path)
             self.partition_list.add(row)
-
-        # set label
-        self.disk_label.set_label(disk_name)
-        self.disk_size_label.set_label(disk_size)
 
         # show
         self.stack.set_visible_child_name('partitions')
@@ -75,9 +77,7 @@ class DiskPage(Gtk.Box):
     def _cleanup_partition_list(self):
         # remove all but back row and whole disk row
         for row in self.partition_list:
-            name = row.get_name()
-            if not name == 'back_row' and not name == 'whole_disk_row':
-                row.destroy()
+            row.destroy()
 
     def _continue_with_partition(self, name, size, device_path):
         # TODO
@@ -109,14 +109,16 @@ class DiskPage(Gtk.Box):
         if row.get_name() == 'back_row':
             with self.list_creation_lock:
                 self.stack.set_visible_child_name('disks')
+        elif row.get_name() == 'whole_disk_row':
+            name = row.get_disk_name()
+            size = row.get_disk_size()
+            device_path = row.get_device_path()
+            self._continue_with_disk(name, size, device_path)
         else:
             name = row.get_partition_name()
             size = row.get_partition_size()
             device_path = row.get_info()
-            if row.get_name() == 'whole_disk_row':
-                self._continue_with_disk(name, size, device_path)
-            else:
-                self._continue_with_partition(name, size, device_path)
+            self._continue_with_partition(name, size, device_path)
 
     ### public methods ###
 

@@ -29,8 +29,10 @@
     <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
 
+    <file preprocess="xml-stripblanks">ui/widgets/back_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/disk_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/label_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/partition_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/whole_disk_row.ui</file>
   </gresource>
 </gresources>
