@@ -61,11 +61,9 @@ class GlobalState:
 
     ### encrypt page ###
 
-    def set_encrypt(self, state):
-        self.config.encrypt = state
-
     def set_encryption(self, state, pin=None):
         self.config.encrypt = state
+        if pin:
         self.config.encryption_pin = pin
 
     ### confirm page ###
