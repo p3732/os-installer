@@ -11,6 +11,7 @@
       <object class="GtkListBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="selection-mode">none</property>
         <child>
           <object class="GtkListBoxRow">
             <property name="visible">True</property>
@@ -87,6 +88,7 @@
           <object class="GtkListBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="selection-mode">none</property>
             <child>
               <object class="GtkListBoxRow">
                 <property name="visible">True</property>
