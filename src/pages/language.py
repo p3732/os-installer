@@ -1,5 +1,5 @@
 from .language_provider import LanguageProvider
-from .widgets import LabelRow
+from .widgets import ProgressRow
 
 from gi.repository import Gtk
 
@@ -35,7 +35,7 @@ class LanguagePage(Gtk.Box):
         # insert all suggested languages before show all row
         position = 0
         for language, name in suggested_languages:
-            row = LabelRow(name, language)
+            row = ProgressRow(name, language)
             self.suggested_list.insert(row, position)
             position += 1
 
@@ -43,7 +43,7 @@ class LanguagePage(Gtk.Box):
         all_languages = self.language_provider.get_all_languages()
 
         for language, name in all_languages:
-            row = LabelRow(name, language)
+            row = ProgressRow(name, language)
             self.all_list.add(row)
 
     ### callbacks ###

@@ -51,29 +51,6 @@ class DiskRow(Gtk.ListBoxRow):
         return self.size.get_label()
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/label_row.ui')
-class LabelRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'LabelRow'
-
-    label = Gtk.Template.Child()
-    arrow = Gtk.Template.Child()
-
-    def __init__(self, label, additional_info, show_navigation_arrow=False, **kwargs):
-        super().__init__(**kwargs)
-
-        self.label.set_label(label)
-
-        self.arrow.set_visible(show_navigation_arrow)
-
-        self.info = additional_info
-
-    def get_info(self):
-        return self.info
-
-    def get_label(self):
-        return self.label.get_label()
-
-
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/partition_row.ui')
 class PartitionRow(Gtk.ListBoxRow):
     __gtype_name__ = 'PartitionRow'
@@ -97,6 +74,26 @@ class PartitionRow(Gtk.ListBoxRow):
 
     def get_partition_size(self):
         return self.size.get_label()
+
+
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
+class ProgressRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'ProgressRow'
+
+    label = Gtk.Template.Child()
+
+    def __init__(self, label, additional_info, **kwargs):
+        super().__init__(**kwargs)
+
+        self.label.set_label(label)
+
+        self.info = additional_info
+
+    def get_info(self):
+        return self.info
+
+    def get_label(self):
+        return self.label.get_label()
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/whole_disk_row.ui')
