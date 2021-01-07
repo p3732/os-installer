@@ -73,8 +73,7 @@ class MainStack(Gtk.Box):
         elif retVal == 'waiting':
             self.next_stack.set_visible_child_name('waiting')
         elif retVal == 'automatic':
-            self._make_accessible(self.current + 1)
-            self._load_page(self.current + 1)
+            self._go_to_next()
         else:
             self._update_buttons()
 
