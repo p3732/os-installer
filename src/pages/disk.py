@@ -109,7 +109,9 @@ class DiskPage(Gtk.Box):
         if row.get_name() == 'back_row':
             with self.list_creation_lock:
                 self.stack.set_visible_child_name('disks')
-        elif row.get_name() == 'whole_disk_row':
+        else:
+            list_box.select_row(row)
+            if row.get_name() == 'whole_disk_row':
             name = row.get_disk_name()
             size = row.get_disk_size()
             device_path = row.get_device_path()

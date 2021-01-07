@@ -53,9 +53,13 @@ class LanguagePage(Gtk.Box):
             self._setup_all_list()
             self.stack.set_visible_child_name('all')
         else:
+            list_box.select_row(row)
+
+            # save language
             language = row.get_label()
             short_hand = row.get_info()
             self.global_state.set_language(language, short_hand)
+
             self.global_state.advance()
 
     ### public methods ###
