@@ -91,6 +91,30 @@ class ProgressRow(Gtk.ListBoxRow):
         return self.label.get_label()
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/selection_row.ui')
+class SelectionRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'SelectionRow'
+
+    label = Gtk.Template.Child()
+    check_mark = Gtk.Template.Child()
+
+    def __init__(self, label, additional_info, **kwargs):
+        super().__init__(**kwargs)
+
+        self.label.set_label(label)
+
+        self.info = additional_info
+
+    def get_info(self):
+        return self.info
+
+    def get_label(self):
+        return self.label.get_label()
+
+    def set_activated(self, active):
+        self.check_mark.set_visible(active)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/whole_disk_row.ui')
 class WholeDiskRow(Gtk.ListBoxRow):
     __gtype_name__ = 'WholeDiskRow'
