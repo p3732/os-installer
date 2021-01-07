@@ -100,3 +100,8 @@ class KeyboardLayoutPage(Gtk.Box):
 
         self.stack.set_visible_child_name('layouts')
         return 'ok_to_proceed'
+
+    def save(self):
+        keyboard_layout = self.current_row.get_label()
+        short_hand = self.current_row.get_info()
+        self.global_state.set_keyboard_layout(keyboard_layout, short_hand)

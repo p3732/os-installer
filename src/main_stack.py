@@ -34,6 +34,7 @@ class MainStack(Gtk.Box):
                 self.main_stack.add_named(page, page.__gtype_name__)
 
     def _go_to_next(self):
+        self._save_current_page()
         if self.current == self.maximum:
             self._load_section(self.current_section + 1)
         else:
@@ -79,6 +80,11 @@ class MainStack(Gtk.Box):
 
     def _make_accessible(self, page):
         self.accessible = max(self.accessible, page)
+
+    def _save_current_page(self):
+        page = self.pages[self.current_section][self.current]
+        if hasattr(page, 'save'):
+            page.save()
 
     def _update_buttons(self):
         # previous
