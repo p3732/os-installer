@@ -79,14 +79,6 @@ class DiskPage(Gtk.Box):
         for row in self.partition_list:
             row.destroy()
 
-    def _continue_with_partition(self, name, size, device_path):
-        self.global_state.set_disk(name, size, device_path, True)
-        self.global_state.advance()
-
-    def _continue_with_disk(self, name, size, device_path):
-        self.global_state.set_disk(name, size, device_path, False)
-        self.global_state.advance()
-
     ### callbacks ###
 
     def _on_clicked_disks_button(self, button):
@@ -111,16 +103,15 @@ class DiskPage(Gtk.Box):
                 self.stack.set_visible_child_name('disks')
         else:
             list_box.select_row(row)
-            if row.get_name() == 'whole_disk_row':
-            name = row.get_disk_name()
-            size = row.get_disk_size()
-            device_path = row.get_device_path()
-            self._continue_with_disk(name, size, device_path)
-        else:
+
+            # save disk
+            is_disk = row.get_name() == 'whole_disk_row'
             name = row.get_partition_name()
             size = row.get_partition_size()
-            device_path = row.get_info()
-            self._continue_with_partition(name, size, device_path)
+                device_path = row.get_device_path()
+            self.global_state.set_disk(name, size, device_path, is_disk)
+
+            self.global_state.advance()
 
     ### public methods ###
 
