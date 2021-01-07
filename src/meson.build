@@ -32,6 +32,7 @@ os_installer_sources = [
   'pages/internet.py',
   'pages/keyboard_layout.py',
   'pages/language.py',
+  'pages/user.py',
   'util/disk_provider.py',
   'util/internet_provider.py',
   'util/keyboard_layout_provider.py',

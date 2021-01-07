@@ -64,12 +64,20 @@ class GlobalState:
     def set_encryption(self, state, pin=None):
         self.config.encrypt = state
         if pin:
-        self.config.encryption_pin = pin
+            self.config.encryption_pin = pin
 
     ### confirm page ###
 
     def get_disk_name(self):
         return self.config.disk_name
+
+    ### user page ###
+
+    def set_user_name(self, user_name):
+        self.config.user_name = user_name
+
+    def set_password(self, password):
+        self.config.password = password
 
     ### general helper functions ###
 

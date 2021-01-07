@@ -17,3 +17,6 @@ class Config:
 
     encrypt = False
     encryption_pin = None
+
+    user_name = 'Name'
+    user_password = 'password'
