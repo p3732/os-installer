@@ -1,5 +1,5 @@
 from .disk_provider import DiskProvider
-from .widgets import BackRow, DiskRow, PartitionRow, WholeDiskRow
+from .widgets import BackRow, DiskRow, PartitionRow, WholeDiskRow, empty_list
 
 import threading
 
@@ -37,7 +37,7 @@ class DiskPage(Gtk.Box):
 
     def _setup_disk_list(self):
         # clear list
-        self._cleanup_disk_list()
+        empty_list(self.disk_list)
 
         # fill list
         disks = self.disk_provider.get_disks()
@@ -50,7 +50,7 @@ class DiskPage(Gtk.Box):
 
     def _setup_partition_list(self, disk_name, disk_size, disk_device_path):
         # clear list
-        self._cleanup_partition_list()
+        empty_list(self.partition_list)
 
         # fill list
         # back row
@@ -69,15 +69,6 @@ class DiskPage(Gtk.Box):
 
         # show
         self.stack.set_visible_child_name('partitions')
-
-    def _cleanup_disk_list(self):
-        for row in self.disk_list:
-            row.destroy()
-
-    def _cleanup_partition_list(self):
-        # remove all but back row and whole disk row
-        for row in self.partition_list:
-            row.destroy()
 
     ### callbacks ###
 

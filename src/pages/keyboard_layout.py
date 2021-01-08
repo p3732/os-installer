@@ -1,6 +1,6 @@
 from .keyboard_layout_provider import KeyboardLayoutProvider
 from .language_provider import LanguageProvider
-from .widgets import ProgressRow, SelectionRow
+from .widgets import BackRow, ProgressRow, SelectionRow, empty_list
 
 from gi.repository import Gtk
 
@@ -39,7 +39,8 @@ class KeyboardLayoutPage(Gtk.Box):
             self.language_list.add(row)
 
     def _setup_layout_list(self, language, short_hand):
-        self._cleanup_layout_list()
+        empty_list(self.layout_list)
+
 
         # fill list with all keyboard layouts for given language
         layouts = self.keyboard_layout_provider.get_layouts_for(short_hand)
@@ -52,12 +53,6 @@ class KeyboardLayoutPage(Gtk.Box):
         self.language_label.set_label(language)
 
         self.loaded_language = short_hand
-
-    def _cleanup_layout_list(self):
-        # remove all but show all row
-        for row in self.layout_list:
-            if not row.get_name() == 'show_all_row':
-                row.destroy()
 
     def _select_layout_row(self, list_box, row):
         if self.current_row:
