@@ -20,3 +20,6 @@ class Config:
 
     user_name = 'Name'
     user_password = 'password'
+
+    formats = 'Formats'
+    timezone = 'Timezone'

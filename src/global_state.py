@@ -79,6 +79,12 @@ class GlobalState:
     def set_password(self, password):
         self.config.password = password
 
+    ### locale page ###
+
+    def set_locales(self, formats, timezone):
+        self.config.formats = formats
+        self.config.timezone = timezone
+
     ### general helper functions ###
 
     def get_future_from(self, function, **params):

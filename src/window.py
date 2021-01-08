@@ -6,7 +6,7 @@ from .encrypt import EncryptPage
 from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
 from .language import LanguagePage
-#from .locale import LocalePage
+from .locale import LocalePage
 from .user import UserPage
 
 from gi.repository import Gtk, Handy
@@ -36,7 +36,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             ],
             [  # section configuration
                 UserPage(global_state),
-                # LocalePage(global_state),
+                LocalePage(global_state),
             ]
         ]
 
