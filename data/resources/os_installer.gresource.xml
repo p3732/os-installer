@@ -34,6 +34,7 @@
     <file preprocess="xml-stripblanks">ui/widgets/partition_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/software_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/whole_disk_row.ui</file>
   </gresource>
 </gresources>

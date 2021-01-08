@@ -120,6 +120,31 @@ class SelectionRow(Gtk.ListBoxRow):
         self.check_mark.set_visible(active)
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_row.ui')
+class SoftwareRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'SoftwareRow'
+
+    icon = Gtk.Template.Child()
+    name_label = Gtk.Template.Child()
+    description_label = Gtk.Template.Child()
+    switch = Gtk.Template.Child()
+
+    def __init__(self, name, description, package_name, icon_path='', **kwargs):
+        super().__init__(**kwargs)
+
+        self.name_label.set_label(name)
+        self.description_label.set_label(description)
+        self.icon.new_from_file(icon_path)
+
+        self.package_name = package_name
+
+    def get_package_name(self):
+        return self.package_name
+
+    def is_activated(self):
+        return self.switch.get_active()
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/whole_disk_row.ui')
 class WholeDiskRow(Gtk.ListBoxRow):
     __gtype_name__ = 'WholeDiskRow'
