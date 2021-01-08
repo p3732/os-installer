@@ -1,6 +1,11 @@
 from gi.repository import Gtk
 
 
+def empty_list(list_box):
+    for row in list_box:
+        row.destroy()
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/back_row.ui')
 class BackRow(Gtk.ListBoxRow):
     __gtype_name__ = 'BackRow'
