@@ -109,8 +109,8 @@ class GlobalState:
     def set_waiting(self, waiting, able_to_continue=True):
         self.stack.set_waiting(waiting, able_to_continue)
 
-    def set_ok_to_proceed(self, ok=True):
-        self.stack.set_ok_to_proceed(ok)
+    def page_is_ok_to_proceed(self, name, ok=True):
+        self.stack.page_is_ok_to_proceed(name, ok)
 
     def try_go_to_next(self):
         self.stack.try_go_to_next()

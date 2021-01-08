@@ -81,6 +81,9 @@ class MainStack(Gtk.Box):
     def _make_accessible(self, page):
         self.accessible = max(self.accessible, page)
 
+    def _make_inaccessible(self, page):
+        self.accessible = max(self.current, page-1)
+
     def _save_current_page(self):
         page = self.pages[self.current_section][self.current]
         if hasattr(page, 'save'):
@@ -113,6 +116,16 @@ class MainStack(Gtk.Box):
             current_page = self.pages[self.current_section][self.current]
             if current_page.__gtype_name__ == name:
                 self._go_to_next()
+
+    def page_is_ok_to_proceed(self, name, ok):
+        with self.navigation_lock:
+            current_page = self.pages[self.current_section][self.current]
+            if current_page.__gtype_name__ == name:
+                if ok:
+                    self._make_accessible(self.current + 1)
+                else:
+                    self._make_inaccessible(self.current + 1)
+                self._update_buttons()
 
     def try_go_to_next(self):
         with self.navigation_lock:
