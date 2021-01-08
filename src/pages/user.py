@@ -21,26 +21,20 @@ class UserPage(Gtk.Box):
         self.user_name_field.connect("changed", self._on_user_name_changed)
         self.password_field.connect("changed", self._on_password_changed)
 
-    def _can_continue_(self, user_name=None, password=None):
-        if not user_name:
-            user_name = self.user_name_field.get_text()
-        if not password:
-            password = self.password_field.get_text()
-        has_user_name = not user_name == ''
+    def _can_continue_(self):
+        has_user_name = not self.user_name_field.get_text() == ''
+        has_password = not self.password_field.get_text() == ''
         needs_password = self.user_name_field.get_state()
-        has_password = not password == ''
-        # TODO remove
-        print(user_name)
-        print(password)
+
         if has_user_name and (not needs_password or has_password):
             return True
         else:
             return False
 
-    def _set_navigation(self, user_name=None, password=None):
+    def _set_navigation(self):
         # disable forward navigation if no auto-login and no password given
-        ok_to_proceed = self._can_continue_(user_name, password)
-        self.global_state.set_ok_to_proceed(ok_to_proceed)
+        ok_to_proceed = self._can_continue_()
+        self.global_state.page_is_ok_to_proceed(self.__gtype_name__, ok_to_proceed)
 
     ### callbacks ###
 
@@ -50,16 +44,21 @@ class UserPage(Gtk.Box):
 
     def _on_user_name_changed(self, editable):
         user_name = editable.get_chars(0, -1)
-        self.global_state.set_user_name(True, user_name)
-        self._set_navigation(user_name=user_name)
+        print("asiestie")
+        self._set_navigation()
 
     def _on_password_changed(self, editable):
         password = editable.get_chars(0, -1)
-        self.global_state.set_password(True, user_name)
-        self._set_navigation(password=password)
+        self._set_navigation()
 
     ### public methods ###
 
     def load(self):
         if self._can_continue_():
             return 'ok_to_proceed'
+
+    def save(self):
+        password = self.password_field.get_text()
+        user_name = self.user_name_field.get_text()
+        self.global_state.set_password(password)
+        self.global_state.set_user_name(user_name)
