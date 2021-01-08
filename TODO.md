@@ -1,13 +1,13 @@
 
+* make encrypt not progress with empty pin
+
+* fix continue button showing on user page without password
+
 * change language of app upon selection
     * add German translation
 
-* add selection row that show check mark for selected row
-    * changes language rows to selection row
-        * select a default language row and make page optional
-    * change keyboard layout to selection row
-
-* use back row for keyboard layouts
+* changes language rows to selection row
+    * select a default language row and make page optional
 
 * get app icon working
 
