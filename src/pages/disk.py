@@ -108,7 +108,7 @@ class DiskPage(Gtk.Box):
             is_disk = row.get_name() == 'whole_disk_row'
             name = row.get_partition_name()
             size = row.get_partition_size()
-                device_path = row.get_device_path()
+            device_path = row.get_device_path()
             self.global_state.set_disk(name, size, device_path, is_disk)
 
             self.global_state.advance()
