@@ -41,6 +41,9 @@ class KeyboardLayoutPage(Gtk.Box):
     def _setup_layout_list(self, language, short_hand):
         empty_list(self.layout_list)
 
+        # add back row
+        row = BackRow(language)
+        self.layout_list.add(row)
 
         # fill list with all keyboard layouts for given language
         layouts = self.keyboard_layout_provider.get_layouts_for(short_hand)
@@ -48,9 +51,6 @@ class KeyboardLayoutPage(Gtk.Box):
         for keyboard_layout, name in layouts:
             row = SelectionRow(name, keyboard_layout)
             self.layout_list.add(row)
-
-        # set label
-        self.language_label.set_label(language)
 
         self.loaded_language = short_hand
 
@@ -71,7 +71,7 @@ class KeyboardLayoutPage(Gtk.Box):
         self.stack.set_visible_child_name('layouts')
 
     def _on_layout_row_activated(self, list_box, row):
-        if row.get_name() == 'show_all_row':
+        if row.get_name() == 'back_row':
             # show language selection
             if not self.language_list_setup:
                 self._setup_languages_list()
