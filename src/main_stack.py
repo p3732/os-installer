@@ -26,6 +26,7 @@ class MainStack(Gtk.Box):
         super().__init__(**kwargs)
 
         self.navigation_lock = threading.Lock()
+        self.maximum_section = len(pages)-1
 
         # setup pages
         self.pages = pages

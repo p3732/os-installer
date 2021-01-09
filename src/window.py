@@ -7,6 +7,7 @@ from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
 from .language import LanguagePage
 from .locale import LocalePage
+from .software import SoftwarePage
 from .user import UserPage
 
 from gi.repository import Gtk, Handy
@@ -37,6 +38,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             [  # section configuration
                 UserPage(global_state),
                 LocalePage(global_state),
+                SoftwarePage
             ]
         ]
 

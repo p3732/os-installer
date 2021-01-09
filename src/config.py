@@ -23,3 +23,5 @@ class Config:
 
     formats = 'Formats'
     timezone = 'Timezone'
+
+    software = []

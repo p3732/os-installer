@@ -15,7 +15,6 @@
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
 
-    <file preprocess="xml-stripblanks">ui/pages/additional_software.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/copy.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/disk.ui</file>
@@ -27,6 +26,7 @@
     <file preprocess="xml-stripblanks">ui/pages/language.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/locale.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/software.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
 
     <file preprocess="xml-stripblanks">ui/widgets/back_row.ui</file>

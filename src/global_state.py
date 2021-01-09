@@ -85,6 +85,11 @@ class GlobalState:
         self.config.formats = formats
         self.config.timezone = timezone
 
+    ### software page ###
+
+    def set_software(self, to_install):
+        self.config.software = to_install
+
     ### general helper functions ###
 
     def get_future_from(self, function, **params):
