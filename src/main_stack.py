@@ -26,7 +26,6 @@ class MainStack(Gtk.Box):
         super().__init__(**kwargs)
 
         self.navigation_lock = threading.Lock()
-        self.maximum_section = len(pages)-1
 
         # setup pages
         self.pages = pages
@@ -69,7 +68,6 @@ class MainStack(Gtk.Box):
         retVal = page.load()
 
         if retVal == 'ok_to_proceed':
-            assert self.current < self.maximum, 'Tried oking of inaccessible next page'
             self._make_accessible(self.current + 1)
             self._update_buttons()
         elif retVal == 'waiting':
