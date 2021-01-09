@@ -21,34 +21,31 @@ class UserPage(Gtk.Box):
         self.user_name_field.connect("changed", self._on_user_name_changed)
         self.password_field.connect("changed", self._on_password_changed)
 
-    def _can_continue_(self):
+    def _can_continue_(self, switch_state=None):
         has_user_name = not self.user_name_field.get_text() == ''
         has_password = not self.password_field.get_text() == ''
-        needs_password = self.user_name_field.get_state()
-
-        if has_user_name and (not needs_password or has_password):
-            return True
+        if switch_state == None:
+            needs_password = not self.autologin_switch.get_state()
         else:
-            return False
+            needs_password = not switch_state
 
-    def _set_navigation(self):
-        # disable forward navigation if no auto-login and no password given
-        ok_to_proceed = self._can_continue_()
+        # can not continue if no auto-login and no password given
+        return has_user_name and ((not needs_password) or has_password)
+
+    def _set_navigation(self, switch_state=None):
+        ok_to_proceed = self._can_continue_(switch_state)
         self.global_state.page_is_ok_to_proceed(self.__gtype_name__, ok_to_proceed)
 
     ### callbacks ###
 
     def _on_autologin_switch_flipped(self, autologin_switch, state):
         self.revealer.set_reveal_child(not state)
-        self._set_navigation()
+        self._set_navigation(state)
 
     def _on_user_name_changed(self, editable):
-        user_name = editable.get_chars(0, -1)
-        print("asiestie")
         self._set_navigation()
 
     def _on_password_changed(self, editable):
-        password = editable.get_chars(0, -1)
         self._set_navigation()
 
     ### public methods ###

@@ -1,8 +1,6 @@
 
 * make encrypt not progress with empty pin
 
-* fix continue button showing on user page without password
-
 * change language of app upon selection
     * add German translation
 
