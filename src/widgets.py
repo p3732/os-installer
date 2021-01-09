@@ -134,7 +134,7 @@ class SoftwareRow(Gtk.ListBoxRow):
 
         self.name_label.set_label(name)
         self.description_label.set_label(description)
-        self.icon.new_from_file(icon_path)
+        self.icon.set_from_file(icon_path)
 
         self.package_name = package_name
 
