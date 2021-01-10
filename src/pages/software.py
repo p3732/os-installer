@@ -15,14 +15,18 @@ class SoftwarePage(Gtk.Box):
 
         self.global_state = global_state
         self.loaded = False
+        self.always_skip = False
 
         self.software_provider = SoftwareProvider(global_state)
 
     def _setup_software(self):
         suggestions = self.software_provider.get_suggestions()
-        for package_name, name, description, icon_path in suggestions:
-            row = SoftwareRow(name, description, package_name, icon_path)
-            self.software_list.add(row)
+        if len(suggestions) == 0:
+            self.always_skip = True
+        else:
+            for package_name, default, name, description, icon_path in suggestions:
+                row = SoftwareRow(name, description, package_name, default, icon_path)
+                self.software_list.add(row)
 
     ### public methods ###
 
@@ -30,7 +34,10 @@ class SoftwarePage(Gtk.Box):
         if not self.loaded:
             self._setup_software()
             self.loaded = True
-        return 'ok_to_proceed'
+        if self.always_skip:
+            return 'automatic'
+        else:
+            return 'ok_to_proceed'
 
     def save(self):
         to_install = []
