@@ -11,7 +11,9 @@ class MainStack(Gtk.Box):
     '''
     MainStack
     Widget to manage a stack of pages with arrows for forward and backward navigation.
-    Pages may be marked as optional or marked as in a waiting state.
+    Pages can may allow proceeding or ask for it via return values of their load() method.
+    Pages can save their information by implementing a save() method.
+    The stack also offers methods for navigating it from outside.
     '''
 
     main_stack = Gtk.Template.Child()
@@ -78,6 +80,7 @@ class MainStack(Gtk.Box):
             self._update_buttons()
 
     def _make_accessible(self, page):
+        # setting accessible bigger than the maximum allows for forward navigation
         self.accessible = max(self.accessible, page)
 
     def _make_inaccessible(self, page):
