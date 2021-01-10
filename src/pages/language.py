@@ -58,8 +58,10 @@ class LanguagePage(Gtk.Box):
             # save language
             language = row.get_label()
             short_hand = row.get_info()
-            self.global_state.set_language(language, short_hand)
+            self.global_state.set_config('language', language)
+            self.global_state.set_config('language_short_hand', short_hand)
 
+            self.global_state.apply_language_settings()
             self.global_state.advance()
 
     ### public methods ###

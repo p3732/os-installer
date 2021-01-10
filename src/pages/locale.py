@@ -52,4 +52,5 @@ class LocalePage(Gtk.Box):
     def save(self):
         formats = self.locale_provider.get_formats()
         timezone = self.locale_provider.get_timezone()
-        self.global_state.set_locales(formats, timezone)
+        self.global_state.set_config('formats', formats)
+        self.global_state.set_config('timezone', timezone)

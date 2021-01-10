@@ -19,17 +19,31 @@ class EncryptPage(Gtk.Box):
         self.switch.connect("state-set", self._on_switch_flipped)
         self.pin_field.connect("changed", self._on_pin_changed)
 
+    def _can_proceed(self, needs_pin=None, pin=None):
+        if needs_pin == None:
+            needs_pin = self.switch.get_state()
+        if pin == None:
+            pin = self.pin_field.get_chars(0, -1)
+        return not needs_pin or not pin == ''
+
     ### callbacks ###
 
     def _on_switch_flipped(self, switch, state):
         self.revealer.set_reveal_child(state)
-        self.global_state.set_encryption(state)
+        can_proceed = self._can_proceed(needs_pin=state)
+        self.global_state.page_is_ok_to_proceed(self.__gtype_name__, can_proceed)
 
     def _on_pin_changed(self, editable):
-        pin = editable.get_chars(0, -1)
-        self.global_state.set_encryption(True, pin)
+        can_proceed = self._can_proceed(pin=editable.get_chars(0, -1))
+        self.global_state.page_is_ok_to_proceed(self.__gtype_name__, can_proceed)
 
     ### public methods ###
 
     def load(self):
         return 'ok_to_proceed'
+
+    def save(self):
+        use_encryption = self.switch.get_state()
+        pin = self.pin_field.get_chars(0, -1)
+        self.global_state.set_config('use_encryption', use_encryption)
+        self.global_state.set_config('encryption_pin', pin)

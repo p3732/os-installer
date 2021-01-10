@@ -1,27 +1,37 @@
-class Config:
-    # TODO create config defaults from configurable json
+import yaml
 
-    internet_checker_url = 'http://nmcheck.gnome.org/check_network_status.txt'
+DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
-    formats = 'en_DA'
-    language = 'English'
-    language_short_hand = 'en'
-    locale = 'en_US.UTF-8'
-    keyboard_layout = 'English (United States)'
-    keyboard_layout_short_hand = 'us'
 
-    disk_name = 'Disk Name'
-    disk_size = 'Size Gb'
-    disk_device_path = '/dev/sda1'
-    disk_is_partition = True
+def get_config():
+    try:
+        with open(DEFAULT_CONFIG_PATH, 'r') as file:
+            config = yaml.load(file, Loader=yaml.Loader)
+    except:
+        config = _get_fallback_config()
+    return config
 
-    encrypt = False
-    encryption_pin = None
 
-    user_name = 'Name'
-    user_password = 'password'
+def _get_fallback_config():
+    return {
+        'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
+        'suggested_languages': ["en", "ar", "de", "es", "fr", "ja", "ru", "zh"],
+        'additional_software': {}
+    }
 
-    formats = 'Formats'
-    timezone = 'Timezone'
 
-    software = []
+def check_install_config(config):
+    return (hasattr(config, 'formats') and
+            hasattr(config, 'disk_device_path') and
+            hasattr(config, 'disk_is_partition') and
+            hasattr(config, 'use_encryption') and
+            hasattr(config, 'encryption_pin'))
+
+
+def check_post_install_config(config):
+    return (hasattr(config, 'user_name') and
+            hasattr(config, 'user_password') and
+            hasattr(config, 'locale') and
+            hasattr(config, 'formats') and
+            hasattr(config, 'timezone') and
+            hasattr(config, 'additional_software'))

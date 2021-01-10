@@ -15,7 +15,7 @@ class InternetProvider(Thread):
     def __init__(self, global_state, callback):
         self.global_state = global_state
         self.callback = callback
-        self.url = self.global_state.get_internet_checker_url()
+        self.url = self.global_state.get_config('internet_checker_url')
 
         # connection locking
         self.connected = False

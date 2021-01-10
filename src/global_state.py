@@ -1,28 +1,28 @@
-from .config import Config
+from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 
-
-from concurrent.futures import ThreadPoolExecutor
-import os
 import subprocess
+import os
+from concurrent.futures import ThreadPoolExecutor
 
 
 class GlobalState:
     def __init__(self):
-        self.config = Config()
         self.stack = None
+
+        # configuration file loader
+        self.config = get_config()
 
         # helper to manage proper threads
         self.thread_manager = ThreadManager()
+
         # for futures use built in thread pool
         self.thread_pool = ThreadPoolExecutor()
 
     ### language page ###
 
-    def set_language(self, language, short_hand):
-        self.config.language = language
-        self.config.language_short_hand = short_hand
-        print('setting language to ', language)
+    def apply_language_settings(self):
+        print('setting language to ', self.config['language'])
         # TODO
         # change via localectl?
         # At least load respective translations
@@ -30,65 +30,30 @@ class GlobalState:
 
     ### keyboard layout page ###
 
-    def get_language(self):
-        return (self.config.language, self.config.language_short_hand)
-
-    def set_keyboard_layout(self, keyboard_layout, short_hand):
-        self.config.keyboard_layout = keyboard_layout
-        self.config.keyboard_layout_short_hand = short_hand
+    def apply_keyboard_layout(self, keyboard_layout, short_hand):
+        keyboard_layout = self.config['keyboard_layout_short_hand']
         # change via localectl
         # subprocess.run(['localectl', 'set-keymap', short_hand])
 
     ### internet page ###
 
-    def get_internet_checker_url(self):
-        return self.config.internet_checker_url
+    def apply_connected(self):
+        # TODO start ntp and syncing of mirrors
+        # subprocess.run(['timedatectl', 'set-ntp', 'true'])
+        return
 
-    def set_connected(self):
-        subprocess.run(['timedatectl', 'set-ntp', 'true'])
-        # TODO start syncing of mirrors
-
-    ### disks page ###
+    # disks page ###
 
     def open_disks(self):
         self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
 
-    def set_disk(self, name, size, device_path, is_partition):
-        self.config.disk_name = name
-        self.config.disk_size = size
-        self.config.disk_device_path = device_path
-        self.config.disk_is_partition = is_partition
+    ### config functions ###
 
-    ### encrypt page ###
+    def get_config(self, setting):
+        return self.config[setting]
 
-    def set_encryption(self, state, pin=None):
-        self.config.encrypt = state
-        if pin:
-            self.config.encryption_pin = pin
-
-    ### confirm page ###
-
-    def get_disk_name(self):
-        return self.config.disk_name
-
-    ### user page ###
-
-    def set_user_name(self, user_name):
-        self.config.user_name = user_name
-
-    def set_password(self, password):
-        self.config.password = password
-
-    ### locale page ###
-
-    def set_locales(self, formats, timezone):
-        self.config.formats = formats
-        self.config.timezone = timezone
-
-    ### software page ###
-
-    def set_software(self, to_install):
-        self.config.software = to_install
+    def set_config(self, setting, value):
+        self.config[setting] = value
 
     ### general helper functions ###
 
@@ -103,7 +68,7 @@ class GlobalState:
     def start_standalone_thread(self, function, daemon=False, args=None):
         self.thread_manager.new_thread(function, daemon, args)
 
-    ### stack methods ###
+    ### stack funcitons ###
 
     def set_stack(self, stack):
         self.stack = stack

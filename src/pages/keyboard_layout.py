@@ -80,23 +80,28 @@ class KeyboardLayoutPage(Gtk.Box):
             # layout selected
             self._select_layout_row(list_box, row)
 
+            # save here, not on page reloads
+            keyboard_layout = row.get_label()
+            short_hand = row.get_info()
+            self.global_state.set_config('keyboard_layout', keyboard_layout)
+            self.global_state.set_config('keyboard_layout_short_hand', short_hand)
+            self.global_state.apply_keyboard_layout()
+
     ### public methods ###
 
     def load(self):
         # load suggested list
-        language, short_hand = self.global_state.get_language()
+        short_hand = self.global_state.get_config('language_short_hand')
         if not self.loaded_language == short_hand:
             # fill layout list if different language
+            language = self.global_state.get_config('language')
             self._setup_layout_list(language, short_hand)
 
             # set current layout to first in list
             row = self.layout_list.get_row_at_index(1)
             self._select_layout_row(self.layout_list, row)
 
+            self.loaded_language = short_hand
+
         self.stack.set_visible_child_name('layouts')
         return 'ok_to_proceed'
-
-    def save(self):
-        keyboard_layout = self.current_row.get_label()
-        short_hand = self.current_row.get_info()
-        self.global_state.set_keyboard_layout(keyboard_layout, short_hand)

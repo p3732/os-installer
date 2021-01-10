@@ -96,11 +96,12 @@ class DiskPage(Gtk.Box):
             list_box.select_row(row)
 
             # save disk
-            is_disk = row.get_name() == 'whole_disk_row'
-            name = row.get_partition_name()
-            size = row.get_partition_size()
             device_path = row.get_device_path()
-            self.global_state.set_disk(name, size, device_path, is_disk)
+            is_partition = not row.get_name() == 'whole_disk_row'
+            name = row.get_partition_name()
+            self.global_state.set_config('disk_device_path', device_path)
+            self.global_state.set_config('disk_is_partition', is_partition)
+            self.global_state.set_config('disk_name', name)
 
             self.global_state.advance()
 

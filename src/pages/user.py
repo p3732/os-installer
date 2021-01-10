@@ -57,5 +57,5 @@ class UserPage(Gtk.Box):
     def save(self):
         password = self.password_field.get_text()
         user_name = self.user_name_field.get_text()
-        self.global_state.set_password(password)
-        self.global_state.set_user_name(user_name)
+        self.global_state.set_config('password', password)
+        self.global_state.set_config('user_name', user_name)

@@ -1,6 +1,8 @@
 
 * make encrypt not progress with empty pin
 
+* allow setting default on/off for additional software
+
 * change language of app upon selection
     * add German translation
 
@@ -8,6 +10,8 @@
     * select a default language row and make page optional
 
 * get app icon working
+
+* skip additional software page if empty
 
 * make defaults configurable via json/yaml?
     * includes list of suggested languages
@@ -18,7 +22,7 @@
     * what phases are there?
         * system installation with bootloader
         * user creation
-        * additional software? offer page only if supported?
+        * additional software
         * post-install configuration
 
 * Post Install configuration list
@@ -28,3 +32,7 @@
     * enable all needed system daemons (homed!)
     * sanitize journald max size
     * configure paccache to only keep two versions
+
+* handle potentially needed EFI partition
+
+* allow providing minimal installl size and only accept partitions bigger than it

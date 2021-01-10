@@ -25,6 +25,6 @@ class ConfirmPage(Gtk.Box):
     ### public methods ###
 
     def load(self):
-        # set label
-        name = self.global_state.get_disk_name()
+        # set label (always reload)
+        name = self.global_state.get_config('disk_name')
         self.disk_label.set_label(name)
