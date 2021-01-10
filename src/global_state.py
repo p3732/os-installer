@@ -108,17 +108,14 @@ class GlobalState:
     def set_stack(self, stack):
         self.stack = stack
 
-    def page_can_proceed_automatically(self, name):
-        self.stack.page_can_proceed_automatically(name)
-
     def advance(self):
         self.stack.advance()
 
     def load_initial_page(self):
         self.stack.load_initial_page()
 
-    def set_waiting(self, waiting, able_to_continue=True):
-        self.stack.set_waiting(waiting, able_to_continue)
+    def page_can_proceed_automatically(self, name):
+        self.stack.page_can_proceed_automatically(name)
 
     def page_is_ok_to_proceed(self, name, ok=True):
         self.stack.page_is_ok_to_proceed(name, ok)
