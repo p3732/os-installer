@@ -38,7 +38,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             [  # section configuration
                 UserPage(global_state),
                 LocalePage(global_state),
-                SoftwarePage
+                SoftwarePage(global_state)
             ]
         ]
 
