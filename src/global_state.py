@@ -19,7 +19,7 @@ class GlobalState:
         # for futures use built in thread pool
         self.thread_pool = ThreadPoolExecutor()
 
-    ### language page ###
+    ### installation stages ###
 
     def apply_language_settings(self):
         print('setting language to ', self.config['language'])
@@ -28,26 +28,19 @@ class GlobalState:
         # At least load respective translations
         # subprocess.run(['localectl', 'set-locale', language])
 
-    ### keyboard layout page ###
-
     def apply_keyboard_layout(self, keyboard_layout, short_hand):
         keyboard_layout = self.config['keyboard_layout_short_hand']
         # change via localectl
         # subprocess.run(['localectl', 'set-keymap', short_hand])
-
-    ### internet page ###
 
     def apply_connected(self):
         # TODO start ntp and syncing of mirrors
         # subprocess.run(['timedatectl', 'set-ntp', 'true'])
         return
 
-    # disks page ###
-
-    def open_disks(self):
-        self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
-
-    ### install page ###
+    def apply_installation_confirmed(self):
+        # TODO start the actual installation
+        return
 
     def apply_installed(self):
         # TODO start copying script
@@ -65,6 +58,9 @@ class GlobalState:
 
     def get_future_from(self, function, **params):
         return self.thread_pool.submit(function, **params)
+
+    def open_disks(self):
+        self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
 
     def open_settings(self, page):
         # open respective section of 'gnome-control-center'
