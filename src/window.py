@@ -23,9 +23,6 @@ class OsInstallerWindow(Handy.ApplicationWindow):
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
-        # Set default window icon for window managers
-        self.set_default_icon_name('com.github.p3732.OS-Installer')
-
         # The available pages in order
         pages = [
             [  # section pre-installation
