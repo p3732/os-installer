@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+
+internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
+
+suggested_languages: 
+    - 'en'
+    - 'de' 
+    - 'eo'
+
+additional_software:
+    - package     : 'firefox'
+      default     : true
+      name        : 'Firefox'
+      description : 'Popular Web Browser from Mozilla'
+      icon_path   : '/etc/os-installer/icons/firefox.png'
+    - package     : 'libreoffice-fresh'
+      default     : false
+      name        : 'LibreOffice'
+      description : 'Office Suite for Documents, Tables, Presentations and more'
+      icon_path   : '/etc/os-installer/icons/libreoffice-main.png'
