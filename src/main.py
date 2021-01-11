@@ -37,9 +37,9 @@ class Application(Gtk.Application):
         # Startup application
         Gtk.Application.do_startup(self)
         self._setup_actions()
-        self.load_css()
+        self._load_css()
 
-    def load_css(self):
+    def _load_css(self):
         css_provider = Gtk.CssProvider()
         css_provider.load_from_resource('/com/github/p3732/os-installer/css/style.css')
         screen = Gdk.Screen.get_default()
@@ -53,17 +53,17 @@ class Application(Gtk.Application):
         actions = [
             {
                 'name': 'next-page',
-                'func': self.on_next_page,
+                'func': self._on_next_page,
                 'accels': ['<Alt>Right']
             },
             {
                 'name': 'previous-page',
-                'func': self.on_previous_page,
+                'func': self._on_previous_page,
                 'accels': ['<Alt>Left']
             },
             {
                 'name': 'quit',
-                'func': self.on_quit,
+                'func': self._on_quit,
                 'accels': ['<Ctl>q']
             }
         ]
@@ -85,13 +85,13 @@ class Application(Gtk.Application):
 
         self.global_state.load_initial_page()
 
-    def on_next_page(self, action, param):
+    def _on_next_page(self, action, param):
         self.global_state.try_go_to_next()
 
-    def on_previous_page(self, action, param):
+    def _on_previous_page(self, action, param):
         self.global_state.try_go_to_previous()
 
-    def on_quit(self, action, param):
+    def _on_quit(self, action, param):
         # TODO show warning if in installation process
         self.quit()
 
