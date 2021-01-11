@@ -10,6 +10,8 @@
 
     <!-- Icons -->
     <file preprocess="xml-stripblanks">icon/globe-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/user-symbolic.svg</file>
+
     <!-- JSON -->
     <file preprocess="json-stripblanks">json/supported_languages.json</file>
 
