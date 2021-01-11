@@ -47,6 +47,12 @@ class GlobalState:
     def open_disks(self):
         self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
 
+    ### install page ###
+
+    def apply_installed(self):
+        # TODO start copying script
+        return
+
     ### config functions ###
 
     def get_config(self, setting):

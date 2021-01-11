@@ -29,6 +29,7 @@ os_installer_sources = [
   'pages/confirm.py',
   'pages/disk.py',
   'pages/encrypt.py',
+  'pages/install.py',
   'pages/internet.py',
   'pages/keyboard_layout.py',
   'pages/language.py',

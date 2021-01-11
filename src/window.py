@@ -3,6 +3,7 @@ from .main_stack import MainStack
 from .confirm import ConfirmPage
 from .disk import DiskPage
 from .encrypt import EncryptPage
+from .install import InstallPage
 from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
 from .language import LanguagePage
@@ -39,6 +40,9 @@ class OsInstallerWindow(Handy.ApplicationWindow):
                 UserPage(global_state),
                 LocalePage(global_state),
                 SoftwarePage(global_state)
+            ],
+            [  # section installation
+                InstallPage(global_state)
             ]
         ]
 
