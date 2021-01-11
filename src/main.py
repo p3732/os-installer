@@ -37,6 +37,7 @@ class Application(Gtk.Application):
         # Startup application
         Gtk.Application.do_startup(self)
         self._setup_actions()
+        self._setup_icons()
         self._load_css()
 
     def _load_css(self):
@@ -48,6 +49,11 @@ class Application(Gtk.Application):
 
         # Init Handy
         Handy.init()
+
+    def _setup_icons(self):
+        icon_theme = Gtk.IconTheme.get_default()
+        icon_theme.add_resource_path('/com/github/p3732/os-installer/')
+        icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
 
     def _setup_actions(self):
         actions = [
