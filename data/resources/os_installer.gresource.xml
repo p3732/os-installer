@@ -8,6 +8,8 @@
     <!-- CSS -->
     <file>css/style.css</file>
 
+    <!-- Icons -->
+    <file preprocess="xml-stripblanks">icon/globe-symbolic.svg</file>
     <!-- JSON -->
     <file preprocess="json-stripblanks">json/supported_languages.json</file>
 
