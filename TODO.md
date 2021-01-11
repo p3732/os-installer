@@ -1,10 +1,8 @@
 * change language of app upon selection
     * add German translation
 
-* get app icon working
-
-
 * run scripts for installation phases
+    * pass settings via ENV variables?
     * phases
         * system installation with bootloader
         * user creation, additional software, post-install configuration
