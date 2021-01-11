@@ -28,6 +28,7 @@ os_installer_sources = [
   'main_stack.py',
   'pages/confirm.py',
   'pages/disk.py',
+  'pages/done.py',
   'pages/encrypt.py',
   'pages/install.py',
   'pages/internet.py',

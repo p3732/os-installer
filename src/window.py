@@ -2,6 +2,7 @@ from .main_stack import MainStack
 
 from .confirm import ConfirmPage
 from .disk import DiskPage
+from .done import DonePage
 from .encrypt import EncryptPage
 from .install import InstallPage
 from .internet import InternetPage
@@ -40,6 +41,9 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             ],
             [  # section installation
                 InstallPage(global_state)
+            ],
+            [  # section done
+                DonePage(global_state)
             ]
         ]
 
