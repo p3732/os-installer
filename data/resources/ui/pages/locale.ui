@@ -41,6 +41,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
+                    <property name="tooltip-text" translatable="yes">Open Locale Settings</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
@@ -105,6 +106,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
+                    <property name="tooltip-text" translatable="yes">Open Time Settings</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>

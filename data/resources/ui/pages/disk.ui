@@ -90,6 +90,7 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">Open Disk Management Tool</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="use-underline">True</property>
@@ -110,6 +111,7 @@
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
+            <property name="tooltip-text" translatable="yes">Reload the list of disks</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="use-underline">True</property>
