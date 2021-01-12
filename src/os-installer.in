@@ -3,6 +3,7 @@
 import os
 import sys
 import signal
+import locale
 import gettext
 
 VERSION = '@VERSION@'
@@ -12,6 +13,14 @@ localedir = '@localedir@'
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.install('os-installer', localedir)
+
+# Tell GTK+ to use our translations
+locale.bindtextdomain('os-installer', localedir)
+locale.textdomain('os-installer')
+
+# Tell Python's gettext.gettext() to use our translations
+gettext.bindtextdomain('os-installer', localedir)
+gettext.textdomain('os-installer')
 
 if __name__ == '__main__':
     import gi
