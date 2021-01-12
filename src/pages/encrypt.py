@@ -23,7 +23,7 @@ class EncryptPage(Gtk.Box):
         if needs_pin == None:
             needs_pin = self.switch.get_state()
         if pin == None:
-            pin = self.pin_field.get_chars(0, -1)
+            pin = self.pin_field.get_text()
         return not needs_pin or not pin == ''
 
     ### callbacks ###
@@ -34,7 +34,7 @@ class EncryptPage(Gtk.Box):
         self.global_state.page_is_ok_to_proceed(self.__gtype_name__, can_proceed)
 
     def _on_pin_changed(self, editable):
-        can_proceed = self._can_proceed(pin=editable.get_chars(0, -1))
+        can_proceed = self._can_proceed(pin=editable.get_text())
         self.global_state.page_is_ok_to_proceed(self.__gtype_name__, can_proceed)
 
     ### public methods ###
@@ -44,6 +44,6 @@ class EncryptPage(Gtk.Box):
 
     def save(self):
         use_encryption = self.switch.get_state()
-        pin = self.pin_field.get_chars(0, -1)
+        pin = self.pin_field.get_text()
         self.global_state.set_config('use_encryption', use_encryption)
         self.global_state.set_config('encryption_pin', pin)
