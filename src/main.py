@@ -23,6 +23,9 @@ class Application(Gtk.Application):
         GLib.set_application_name(_('OS Installer'))
         GLib.set_prgname(APP_ID)
 
+        # Connect app shutdown signal
+        self.connect('shutdown', self._on_quit)
+
         # App window
         self.window = None
 
@@ -92,7 +95,7 @@ class Application(Gtk.Application):
     def _on_previous_page(self, action, param):
         self.global_state.try_go_to_previous()
 
-    def _on_quit(self, action, param):
+    def _on_quit(self, action, param=None):
         # TODO show warning if in installation process
         self.quit()
 
