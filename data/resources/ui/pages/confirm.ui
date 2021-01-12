@@ -9,11 +9,12 @@
     <property name="spacing">18</property>
     <child type="center">
       <object class="GtkButton" id="confirm_button">
-        <property name="label" translatable="yes">Confirm</property>
+        <property name="label" translatable="yes">_Confirm</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
         <property name="halign">center</property>
+        <property name="use-underline">True</property>
         <style>
           <class name="destructive-action"/>
           <class name="large-button"/>
