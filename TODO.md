@@ -16,6 +16,10 @@
 
 * use UDisks for disks
 
+* get list of all existing translations
+
+* add translation hints
+
 * run scripts for installation phases
     * pass settings via ENV variables?
     * phases
