@@ -1,6 +1,7 @@
 from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 
+import locale
 import subprocess
 import os
 from concurrent.futures import ThreadPoolExecutor
@@ -23,8 +24,17 @@ class GlobalState:
 
     def apply_language_settings(self):
         print('setting language to ', self.config['language'])
-        # TODO
-        # change via localectl?
+        # TODO assert locale exists, otherwise fallback to English
+        lo = self.config['language_short_hand']
+        if lo == 'en':
+            l = 'en_US.utf8'
+        elif lo == 'de':
+            l = 'de_DE.utf8'
+        else:
+            l = 'en_US.utf8'
+        print(l)
+        locale.setlocale(locale.LC_ALL, l)
+        # TODO change via localectl?
         # At least load respective translations
         # subprocess.run(['localectl', 'set-locale', language])
 
