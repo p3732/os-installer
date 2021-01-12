@@ -24,17 +24,15 @@ class MainStack(Gtk.Box):
     next_stack = Gtk.Template.Child()
     next_button = Gtk.Template.Child()
 
-    def __init__(self, pages, **kwargs):
+    def __init__(self, pages, global_state, **kwargs):
         super().__init__(**kwargs)
 
+        self.global_state = global_state
         self.navigation_lock = threading.Lock()
 
         # setup pages
         self.pages = pages
-        for section in self.pages:
-            for page in section:
-                self.main_stack.add_named(page, page.__gtype_name__)
-                page.set_vexpand(True)
+        self.current_pages = []
 
     def _go_to_next(self):
         self._save_current_page()
@@ -50,12 +48,26 @@ class MainStack(Gtk.Box):
             self._load_page(self.current - 1)
 
     def _load_section(self, section):
+        old_pages = self.current_pages
+
         self.current_section = section
         self.current = 0
         self.accessible = 0
         self.maximum = len(self.pages[self.current_section]) - 1
 
+        # initialize pages in section
+        self.current_pages = []
+        for page in self.pages[self.current_section]:
+            page = page(self.global_state)
+            page.set_vexpand(True)
+            self.main_stack.add_named(page, page.__gtype_name__)
+            self.current_pages.append(page)
+
         self._load_page(self.current)
+
+        # clean up old pages
+        for page in old_pages:
+            page.destroy()
 
     def _load_page(self, page_number):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
@@ -66,7 +78,7 @@ class MainStack(Gtk.Box):
         self._make_accessible(self.current)
 
         # load page
-        page = self.pages[self.current_section][self.current]
+        page = self.current_pages[self.current]
         self.main_stack.set_visible_child_name(page.__gtype_name__)
         retVal = page.load()
 
@@ -88,7 +100,7 @@ class MainStack(Gtk.Box):
         self.accessible = max(self.current, page-1)
 
     def _save_current_page(self):
-        page = self.pages[self.current_section][self.current]
+        page = self.current_pages[self.current]
         if hasattr(page, 'save'):
             page.save()
 
@@ -116,13 +128,13 @@ class MainStack(Gtk.Box):
 
     def page_can_proceed_automatically(self, name):
         with self.navigation_lock:
-            current_page = self.pages[self.current_section][self.current]
+            current_page = self.current_pages[self.current]
             if current_page.__gtype_name__ == name:
                 self._go_to_next()
 
     def page_is_ok_to_proceed(self, name, ok):
         with self.navigation_lock:
-            current_page = self.pages[self.current_section][self.current]
+            current_page = self.current_pages[self.current]
             if current_page.__gtype_name__ == name:
                 if ok:
                     self._make_accessible(self.current + 1)

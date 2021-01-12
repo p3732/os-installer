@@ -15,6 +15,34 @@ from .user import UserPage
 
 from gi.repository import Gtk, Handy
 
+# The available pages in order
+PAGES = [
+    [  # section language
+        LanguagePage
+    ],
+    [  # section pre-installation
+        KeyboardLayoutPage,
+        InternetPage,
+        DiskPage,
+        EncryptPage,
+        ConfirmPage
+    ],
+    [  # section configuration
+        UserPage,
+        LocalePage,
+        SoftwarePage
+    ],
+    [  # section installation
+        InstallPage
+    ],
+    [  # section done
+        DonePage
+    ],
+    [  # section restart
+        RestartPage
+    ]
+]
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
 class OsInstallerWindow(Handy.ApplicationWindow):
@@ -25,33 +53,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
-        # The available pages in order
-        pages = [
-            [  # section pre-installation
-                LanguagePage(global_state),
-                KeyboardLayoutPage(global_state),
-                InternetPage(global_state),
-                DiskPage(global_state),
-                EncryptPage(global_state),
-                ConfirmPage(global_state)
-            ],
-            [  # section configuration
-                UserPage(global_state),
-                LocalePage(global_state),
-                SoftwarePage(global_state)
-            ],
-            [  # section installation
-                InstallPage(global_state)
-            ],
-            [  # section done
-                DonePage(global_state)
-            ],
-            [  # section restart
-                RestartPage(global_state)
-            ]
-        ]
-
         # setup stack
-        main_stack = MainStack(pages)
+        main_stack = MainStack(PAGES, global_state)
         global_state.set_stack(main_stack)
         self.content_box.add(main_stack)
