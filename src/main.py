@@ -1,14 +1,13 @@
-import sys
 import gi
-
 gi.require_version('Gtk', '3.0')           # noqa: E402
 gi.require_version('Gdk', '3.0')           # noqa: E402
 gi.require_version('GnomeDesktop', '3.0')  # noqa: E402
 gi.require_version('Handy', '1')           # noqa: E402
 gi.require_version('Json', '1.0')          # noqa: E402
 gi.require_version('TimezoneMap', '1.0')   # noqa: E402
-
 from gi.repository import Gdk, Gio, GLib, Gtk, Handy
+
+import sys
 
 # local
 from .global_state import GlobalState
@@ -28,10 +27,6 @@ class Application(Gtk.Application):
         self.window = None
 
         self.global_state = GlobalState()
-
-        # TODO would this be useful?
-        # self.set_resource_base_path('/com/github/p3732/os-installer/')
-        #Gtk.IconTheme.add_resource_path(Gtk.IconTheme.get_default(), '/com/github/p3732/os-installer/icons')
 
     def do_startup(self):
         # Startup application
