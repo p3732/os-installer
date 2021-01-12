@@ -9,6 +9,7 @@ from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
 from .language import LanguagePage
 from .locale import LocalePage
+from .restart import RestartPage
 from .software import SoftwarePage
 from .user import UserPage
 
@@ -44,6 +45,9 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             ],
             [  # section done
                 DonePage(global_state)
+            ],
+            [  # section restart
+                RestartPage(global_state)
             ]
         ]
 

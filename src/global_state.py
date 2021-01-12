@@ -46,6 +46,10 @@ class GlobalState:
         # TODO start copying script
         return
 
+    def apply_restart(self):
+        # TODO
+        return
+
     ### config functions ###
 
     def get_config(self, setting):
