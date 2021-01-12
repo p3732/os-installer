@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=OS-Installer
-Comment=Install an operating System
+Comment=Install an Operating System
 Exec=os-installer
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=com.github.p3732.OS-Installer
