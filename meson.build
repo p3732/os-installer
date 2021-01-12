@@ -1,4 +1,4 @@
-project('OS-Installer',  
+project('os-installer',  
           version: '0.1.0',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2',
@@ -7,7 +7,7 @@ project('OS-Installer',
 )
 
 i18n = import('i18n')
-#datadir = get_option('datadir')
+
 application_id = 'com.github.p3732.OS-Installer'
 
 subdir('data')
