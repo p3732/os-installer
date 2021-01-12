@@ -1,0 +1,172 @@
+# German translations for OS-Installer package.
+# Copyright (C) 2021 THE OS-Installer'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the os-installer package.
+# Automatically generated, 2021.
+# p3732 <650-p3732@users.noreply.gitlab.gnome.org>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: os-installer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-11 23:45+0100\n"
+"PO-Revision-Date: 2021-01-12 00:03+0100\n"
+"Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
+"Language-Team: German <->\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 3.38.0\n"
+
+#: data/com.github.p3732.OS-Installer.desktop.in:3
+msgid "OS-Installer"
+msgstr "OS-Installer"
+
+#: data/com.github.p3732.OS-Installer.desktop.in:4
+msgid "Install an Operating System"
+msgstr "Installiere ein Betriebssystem"
+
+#: data/com.github.p3732.OS-Installer.appdata.xml.in:6
+msgid "Install an OS onto your system."
+msgstr "Installiere ein Betriebssystem auf dein System."
+
+#: data/resources/ui/pages/confirm.ui:12
+msgid "_Confirm"
+msgstr "_Bestätigen"
+
+#: data/resources/ui/pages/confirm.ui:54
+msgid "All data on"
+msgstr "Alle Dateien auf"
+
+#: data/resources/ui/pages/confirm.ui:83
+msgid "will be deleted"
+msgstr "werden gelöscht werden"
+
+#: data/resources/ui/pages/disk.ui:89
+msgid "_Manage Disks"
+msgstr "_Laufwerke verwalten"
+
+#: data/resources/ui/pages/disk.ui:93
+msgid "Open Disk Management Tool"
+msgstr "Öffne Laufwerksverwaltung"
+
+#: data/resources/ui/pages/disk.ui:110
+msgid "_Reload"
+msgstr "_Neu Laden"
+
+#: data/resources/ui/pages/disk.ui:114
+msgid "Reload the list of disks"
+msgstr "Lade die Laufwerksliste erneut"
+
+#: data/resources/ui/pages/done.ui:22
+msgid "Installation complete"
+msgstr "Installation vollständig"
+
+#: data/resources/ui/pages/done.ui:35 data/resources/ui/pages/done.ui:61
+msgid "Open Wifi  Settings"
+msgstr "Öffne WLAN-Einstellungen"
+
+#: data/resources/ui/pages/done.ui:41
+msgid "_Restart System"
+msgstr "System _Neustarten"
+
+#: data/resources/ui/pages/done.ui:68
+msgid "Restart _Later"
+msgstr "_Später Neustarten"
+
+#: data/resources/ui/pages/encrypt.ui:31
+msgid "Encrypt Installation"
+msgstr "Installation verschlüsseln"
+
+#: data/resources/ui/pages/encrypt.ui:113
+msgid "Encryption PIN"
+msgstr "Verschlüsselungs-PIN"
+
+#: data/resources/ui/pages/encrypt.ui:128
+msgid "PIN"
+msgstr "PIN"
+
+#: data/resources/ui/pages/encrypt.ui:167
+msgid ""
+"Memorize this PIN well.\n"
+"Without it you will not be able to access your files."
+msgstr ""
+"Präge dir diesen PIN gut ein.\n"
+"Ohne ihn wirst du nicht auf deine Dateien zugreifen können."
+
+#: data/resources/ui/pages/locale.ui:30
+msgid "Formats"
+msgstr "Formate"
+
+#: data/resources/ui/pages/locale.ui:44
+msgid "Open Locale Settings"
+msgstr "Öffne Einstellungen"
+
+#: data/resources/ui/pages/locale.ui:95
+msgid "Timezone"
+msgstr "Zeitzone"
+
+#: data/resources/ui/pages/locale.ui:109
+msgid "Open Time Settings"
+msgstr "Öffne Einstellungen für Uhrzeit"
+
+#: data/resources/ui/pages/install.ui:24
+msgid "Installing"
+msgstr "Installation läuft"
+
+#: data/resources/ui/pages/internet.ui:15
+msgid "Open Wifi Settings"
+msgstr "Öffne Wlan Einstellungen"
+
+#: data/resources/ui/pages/internet.ui:23
+msgid "_Setup Internet Connection"
+msgstr "_Internetverbindung einrichten"
+
+#: data/resources/ui/pages/keyboard_layout.ui:71
+msgid "Language"
+msgstr "Sprache"
+
+#: data/resources/ui/pages/keyboard_layout.ui:83
+msgid "Change Language"
+msgstr "Sprache ändern"
+
+#: data/resources/ui/pages/keyboard_layout.ui:145
+msgid "Try Your Keyboard Layout Here"
+msgstr "Teste deine Tastaturbelegung hier"
+
+#: data/resources/ui/pages/restart.ui:21
+msgid "Restarting"
+msgstr "Neustarten"
+
+#: data/resources/ui/pages/software.ui:44
+msgid "Select Additional Software to Install"
+msgstr "Wähle zusätzliche Programme zur Installation aus"
+
+#: data/resources/ui/pages/user.ui:39
+msgid "Name"
+msgstr "Name"
+
+#: data/resources/ui/pages/user.ui:56
+msgid "Enter Your Name"
+msgstr "Gebe deinen Namen ein"
+
+#: data/resources/ui/pages/user.ui:98
+msgid "Automatic Login"
+msgstr "Automatisch Anmelden"
+
+#: data/resources/ui/pages/user.ui:149
+msgid "Password"
+msgstr "Passwort"
+
+#: data/resources/ui/pages/user.ui:163
+msgid "Enter a Password"
+msgstr "Gebe ein Passwort ein"
+
+#: data/resources/ui/widgets/partition_row.ui:37
+msgid "Use Partition"
+msgstr "Nutze Partition"
+
+#: data/resources/ui/widgets/whole_disk_row.ui:33
+msgid "Use Whole Disk"
+msgstr "Nutze gesamtes Laufwerk"
