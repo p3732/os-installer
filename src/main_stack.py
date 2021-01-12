@@ -34,6 +34,7 @@ class MainStack(Gtk.Box):
         for section in self.pages:
             for page in section:
                 self.main_stack.add_named(page, page.__gtype_name__)
+                page.set_vexpand(True)
 
     def _go_to_next(self):
         self._save_current_page()
