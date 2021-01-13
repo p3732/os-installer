@@ -1,6 +1,8 @@
 from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 
+from .language_provider import LanguageProvider
+
 import locale
 import subprocess
 import os
@@ -20,6 +22,9 @@ class GlobalState:
 
         # for futures use built in thread pool
         self.thread_pool = ThreadPoolExecutor()
+
+        # setup providers
+        self.language_provider = LanguageProvider(self)
 
     ### installation stages ###
 
@@ -84,6 +89,11 @@ class GlobalState:
 
     def start_standalone_thread(self, function, daemon=False, args=None):
         self.thread_manager.new_thread(function, daemon, args)
+
+    ### provider functions ###
+
+    def get_language_provider(self):
+        return self.language_provider
 
     ### stack funcitons ###
 

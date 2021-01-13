@@ -1,4 +1,3 @@
-from .language_provider import LanguageProvider
 from .widgets import ProgressRow
 
 from gi.repository import Gtk
@@ -20,7 +19,7 @@ class LanguagePage(Gtk.Box):
         self.loaded = False
 
         # provider
-        self.language_provider = LanguageProvider(global_state)
+        self.language_provider = global_state.get_language_provider()
 
         # UI element states
         self.stack.set_visible_child_name('suggested')

@@ -1,5 +1,4 @@
 from .keyboard_layout_provider import KeyboardLayoutProvider
-from .language_provider import LanguageProvider
 from .widgets import BackRow, ProgressRow, SelectionRow, empty_list
 
 from gi.repository import Gtk
@@ -24,7 +23,7 @@ class KeyboardLayoutPage(Gtk.Box):
         self.current_row = None
 
         # providers
-        self.language_provider = LanguageProvider(global_state)
+        self.language_provider = global_state.get_language_provider()
         self.keyboard_layout_provider = KeyboardLayoutProvider(global_state)
 
         # signals
