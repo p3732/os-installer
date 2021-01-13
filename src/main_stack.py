@@ -46,6 +46,8 @@ class MainStack(Gtk.Box):
         # ignore incorrect (fatal) calls
         if self.current > 0:
             self._load_page(self.current - 1)
+        elif self.can_go_to_previous_section:
+            self._load_section(self.current_section - 1)
 
     def _load_section(self, section):
         old_pages = self.current_pages
@@ -53,6 +55,7 @@ class MainStack(Gtk.Box):
         self.current_section = section
         self.current = 0
         self.accessible = 0
+        self.can_go_to_previous_section = False
         self.maximum = len(self.pages[self.current_section]) - 1
 
         # initialize pages in section
@@ -85,6 +88,10 @@ class MainStack(Gtk.Box):
         if retVal == 'ok_to_proceed':
             self._make_accessible(self.current + 1)
             self._update_buttons()
+        elif retVal == 'ok_to_proceed_and_enforce_back':
+            self.can_go_to_previous_section = True
+            self._make_accessible(self.current + 1)
+            self._update_buttons()
         elif retVal == 'waiting':
             self.next_stack.set_visible_child_name('waiting')
         elif retVal == 'automatic':
@@ -106,7 +113,7 @@ class MainStack(Gtk.Box):
 
     def _update_buttons(self):
         # previous
-        if self.current > 0:
+        if self.current > 0 or self.can_go_to_previous_section:
             self.previous_stack.set_visible_child_name('enabled')
         else:
             self.previous_stack.set_visible_child_name('disabled')
@@ -149,5 +156,5 @@ class MainStack(Gtk.Box):
 
     def try_go_to_previous(self):
         with self.navigation_lock:
-            if self.current > 0:
+            if self.current > 0 or self.can_go_to_previous_section:
                 self._go_to_previous()

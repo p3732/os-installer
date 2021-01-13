@@ -103,4 +103,5 @@ class KeyboardLayoutPage(Gtk.Box):
             self.loaded_language = short_hand
 
         self.stack.set_visible_child_name('layouts')
-        return 'ok_to_proceed'
+
+        return 'ok_to_proceed_and_enforce_back'
