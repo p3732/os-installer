@@ -1,51 +1,71 @@
-# TODO necessary?
-from pathlib import Path
-from pathlib import os
+from gi.repository import GnomeDesktop
 
-import json
 from threading import Lock
+import os
 
 
 class LanguageProvider:
     def __init__(self, global_state):
-        self.json_loaded = False
-        # TODO get real file path
-        self.json_file_path = '/home/p3732/Projects/os-installer/data/resources/json/supported_languages.json'
-        self.json_load_lock = Lock()
+        # load all languages/existing translations
+        localedir = global_state.get_config('localedir')
+        self.existing_translations_loaded = False
+        self.existing_translations_lock = Lock()
+        self.existing_translations = global_state.get_future_from(self._load_existing_translations, localedir=localedir)
 
-        self.json_data = global_state.get_future_from(
-            self._load_json)
+        # load suggested languages
+        config_languages = global_state.get_config('suggested_languages')
+        self.suggested_languages_loaded = False
+        self.suggested_languages_lock = Lock()
+        self.suggested_languages = global_state.get_future_from(
+            self._load_suggested_languages, config_languages=config_languages)
 
-    def _load_json(self):
-        with open(self.json_file_path, 'r') as file:
-            json_data = json.load(file)
-        return json_data
+    def _load_existing_translations(self, localedir):
+        '''
+        Load all existing translations by checking for existing translations in the locale folder.
+        '''
+        existing_translations = set()
 
-    def _assert_json_loaded(self):
-        with self.json_load_lock:
-            if not self.json_loaded:
-                self.json_data = self.json_data.result()
-                self.json_loaded = True
+        for file in os.scandir(localedir):
+            if file.is_dir():
+                locale_folder = os.path.join(file.path, 'LC_MESSAGES')
+                if os.path.isdir(locale_folder):
+                    for locale_file in os.scandir(locale_folder):
+                        if locale_file.name == 'os-installer.mo':
+                            language = os.path.basename(file.path)
+                            existing_translations.add(language)
+        return existing_translations
 
-    ### public methods ###
-
-    def get_suggested_languages(self):
-        self._assert_json_loaded()
+    def _load_suggested_languages(self, config_languages):
+        '''
+        Load the suggested languages and filter them for those with actually existing translations.
+        '''
+        existing_translations = self.get_all_languages()
 
         suggested_languages = []
-        for language in self.json_data['suggested']:
-            name = self.json_data[language]
-            suggested_languages.append((language, name))
+        for language in config_languages:
+            name = self._get_language_name(language)
+            if language in existing_translations:
+                suggested_languages.append((language, name))
+            else:
+                print(name, " does not yet have any translations, can not provide it. (Consider contributing a translation for it.)")
 
         return suggested_languages
 
+    def _get_language_name(self, language):
+        return GnomeDesktop.get_language_from_code(language)
+
+    ### public methods ###
+
     def get_all_languages(self):
-        self._assert_json_loaded()
+        with self.existing_translations_lock:
+            if not self.existing_translations_loaded:
+                self.existing_translations = self.existing_translations.result()
+                self.existing_translations_loaded = True
+            return self.existing_translations
 
-        all_languages = []
-        for language in self.json_data:
-            if not language == 'suggested':
-                name = self.json_data[language]
-                all_languages.append((language, name))
-
-        return all_languages
+    def get_suggested_languages(self):
+        with self.suggested_languages_lock:
+            if not self.suggested_languages_loaded:
+                self.suggested_languages = self.suggested_languages.result()
+                self.suggested_languages_loaded = True
+            return self.suggested_languages
