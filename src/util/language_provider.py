@@ -23,7 +23,7 @@ class LanguageProvider:
         '''
         Load all existing translations by checking for existing translations in the locale folder.
         '''
-        existing_translations = set()
+        existing_translations = {'en'}
 
         for file in os.scandir(localedir):
             if file.is_dir():
