@@ -31,27 +31,12 @@ class Application(Gtk.Application):
 
         self.global_state = GlobalState(localedir)
 
-    def do_startup(self):
-        # Startup application
-        Gtk.Application.do_startup(self)
-        self._setup_actions()
-        self._setup_icons()
-        self._load_css()
-
     def _load_css(self):
         css_provider = Gtk.CssProvider()
         css_provider.load_from_resource('/com/github/p3732/os-installer/css/style.css')
         screen = Gdk.Screen.get_default()
         style_context = Gtk.StyleContext()
         style_context.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
-
-        # Init Handy
-        Handy.init()
-
-    def _setup_icons(self):
-        icon_theme = Gtk.IconTheme.get_default()
-        icon_theme.add_resource_path('/com/github/p3732/os-installer/')
-        icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
 
     def _setup_actions(self):
         actions = [
@@ -81,6 +66,13 @@ class Application(Gtk.Application):
             if 'accels' in a:
                 self.set_accels_for_action('app.' + a['name'], a['accels'])
 
+    def _setup_icons(self):
+        icon_theme = Gtk.IconTheme.get_default()
+        icon_theme.add_resource_path('/com/github/p3732/os-installer/')
+        icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
+
+    ### parent functions ###
+
     def do_activate(self):
         self.window = self.props.active_window
         if not self.window:
@@ -88,6 +80,18 @@ class Application(Gtk.Application):
         self.window.present()
 
         self.global_state.load_initial_page()
+
+    def do_startup(self):
+        # Startup application
+        Gtk.Application.do_startup(self)
+        self._load_css()
+        self._setup_actions()
+        self._setup_icons()
+
+        # Init Handy
+        Handy.init()
+
+    ### callbacks ###
 
     def _on_next_page(self, action, param):
         self.global_state.try_go_to_next()
