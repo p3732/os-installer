@@ -17,7 +17,7 @@ APP_ID = 'com.github.p3732.OS-Installer'
 
 
 class Application(Gtk.Application):
-    def __init__(self, version):
+    def __init__(self, version, localedir):
         super().__init__(application_id=APP_ID,
                          flags=Gio.ApplicationFlags.FLAGS_NONE)
         GLib.set_application_name(_('OS Installer'))
@@ -29,7 +29,7 @@ class Application(Gtk.Application):
         # App window
         self.window = None
 
-        self.global_state = GlobalState()
+        self.global_state = GlobalState(localedir)
 
     def do_startup(self):
         # Startup application
@@ -100,6 +100,6 @@ class Application(Gtk.Application):
         self.quit()
 
 
-def main(version):
-    app = Application(version)
+def main(version, localedir):
+    app = Application(version, localedir)
     return app.run(sys.argv)

@@ -8,11 +8,12 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 class GlobalState:
-    def __init__(self):
+    def __init__(self, localedir):
         self.stack = None
 
         # configuration file loader
         self.config = get_config()
+        self.set_config('localedir', localedir)
 
         # helper to manage proper threads
         self.thread_manager = ThreadManager()
