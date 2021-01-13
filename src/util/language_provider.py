@@ -47,12 +47,10 @@ class LanguageProvider:
         self.existing_translations_lock = Lock()
         self.existing_translations = global_state.get_future_from(self._load_existing_translations, localedir=localedir)
 
-        # load suggested languages
-        config_languages = global_state.get_config('suggested_languages')
+        # language lists
+        self.all_languages_loaded = False
         self.suggested_languages_loaded = False
-        self.suggested_languages_lock = Lock()
-        self.suggested_languages = global_state.get_future_from(
-            self._load_suggested_languages, config_languages=config_languages)
+        self.config_languages = global_state.get_config('suggested_languages')
 
     def _load_existing_translations(self, localedir):
         '''
@@ -70,21 +68,12 @@ class LanguageProvider:
                             existing_translations.add(language)
         return existing_translations
 
-    def _load_suggested_languages(self, config_languages):
-        '''
-        Load the suggested languages and filter them for those with actually existing translations.
-        '''
-        existing_translations = self.get_all_languages()
-
-        suggested_languages = []
-        for language in config_languages:
-            name = self._get_language_name(language)
-            if language in existing_translations:
-                suggested_languages.append((language, name))
-            else:
-                print(name, " does not yet have any translations, can not provide it. (Consider contributing a translation for it.)")
-
-        return suggested_languages
+    def _get_existing_translations(self):
+        with self.existing_translations_lock:
+            if not self.existing_translations_loaded:
+                self.existing_translations = self.existing_translations.result()
+                self.existing_translations_loaded = True
+            return self.existing_translations
 
     def _get_language_name(self, language):
         translation = None
@@ -93,18 +82,41 @@ class LanguageProvider:
 
         return GnomeDesktop.get_language_from_code(language, translation)
 
+    def _load_all_languages(self):
+        '''
+        Load all languages by using all existing translations.
+        '''
+        existing_translations = self._get_existing_translations()
+
+        self.all_languages = []
+        for language in existing_translations:
+            name = self._get_language_name(language)
+            self.all_languages.append((language, name))
+
+    def _load_suggested_languages(self):
+        '''
+        Load the suggested languages and filter them for those with actually existing translations.
+        '''
+        existing_translations = self._get_existing_translations()
+
+        self.suggested_languages = []
+        for language in self.config_languages:
+            name = self._get_language_name(language)
+            if language in existing_translations:
+                self.suggested_languages.append((language, name))
+            else:
+                print(name, " does not yet have any translations, can not provide it. (Consider contributing a translation for it.)")
+
     ### public methods ###
 
     def get_all_languages(self):
-        with self.existing_translations_lock:
-            if not self.existing_translations_loaded:
-                self.existing_translations = self.existing_translations.result()
-                self.existing_translations_loaded = True
-            return self.existing_translations
+        if not self.all_languages_loaded:
+            self._load_all_languages()
+            self.all_languages_loaded = True
+        return self.all_languages
 
     def get_suggested_languages(self):
-        with self.suggested_languages_lock:
-            if not self.suggested_languages_loaded:
-                self.suggested_languages = self.suggested_languages.result()
-                self.suggested_languages_loaded = True
-            return self.suggested_languages
+        if not self.suggested_languages_loaded:
+            self._load_suggested_languages()
+            self.suggested_languages_loaded = True
+        return self.suggested_languages
