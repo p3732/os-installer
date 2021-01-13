@@ -1,22 +1,11 @@
-* change language of app upon selection
-    * potentially only construct remaining pages after language is set
-
-* add test mode to disable changes to system
-
 * sort keyboard layouts
 
-* use GnomeDesktop for languages
-    * gi.require_version('GnomeDesktop', '3.0')
-    * from gi.repository import GnomeDesktop
-    * GnomeDesktop.get_language_from_code('en')
-    * gi.require_version('GtkSource', '4')
-    * from gi.repository import GtkSource
-    * a = GtkSource.Language()
-    * a.get_globs()
+* pass locales in config, not language codes
+    * needed to translate language names into respective language
+
+* allow explicitly setting backward navigation for sections (keyboard -> language)
 
 * use UDisks for disks
-
-* get list of all existing translations
 
 * add translation hints
 
