@@ -12,6 +12,7 @@ from concurrent.futures import ThreadPoolExecutor
 class GlobalState:
     def __init__(self, localedir):
         self.stack = None
+        self.demo_mode = False
 
         # configuration file loader
         self.config = get_config()
@@ -40,31 +41,40 @@ class GlobalState:
             l = 'en_US.utf8'
         print(l)
         locale.setlocale(locale.LC_ALL, l)
-        # TODO change via localectl?
-        # At least load respective translations
-        # subprocess.run(['localectl', 'set-locale', language])
+
+        if not self.demo_mode:
+            # TODO change via localectl?
+            # subprocess.run(['localectl', 'set-locale', language])
+            return
 
     def apply_keyboard_layout(self, keyboard_layout, short_hand):
         keyboard_layout = self.config['keyboard_layout_short_hand']
-        # change via localectl
-        # subprocess.run(['localectl', 'set-keymap', short_hand])
+
+        if not self.demo_mode:
+            # TODO change via localectl
+            # subprocess.run(['localectl', 'set-keymap', short_hand])
+            return
 
     def apply_connected(self):
-        # TODO start ntp and syncing of mirrors
-        # subprocess.run(['timedatectl', 'set-ntp', 'true'])
-        return
+        if not self.demo_mode:
+            # TODO start ntp and syncing of mirrors
+            # subprocess.run(['timedatectl', 'set-ntp', 'true'])
+            return
 
     def apply_installation_confirmed(self):
-        # TODO start the actual installation
-        return
+        if not self.demo_mode:
+            # TODO start the actual installation
+            return
 
     def apply_installed(self):
-        # TODO start copying script
-        return
+        if not self.demo_mode:
+            # TODO start copying script
+            return
 
     def apply_restart(self):
-        # TODO
-        return
+        if not self.demo_mode:
+            # TODO
+            return
 
     ### config functions ###
 

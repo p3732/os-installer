@@ -19,12 +19,14 @@ APP_ID = 'com.github.p3732.OS-Installer'
 class Application(Gtk.Application):
     def __init__(self, version, localedir):
         super().__init__(application_id=APP_ID,
-                         flags=Gio.ApplicationFlags.FLAGS_NONE)
-        GLib.set_application_name(_('OS Installer'))
-        GLib.set_prgname(APP_ID)
+                         flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
         # Connect app shutdown signal
         self.connect('shutdown', self._on_quit)
+
+        # Add --hidden command line option
+        self.add_main_option('demo-mode', b'd', GLib.OptionFlags.NONE,
+                             GLib.OptionArg.NONE, "Run in demo mode, don't alter the system", None)
 
         # App window
         self.window = None
@@ -80,6 +82,16 @@ class Application(Gtk.Application):
         self.window.present()
 
         self.global_state.load_initial_page()
+
+    def do_command_line(self, command_line):
+        options = command_line.get_options_dict()
+        options = options.end().unpack()
+
+        if 'demo-mode' in options:
+            self.global_state.demo_mode = True
+
+        self.activate()
+        return 0
 
     def do_startup(self):
         # Startup application
