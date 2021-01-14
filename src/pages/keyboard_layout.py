@@ -1,5 +1,5 @@
 from .keyboard_layout_provider import KeyboardLayoutProvider
-from .widgets import BackRow, ProgressRow, SelectionRow, empty_list
+from .widgets import KeyboardLayoutBackRow, ProgressRow, SelectionRow, empty_list
 
 from gi.repository import Gtk
 
@@ -12,7 +12,6 @@ class KeyboardLayoutPage(Gtk.Box):
 
     language_list = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
-    language_label = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
@@ -41,7 +40,7 @@ class KeyboardLayoutPage(Gtk.Box):
         empty_list(self.layout_list)
 
         # add back row
-        row = BackRow(language)
+        row = KeyboardLayoutBackRow(language)
         self.layout_list.add(row)
 
         # fill list with all keyboard layouts for given language
