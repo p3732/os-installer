@@ -93,6 +93,9 @@ class LanguageProvider:
             name = self._get_language_name(language)
             self.all_languages.append((language, name))
 
+        # sort by name
+        self.all_languages.sort(key=lambda t: t[1])
+
     def _load_suggested_languages(self):
         '''
         Load the suggested languages and filter them for those with actually existing translations.
@@ -106,6 +109,9 @@ class LanguageProvider:
                 self.suggested_languages.append((language, name))
             else:
                 print(name, " does not yet have any translations, can not provide it. (Consider contributing a translation for it.)")
+
+        # sort by name
+        self.suggested_languages.sort(key=lambda t: t[1])
 
     ### public methods ###
 
