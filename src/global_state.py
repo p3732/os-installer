@@ -8,6 +8,8 @@ import subprocess
 import os
 from concurrent.futures import ThreadPoolExecutor
 
+from gi.repository import GLib, GObject, Vte
+
 
 class GlobalState:
     def __init__(self, localedir):
@@ -62,9 +64,18 @@ class GlobalState:
             return
 
     def apply_installation_confirmed(self):
+        # create VTE with installation script
+        self.terminal = Vte.Terminal()
+
         if not self.demo_mode:
+            self.terminal.set_input_enabled(False)
+            self.terminal.set_scroll_on_output(True)
             # TODO start the actual installation
-            return
+            # spawn_async(pty_flags, working_directory, argv, envv, spawn_flags,
+            #            child_setup, timeout, cancellable, callback, *user_data)
+            # self.terminal.spawn_async(Vte.PtyFlags.DEFAULT, '/', ['echo test', None], [None],
+            #                          GLib.SpawnFlags.DEFAULT, None, GObject.G_MAXINT, 1, None, None)
+            #self.terminal.feed_child(b'echo test')
 
     def apply_installed(self):
         if not self.demo_mode:
@@ -104,6 +115,9 @@ class GlobalState:
 
     def get_language_provider(self):
         return self.language_provider
+
+    def get_installation_vte(self):
+        return self.terminal
 
     ### stack funcitons ###
 

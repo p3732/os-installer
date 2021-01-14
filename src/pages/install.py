@@ -35,9 +35,9 @@ class InstallPage(Gtk.Box):
         self.terminal_button.connect('toggled', self._on_toggled_terminal_button)
 
     def _setup_vte(self):
-        # TODO add VTE
-        # self.terminal_box.add()
-        return
+        terminal = self.global_state.get_installation_vte()
+        self.terminal_box.add(terminal)
+        self.terminal_box.show_all()
 
     ### callbacks ###
 
