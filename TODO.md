@@ -1,10 +1,3 @@
-* sort keyboard layouts
-
-* pass locales in config, not language codes
-    * needed to translate language names into respective language
-
-* allow explicitly setting backward navigation for sections (keyboard -> language)
-
 * use UDisks for disks
 
 * add translation hints
@@ -14,6 +7,12 @@
     * phases
         * system installation with bootloader
         * user creation, additional software, post-install configuration
+
+* ellipsize rows
+
+* fix focus inputs
+
+* fix progressing with enter for user, encrypt
 
 * Post Install configuration list (Arch)
     * copy some settings of current user
