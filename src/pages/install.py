@@ -61,6 +61,8 @@ class InstallPage(Gtk.Box):
         with self.installed_lock:
             if self.installed:
                 return 'automatic'
+        if self.global_state.demo_mode:
+            return 'ok_to_proceed'
 
     def save(self):
         self.global_state.apply_installed()
