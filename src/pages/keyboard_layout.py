@@ -74,6 +74,7 @@ class KeyboardLayoutPage(Gtk.Box):
             # show language selection
             if not self.language_list_setup:
                 self._setup_languages_list()
+                self.language_list_setup = True
             self.stack.set_visible_child_name('languages')
         else:
             # layout selected
