@@ -1,5 +1,5 @@
 from .disk_provider import DiskProvider
-from .widgets import BackRow, DiskRow, PartitionRow, WholeDiskRow, empty_list
+from .widgets import DiskBackRow, DiskRow, PartitionRow, WholeDiskRow, empty_list
 
 import threading
 
@@ -54,7 +54,7 @@ class DiskPage(Gtk.Box):
 
         # fill list
         # back row
-        row = BackRow(disk_name)
+        row = DiskBackRow(disk_name)
         self.partition_list.add(row)
 
         # whole disk row

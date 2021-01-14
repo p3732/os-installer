@@ -51,6 +51,26 @@ class DiskRow(Gtk.ListBoxRow):
         return self.size.get_label()
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_back_row.ui')
+class DiskBackRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'DiskBackRow'
+
+    label = Gtk.Template.Child()
+
+    def __init__(self, label, additional_info=None, **kwargs):
+        super().__init__(**kwargs)
+
+        self.label.set_label(label)
+
+        self.info = additional_info
+
+    def get_info(self):
+        return self.info
+
+    def get_label(self):
+        return self.label.get_label()
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/keyboard_layout_back_row.ui')
 class KeyboardLayoutBackRow(Gtk.ListBoxRow):
     __gtype_name__ = 'KeyboardLayoutBackRow'
