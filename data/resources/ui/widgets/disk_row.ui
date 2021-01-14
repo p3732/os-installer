@@ -44,6 +44,7 @@
           <object class="GtkLabel" id="name">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="ellipsize">end</property>
             <property name="xalign">0</property>
           </object>
           <packing>
@@ -56,6 +57,7 @@
           <object class="GtkLabel" id="device_path">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="ellipsize">start</property>
             <property name="xalign">1</property>
             <attributes>
               <attribute name="weight" value="thin"/>
