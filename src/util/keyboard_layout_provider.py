@@ -14,4 +14,6 @@ class KeyboardLayoutProvider:
         for layout in layouts:
             name = self.xkb_info.get_layout_info(layout).display_name
             named_layouts.append((layout, name))
-        return named_layouts
+
+        # sort by name
+        return sorted(named_layouts, key=lambda t: t[1])
