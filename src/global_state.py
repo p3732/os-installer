@@ -47,7 +47,7 @@ class GlobalState:
             # subprocess.run(['localectl', 'set-locale', language])
             return
 
-    def apply_keyboard_layout(self, keyboard_layout, short_hand):
+    def apply_keyboard_layout(self):
         keyboard_layout = self.config['keyboard_layout_short_hand']
 
         if not self.demo_mode:
