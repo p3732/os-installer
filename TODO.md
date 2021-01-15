@@ -1,14 +1,12 @@
 * use UDisks for disks
 
-* add translation hints
+* add another translation
 
 * run scripts for installation phases
     * pass settings via ENV variables?
     * phases
         * system installation with bootloader
         * user creation, additional software, post-install configuration
-
-* ellipsize rows
 
 * fix focus inputs
 
