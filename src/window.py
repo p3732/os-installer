@@ -29,8 +29,8 @@ PAGES = [
     ],
     [  # section configuration
         UserPage,
-        LocalePage,
-        SoftwarePage
+        SoftwarePage,
+        LocalePage
     ],
     [  # section installation
         InstallPage
