@@ -13,9 +13,6 @@
     <file preprocess="xml-stripblanks">icon/language-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/user-symbolic.svg</file>
 
-    <!-- JSON -->
-    <file preprocess="json-stripblanks">json/supported_languages.json</file>
-
     <!-- UI Files -->
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
     <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
