@@ -50,12 +50,10 @@ class GlobalState:
             return
 
     def apply_keyboard_layout(self):
-        keyboard_layout = self.config['keyboard_layout_short_hand']
-
         if not self.demo_mode:
-            # TODO change via localectl
-            # subprocess.run(['localectl', 'set-keymap', short_hand])
-            return
+            keyboard_layout = self.config['keyboard_layout_short_hand']
+            subprocess.run(['gsettings', 'set', 'org.gnome.desktop.input-sources',
+                            'sources', "[('xkb','{}')]".format(keyboard_layout)])
 
     def apply_connected(self):
         if not self.demo_mode:
