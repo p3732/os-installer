@@ -19,7 +19,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Installation complete</property>
+            <property name="label" translatable="yes" context="Informative label after successful installation">Installation complete</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -29,19 +29,11 @@
         </child>
         <child>
           <object class="GtkButton" id="restart_button">
+            <property name="label" translatable="yes" context="Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'">_Restart System</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Open Wifi  Settings</property>
             <property name="use-underline">True</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">_Restart System</property>
-                <property name="use-underline">True</property>
-              </object>
-            </child>
             <style>
               <class name="suggested-action"/>
               <class name="large-button"/>
@@ -55,20 +47,12 @@
         </child>
         <child>
           <object class="GtkButton">
+            <property name="label" translatable="yes" context="Button label to delay restart after successful installation">Restart _Later</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Open Wifi  Settings</property>
             <property name="action-name">app.quit</property>
             <property name="use-underline">True</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Restart _Later</property>
-                <property name="use-underline">True</property>
-              </object>
-            </child>
             <style>
               <class name="big-button"/>
             </style>

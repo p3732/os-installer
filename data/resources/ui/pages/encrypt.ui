@@ -28,7 +28,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Encrypt Installation</property>
+                    <property name="label" translatable="yes" context="Used with option to enable disk encryption">Encrypt Installation</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -82,7 +82,6 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="valign">start</property>
-        <property name="transition-type">crossfade</property>
         <property name="transition-duration">200</property>
         <child>
           <object class="GtkListBox">
@@ -110,7 +109,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Encryption PIN</property>
+                            <property name="label" translatable="yes" context="Description of entry field for pin/password used for disk encryption">Encryption PIN</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -125,7 +124,7 @@
                             <property name="receives-default">True</property>
                             <property name="activates-default">True</property>
                             <property name="truncate-multiline">True</property>
-                            <property name="placeholder-text" translatable="yes">PIN</property>
+                            <property name="placeholder-text" translatable="yes" context="Placeholder for disk encryption pin/password field">PIN</property>
                             <property name="input-purpose">pin</property>
                           </object>
                           <packing>
@@ -164,7 +163,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Memorize this PIN well.
+                            <property name="label" translatable="yes" context="Warning label for disk encryption">Memorize this PIN well.
 Without it you will not be able to access your files.</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>

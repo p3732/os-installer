@@ -86,11 +86,10 @@
         <property name="homogeneous">True</property>
         <child>
           <object class="GtkButton" id="settings_button">
-            <property name="label" translatable="yes">_Manage Disks</property>
+            <property name="label" translatable="yes" context="Button label to open disk management tool" comments="Underscore can not be for same as for 'Reload'">_Manage Disks</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="tooltip-text" translatable="yes">Open Disk Management Tool</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="use-underline">True</property>
@@ -107,11 +106,10 @@
         </child>
         <child>
           <object class="GtkButton" id="refresh_button">
-            <property name="label" translatable="yes">_Reload</property>
+            <property name="label" translatable="yes" context="Button label to reload current (disk) page" comments="Underscore can not be for same as for 'Manage Disks'">_Reload</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">False</property>
-            <property name="tooltip-text" translatable="yes">Reload the list of disks</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="use-underline">True</property>
