@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-12 02:25+0100\n"
+"POT-Creation-Date: 2021-01-15 04:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,133 +30,157 @@ msgid "Install an OS onto your system."
 msgstr ""
 
 #: data/resources/ui/pages/confirm.ui:12
+msgctxt "Button label to confirm disk deletion"
 msgid "_Confirm"
 msgstr ""
 
 #: data/resources/ui/pages/confirm.ui:54
+msgctxt ""
+"First part of confirmation warning, followed by the disk name and then 'will "
+"be deleted'"
 msgid "All data on"
 msgstr ""
 
 #: data/resources/ui/pages/confirm.ui:83
+msgctxt "See 'All data on'"
 msgid "will be deleted"
 msgstr ""
 
+#. Underscore can not be for same as for 'Reload'
 #: data/resources/ui/pages/disk.ui:89
+msgctxt "Button label to open disk management tool"
 msgid "_Manage Disks"
 msgstr ""
 
-#: data/resources/ui/pages/disk.ui:93
-msgid "Open Disk Management Tool"
-msgstr ""
-
-#: data/resources/ui/pages/disk.ui:110
+#. Underscore can not be for same as for 'Manage Disks'
+#: data/resources/ui/pages/disk.ui:109
+msgctxt "Button label to reload current (disk) page"
 msgid "_Reload"
 msgstr ""
 
-#: data/resources/ui/pages/disk.ui:114
-msgid "Reload the list of disks"
-msgstr ""
-
 #: data/resources/ui/pages/done.ui:22
+msgctxt "Informative label after successful installation"
 msgid "Installation complete"
 msgstr ""
 
-#: data/resources/ui/pages/done.ui:35 data/resources/ui/pages/done.ui:61
-msgid "Open Wifi  Settings"
-msgstr ""
-
-#: data/resources/ui/pages/done.ui:41
+#: data/resources/ui/pages/done.ui:32
+msgctxt ""
+"Button label to restart system directly after successful installation. "
+"Underscore can not be for same letter as 'Restart Later'"
 msgid "_Restart System"
 msgstr ""
 
-#: data/resources/ui/pages/done.ui:68
+#: data/resources/ui/pages/done.ui:50
+msgctxt "Button label to delay restart after successful installation"
 msgid "Restart _Later"
 msgstr ""
 
 #: data/resources/ui/pages/encrypt.ui:31
+msgctxt "Used with option to enable disk encryption"
 msgid "Encrypt Installation"
 msgstr ""
 
-#: data/resources/ui/pages/encrypt.ui:113
+#: data/resources/ui/pages/encrypt.ui:112
+msgctxt "Description of entry field for pin/password used for disk encryption"
 msgid "Encryption PIN"
 msgstr ""
 
-#: data/resources/ui/pages/encrypt.ui:128
+#: data/resources/ui/pages/encrypt.ui:127
+msgctxt "Placeholder for disk encryption pin/password field"
 msgid "PIN"
 msgstr ""
 
-#: data/resources/ui/pages/encrypt.ui:167
+#: data/resources/ui/pages/encrypt.ui:166
+msgctxt "Warning label for disk encryption"
 msgid ""
 "Memorize this PIN well.\n"
 "Without it you will not be able to access your files."
 msgstr ""
 
-#: data/resources/ui/pages/locale.ui:30
-msgid "Formats"
-msgstr ""
-
-#: data/resources/ui/pages/locale.ui:44
-msgid "Open Locale Settings"
-msgstr ""
-
-#: data/resources/ui/pages/locale.ui:95
-msgid "Timezone"
-msgstr ""
-
-#: data/resources/ui/pages/locale.ui:109
-msgid "Open Time Settings"
-msgstr ""
-
-#: data/resources/ui/pages/install.ui:24
+#: data/resources/ui/pages/install.ui:20
+msgctxt "Simple label used during Installation"
 msgid "Installing"
 msgstr ""
 
-#: data/resources/ui/pages/internet.ui:15
-msgid "Open Wifi Settings"
+#: data/resources/ui/pages/install.ui:80
+msgctxt ""
+"Hover information on toggle button that shows terminal output during "
+"installation."
+msgid "Show Terminal Output"
 msgstr ""
 
-#: data/resources/ui/pages/internet.ui:23
+#: data/resources/ui/pages/internet.ui:12
+msgctxt "Button label for starting opening the wifi settings"
 msgid "_Setup Internet Connection"
 msgstr ""
 
-#: data/resources/ui/pages/keyboard_layout.ui:71
-msgid "Language"
-msgstr ""
-
-#: data/resources/ui/pages/keyboard_layout.ui:83
-msgid "Change Language"
-msgstr ""
-
-#: data/resources/ui/pages/keyboard_layout.ui:145
+#: data/resources/ui/pages/keyboard_layout.ui:81
+msgctxt "Used as placeholder in a entry field to try out a keyboard layout"
 msgid "Try Your Keyboard Layout Here"
 msgstr ""
 
+#: data/resources/ui/pages/locale.ui:65
+msgctxt "Button label for confirming timezone choice"
+msgid "_Confirm"
+msgstr ""
+
+#: data/resources/ui/pages/locale.ui:116
+msgid "Formats"
+msgstr ""
+
+#: data/resources/ui/pages/locale.ui:169
+msgid "Timezone"
+msgstr ""
+
+#: data/resources/ui/pages/locale.ui:218
+msgctxt "Button label for confirming timezone and formats choice"
+msgid "_Confirm"
+msgstr ""
+
 #: data/resources/ui/pages/restart.ui:21
+msgctxt "Simple label used when restarting"
 msgid "Restarting"
 msgstr ""
 
 #: data/resources/ui/pages/software.ui:44
+msgctxt ""
+"Informative label above a list of software that can be selected for "
+"installation"
 msgid "Select Additional Software to Install"
 msgstr ""
 
 #: data/resources/ui/pages/user.ui:39
+msgctxt "Used with entry field for User's name"
 msgid "Name"
 msgstr ""
 
 #: data/resources/ui/pages/user.ui:56
+msgctxt "Placeholder in user name entry field"
 msgid "Enter Your Name"
 msgstr ""
 
 #: data/resources/ui/pages/user.ui:98
+msgctxt "Used with option to enable automatic login of user upon booting"
 msgid "Automatic Login"
 msgstr ""
 
-#: data/resources/ui/pages/user.ui:149
+#: data/resources/ui/pages/user.ui:148
+msgctxt "Used with entry field for setting a password for new user"
 msgid "Password"
 msgstr ""
 
-#: data/resources/ui/pages/user.ui:163
+#: data/resources/ui/pages/user.ui:162
+msgctxt "Placeholder in password entry field"
 msgid "Enter a Password"
+msgstr ""
+
+#: data/resources/ui/widgets/disk_back_row.ui:40
+msgid "Use Different Disk"
+msgstr ""
+
+#: data/resources/ui/widgets/keyboard_layout_back_row.ui:41
+msgctxt "Used to navigate to a list of all keyboard layouts"
+msgid "Show All Layouts"
 msgstr ""
 
 #: data/resources/ui/widgets/partition_row.ui:37
