@@ -1,4 +1,5 @@
 from .locale_provider import LocaleProvider
+from .timezone_window import TimezoneWindow
 from .widgets import ProgressRow
 
 from gi.repository import Gtk
@@ -17,17 +18,13 @@ class LocalePage(Gtk.Box):
 
     formats_list = Gtk.Template.Child()
 
-    timezone_map_placeholder = Gtk.Template.Child()
-    timezone_map_label = Gtk.Template.Child()
-    confirm_timezone_button = Gtk.Template.Child()
-
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
         self.global_state = global_state
         self.formats_list_loaded = False
-        self.timezone_map_loaded = False
-        self.timezone_map = None
+        self.TimezoneMap = None
+        self.timezone_window = None
 
         # provider
         self.locale_provider = LocaleProvider(global_state)
@@ -36,7 +33,6 @@ class LocalePage(Gtk.Box):
         self.overview_list.connect('row-activated', self._on_overview_row_activated)
         self.formats_list.connect('row-activated', self._on_formats_row_activated)
         self.confirm_overview_button.connect("clicked", self._on_clicked_confirm_overview_button)
-        self.confirm_timezone_button.connect("clicked", self._on_clicked_confirm_timezone_button)
 
     def _load_formats_list(self):
         if not self.formats_list_loaded:
@@ -57,13 +53,28 @@ class LocalePage(Gtk.Box):
         self.stack.set_visible_child_name('overview')
 
     def _load_timezone_map(self):
-        if not self.timezone_map_loaded:
-            # TODO
-            # self.timezone_map
-            self.timezone_map_loaded = True
-        self.stack.set_visible_child_name('timezone_map')
+        timezone = self.locale_provider.get_timezone()
+        self.global_state.set_config('timezone', timezone)
+
+        # create timezone window
+        timezone = self.locale_provider.get_timezone()
+        self.timezone_window = TimezoneWindow(self, timezone, self._on_timezone_chosen, self.global_state)
+        self.timezone_window.show_all()
 
     ### callbacks ###
+
+    def _on_timezone_chosen(self, button):
+        # set timezone
+        timezone = self.timezone_window.timezone
+        self.global_state.set_config('timezone', timezone)
+        self.global_state.apply_timezone()
+
+        # UI state
+        self.timezone_label.set_label(timezone)
+        self.stack.set_visible_child_name('overview')
+
+        # close window
+        self.timezone_window.close()
 
     def _on_overview_row_activated(self, list_box, row):
         if row.get_name() == 'timezone':
@@ -79,10 +90,6 @@ class LocalePage(Gtk.Box):
     def _on_clicked_confirm_overview_button(self, button):
         self.global_state.advance()
 
-    def _on_clicked_confirm_timezone_button(self, button):
-        # TODO set and use timezone
-        self._load_overview_list()
-
     ### public methods ###
 
     def load(self):
@@ -90,6 +97,4 @@ class LocalePage(Gtk.Box):
 
     def save(self):
         formats = self.locale_provider.get_formats()
-        timezone = self.locale_provider.get_timezone()
         self.global_state.set_config('formats', formats)
-        self.global_state.set_config('timezone', timezone)

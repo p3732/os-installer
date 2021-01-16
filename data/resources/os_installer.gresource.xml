@@ -15,6 +15,7 @@
 
     <!-- UI Files -->
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
+    <file preprocess="xml-stripblanks">ui/timezone_window.ui</file>
     <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
 
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>

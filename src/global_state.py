@@ -80,6 +80,11 @@ class GlobalState:
             # TODO start copying script
             return
 
+    def apply_timezone(self):
+        if not self.demo_mode:
+            # TODO change system timezone
+            print(self.config['timezone'])
+
     def apply_restart(self):
         if not self.demo_mode:
             # TODO
