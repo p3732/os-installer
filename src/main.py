@@ -83,6 +83,7 @@ class Application(Gtk.Application):
             self.window = OsInstallerWindow(self.global_state, application=self)
         self.window.present()
 
+        self.global_state.window = self.window
         self.global_state.load_initial_page()
 
     def do_command_line(self, command_line):
