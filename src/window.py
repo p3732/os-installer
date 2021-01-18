@@ -55,5 +55,5 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
         # setup stack
         main_stack = MainStack(PAGES, global_state)
-        global_state.set_stack(main_stack)
+        global_state.stack = main_stack
         self.content_box.add(main_stack)

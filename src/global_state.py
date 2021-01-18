@@ -13,8 +13,8 @@ from gi.repository import GLib, GObject, Vte
 
 class GlobalState:
     def __init__(self, localedir):
-        self.stack = None
         self.demo_mode = False
+        self.stack = None
 
         # configuration file loader
         self.config = get_config()
@@ -123,9 +123,6 @@ class GlobalState:
         return self.terminal
 
     ### stack funcitons ###
-
-    def set_stack(self, stack):
-        self.stack = stack
 
     def advance(self):
         self.stack.advance()
