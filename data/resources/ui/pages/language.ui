@@ -6,13 +6,16 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
-    <property name="spacing">32</property>
+    <property name="spacing">18</property>
     <child type="center">
       <object class="GtkScrolledWindow">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="vscrollbar-policy">external</property>
-        <property name="min-content-height">340</property>
+        <property name="min-content-width">400</property>
+        <property name="min-content-height">400</property>
+        <property name="propagate-natural-width">True</property>
+        <property name="propagate-natural-height">True</property>
         <child>
           <object class="GtkViewport">
             <property name="visible">True</property>
@@ -32,6 +35,7 @@
                         <property name="name">show_all_row</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="selectable">False</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
