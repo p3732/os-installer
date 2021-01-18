@@ -1,3 +1,8 @@
+
+* fix empty timezone stuff in timezones
+
+* add format selection
+
 * use UDisks for disks
 
 * add another translation
