@@ -3,9 +3,9 @@ from .widgets import empty_list, BackRow, ProgressRow
 from gi.repository import Gtk, GWeather
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/timezone_choser.ui')
-class TimezoneChoser(Gtk.Stack):
-    __gtype_name__ = 'TimezoneChoser'
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/timezone_chooser.ui')
+class TimezoneChooser(Gtk.Stack):
+    __gtype_name__ = 'TimezoneChooser'
 
     continents_list = Gtk.Template.Child()
     countries_list = Gtk.Template.Child()
