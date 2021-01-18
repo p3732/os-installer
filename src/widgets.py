@@ -6,6 +6,25 @@ def empty_list(list_box):
         row.destroy()
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/back_row.ui')
+class BackRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'BackRow'
+
+    label = Gtk.Template.Child()
+
+    def __init__(self, text, additional_info=None, **kwargs):
+        super().__init__(**kwargs)
+
+        self.label.set_label(text)
+        self.info = additional_info
+
+    def get_text(self):
+        return self.label.get_label()
+
+    def get_info(self):
+        return self.info
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_row.ui')
 class DiskRow(Gtk.ListBoxRow):
     __gtype_name__ = 'DiskRow'
