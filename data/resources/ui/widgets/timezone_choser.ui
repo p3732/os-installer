@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <template class="TimezoneChoser" parent="GtkStack">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkListBox" id="continents_list">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="selection-mode">none</property>
+        <style>
+          <class name="content"/>
+        </style>
+      </object>
+      <packing>
+        <property name="name">continents</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkListBox" id="countries_list">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="selection-mode">none</property>
+        <style>
+          <class name="content"/>
+        </style>
+      </object>
+      <packing>
+        <property name="name">countries</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkListBox" id="subzones_list">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="selection-mode">none</property>
+        <style>
+          <class name="content"/>
+        </style>
+      </object>
+      <packing>
+        <property name="name">subzones</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+  </template>
+</interface>

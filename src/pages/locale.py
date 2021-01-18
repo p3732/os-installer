@@ -1,11 +1,8 @@
 from .locale_provider import LocaleProvider
-from .timezone_window import TimezoneWindow
+from .timezone_choser import TimezoneChoser
 from .widgets import ProgressRow
 
 from gi.repository import GLib, Gtk
-
-import importlib
-import time
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
@@ -26,9 +23,7 @@ class LocalePage(Gtk.Box):
 
         self.global_state = global_state
         self.formats_list_loaded = False
-        self.TimezoneMap = None
-        self.timezone_map_imported = False
-        self.timezone_window = None
+        self.timezone_choser_setup = False
 
         # provider
         self.locale_provider = LocaleProvider(global_state)
@@ -56,55 +51,18 @@ class LocalePage(Gtk.Box):
 
         self.stack.set_visible_child_name('overview')
 
-    def _load_timezone_map(self):
-        # sleep to allow Gtk to open popup window first
-        # (essentially waiting for the Gtk Main thread to update once)
-        time.sleep(0.022)
-
-        if not self.TimezoneMap:
-            self.TimezoneMap = self.TimezoneMap.result()
-            self.timezone_map_imported = True
-
-        def import_timezone_map():
-            TimezoneMap = importlib.import_module('gi.repository.TimezoneMap', 'TimezoneMap')
-            return TimezoneMap
-
-        # instantiate map when idle
-        GLib.idle_add(self._instantiate_timezone_map)
-
-    def _instantiate_timezone_map(self):
-        self.timezone_window.load_map(self.TimezoneMap)
-        return GLib.SOURCE_REMOVE
-
-    def _load_timezone_popover(self):
-        timezone = self.locale_provider.get_timezone()
-        self.global_state.set_config('timezone', timezone)
-
-        # create timezone window
-        timezone = self.locale_provider.get_timezone()
-        self.timezone_window = TimezoneWindow(timezone, self._on_timezone_chosen)
-        self.timezone_window.show_all()
-
-        # make window modal dialog
-        window = self.global_state.window
-        self.timezone_window.set_transient_for(window)
-        self.timezone_window.set_attached_to(window)
-        self.timezone_window.set_modal(True)
-        self.timezone_window.grab_focus
-
-        #
-
-        if not self.timezone_map_imported:
-            self.TimezoneMap = self.global_state.get_future_from(import_timezone_map)
-
-        # actual map loading in thread
-        self.global_state.start_standalone_thread(self._load_timezone_map)
+    def _load_timezone_choser(self):
+        if not self.timezone_choser_setup:
+            self.timezone_choser = TimezoneChoser(self._on_timezone_chosen)
+            self.stack.add_named(self.timezone_choser, 'timezone')
+            self.timezone_choser_setup = True
+        self.timezone_choser.load()
+        self.stack.set_visible_child_name('timezone')
 
     ### callbacks ###
 
-    def _on_timezone_chosen(self, button):
+    def _on_timezone_chosen(self, timezone):
         # set timezone
-        timezone = self.timezone_window.timezone
         self.global_state.set_config('timezone', timezone)
         self.global_state.apply_timezone()
 
@@ -112,12 +70,9 @@ class LocalePage(Gtk.Box):
         self.timezone_label.set_label(timezone)
         self.stack.set_visible_child_name('overview')
 
-        # close window
-        self.timezone_window.close()
-
     def _on_overview_row_activated(self, list_box, row):
         if row.get_name() == 'timezone':
-            self._load_timezone_popover()
+            self._load_timezone_choser()
         elif row.get_name() == 'formats':
             self._load_formats_list()
 

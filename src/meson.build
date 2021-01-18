@@ -35,7 +35,7 @@ os_installer_sources = [
   'pages/restart.py',
   'pages/software.py',
   'pages/user.py',
-  'ui/timezone_window.py',
+  'ui/timezone_choser.py',
   'util/disk_provider.py',
   'util/internet_provider.py',
   'util/keyboard_layout_provider.py',

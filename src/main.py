@@ -4,8 +4,8 @@ import gi
 gi.require_version('Gtk', '3.0')           # noqa: E402
 gi.require_version('Gdk', '3.0')           # noqa: E402
 gi.require_version('GnomeDesktop', '3.0')  # noqa: E402
+gi.require_version('GWeather', '3.0')      # noqa: E402
 gi.require_version('Handy', '1')           # noqa: E402
-gi.require_version('TimezoneMap', '1.0')   # noqa: E402
 gi.require_version('Vte', '2.91')          # noqa: E402
 from gi.repository import Gdk, Gio, GLib, Gtk, Handy
 

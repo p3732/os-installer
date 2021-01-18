@@ -15,7 +15,6 @@
 
     <!-- UI Files -->
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
-    <file preprocess="xml-stripblanks">ui/timezone_window.ui</file>
     <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
 
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
@@ -39,6 +38,7 @@
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/software_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/timezone_choser.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/whole_disk_row.ui</file>
   </gresource>
 </gresources>
