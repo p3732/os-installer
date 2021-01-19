@@ -43,6 +43,6 @@ class SoftwarePage(Gtk.Box):
         to_install = []
         for row in self.software_list:
             if row.is_activated():
-                package_name = row.get_package_name()
+                package_name = row.package_name
                 to_install.append(package_name)
         self.global_state.set_config('additional_software', to_install)

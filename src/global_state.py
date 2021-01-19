@@ -114,14 +114,6 @@ class GlobalState:
     def start_standalone_thread(self, function, daemon=False, args=None):
         self.thread_manager.new_thread(function, daemon, args)
 
-    ### provider functions ###
-
-    def get_language_provider(self):
-        return self.language_provider
-
-    def get_installation_vte(self):
-        return self.terminal
-
     ### stack funcitons ###
 
     def advance(self):

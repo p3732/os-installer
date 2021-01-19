@@ -75,7 +75,7 @@ class TimezoneChooser(Gtk.Box):
     ### callbacks ###
 
     def _on_continent_row_activated(self, list_box, row):
-        continent = row.get_info()
+        continent = row.info
         timezone = continent.get_timezone_str()
         if not timezone:
             self._load_countries_list(continent)
@@ -87,7 +87,7 @@ class TimezoneChooser(Gtk.Box):
             self.stack.set_visible_child_name('continents')
         else:
             # check if country has timezone
-            country = row.get_info()
+            country = row.info
             timezone = country.get_timezone_str()
             if not timezone:
                 self._load_subzones_list(country)
@@ -98,7 +98,7 @@ class TimezoneChooser(Gtk.Box):
         if row.get_name() == 'back_row':
             self.stack.set_visible_child_name('countries')
         else:
-            subzone = row.get_info()
+            subzone = row.info
             timezone = subzone.get_timezone_str()
 
             if not subzone:

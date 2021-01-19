@@ -19,7 +19,7 @@ class LanguagePage(Gtk.Box):
         self.loaded = False
 
         # provider
-        self.language_provider = global_state.get_language_provider()
+        self.language_provider = global_state.language_provider
 
         # UI element states
         self.stack.set_visible_child_name('suggested')
@@ -56,7 +56,7 @@ class LanguagePage(Gtk.Box):
 
             # save language
             language = row.get_label()
-            short_hand = row.get_info()
+            short_hand = row.info
             self.global_state.set_config('language', language)
             self.global_state.set_config('language_short_hand', short_hand)
 

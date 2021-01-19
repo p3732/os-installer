@@ -22,7 +22,7 @@ class KeyboardLayoutPage(Gtk.Box):
         self.current_row = None
 
         # providers
-        self.language_provider = global_state.get_language_provider()
+        self.language_provider = global_state.language_provider
         self.keyboard_layout_provider = KeyboardLayoutProvider(global_state)
 
         # signals
@@ -64,7 +64,7 @@ class KeyboardLayoutPage(Gtk.Box):
     def _on_language_row_activated(self, list_box, row):
         # show layouts for language
         language = row.get_label()
-        short_hand = row.get_info()
+        short_hand = row.info
         self._setup_layout_list(language, short_hand)
         self.stack.set_visible_child_name('layouts')
 
@@ -81,7 +81,7 @@ class KeyboardLayoutPage(Gtk.Box):
 
             # save here, not on page reloads
             keyboard_layout = row.get_label()
-            short_hand = row.get_info()
+            short_hand = row.info
             self.global_state.set_config('keyboard_layout', keyboard_layout)
             self.global_state.set_config('keyboard_layout_short_hand', short_hand)
             self.global_state.apply_keyboard_layout()

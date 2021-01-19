@@ -21,9 +21,6 @@ class BackRow(Gtk.ListBoxRow):
     def get_text(self):
         return self.label.get_label()
 
-    def get_info(self):
-        return self.info
-
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_row.ui')
 class DiskRow(Gtk.ListBoxRow):
@@ -63,9 +60,6 @@ class DiskBackRow(Gtk.ListBoxRow):
 
         self.info = additional_info
 
-    def get_info(self):
-        return self.info
-
     def get_label(self):
         return self.label.get_label()
 
@@ -82,9 +76,6 @@ class KeyboardLayoutBackRow(Gtk.ListBoxRow):
         self.label.set_label(label)
 
         self.info = additional_info
-
-    def get_info(self):
-        return self.info
 
     def get_label(self):
         return self.label.get_label()
@@ -104,9 +95,6 @@ class PartitionRow(Gtk.ListBoxRow):
 
         self.name.set_label(name)
         self.size.set_label(size)
-
-    def get_device_path(self):
-        return self.device_path
 
     def get_partition_name(self):
         return self.name.get_label()
@@ -128,9 +116,6 @@ class ProgressRow(Gtk.ListBoxRow):
 
         self.info = additional_info
 
-    def get_info(self):
-        return self.info
-
     def get_label(self):
         return self.label.get_label()
 
@@ -148,9 +133,6 @@ class SelectionRow(Gtk.ListBoxRow):
         self.label.set_label(label)
 
         self.info = additional_info
-
-    def get_info(self):
-        return self.info
 
     def get_label(self):
         return self.label.get_label()
@@ -178,9 +160,6 @@ class SoftwareRow(Gtk.ListBoxRow):
 
         self.package_name = package_name
 
-    def get_package_name(self):
-        return self.package_name
-
     def is_activated(self):
         return self.switch.get_active()
 
@@ -198,12 +177,6 @@ class WholeDiskRow(Gtk.ListBoxRow):
 
         self.name = name
         self.device_path = device_path
-
-    def get_device_path(self):
-        return self.device_path
-
-    def get_partition_name(self):
-        return self.name
 
     def get_partition_size(self):
         return self.size.get_label()
