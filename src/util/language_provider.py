@@ -3,7 +3,7 @@ from gi.repository import GnomeDesktop
 from threading import Lock
 import os
 
-
+# generated via language_codes_to_locales.py
 language_to_default_locale = {
     'aa': 'aa_DJ.UTF-8', 'af': 'af_ZA.UTF-8', 'ak': 'ak_GH.UTF-8', 'sq': 'sq_AL.UTF-8', 'am': 'am_ET.UTF-8',
     'ar': 'ar_EG.UTF-8', 'an': 'an_ES.UTF-8', 'hy': 'hy_AM.UTF-8', 'as': 'as_IN.UTF-8', 'ae': 'ar_AE.UTF-8',
@@ -52,22 +52,6 @@ class LanguageProvider:
         self.suggested_languages_loaded = False
         self.config_languages = global_state.get_config('suggested_languages')
 
-    def _load_existing_translations(self, localedir):
-        '''
-        Load all existing translations by checking for existing translations in the locale folder.
-        '''
-        existing_translations = {'en'}
-
-        for file in os.scandir(localedir):
-            if file.is_dir():
-                locale_folder = os.path.join(file.path, 'LC_MESSAGES')
-                if os.path.isdir(locale_folder):
-                    for locale_file in os.scandir(locale_folder):
-                        if locale_file.name == 'os-installer.mo':
-                            language = os.path.basename(file.path)
-                            existing_translations.add(language)
-        return existing_translations
-
     def _get_existing_translations(self):
         with self.existing_translations_lock:
             if not self.existing_translations_loaded:
@@ -96,6 +80,22 @@ class LanguageProvider:
         # sort by name
         self.all_languages.sort(key=lambda t: t[1])
 
+    def _load_existing_translations(self, localedir):
+        '''
+        Load all existing translations by checking for existing translations in the locale folder.
+        '''
+        existing_translations = {'en'}
+
+        for file in os.scandir(localedir):
+            if file.is_dir():
+                locale_folder = os.path.join(file.path, 'LC_MESSAGES')
+                if os.path.isdir(locale_folder):
+                    for locale_file in os.scandir(locale_folder):
+                        if locale_file.name == 'os-installer.mo':
+                            language = os.path.basename(file.path)
+                            existing_translations.add(language)
+        return existing_translations
+
     def _load_suggested_languages(self):
         '''
         Load the suggested languages and filter them for those with actually existing translations.
@@ -108,7 +108,7 @@ class LanguageProvider:
             if language in existing_translations:
                 self.suggested_languages.append((language, name))
             else:
-                print(name, " does not yet have any translations, can not provide it. (Consider contributing a translation for it.)")
+                print(name, " does not yet have any translations, yet. (Consider contributing a translation for it.)")
 
         # sort by name
         self.suggested_languages.sort(key=lambda t: t[1])
