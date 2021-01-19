@@ -2,52 +2,78 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="TimezoneChooser" parent="GtkStack">
+  <template class="TimezoneChooser" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <child>
-      <object class="GtkListBox" id="continents_list">
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+    <child type="center">
+      <object class="GtkStack" id="stack">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="selection-mode">none</property>
-        <style>
-          <class name="content"/>
-        </style>
+        <property name="vhomogeneous">False</property>
+        <child>
+          <object class="GtkListBox" id="continents_list">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="selection-mode">none</property>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+          <packing>
+            <property name="name">continents</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkListBox" id="countries_list">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="selection-mode">none</property>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+          <packing>
+            <property name="name">countries</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkListBox" id="subzones_list">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="selection-mode">none</property>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+          <packing>
+            <property name="name">subzones</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
       </object>
       <packing>
-        <property name="name">continents</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkListBox" id="countries_list">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="selection-mode">none</property>
-        <style>
-          <class name="content"/>
-        </style>
-      </object>
-      <packing>
-        <property name="name">countries</property>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
         <property name="position">1</property>
       </packing>
     </child>
     <child>
-      <object class="GtkListBox" id="subzones_list">
+      <object class="GtkLabel">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="selection-mode">none</property>
-        <style>
-          <class name="content"/>
-        </style>
+        <property name="label" translatable="yes" context="Informative label with list of continents and countries">Choose Your Location</property>
+        <attributes>
+          <attribute name="weight" value="bold"/>
+        </attributes>
       </object>
       <packing>
-        <property name="name">subzones</property>
-        <property name="position">2</property>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
       </packing>
-    </child>
-    <child>
-      <placeholder/>
     </child>
   </template>
 </interface>
