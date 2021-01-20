@@ -33,16 +33,16 @@ class LanguagePage(Gtk.Box):
 
         # insert all suggested languages before show all row
         position = 0
-        for language, name in suggested_languages:
-            row = ProgressRow(name, language)
+        for name, language, locale in suggested_languages:
+            row = ProgressRow(name, (language, locale))
             self.suggested_list.insert(row, position)
             position += 1
 
     def _setup_all_list(self):
         all_languages = self.language_provider.get_all_languages()
 
-        for language, name in all_languages:
-            row = ProgressRow(name, language)
+        for name, language, locale in all_languages:
+            row = ProgressRow(name, (language, locale))
             self.all_list.add(row)
 
     ### callbacks ###
@@ -56,9 +56,10 @@ class LanguagePage(Gtk.Box):
 
             # save language
             language = row.get_label()
-            short_hand = row.info
+            short_hand, locale = row.info
             self.global_state.set_config('language', language)
             self.global_state.set_config('language_short_hand', short_hand)
+            self.global_state.set_config('locale', locale)
 
             self.global_state.apply_language_settings()
             self.global_state.advance()

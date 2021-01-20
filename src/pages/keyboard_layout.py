@@ -32,7 +32,7 @@ class KeyboardLayoutPage(Gtk.Box):
     def _setup_languages_list(self):
         all_languages = self.language_provider.get_all_languages()
 
-        for language, name in all_languages:
+        for name, language, _ in all_languages:
             row = ProgressRow(name, language)
             self.language_list.add(row)
 

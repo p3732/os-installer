@@ -59,12 +59,15 @@ class LanguageProvider:
                 self.existing_translations_loaded = True
             return self.existing_translations
 
-    def _get_language_name(self, language):
-        translation = None
+    def _get_default_locale(self, language):
         if language in language_to_default_locale:
-            translation = language_to_default_locale[language]
+            return language_to_default_locale[language]
+        else:
+            return None
 
-        return GnomeDesktop.get_language_from_code(language, translation)
+    def _get_language_name(self, language):
+        translation_locale = self._get_default_locale(language)
+        return GnomeDesktop.get_language_from_code(language, translation_locale)
 
     def _load_all_languages(self):
         '''
@@ -74,11 +77,12 @@ class LanguageProvider:
 
         self.all_languages = []
         for language in existing_translations:
-            name = self._get_language_name(language)
-            self.all_languages.append((language, name))
+            locale = self._get_default_locale(language)
+            name = GnomeDesktop.get_language_from_code(language, locale)
+            self.all_languages.append((name, language, locale))
 
         # sort by name
-        self.all_languages.sort(key=lambda t: t[1])
+        self.all_languages.sort()
 
     def _load_existing_translations(self, localedir):
         '''
@@ -104,11 +108,12 @@ class LanguageProvider:
 
         self.suggested_languages = []
         for language in self.config_languages:
-            name = self._get_language_name(language)
+            locale = self._get_default_locale(language)
+            name = GnomeDesktop.get_language_from_code(language, locale)
             if language in existing_translations:
-                self.suggested_languages.append((language, name))
+                self.suggested_languages.append((name, language, locale))
             else:
-                print(name, " does not yet have any translations, yet. (Consider contributing a translation for it.)")
+                print(name, 'does not have any translations, yet. (Consider contributing a translation for it.)')
 
         # sort by name
         self.suggested_languages.sort(key=lambda t: t[1])
