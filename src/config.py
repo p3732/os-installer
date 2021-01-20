@@ -3,12 +3,25 @@ import yaml
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 
+def _get_fallback_config():
+    return {
+        'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
+        'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
+        'additional_software': {}
+    }
+
+
+### public methods ###
+
 def get_config():
+    config = _get_fallback_config()
     try:
         with open(DEFAULT_CONFIG_PATH, 'r') as file:
-            config = yaml.load(file, Loader=yaml.Loader)
+            config_from_file = yaml.load(file, Loader=yaml.Loader)
+            for config_property in config_from_file:
+                config[config_property] = config_from_file[config_property]
     except:
-        config = _get_fallback_config()
+        print('No config provided, using fallback config.')
     return config
 
 
