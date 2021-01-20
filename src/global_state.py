@@ -93,7 +93,10 @@ class GlobalState:
     ### config functions ###
 
     def get_config(self, setting):
-        return self.config[setting]
+        if setting in self.config:
+            return self.config[setting]
+        else:
+            return None
 
     def set_config(self, setting, value):
         self.config[setting] = value
