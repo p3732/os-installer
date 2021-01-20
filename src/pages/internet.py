@@ -62,4 +62,7 @@ class InternetPage(Gtk.Box):
                     self.can_proceed_automatically = True
                     return 'automatic'
             else:
-                return 'waiting'
+                if self.global_state.demo_mode:
+                    return 'ok_to_proceed'
+                else:
+                    return 'waiting'
