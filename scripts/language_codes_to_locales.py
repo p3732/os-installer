@@ -36,7 +36,7 @@ for language_code in language_codes:
             if GnomeDesktop.language_has_translations(language_code):
                 print("Can't convert country code '{}' to locale".format(language_code))
             else:
-                print("          Can't convert country code '{}' to locale but no translations exist anyway.".format(language_code))
+                print("Can't convert country code'{}' to locale but no translations exist anyway.".format(language_code))
 
 print(language_code_to_locale)
 print('----------')
