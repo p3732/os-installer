@@ -33,6 +33,7 @@
     <file preprocess="xml-stripblanks">ui/widgets/back_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/disk_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/disk_back_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/formats_chooser.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/keyboard_layout_back_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/partition_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
