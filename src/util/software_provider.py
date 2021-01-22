@@ -9,7 +9,6 @@ class SoftwareProvider:
         software = self.global_state.get_config('additional_software')
         if software:
             for package in software:
-                print(package)
                 package_ok = ('package' in package and
                               'default' in package and
                               'name' in package and
