@@ -32,21 +32,20 @@ class GlobalState:
     ### installation stages ###
 
     def apply_language_settings(self):
-        print('setting language to ', self.config['language'])
-        # TODO assert locale exists, otherwise fallback to English
-        lo = self.config['language_short_hand']
-        if lo == 'en':
-            l = 'en_US.utf8'
-        elif lo == 'de':
-            l = 'de_DE.utf8'
-        else:
-            l = 'en_US.utf8'
-        print(l)
-        locale.setlocale(locale.LC_ALL, l)
+        # set app language
+        new_locale = locale.normalize(self.config['locale'])
+        print(new_locale)
+        self.config['locale'] = new_locale
+        was_set = locale.setlocale(locale.LC_ALL, new_locale)
+        if not was_set:
+            language = self.config['language']
+            print('Could not set locale to {}, falling back to English.'.format(language))
+            print('Installation medium creators, check that you have correctly set up the locales to support {}.'.format(language))
+            locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
         if not self.demo_mode:
-            # TODO change via localectl?
-            # subprocess.run(['localectl', 'set-locale', language])
+            # change system locale
+            subprocess.run(['localectl', 'set-locale', new_locale])
             return
 
     def apply_keyboard_layout(self):
