@@ -15,6 +15,7 @@ class GlobalState:
     def __init__(self, localedir):
         self.demo_mode = False
         self.stack = None
+        self.terminal = None
 
         # configuration file loader
         self.config = get_config()
