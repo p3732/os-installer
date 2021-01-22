@@ -116,7 +116,7 @@ class LanguageProvider:
                 print(name, 'does not have any translations, yet. (Consider contributing a translation for it.)')
 
         # sort by name
-        self.suggested_languages.sort(key=lambda t: t[1])
+        self.suggested_languages
 
     ### public methods ###
 
