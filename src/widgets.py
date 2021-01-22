@@ -178,5 +178,8 @@ class WholeDiskRow(Gtk.ListBoxRow):
         self.name = name
         self.device_path = device_path
 
+    def get_partition_name(self):
+        return self.name
+
     def get_partition_size(self):
         return self.size.get_label()
