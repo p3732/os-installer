@@ -163,6 +163,9 @@ class SoftwareRow(Gtk.ListBoxRow):
     def is_activated(self):
         return self.switch.get_active()
 
+    def set_activated(self, state):
+        return self.switch.set_active(state)
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/whole_disk_row.ui')
 class WholeDiskRow(Gtk.ListBoxRow):

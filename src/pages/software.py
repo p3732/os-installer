@@ -18,6 +18,11 @@ class SoftwarePage(Gtk.Box):
         self.always_skip = False
 
         self.software_provider = SoftwareProvider(global_state)
+        self.software_list.connect('row-activated', self._on_software_row_activated)
+
+    def _on_software_row_activated(self, list_box, row):
+        new_state = not row.is_activated()
+        row.set_activated(new_state)
 
     def _setup_software(self):
         suggestions = self.software_provider.get_suggestions()
