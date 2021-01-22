@@ -1,13 +1,31 @@
 %YAML 1.2
 ---
+# This is an example config file for OS-Installer.
+# Place your config under /etc/os-installer/config.yaml for it to be used.
 
+# A URL/IP address to be used to check for an existing internet connection.
 internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 
+# Languages that you want the installer to offer. In order
+# Only those with existing translations will actually be available.
 suggested_languages: 
     - 'en'
     - 'de' 
     - 'eo'
 
+# Other languages supported by a live medium.
+# You do not need to repeat any languages listed under `suggested_languages`.
+# Only those with existing translations will actually be available.
+additional_languages:
+    - 'es'
+    - 'hr'
+    - 'ru'
+    - 'jp'
+
+# A list of additional software packages that can be optionally be selected
+# from the installer. The package string will be passed to the installation
+# script without changes, so you can bundle multiple packages as one point.
+# All fields are required (package, default, name, description, icon_path).
 additional_software:
     - package     : 'firefox'
       default     : true
