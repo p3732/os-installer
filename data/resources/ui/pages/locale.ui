@@ -40,7 +40,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Timezone</property>
+                            <property name="label" translatable="yes" comments="Label presented next to the current Timezone">Timezone</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -94,7 +94,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes">Formats</property>
+                            <property name="label" translatable="yes" comments="Label presented next to the current Formats">Formats</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -144,7 +144,7 @@
             </child>
             <child>
               <object class="GtkButton" id="confirm_overview_button">
-                <property name="label" translatable="yes" context="Button label for confirming timezone and formats choice">_Confirm</property>
+                <property name="label" translatable="yes" comments="Button label for confirming timezone and formats choice">_Confirm</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
@@ -166,12 +166,6 @@
           <packing>
             <property name="name">overview</property>
           </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
       <packing>

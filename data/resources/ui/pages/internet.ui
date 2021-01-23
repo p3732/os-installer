@@ -9,7 +9,7 @@
     <property name="spacing">18</property>
     <child type="center">
       <object class="GtkButton" id="settings_button">
-        <property name="label" translatable="yes" context="Button label for starting opening the wifi settings">_Setup Internet Connection</property>
+        <property name="label" translatable="yes" comments="Button label for starting opening the wifi settings">_Setup Internet Connection</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>

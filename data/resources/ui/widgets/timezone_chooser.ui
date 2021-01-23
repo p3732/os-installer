@@ -11,7 +11,7 @@
       <object class="GtkLabel">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label" translatable="yes" context="Informative label with list of continents and countries">Select a Location</property>
+        <property name="label" translatable="yes" comments="Informative label with list of continents and countries">Select a Location</property>
         <attributes>
           <attribute name="weight" value="bold"/>
         </attributes>

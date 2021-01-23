@@ -41,7 +41,7 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="valign">end</property>
-        <property name="label" translatable="yes" context="Informative label above a list of software that can be selected for installation">Select Additional Software to Install</property>
+        <property name="label" translatable="yes" comments="Informative label above a list of software that can be selected for installation">Select Additional Software to Install</property>
       </object>
       <packing>
         <property name="expand">True</property>

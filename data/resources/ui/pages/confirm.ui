@@ -9,7 +9,7 @@
     <property name="spacing">18</property>
     <child type="center">
       <object class="GtkButton" id="confirm_button">
-        <property name="label" translatable="yes" context="Button label to confirm disk deletion">_Confirm</property>
+        <property name="label" translatable="yes" comments="Button label to confirm disk deletion">_Confirm</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
@@ -51,7 +51,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes" context="First part of confirmation warning, followed by the disk name and then 'will be deleted'">All data on</property>
+            <property name="label" translatable="yes" comments="First part of confirmation warning, followed by the disk name and then 'will be deleted'">All data on</property>
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
@@ -80,7 +80,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes" context="See 'All data on'">will be deleted</property>
+            <property name="label" translatable="yes" comments="See 'All data on'">will be deleted</property>
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>

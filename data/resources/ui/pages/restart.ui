@@ -18,7 +18,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes" context="Simple label used when restarting">Restarting</property>
+            <property name="label" translatable="yes" comments="Simple label used when restarting">Restarting</property>
           </object>
           <packing>
             <property name="expand">True</property>
