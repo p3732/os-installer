@@ -11,16 +11,17 @@ internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 suggested_languages: 
     - 'en'
     - 'de' 
-    - 'eo'
-
-# Other languages supported by a live medium.
-# You do not need to repeat any languages listed under `suggested_languages`.
-# Only those with existing translations will actually be available.
-additional_languages:
     - 'es'
     - 'hr'
+
+# Other languages supported by a live medium. If empty, all languages with
+# existing translations will be provided.
+# Do not need repeat any languages listed under `suggested_languages`.
+# Only those with existing translations will actually be available.
+additional_languages:
+    - 'eo'
+    - 'ja'
     - 'ru'
-    - 'jp'
 
 # A list of additional software packages that can be optionally be selected
 # from the installer. The package string will be passed to the installation
