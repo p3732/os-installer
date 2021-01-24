@@ -50,14 +50,25 @@ class LanguageProvider:
         # language lists
         self.all_languages_loaded = False
         self.suggested_languages_loaded = False
-        self.config_languages = global_state.get_config('suggested_languages')
+        self.config_suggested_languages = global_state.get_config('suggested_languages')
+        self.config_additional_languages = global_state.get_config('additional_languages')
 
-    def _get_existing_translations(self):
+    def _add_language_if_available(self, language, language_list):
+        locale = self._get_default_locale(language)
+        name = GnomeDesktop.get_language_from_code(language, locale)
+        if not name:
+            # locale not available in current system
+            return
+        if language in self.existing_translations:
+            language_list.append((name, language, locale))
+        else:
+            print(name, 'does not have any translations, yet. (Consider contributing a translation for it.)')
+
+    def _assert_existing_translations_loaded(self):
         with self.existing_translations_lock:
             if not self.existing_translations_loaded:
                 self.existing_translations = self.existing_translations.result()
                 self.existing_translations_loaded = True
-            return self.existing_translations
 
     def _get_default_locale(self, language):
         if language in language_to_default_locale:
@@ -73,13 +84,17 @@ class LanguageProvider:
         '''
         Load all languages by using all existing translations.
         '''
-        existing_translations = self._get_existing_translations()
+        self._assert_existing_translations_loaded()
+        if self.config_additional_languages:
+            enabled_languages = set()
+            for language in self.config_suggested_languages + self.config_additional_languages:
+                enabled_languages.add(language)
+        else:
+            enabled_languages = self.existing_translations
 
         self.all_languages = []
-        for language in existing_translations:
-            locale = self._get_default_locale(language)
-            name = GnomeDesktop.get_language_from_code(language, locale)
-            self.all_languages.append((name, language, locale))
+        for language in enabled_languages:
+            self._add_language_if_available(language, self.all_languages)
 
         # sort by name
         self.all_languages.sort()
@@ -104,16 +119,11 @@ class LanguageProvider:
         '''
         Load the suggested languages and filter them for those with actually existing translations.
         '''
-        existing_translations = self._get_existing_translations()
+        self._assert_existing_translations_loaded()
 
         self.suggested_languages = []
-        for language in self.config_languages:
-            locale = self._get_default_locale(language)
-            name = GnomeDesktop.get_language_from_code(language, locale)
-            if language in existing_translations:
-                self.suggested_languages.append((name, language, locale))
-            else:
-                print(name, 'does not have any translations, yet. (Consider contributing a translation for it.)')
+        for language in self.config_suggested_languages:
+            self._add_language_if_available(language, self.suggested_languages)
 
         # sort by name
         self.suggested_languages
