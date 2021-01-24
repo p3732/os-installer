@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 03:14+0100\n"
+"POT-Creation-Date: 2021-01-24 03:25+0100\n"
 "PO-Revision-Date: 2021-01-12 00:03+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
@@ -160,6 +160,11 @@ msgstr "Passwort"
 #: data/resources/ui/pages/user.ui:162
 msgid "Enter a Password"
 msgstr "Gebe ein Passwort ein"
+
+#. Shown if no name can be determined for a disk.
+#: data/resources/ui/widgets/disk_row.ui:47
+msgid "Unknow Disk"
+msgstr "Unbekanntes Laufwerk"
 
 #. Label to go back to overview of all disks
 #: data/resources/ui/widgets/disk_back_row.ui:40

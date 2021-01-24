@@ -14,6 +14,7 @@ data/resources/ui/pages/restart.ui
 data/resources/ui/pages/software.ui
 data/resources/ui/pages/user.ui
 
+data/resources/ui/widgets/disk_row.ui
 data/resources/ui/widgets/disk_back_row.ui
 data/resources/ui/widgets/keyboard_layout_back_row.ui
 data/resources/ui/widgets/partition_row.ui

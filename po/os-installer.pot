@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 03:14+0100\n"
+"POT-Creation-Date: 2021-01-24 03:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,6 +155,11 @@ msgstr ""
 #. Placeholder in password entry field
 #: data/resources/ui/pages/user.ui:162
 msgid "Enter a Password"
+msgstr ""
+
+#. Shown if no name can be determined for a disk.
+#: data/resources/ui/widgets/disk_row.ui:47
+msgid "Unknow Disk"
 msgstr ""
 
 #. Label to go back to overview of all disks

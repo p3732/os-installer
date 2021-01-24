@@ -34,7 +34,8 @@ class DiskRow(Gtk.ListBoxRow):
         super().__init__(**kwargs)
 
         self.device_path.set_label(device_path)
-        self.name.set_label(name)
+        if name:
+            self.name.set_label(name)
         self.size.set_label(size)
 
     def get_device_path(self):
