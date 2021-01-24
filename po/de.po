@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 03:25+0100\n"
+"POT-Creation-Date: 2021-01-24 03:51+0100\n"
 "PO-Revision-Date: 2021-01-12 00:03+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
@@ -169,7 +169,7 @@ msgstr "Unbekanntes Laufwerk"
 #. Label to go back to overview of all disks
 #: data/resources/ui/widgets/disk_back_row.ui:40
 msgid "Use Different Disk"
-msgstr "Nutze gesamtes Laufwerk"
+msgstr "Wähle anderes Laufwerk"
 
 #. Used to navigate to a list of all keyboard layouts
 #: data/resources/ui/widgets/keyboard_layout_back_row.ui:41
