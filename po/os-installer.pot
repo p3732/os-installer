@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-23 12:23+0100\n"
+"POT-Creation-Date: 2021-01-24 03:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -167,7 +167,7 @@ msgstr ""
 msgid "Show All Layouts"
 msgstr ""
 
-#. Label to pick one out of a list of partitions
+#. Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.
 #: data/resources/ui/widgets/partition_row.ui:37
 msgid "Use Partition"
 msgstr ""
