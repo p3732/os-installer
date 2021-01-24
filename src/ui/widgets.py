@@ -88,14 +88,17 @@ class PartitionRow(Gtk.ListBoxRow):
 
     size = Gtk.Template.Child()
     name = Gtk.Template.Child()
+    device_path = Gtk.Template.Child()
 
     def __init__(self, name, size, device_path, **kwargs):
         super().__init__(**kwargs)
 
-        self.device_path = device_path
-
         self.name.set_label(name)
         self.size.set_label(size)
+        self.device_path.set_label(device_path)
+
+    def get_device_path(self):
+        return self.device_path.get_label()
 
     def get_partition_name(self):
         return self.name.get_label()
@@ -173,14 +176,18 @@ class WholeDiskRow(Gtk.ListBoxRow):
     __gtype_name__ = 'WholeDiskRow'
 
     size = Gtk.Template.Child()
+    device_path = Gtk.Template.Child()
 
     def __init__(self, name, size, device_path, **kwargs):
         super().__init__(**kwargs)
 
-        self.size.set_label(size)
-
         self.name = name
-        self.device_path = device_path
+
+        self.size.set_label(size)
+        self.device_path.set_label(device_path)
+
+    def get_device_path(self):
+        return self.device_path.get_label()
 
     def get_partition_name(self):
         return self.name
