@@ -1,9 +1,13 @@
 * fix `(os-installer:16186): Gtk-WARNING **: 02:49:15.759: ../gtk/gtk/gtkwidget.c:8648: widget not within a GtkWindow` for user page
     * maybe something access gtk outside gtk thread?
 
-* use UDisks for disks
-
 * add another translation
+
+* toggle switch on row activation for encrypt and user
+
+* check all used library calls for needed unref()
+
+* sort keyboard layouts of the actual language first
 
 * run scripts for installation phases
     * pass settings via ENV variables?
