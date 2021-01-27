@@ -23,6 +23,198 @@
     ],
     "modules": [
         {
+            "name" : "gnome-desktop",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gnome-desktop.git"
+                }
+            ]
+        },
+        {
+            "name" : "pam",
+            "config-opts" : [
+                "--includedir=/app/include/security",
+                "--disable-doc"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/linux-pam/linux-pam/releases/download/v1.4.0/Linux-PAM-1.4.0.tar.xz",
+                    "sha256" : "cd6d928c51e64139be3bdb38692c68183a509b83d4f2c221024ccd4bcddfd034"
+                }
+            ]
+        },
+        {
+            "name" : "intltool",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz",
+                    "sha256" : "67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
+                }
+            ]
+
+        },
+        {
+            "name" : "polkit",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.freedesktop.org/polkit/polkit.git"
+                }
+            ]
+        },
+        {
+            "name" : "gudev",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libgudev.git"
+                }
+            ]
+        },
+        {
+            "name" : "kmod",
+            "buildsystem" : "autotools",
+            "config-opts" : [
+                "--disable-manpages"
+            ],
+            "sources" : [
+            	{
+                    "type" : "archive",
+                    "url" : "https://mirrors.edge.kernel.org/pub/linux/utils/kernel/kmod/kmod-25.tar.xz",
+                    "sha256" : "7165e6496656159dcb909a91ed708a0fe273a4b128b4b1dc997ccb5189eef1cd"
+            	}
+            ]
+        },
+        {
+            "name" : "mpfr",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.mpfr.org/mpfr-4.0.2/mpfr-4.0.2.tar.xz",
+                    "sha256": "1d3be708604eae0e42d578ba93b390c2a145f17743a744d8f3f8c2ad5855a38a"
+                }
+            ]
+        },
+        {
+            "name" : "bytesize",
+            "config-opts" : [
+                "--with-gtk-doc=no"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/storaged-project/libbytesize/releases/download/2.1/libbytesize-2.1.tar.gz",
+                    "sha256": "acc7d40237573adb958039bd9254155a41e57c363fce492f9e8768b42e4bffae"
+                }
+            ]
+        },
+        {
+            "name" : "libaio",
+            "buildsystem" : "simple",
+            "no-autogen" : true,
+            "build-commands" : [
+                "make prefix=/app install"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://pagure.io/libaio/archive/libaio-0.3.111/libaio-libaio-0.3.111.tar.gz",
+                    "sha256": "e6bc17cba66e59085e670fea238ad095766b412561f90b354eb4012d851730ba"
+                }
+            ]
+        },
+        {
+            "name" : "lvm2",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/lvmteam/lvm2/archive/v2_03_05.tar.gz",
+                    "sha256": "6a1f6f76a099c41e2639147eba3f97cbc0760fa01d315f91852e03142884e0c8"
+                }
+            ],
+            "post-install": [
+                "chmod 755 /app/lib/libdevmapper.so.1.02",
+                "chmod 755 /app/sbin/dmsetup",
+                "chmod 755 /app/sbin/lvm"
+            ]
+        },
+        {
+            "name" : "cryptsetup",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.kernel.org/pub/linux/utils/cryptsetup/v1.7/cryptsetup-1.7.5.tar.xz",
+                    "sha256" : "2b30cd1d0dd606a53ac77b406e1d37798d4b0762fa89de6ea546201906a251bd"
+                }
+            ]
+        },
+        {
+            "name" : "blockdev",
+            "config-opts" : [
+                "--disable-tests",
+                "--with-btrfs=no",
+                "--with-dm=no",
+                "--with-dmraid=no",
+                "--with-gtk-doc=no",
+                "--with-kbd=no",
+                "--with-lvm=no",
+                "--with-lvm_dbus=no",
+                "--with-mpath=no",
+                "--with-nvdimm=no",
+                "--with-escrow=no",
+                "--with-tools=no",
+                "--with-vdo=no"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/storaged-project/libblockdev.git"
+                }
+            ]
+        },
+        {
+            "name" : "atasmart",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://0pointer.de/public/libatasmart-0.19.tar.xz",
+                    "sha256" : "61f0ea345f63d28ab2ff0dc352c22271661b66bf09642db3a4049ac9dbdb0f8d"
+                }
+            ]
+        },
+        {
+            "name" : "udisks2",
+            "buildsystem" : "autotools",
+            "config-opts" : [
+                "--enable-available-modules=no",
+                "--enable-bcache=no",
+                "--enable-btrfs=no",
+                "--enable-introspection=yes",
+                "--enable-lvm2=no",
+                "--enable-modules=no",
+                "--enable-vdo=no",
+                "--enable-zram=no",
+                "--with-systemdsystemunitdir=no",
+                "--with-tmpfilesdir=no"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/storaged-project/udisks.git"
+                }
+            ]
+        },
+        {
             "name" : "libhandy",
             "buildsystem" : "meson",
             "config-opts" : [
@@ -46,13 +238,63 @@
             ]
         },
         {
+            "name" : "geocode-glib",
+            "config-opts" : [
+                "-Denable-installed-tests=false",
+                "-Denable-gtk-doc=false"
+            ],
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/geocode-glib.git"
+                }
+            ]
+        },
+        {
+            "name" : "libgweather",
+            "config-opts" : [
+                "-Denable_vala=false",
+                "-Dgtk_doc=false"
+            ],
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libgweather.git"
+                }
+            ]
+        },
+        {
+            "name" : "vte",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/vte.git"
+                }
+            ]
+        },
+        {
+            "name": "python-yaml",
+            "buildsystem": "simple",
+            "build-commands": [ "python setup.py install --prefix=/app" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://pyyaml.org/download/pyyaml/PyYAML-5.3.1.tar.gz",
+                    "sha256": "b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"
+                }
+            ]
+        },
+        {
             "name": "os-installer",
             "builddir": true,
             "buildsystem": "meson",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/p3732/os-installer.git"
+                    "type": "dir",
+                    "url": "."
                 }
             ]
         }
