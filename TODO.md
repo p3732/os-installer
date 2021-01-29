@@ -1,6 +1,8 @@
 * fix `(os-installer:16186): Gtk-WARNING **: 02:49:15.759: ../gtk/gtk/gtkwidget.c:8648: widget not within a GtkWindow` for user page
     * maybe something access gtk outside gtk thread?
 
+* change licences to something GPL. maybe LGPL
+
 * add another translation
 
 * toggle switch on row activation for encrypt and user
@@ -16,6 +18,8 @@
         * user creation, additional software, post-install configuration
 
 * fix focus inputs
+
+* correctly propaagte needed size through GtkScrolledWindow/GtkViewport/GtkListbox
 
 * fix progressing with enter for user, encrypt
 
