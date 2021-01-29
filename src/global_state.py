@@ -8,7 +8,7 @@ import subprocess
 import os
 from concurrent.futures import ThreadPoolExecutor
 
-from gi.repository import GLib, GObject, Vte
+from gi.repository import Gio, GLib, GObject, Vte
 
 
 class GlobalState:
@@ -68,12 +68,17 @@ class GlobalState:
         if not self.demo_mode:
             self.terminal.set_input_enabled(False)
             self.terminal.set_scroll_on_output(True)
+
             # TODO start the actual installation
-            # spawn_async(pty_flags, working_directory, argv, envv, spawn_flags,
-            #            child_setup, timeout, cancellable, callback, *user_data)
-            # self.terminal.spawn_async(Vte.PtyFlags.DEFAULT, '/', ['echo test', None], [None],
-            #                          GLib.SpawnFlags.DEFAULT, None, GObject.G_MAXINT, 1, None, None)
-            #self.terminal.feed_child(b'echo test')
+            pty_flags = Vte.PtyFlags.DEFAULT
+            spawn_flags = GLib.SpawnFlags.DEFAULT
+            cancel = Gio.Cancellable()
+            self.terminal.spawn_async(
+                pty_flags, '/', ['echo', 'Proof of concept works'],
+                None, spawn_flags, None, None, -1, cancel, self.terminal_callback, None)
+
+    def terminal_callback(self, terminal, column, row, data):
+        print('Terminal call ended.')
 
     def apply_installed(self):
         if not self.demo_mode:
