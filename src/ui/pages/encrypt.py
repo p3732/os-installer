@@ -5,6 +5,7 @@ from gi.repository import Gtk
 class EncryptPage(Gtk.Box):
     __gtype_name__ = 'EncryptPage'
 
+    default_list = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
     revealer = Gtk.Template.Child()
@@ -16,6 +17,7 @@ class EncryptPage(Gtk.Box):
         self.global_state = global_state
 
         # signals
+        self.default_list.connect('row-activated', self._on_row_activated)
         self.switch.connect("state-set", self._on_switch_flipped)
         self.pin_field.connect("changed", self._on_pin_changed)
 
@@ -27,6 +29,10 @@ class EncryptPage(Gtk.Box):
         return not needs_pin or not pin == ''
 
     ### callbacks ###
+
+    def _on_row_activated(self, list_box, row):
+        if row.get_name() == 'encryption':
+            self.switch.do_activate(self.switch)
 
     def _on_switch_flipped(self, switch, state):
         self.revealer.set_reveal_child(state)
