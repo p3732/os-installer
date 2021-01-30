@@ -78,7 +78,7 @@
             <property name="truncate-multiline">True</property>
             <property name="primary-icon-activatable">False</property>
             <property name="primary-icon-sensitive">False</property>
-            <property name="placeholder-text" translatable="yes" comments="Used as placeholder in a entry field to try out a keyboard layout">Try Your Keyboard Layout Here</property>
+            <property name="placeholder-text" translatable="yes" comments="Used as placeholder in a entry field to try out a keyboard layout">Test the Keyboard Layout Here</property>
           </object>
           <packing>
             <property name="expand">False</property>
