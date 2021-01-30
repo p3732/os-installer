@@ -5,6 +5,7 @@ from gi.repository import Gtk
 class UserPage(Gtk.Box):
     __gtype_name__ = 'UserPage'
 
+    default_list = Gtk.Template.Child()
     user_name_field = Gtk.Template.Child()
     autologin_switch = Gtk.Template.Child()
 
@@ -17,6 +18,7 @@ class UserPage(Gtk.Box):
         self.global_state = global_state
 
         # signals
+        self.default_list.connect('row-activated', self._on_row_activated)
         self.autologin_switch.connect("state-set", self._on_autologin_switch_flipped)
         self.user_name_field.connect("changed", self._on_user_name_changed)
         self.password_field.connect("changed", self._on_password_changed)
@@ -37,6 +39,10 @@ class UserPage(Gtk.Box):
         self.global_state.page_is_ok_to_proceed(self.__gtype_name__, ok_to_proceed)
 
     ### callbacks ###
+
+    def _on_row_activated(self, list_box, row):
+        if row.get_name() == 'automatic_login':
+            self.autologin_switch.do_activate(self.autologin_switch)
 
     def _on_autologin_switch_flipped(self, autologin_switch, state):
         self.revealer.set_reveal_child(not state)
