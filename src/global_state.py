@@ -14,12 +14,14 @@ from gi.repository import Gio, GLib, GObject, Vte
 class GlobalState:
     def __init__(self, localedir):
         self.demo_mode = False
+        self.installation_running = False
         self.stack = None
         self.terminal = None
 
         # configuration file loader
         self.config = get_config()
         self.set_config('localedir', localedir)
+        self.set_config('disk_name', 'Test Dummy')
 
         # helper to manage proper threads
         self.thread_manager = ThreadManager()
@@ -64,6 +66,7 @@ class GlobalState:
     def apply_installation_confirmed(self):
         # create VTE with installation script
         self.terminal = Vte.Terminal()
+        self.installation_running = True
 
         if not self.demo_mode:
             self.terminal.set_input_enabled(False)
@@ -84,6 +87,9 @@ class GlobalState:
         if not self.demo_mode:
             # TODO start copying script
             return
+
+    def apply_installation_done(self):
+        self.installation_running = False
 
     def apply_timezone(self):
         if not self.demo_mode:

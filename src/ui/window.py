@@ -13,6 +13,8 @@ from .restart import RestartPage
 from .software import SoftwarePage
 from .user import UserPage
 
+from .confirm_quit_popup import ConfirmQuitPopup
+
 from gi.repository import Gtk, Handy
 
 # The available pages in order
@@ -57,3 +59,9 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         main_stack = MainStack(PAGES, global_state)
         global_state.stack = main_stack
         self.content_box.add(main_stack)
+
+    def show_confirm_quit_dialog(self, confirm_callback):
+        popup = ConfirmQuitPopup(confirm_callback)
+        popup.show_all()
+        popup.set_transient_for(self)
+        popup.set_modal(True)

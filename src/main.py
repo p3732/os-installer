@@ -81,10 +81,14 @@ class Application(Gtk.Application):
     ### parent functions ###
 
     def do_activate(self):
+        # create window if not existing
         self.window = self.props.active_window
         if not self.window:
             self.window = OsInstallerWindow(self.global_state, application=self)
         self.window.present()
+
+        # Grab window delete-event
+        self.window.connect('delete-event', self._on_quit)
 
         self.global_state.window = self.window
         self.global_state.load_initial_page()
@@ -118,8 +122,13 @@ class Application(Gtk.Application):
         self.global_state.try_go_to_previous()
 
     def _on_quit(self, action, param=None):
-        # TODO show warning if in installation process
-        self.quit()
+        if self.global_state.installation_running:
+            # show confirm dialog
+            self.window.show_confirm_quit_dialog(self.quit)
+            # return True to avoid further processing of event
+            return True
+        else:
+            self.quit()
 
 
 def main(version, localedir):
