@@ -1,4 +1,4 @@
-#from .install_provider import InstallProvider
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 import threading
 
@@ -25,8 +25,6 @@ class InstallPage(Gtk.Box):
 
         # connect to (most likely ongoing) installation
         callback = self._on_installed
-        # TODO
-        #self.internet_provider = InstallationProvider(global_state, callback)
 
         # UI element states
         self.stack.set_visible_child_name('spinner')

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from .widgets import empty_list, ProgressRow
 
 from gi.repository import Gtk

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from .formats_chooser import FormatsChooser
 from .locale_provider import LocaleProvider
 from .timezone_chooser import TimezoneChooser

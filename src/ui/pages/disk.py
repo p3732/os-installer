@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from .disk_provider import DiskProvider
 from .widgets import DiskBackRow, DiskRow, PartitionRow, WholeDiskRow, empty_list
 

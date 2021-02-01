@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from gi.repository import GnomeDesktop
 import locale as Locale
 

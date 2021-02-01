@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from threading import Thread
 import time
 from urllib.request import urlopen

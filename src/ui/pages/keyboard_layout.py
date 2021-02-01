@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from .keyboard_layout_provider import KeyboardLayoutProvider
 from .widgets import KeyboardLayoutBackRow, ProgressRow, SelectionRow, empty_list
 

@@ -3,7 +3,7 @@ project('os-installer',
     meson_version: '>= 0.50.0',
   default_options: [ 'warning_level=2',
                    ],
-  license: 'MIT',
+  license: 'GPL-3.0-or-later',
 )
 
 i18n = import('i18n')

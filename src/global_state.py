@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 

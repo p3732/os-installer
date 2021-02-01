@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 class SoftwareProvider:
     def __init__(self, global_state):
         self.global_state = global_state

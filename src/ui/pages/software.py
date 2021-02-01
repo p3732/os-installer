@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from .software_provider import SoftwareProvider
 from .widgets import SoftwareRow
 

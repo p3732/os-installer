@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 import yaml
 
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
