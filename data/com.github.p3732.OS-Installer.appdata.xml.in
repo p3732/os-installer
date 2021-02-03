@@ -3,6 +3,5 @@
 	<id>com.github.p3732.OS-Installer.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
-	<description>Install an OS onto your system.
-	</description>
+	<description>Install an Operating System</description>
 </component>
