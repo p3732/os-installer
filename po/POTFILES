@@ -2,6 +2,11 @@ data/com.github.p3732.OS-Installer.desktop.in
 data/com.github.p3732.OS-Installer.appdata.xml.in
 data/com.github.p3732.OS-Installer.gschema.xml
 
+data/resources/ui/about_dialog.ui.in
+data/resources/ui/confirm_quit_popup.ui
+data/resources/ui/failed_installation_popup.ui
+data/resources/ui/main_window.ui
+
 data/resources/ui/pages/confirm.ui
 data/resources/ui/pages/disk.ui
 data/resources/ui/pages/done.ui

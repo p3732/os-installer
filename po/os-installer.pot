@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 03:25+0100\n"
+"POT-Creation-Date: 2021-02-04 02:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,58 @@ msgstr ""
 msgid "OS-Installer"
 msgstr ""
 
+#. Simple description in the about dialog
 #: data/com.github.p3732.OS-Installer.desktop.in:4
+#: data/com.github.p3732.OS-Installer.appdata.xml.in:6
+#: data/resources/ui/about_dialog.ui.in:12
 msgid "Install an Operating System"
 msgstr ""
 
-#: data/com.github.p3732.OS-Installer.appdata.xml.in:6
-msgid "Install an OS onto your system."
+#. Link to the project homepage in the about dialog
+#: data/resources/ui/about_dialog.ui.in:14
+msgid "Learn more about OS-Installer"
+msgstr ""
+
+#. Add your name to the translator credits list
+#: data/resources/ui/about_dialog.ui.in:16
+msgid "@TRANSLATORS@"
+msgstr ""
+
+#. Shown if user wants to close window with running installation
+#: data/resources/ui/confirm_quit_popup.ui:40
+msgid ""
+"Stopping a running installation will leave the disk in an undefined state "
+"that might potentially be harmful"
+msgstr ""
+
+#. Underscore can not be the same as for 'Stop Installation'.
+#: data/resources/ui/confirm_quit_popup.ui:62
+msgid "_Continue Installation"
+msgstr ""
+
+#. Underscore can not be the same as for 'Continue Installation'.
+#: data/resources/ui/confirm_quit_popup.ui:80
+msgid "_Stop Installation"
+msgstr ""
+
+#. Shown as simple informative text
+#: data/resources/ui/failed_installation_popup.ui:38
+msgid "The installation failed."
+msgstr ""
+
+#. Shown on button underneath an error text. Underscore can not be the same as for 'Meh'
+#: data/resources/ui/failed_installation_popup.ui:77
+msgid "_Copy Error Text"
+msgstr ""
+
+#. Shown as confirmation if installation fails. Expression of minor discontent. Underscore can not be the same as for 'Copy Error Text'.
+#: data/resources/ui/failed_installation_popup.ui:102
+msgid "_Meh."
+msgstr ""
+
+#. Menu entry to show About dialog for application
+#: data/resources/ui/main_window.ui:119
+msgid "_About OS-Installer"
 msgstr ""
 
 #. Button label to confirm disk deletion
@@ -36,22 +82,22 @@ msgid "_Confirm"
 msgstr ""
 
 #. First part of confirmation warning, followed by the disk name and then 'will be deleted'
-#: data/resources/ui/pages/confirm.ui:54
+#: data/resources/ui/pages/confirm.ui:55
 msgid "All data on"
 msgstr ""
 
 #. See 'All data on'
-#: data/resources/ui/pages/confirm.ui:83
+#: data/resources/ui/pages/confirm.ui:81
 msgid "will be deleted"
 msgstr ""
 
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
-#: data/resources/ui/pages/disk.ui:89
+#: data/resources/ui/pages/disk.ui:90
 msgid "_Manage Disks"
 msgstr ""
 
 #. Button label to reload current (disk) page. Underscore can not be for same as for 'Manage Disks'
-#: data/resources/ui/pages/disk.ui:109
+#: data/resources/ui/pages/disk.ui:110
 msgid "_Reload"
 msgstr ""
 
@@ -109,7 +155,7 @@ msgstr ""
 
 #. Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_layout.ui:81
-msgid "Try Your Keyboard Layout Here"
+msgid "Test the Keyboard Layout Here"
 msgstr ""
 
 #. Label presented next to the current Timezone
@@ -133,27 +179,27 @@ msgid "Select Additional Software to Install"
 msgstr ""
 
 #. Used with entry field for User's name
-#: data/resources/ui/pages/user.ui:39
+#: data/resources/ui/pages/user.ui:38
 msgid "Name"
 msgstr ""
 
 #. Placeholder in user name entry field
-#: data/resources/ui/pages/user.ui:56
-msgid "Enter Your Name"
+#: data/resources/ui/pages/user.ui:55
+msgid "Enter a Name"
 msgstr ""
 
 #. Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.ui:98
+#: data/resources/ui/pages/user.ui:97
 msgid "Automatic Login"
 msgstr ""
 
 #. Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.ui:148
+#: data/resources/ui/pages/user.ui:147
 msgid "Password"
 msgstr ""
 
 #. Placeholder in password entry field
-#: data/resources/ui/pages/user.ui:162
+#: data/resources/ui/pages/user.ui:161
 msgid "Enter a Password"
 msgstr ""
 
@@ -169,7 +215,7 @@ msgstr ""
 
 #. Used to navigate to a list of all keyboard layouts
 #: data/resources/ui/widgets/keyboard_layout_back_row.ui:41
-msgid "Show All Layouts"
+msgid "Show All Keyboard Layouts"
 msgstr ""
 
 #. Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.
