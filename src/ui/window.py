@@ -16,6 +16,7 @@ from .software import SoftwarePage
 from .user import UserPage
 
 from .confirm_quit_popup import ConfirmQuitPopup
+from .failed_installation_popup import FailedInstallationPopup
 
 from gi.repository import Gtk, Handy
 
@@ -73,8 +74,14 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         about_dialog.set_transient_for(self)
         about_dialog.set_modal(True)
 
-    def show_failed_installation_dialog(self):
-        popup = FailedInstallationPopup(self.quit_callback)
+    def show_confirm_quit_dialog(self):
+        popup = ConfirmQuitPopup(self.quit_callback)
+        popup.show_all()
+        popup.set_transient_for(self)
+        popup.set_modal(True)
+
+    def show_failed_installation_dialog(self, error_text):
+        popup = FailedInstallationPopup(self.quit_callback, error_text)
         popup.show_all()
         popup.set_transient_for(self)
         popup.set_modal(True)

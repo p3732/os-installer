@@ -4,6 +4,7 @@ from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 
 from .language_provider import LanguageProvider
+#from .scripting_provider import ScriptingProvider
 
 import locale
 import subprocess
@@ -79,7 +80,7 @@ class GlobalState:
             spawn_flags = GLib.SpawnFlags.DEFAULT
             cancel = Gio.Cancellable()
             self.terminal.spawn_async(
-                pty_flags, '/', ['echo', 'Proof of concept works'],
+                pty_flags, '/', ['sh', '/etc/os-installer/scripts/installer.sh'],
                 None, spawn_flags, None, None, -1, cancel, self.terminal_callback, None)
 
     def terminal_callback(self, terminal, column, row, data):

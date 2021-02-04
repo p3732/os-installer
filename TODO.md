@@ -1,11 +1,10 @@
 high prio:
-* handle failing installation
-  * pop-up dialog followed by closing of app?
 * run scripts for installation phases
     * pass settings via ENV variables
     * phases
         * system installation with bootloader
         * system configuration (user creation, additional software, anything else post-install)
+    * handle failing installation
 
 * handle potentially needed EFI partition
 
