@@ -38,7 +38,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes" comments="Used to navigate to a list of all keyboard layouts">Show All Layouts</property>
+                <property name="label" translatable="yes" comments="Used to navigate to a list of all keyboard layouts">Show All Keyboard Layouts</property>
                 <attributes>
                   <attribute name="weight" value="light"/>
                 </attributes>
