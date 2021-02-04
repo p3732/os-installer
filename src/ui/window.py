@@ -54,8 +54,10 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
     content_box = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, global_state, quit_callback, **kwargs):
         super().__init__(**kwargs)
+
+        self.quit_callback = quit_callback
 
         # setup stack
         main_stack = MainStack(PAGES, global_state)
@@ -71,8 +73,8 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         about_dialog.set_transient_for(self)
         about_dialog.set_modal(True)
 
-    def show_confirm_quit_dialog(self, confirm_callback):
-        popup = ConfirmQuitPopup(confirm_callback)
+    def show_failed_installation_dialog(self):
+        popup = FailedInstallationPopup(self.quit_callback)
         popup.show_all()
         popup.set_transient_for(self)
         popup.set_modal(True)

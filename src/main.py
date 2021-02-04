@@ -90,7 +90,7 @@ class Application(Gtk.Application):
         # create window if not existing
         self.window = self.props.active_window
         if not self.window:
-            self.window = OsInstallerWindow(self.global_state, application=self)
+            self.window = OsInstallerWindow(self.global_state, self.quit, application=self)
         self.window.present()
 
         # Grab window delete-event
@@ -133,7 +133,7 @@ class Application(Gtk.Application):
     def _on_quit(self, action, param=None):
         if self.global_state.installation_running:
             # show confirm dialog
-            self.window.show_confirm_quit_dialog(self.quit)
+            self.window.show_confirm_quit_dialog()
             # return True to avoid further processing of event
             return True
         else:
