@@ -1,7 +1,6 @@
 high prio:
 * handle failing installation
   * pop-up dialog followed by closing of app?
-* add about dialog
 * run scripts for installation phases
     * pass settings via ENV variables
     * phases

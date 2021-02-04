@@ -7,6 +7,9 @@
     <property name="width-request">420</property>
     <property name="height-request">480</property>
     <property name="can-focus">False</property>
+    <signal name="delete-event" handler="_on_quit" swapped="no"/>
+    <signal name="destroy" handler="_on_quit" swapped="no"/>
+    <signal name="destroy-event" handler="_on_quit" swapped="no"/>
     <child>
       <object class="HdyWindowHandle">
         <property name="visible">True</property>
@@ -51,6 +54,34 @@
                         <property name="position">0</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkMenuButton">
+                        <property name="width-request">32</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="focus-on-click">False</property>
+                        <property name="receives-default">True</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <property name="popover">popover</property>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">open-menu-symbolic</property>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="circular"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack-type">end</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="index">-1</property>
@@ -71,4 +102,29 @@
       </object>
     </child>
   </template>
+  <object class="GtkPopover" id="popover">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="border-width">6</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="action-name">app.about</property>
+            <property name="text" translatable="yes" comments="Menu entry to show About dialog for application">_About OS-Installer</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>

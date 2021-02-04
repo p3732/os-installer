@@ -62,6 +62,15 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         global_state.stack = main_stack
         self.content_box.add(main_stack)
 
+    def show_about_dialog(self):
+        builder = Gtk.Builder.new_from_resource(
+            '/com/github/p3732/os-installer/about_dialog.ui'
+        )
+        about_dialog = builder.get_object('about_dialog')
+        about_dialog.show_all()
+        about_dialog.set_transient_for(self)
+        about_dialog.set_modal(True)
+
     def show_confirm_quit_dialog(self, confirm_callback):
         popup = ConfirmQuitPopup(confirm_callback)
         popup.show_all()

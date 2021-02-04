@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkAboutDialog" id="about_dialog">
+    <property name="can-focus">False</property>
+    <property name="modal">True</property>
+    <property name="type-hint">normal</property>
+    <property name="program-name">OS-Installer</property>
+    <property name="version">@VERSION@</property>
+    <property name="copyright">© 2021 Peter Eisenmann, et al.</property>
+    <property name="comments" translatable="yes" comments="Simple description in the about dialog">Install an Operating System</property>
+    <property name="website">@PACKAGE_URL@</property>
+    <property name="website-label" translatable="yes" comments="Link to the project homepage in the about dialog">Learn more about OS-Installer</property>
+    <property name="authors">@CONTRIBUTORS@</property>
+    <property name="translator-credits" translatable="yes" comments="Add your name to the translator credits list">@TRANSLATORS@</property>
+    <property name="logo-icon-name">@APPID@</property>
+    <property name="license-type">gpl-3-0</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
