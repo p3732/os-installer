@@ -46,15 +46,13 @@
         <property name="can-focus">False</property>
         <property name="halign">center</property>
         <property name="valign">end</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes" comments="First part of confirmation warning, followed by the disk name and then 'will be deleted'">All data on</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -67,7 +65,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <attributes>
-              <attribute name="weight" value="ultrabold"/>
+              <attribute name="weight" value="bold"/>
             </attributes>
           </object>
           <packing>
@@ -81,9 +79,6 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="label" translatable="yes" comments="See 'All data on'">will be deleted</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
           </object>
           <packing>
             <property name="expand">False</property>
