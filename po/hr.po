@@ -1,0 +1,229 @@
+# Croatian translations for os-installer package.
+# Copyright (C) 2021 THE os-installer'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the os-installer package.
+# Automatically generated, 2021.
+# Natalija Grbac, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: os-installer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-04 03:20+0100\n"
+"PO-Revision-Date: 2021-02-04 03:24+0100\n"
+"Last-Translator: Natalija Grbac\n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 3.38.0\n"
+
+#: data/com.github.p3732.OS-Installer.desktop.in:3
+msgid "OS-Installer"
+msgstr "OS-Instaler"
+
+#. Simple description in the about dialog
+#: data/com.github.p3732.OS-Installer.desktop.in:4
+#: data/com.github.p3732.OS-Installer.appdata.xml.in:6
+#: data/resources/ui/about_dialog.ui.in:12
+msgid "Install an Operating System"
+msgstr "Instaliraj operacijski sustav"
+
+#. Shown if user wants to close window with running installation
+#: data/resources/ui/confirm_quit_popup.ui:40
+msgid ""
+"Stopping a running installation will leave the disk in an undefined state "
+"that might potentially be harmful"
+msgstr ""
+"Zaustavljanje pokrenute instalacije će ostaviti disk u nedefiniranom stanju "
+"koje bi moglo biti štetno "
+
+#. Underscore can not be the same as for 'Stop Installation'.
+#: data/resources/ui/confirm_quit_popup.ui:62
+msgid "_Continue Installation"
+msgstr "_Nastavi instalaciju"
+
+#. Underscore can not be the same as for 'Continue Installation'.
+#: data/resources/ui/confirm_quit_popup.ui:80
+msgid "_Stop Installation"
+msgstr "_Prekini instalaciju"
+
+#. Shown as simple informative text
+#: data/resources/ui/failed_installation_popup.ui:38
+msgid "The installation failed."
+msgstr "Instalacija nije upijela."
+
+#. Shown on button underneath an error text. Underscore can not be the same as for 'Meh'
+#: data/resources/ui/failed_installation_popup.ui:77
+msgid "_Copy Error Text"
+msgstr "_Kopiraj tekst pogreške"
+
+#. Shown as confirmation if installation fails. Expression of minor discontent. Underscore can not be the same as for 'Copy Error Text'.
+#: data/resources/ui/failed_installation_popup.ui:102
+msgid "_Meh."
+msgstr "_Ugh."
+
+#. Menu entry to show About dialog for application
+#: data/resources/ui/main_window.ui:119
+msgid "_About OS-Installer"
+msgstr "_Više o OS-Instaleru"
+
+#. Button label to confirm disk deletion
+#. Button label for confirming timezone and formats choice
+#: data/resources/ui/pages/confirm.ui:12 data/resources/ui/pages/locale.ui:147
+msgid "_Confirm"
+msgstr "_Potvrdi"
+
+#. First part of confirmation warning, followed by the disk name and then 'will be deleted'
+#: data/resources/ui/pages/confirm.ui:55
+msgid "All data on"
+msgstr "Svi podaci na"
+
+#. See 'All data on'
+#: data/resources/ui/pages/confirm.ui:81
+msgid "will be deleted"
+msgstr "bit će obrisani"
+
+#. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
+#: data/resources/ui/pages/disk.ui:90
+msgid "_Manage Disks"
+msgstr "_Upravljanje diskovima"
+
+#. Button label to reload current (disk) page. Underscore can not be for same as for 'Manage Disks'
+#: data/resources/ui/pages/disk.ui:110
+msgid "_Reload"
+msgstr "_Ponovno učitaj"
+
+#. Informative label after successful installation
+#: data/resources/ui/pages/done.ui:22
+msgid "Installation complete"
+msgstr "Instalacija je završena"
+
+#. Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
+#: data/resources/ui/pages/done.ui:32
+msgid "_Restart System"
+msgstr "Ponovno pokreni _sustav"
+
+#. Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
+#: data/resources/ui/pages/done.ui:50
+msgid "Restart _Later"
+msgstr "Ponovno pokreni _kasnije"
+
+#. Used with option to enable disk encryption
+#: data/resources/ui/pages/encrypt.ui:31
+msgid "Encrypt Installation"
+msgstr "Šifriraj instalaciju"
+
+#. Description of entry field for pin/password used for disk encryption
+#: data/resources/ui/pages/encrypt.ui:112
+msgid "Encryption PIN"
+msgstr "PIN za šifriranje"
+
+#. Placeholder for disk encryption pin/password field
+#: data/resources/ui/pages/encrypt.ui:127
+msgid "PIN"
+msgstr "PIN"
+
+#. Warning label for disk encryption
+#: data/resources/ui/pages/encrypt.ui:166
+msgid ""
+"Memorize this PIN well.\n"
+"Without it you will not be able to access your files."
+msgstr ""
+"Dobro zapamtite ovaj PIN. Bez njega nećete moći pristupiti svojim datotekama."
+
+#. Simple label used during Installation
+#: data/resources/ui/pages/install.ui:20
+msgid "Installing"
+msgstr "Instaliranje"
+
+#. Hover information on toggle button that shows terminal output during installation.
+#: data/resources/ui/pages/install.ui:83
+msgid "Show Terminal Output"
+msgstr "Prikaži izlaz terminala"
+
+#. Button label for starting opening the wifi settings
+#: data/resources/ui/pages/internet.ui:12
+msgid "_Setup Internet Connection"
+msgstr "_Postavke internetske veze"
+
+#. Used as placeholder in a entry field to try out a keyboard layout
+#: data/resources/ui/pages/keyboard_layout.ui:81
+msgid "Test the Keyboard Layout Here"
+msgstr "Ovdje isprobajte odabrani raspored tipkovnice"
+
+#. Label presented next to the current Timezone
+#: data/resources/ui/pages/locale.ui:43
+msgid "Timezone"
+msgstr "Vremenska zona"
+
+#. Label presented next to the current Formats
+#: data/resources/ui/pages/locale.ui:97
+msgid "Formats"
+msgstr "Formati"
+
+#. Simple label used when restarting
+#: data/resources/ui/pages/restart.ui:21
+msgid "Restarting"
+msgstr "Ponovno pokretanje"
+
+#. Informative label above a list of software that can be selected for installation
+#: data/resources/ui/pages/software.ui:44
+msgid "Select Additional Software to Install"
+msgstr "Odabir dodatnih programa za instalaciju"
+
+#. Used with entry field for User's name
+#: data/resources/ui/pages/user.ui:38
+msgid "User Name"
+msgstr "Upišite ime"
+
+#. Placeholder in user name entry field
+#: data/resources/ui/pages/user.ui:55
+msgid "Enter a Name"
+msgstr "Upišite ime"
+
+#. Used with option to enable automatic login of user upon booting
+#: data/resources/ui/pages/user.ui:97
+msgid "Automatic Login"
+msgstr "Automatska prijava"
+
+#. Used with entry field for setting a password for new user
+#: data/resources/ui/pages/user.ui:147
+msgid "Password"
+msgstr "Loznka"
+
+#. Placeholder in password entry field
+#: data/resources/ui/pages/user.ui:161
+msgid "Enter a Password"
+msgstr "Upišite lozinku"
+
+#. Shown if no name can be determined for a disk.
+#: data/resources/ui/widgets/disk_row.ui:47
+msgid "Unknow Disk"
+msgstr "Nepoznati disk"
+
+#. Label to go back to overview of all disks
+#: data/resources/ui/widgets/disk_back_row.ui:40
+msgid "Use Different Disk"
+msgstr "Izaberi drugi disk"
+
+#. Used to navigate to a list of all keyboard layouts
+#: data/resources/ui/widgets/keyboard_layout_back_row.ui:41
+msgid "Show All Keyboard Layouts"
+msgstr "Prikaži sve rasporede tipkovnice"
+
+#. Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.
+#: data/resources/ui/widgets/partition_row.ui:37
+msgid "Use Partition"
+msgstr "Koristi particiju"
+
+#. Informative label with list of continents and countries
+#: data/resources/ui/widgets/timezone_chooser.ui:14
+msgid "Select a Location"
+msgstr "Odabir lokacije"
+
+#. Label for installing on the whole selected disk
+#: data/resources/ui/widgets/whole_disk_row.ui:33
+msgid "Use Whole Disk"
+msgstr "Koristi cijeli disk"
