@@ -11,7 +11,7 @@
     <property name="copyright">© 2021 Peter Eisenmann, et al.</property>
     <property name="comments" translatable="yes" comments="Simple description in the about dialog">Install an Operating System</property>
     <property name="website">@PACKAGE_URL@</property>
-    <property name="website-label" translatable="yes" comments="Link to the project homepage in the about dialog">Learn more about OS-Installer</property>
+    <property name="website-label">@PACKAGE_URL@</property>
     <property name="authors">@CONTRIBUTORS@</property>
     <property name="documenters">@DOCUMENTERS@</property>
     <property name="translator-credits" comments="Add your name to the translator credits list">@TRANSLATORS@</property>
