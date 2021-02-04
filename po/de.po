@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-24 03:51+0100\n"
-"PO-Revision-Date: 2021-01-12 00:03+0100\n"
+"POT-Creation-Date: 2021-02-04 03:20+0100\n"
+"PO-Revision-Date: 2021-02-04 03:24+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
 "Language: de\n"
@@ -21,15 +21,53 @@ msgstr ""
 
 #: data/com.github.p3732.OS-Installer.desktop.in:3
 msgid "OS-Installer"
-msgstr "OS-Installer"
+msgstr "Systeminstallation"
 
+#. Simple description in the about dialog
 #: data/com.github.p3732.OS-Installer.desktop.in:4
+#: data/com.github.p3732.OS-Installer.appdata.xml.in:6
+#: data/resources/ui/about_dialog.ui.in:12
 msgid "Install an Operating System"
 msgstr "Installiere ein Betriebssystem"
 
-#: data/com.github.p3732.OS-Installer.appdata.xml.in:6
-msgid "Install an OS onto your system."
-msgstr "Installiere ein Betriebssystem auf dein System."
+#. Shown if user wants to close window with running installation
+#: data/resources/ui/confirm_quit_popup.ui:40
+msgid ""
+"Stopping a running installation will leave the disk in an undefined state "
+"that might potentially be harmful"
+msgstr ""
+"Eine laufende Installation abzubrechen wird das Laufwerk in einem "
+"undefinierten Zustand hinterlassen und kann potentiell schädlich sein"
+
+#. Underscore can not be the same as for 'Stop Installation'.
+#: data/resources/ui/confirm_quit_popup.ui:62
+msgid "_Continue Installation"
+msgstr "Installation _Fortfahren"
+
+#. Underscore can not be the same as for 'Continue Installation'.
+#: data/resources/ui/confirm_quit_popup.ui:80
+msgid "_Stop Installation"
+msgstr "Installation _Abbrechen"
+
+#. Shown as simple informative text
+#: data/resources/ui/failed_installation_popup.ui:38
+msgid "The installation failed."
+msgstr "Die Installation schlug fehl."
+
+#. Shown on button underneath an error text. Underscore can not be the same as for 'Meh'
+#: data/resources/ui/failed_installation_popup.ui:77
+msgid "_Copy Error Text"
+msgstr "Fehlertext _Kopieren"
+
+#. Shown as confirmation if installation fails. Expression of minor discontent. Underscore can not be the same as for 'Copy Error Text'.
+#: data/resources/ui/failed_installation_popup.ui:102
+msgid "_Meh."
+msgstr "_Hrmpf."
+
+#. Menu entry to show About dialog for application
+#: data/resources/ui/main_window.ui:119
+msgid "_About OS-Installer"
+msgstr "_Über OS-Installer"
 
 #. Button label to confirm disk deletion
 #. Button label for confirming timezone and formats choice
@@ -38,22 +76,22 @@ msgid "_Confirm"
 msgstr "_Bestätigen"
 
 #. First part of confirmation warning, followed by the disk name and then 'will be deleted'
-#: data/resources/ui/pages/confirm.ui:54
+#: data/resources/ui/pages/confirm.ui:55
 msgid "All data on"
 msgstr "Alle Dateien auf"
 
 #. See 'All data on'
-#: data/resources/ui/pages/confirm.ui:83
+#: data/resources/ui/pages/confirm.ui:81
 msgid "will be deleted"
 msgstr "werden gelöscht werden"
 
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
-#: data/resources/ui/pages/disk.ui:89
+#: data/resources/ui/pages/disk.ui:90
 msgid "_Manage Disks"
 msgstr "_Laufwerke verwalten"
 
 #. Button label to reload current (disk) page. Underscore can not be for same as for 'Manage Disks'
-#: data/resources/ui/pages/disk.ui:109
+#: data/resources/ui/pages/disk.ui:110
 msgid "_Reload"
 msgstr "_Neu Laden"
 
@@ -113,8 +151,8 @@ msgstr "_Internetverbindung einrichten"
 
 #. Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_layout.ui:81
-msgid "Try Your Keyboard Layout Here"
-msgstr "Teste deine Tastaturbelegung hier"
+msgid "Test the Keyboard Layout Here"
+msgstr "Teste die Tastaturbelegung hier"
 
 #. Label presented next to the current Timezone
 #: data/resources/ui/pages/locale.ui:43
@@ -137,27 +175,27 @@ msgid "Select Additional Software to Install"
 msgstr "Wähle zusätzliche Programme zur Installation aus"
 
 #. Used with entry field for User's name
-#: data/resources/ui/pages/user.ui:39
-msgid "Name"
-msgstr "Name"
+#: data/resources/ui/pages/user.ui:38
+msgid "User Name"
+msgstr "Benutzername"
 
 #. Placeholder in user name entry field
-#: data/resources/ui/pages/user.ui:56
-msgid "Enter Your Name"
-msgstr "Gebe deinen Namen ein"
+#: data/resources/ui/pages/user.ui:55
+msgid "Enter a Name"
+msgstr "Gebe einen Namen ein"
 
 #. Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.ui:98
+#: data/resources/ui/pages/user.ui:97
 msgid "Automatic Login"
 msgstr "Automatisch Anmelden"
 
 #. Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.ui:148
+#: data/resources/ui/pages/user.ui:147
 msgid "Password"
 msgstr "Passwort"
 
 #. Placeholder in password entry field
-#: data/resources/ui/pages/user.ui:162
+#: data/resources/ui/pages/user.ui:161
 msgid "Enter a Password"
 msgstr "Gebe ein Passwort ein"
 
@@ -173,7 +211,7 @@ msgstr "Wähle anderes Laufwerk"
 
 #. Used to navigate to a list of all keyboard layouts
 #: data/resources/ui/widgets/keyboard_layout_back_row.ui:41
-msgid "Show All Layouts"
+msgid "Show All Keyboard Layouts"
 msgstr "Zeige alle Tastaturbelegungen"
 
 #. Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.
@@ -191,31 +229,3 @@ msgstr "Wähle einen Standort"
 msgid "Use Whole Disk"
 msgstr "Nutze gesamtes Laufwerk"
 
-#, fuzzy
-#~ msgctxt "Button label for confirming timezone and formats choice"
-#~ msgid "_Confirm"
-#~ msgstr "_Bestätigen"
-
-#~ msgid "Open Disk Management Tool"
-#~ msgstr "Öffne Laufwerksverwaltung"
-
-#~ msgid "Reload the list of disks"
-#~ msgstr "Lade die Laufwerksliste erneut"
-
-#~ msgid "Open Wifi  Settings"
-#~ msgstr "Öffne WLAN-Einstellungen"
-
-#~ msgid "Open Locale Settings"
-#~ msgstr "Öffne Einstellungen"
-
-#~ msgid "Open Time Settings"
-#~ msgstr "Öffne Einstellungen für Uhrzeit"
-
-#~ msgid "Open Wifi Settings"
-#~ msgstr "Öffne Wlan Einstellungen"
-
-#~ msgid "Language"
-#~ msgstr "Sprache"
-
-#~ msgid "Change Language"
-#~ msgstr "Sprache ändern"
