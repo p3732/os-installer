@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-04 03:20+0100\n"
-"PO-Revision-Date: 2021-02-04 03:24+0100\n"
+"PO-Revision-Date: 2021-02-04 03:36+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
 "Language: de\n"
@@ -128,11 +128,10 @@ msgstr "PIN"
 #. Warning label for disk encryption
 #: data/resources/ui/pages/encrypt.ui:166
 msgid ""
-"Memorize this PIN well.\n"
-"Without it you will not be able to access your files."
+"Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Präge dir diesen PIN gut ein.\n"
-"Ohne ihn wirst du nicht auf deine Dateien zugreifen können."
+"Präge dir diesen PIN gut ein. Ohne ihn wirst du nicht auf deine Dateien "
+"zugreifen können."
 
 #. Simple label used during Installation
 #: data/resources/ui/pages/install.ui:20
@@ -228,4 +227,3 @@ msgstr "Wähle einen Standort"
 #: data/resources/ui/widgets/whole_disk_row.ui:33
 msgid "Use Whole Disk"
 msgstr "Nutze gesamtes Laufwerk"
-

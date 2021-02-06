@@ -124,8 +124,7 @@ msgstr ""
 #. Warning label for disk encryption
 #: data/resources/ui/pages/encrypt.ui:166
 msgid ""
-"Memorize this PIN well.\n"
-"Without it you will not be able to access your files."
+"Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 
 #. Simple label used during Installation

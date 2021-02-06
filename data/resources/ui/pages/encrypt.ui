@@ -163,8 +163,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes" comments="Warning label for disk encryption">Memorize this PIN well.
-Without it you will not be able to access your files.</property>
+                            <property name="label" translatable="yes" comments="Warning label for disk encryption">Memorize this PIN well. Without it you will not be able to access your files.</property>
                             <property name="wrap">True</property>
                             <property name="wrap-mode">word-char</property>
                           </object>
