@@ -8,62 +8,22 @@
     <property name="type-hint">dialog</property>
     <property name="skip-taskbar-hint">True</property>
     <child>
-      <object class="GtkBox">
+      <object class="HdyWindowHandle">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="border-width">12</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">12</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="pixel-size">128</property>
-            <property name="icon-name">dialog-warning-symbolic</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">Stopping a running installation will leave the disk in an undefined state that might potentially be harmful</property>
-            <property name="justify">center</property>
-            <property name="wrap">True</property>
-            <property name="max-width-chars">50</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="spacing">6</property>
-            <property name="homogeneous">True</property>
+            <property name="border-width">12</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
             <child>
-              <object class="GtkButton" id="continue_button">
-                <property name="label" translatable="yes">_Continue Installation</property>
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="use-underline">True</property>
-                <style>
-                  <class name="suggested-action"/>
-                  <class name="large-button"/>
-                </style>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">128</property>
+                <property name="icon-name">dialog-warning-symbolic</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -72,16 +32,18 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="stop_button">
-                <property name="label" translatable="yes">Stop Installation</property>
+              <object class="GtkLabel">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="use-underline">True</property>
-                <style>
-                  <class name="destructive-action"/>
-                  <class name="large-button"/>
-                </style>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes" comments="Shown if user wants to close window with running installation">Stopping a running installation will leave the disk in an undefined state that might potentially be harmful</property>
+                <property name="justify">center</property>
+                <property name="wrap">True</property>
+                <property name="max-width-chars">45</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -89,13 +51,57 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="spacing">6</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkButton" id="continue_button">
+                    <property name="label" translatable="yes" comments="Underscore can not be the same as for 'Stop Installation'.">_Continue Installation</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-underline">True</property>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="large-button"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="stop_button">
+                    <property name="label" translatable="yes" comments="Underscore can not be the same as for 'Continue Installation'.">_Stop Installation</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-underline">True</property>
+                    <style>
+                      <class name="destructive-action"/>
+                      <class name="large-button"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="pack-type">end</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
-          </packing>
         </child>
       </object>
     </child>
