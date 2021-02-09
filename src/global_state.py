@@ -86,14 +86,6 @@ class GlobalState:
     def terminal_callback(self, terminal, column, row, data):
         print('Terminal call ended.')
 
-    def apply_installed(self):
-        if not self.demo_mode:
-            # TODO start copying script
-            return
-
-    def apply_installation_done(self):
-        self.installation_running = False
-
     def apply_timezone(self):
         if not self.demo_mode:
             # TODO change system timezone
@@ -103,6 +95,10 @@ class GlobalState:
         if not self.demo_mode:
             # TODO
             return
+
+    def on_installation_done(self):
+        self.installation_running = False
+        self.stack.advance()
 
     ### config functions ###
 
