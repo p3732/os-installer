@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .keyboard_layout_provider import KeyboardLayoutProvider
-from .widgets import KeyboardLayoutBackRow, ProgressRow, SelectionRow, empty_list
+from .widgets import KeyboardLayoutBackRow, LanguageRow, SelectionRow, empty_list
 
 from gi.repository import Gtk
 
@@ -35,7 +35,7 @@ class KeyboardLayoutPage(Gtk.Box):
         all_languages = self.language_provider.get_all_languages()
 
         for name, language, _ in all_languages:
-            row = ProgressRow(name, language)
+            row = LanguageRow(name, language)
             self.language_list.add(row)
 
     def _setup_layout_list(self, language, short_hand):

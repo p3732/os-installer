@@ -84,6 +84,23 @@ class KeyboardLayoutBackRow(Gtk.ListBoxRow):
         return self.label.get_label()
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/language_row.ui')
+class LanguageRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'LanguageRow'
+
+    label = Gtk.Template.Child()
+
+    def __init__(self, label, additional_info=None, **kwargs):
+        super().__init__(**kwargs)
+
+        self.label.set_label(label)
+
+        self.info = additional_info
+
+    def get_label(self):
+        return self.label.get_label()
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/partition_row.ui')
 class PartitionRow(Gtk.ListBoxRow):
     __gtype_name__ = 'PartitionRow'

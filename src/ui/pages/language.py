@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .widgets import ProgressRow
+from .widgets import LanguageRow
 
 from gi.repository import Gtk
 
@@ -36,7 +36,7 @@ class LanguagePage(Gtk.Box):
         # insert all suggested languages before show all row
         position = 0
         for name, language, locale in suggested_languages:
-            row = ProgressRow(name, (language, locale))
+            row = LanguageRow(name, (language, locale))
             self.suggested_list.insert(row, position)
             position += 1
 
@@ -44,7 +44,7 @@ class LanguagePage(Gtk.Box):
         all_languages = self.language_provider.get_all_languages()
 
         for name, language, locale in all_languages:
-            row = ProgressRow(name, (language, locale))
+            row = LanguageRow(name, (language, locale))
             self.all_list.add(row)
 
     ### callbacks ###
