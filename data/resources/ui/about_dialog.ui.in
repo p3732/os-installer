@@ -13,9 +13,7 @@
     <property name="website">@PACKAGE_URL@</property>
     <property name="website-label">@PACKAGE_URL@</property>
     <property name="authors">@CONTRIBUTORS@</property>
-    <property name="documenters">@DOCUMENTERS@</property>
     <property name="translator-credits" comments="Add your name to the translator credits list">@TRANSLATORS@</property>
-    <property name="artists">@ARTISTS@</property>
     <property name="logo-icon-name">@APPID@</property>
     <property name="license-type">gpl-3-0</property>
     <child internal-child="vbox">
