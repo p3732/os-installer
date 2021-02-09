@@ -25,6 +25,7 @@ class MainStack(Gtk.Box):
 
     next_stack = Gtk.Template.Child()
     next_button = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
 
     def __init__(self, pages, global_state, **kwargs):
         super().__init__(**kwargs)
@@ -96,6 +97,7 @@ class MainStack(Gtk.Box):
             self._update_buttons()
         elif retVal == 'waiting':
             self.next_stack.set_visible_child_name('waiting')
+            self.spinner.start()
         elif retVal == 'automatic':
             self._go_to_next()
         else:
@@ -125,6 +127,8 @@ class MainStack(Gtk.Box):
             self.next_stack.set_visible_child_name('enabled')
         else:
             self.next_stack.set_visible_child_name('disabled')
+        # always disable spinner, it is inperformant in Gtk 3
+        self.spinner.stop()
 
     ### public methods ###
     def advance(self):
