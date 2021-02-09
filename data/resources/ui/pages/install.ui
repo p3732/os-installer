@@ -34,12 +34,11 @@
             <property name="can-focus">False</property>
             <property name="transition-type">over-up-down</property>
             <child>
-              <object class="GtkSpinner">
+              <object class="GtkSpinner" id="spinner">
                 <property name="width-request">64</property>
                 <property name="height-request">64</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="active">True</property>
               </object>
               <packing>
                 <property name="name">spinner</property>

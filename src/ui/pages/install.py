@@ -12,6 +12,7 @@ class InstallPage(Gtk.Box):
     terminal_box = Gtk.Template.Child()
     terminal_button = Gtk.Template.Child()
     stack = Gtk.Template.Child()
+    spinner = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
@@ -41,11 +42,13 @@ class InstallPage(Gtk.Box):
 
     def _on_toggled_terminal_button(self, toggle_button):
         if self.stack.get_visible_child_name() == 'spinner':
+            self.spinner.stop()
             if not self.vte_created:
                 self._setup_vte()
                 self.vte_created = True
             self.stack.set_visible_child_name('terminal')
         else:
+            self.spinner.start()
             self.stack.set_visible_child_name('spinner')
 
     def _on_installed(self):
@@ -59,6 +62,8 @@ class InstallPage(Gtk.Box):
         with self.installed_lock:
             if self.installed:
                 return 'automatic'
+        self.spinner.start()
+
         if self.global_state.demo_mode:
             return 'ok_to_proceed'
 
