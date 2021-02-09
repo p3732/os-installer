@@ -7,23 +7,20 @@ high prio:
     * handle failing installation
 
 * handle potentially needed EFI partition
+    * if grub does not need one it should be fine
 
 mid prio:
 
-* add another translation
-* change licences to something GPL. maybe LGPL
-* sort keyboard layouts of the actual language first
-
 low prio:
 
-* fix `(os-installer:16186): Gtk-WARNING **: 02:49:15.759: ../gtk/gtk/gtkwidget.c:8648: widget not within a GtkWindow` for user page
-    * maybe something access gtk outside gtk thread?
 * check all used library calls for needed unref()
 * focus entry field when clicking on row with entry field (encrypt, user*2)
 * fix focus inputs
 * fix progressing with enter for user, encrypt
 * correctly propagte needed size through GtkScrolledWindow/GtkViewport/GtkListbox
-* allow providing minimal installl size and only accept partitions bigger than it
+* more config options
+    * make internet optional
+    * allow providing minimal installl size and only accept partitions bigger than it
 
 
 arch installer specific:
