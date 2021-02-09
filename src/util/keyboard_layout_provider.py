@@ -9,13 +9,16 @@ class KeyboardLayoutProvider:
 
     ### public methods ###
 
-    def get_layouts_for(self, language):
-        layouts = self.xkb_info.get_layouts_for_language(language)
+    def get_layouts_for(self, language_short_hand, language):
+        layouts = self.xkb_info.get_layouts_for_language(language_short_hand)
 
         named_layouts = []
         for layout in layouts:
             name = self.xkb_info.get_layout_info(layout).display_name
             named_layouts.append((layout, name))
 
-        # sort by name
-        return sorted(named_layouts, key=lambda t: t[1])
+        # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
+        return sorted(named_layouts, key=lambda layout:
+                      (not layout[1].startswith(language),
+                       not layout[0].startswith(language_short_hand),
+                       layout[1]))

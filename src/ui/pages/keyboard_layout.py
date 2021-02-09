@@ -46,7 +46,7 @@ class KeyboardLayoutPage(Gtk.Box):
         self.layout_list.add(row)
 
         # fill list with all keyboard layouts for given language
-        layouts = self.keyboard_layout_provider.get_layouts_for(short_hand)
+        layouts = self.keyboard_layout_provider.get_layouts_for(short_hand, language)
         assert len(layouts) > 0, 'Language {} has no keyboard layouts! Please report this.'.format(language)
         for keyboard_layout, name in layouts:
             row = SelectionRow(name, keyboard_layout)
