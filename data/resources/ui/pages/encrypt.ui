@@ -121,7 +121,8 @@
                           <object class="GtkEntry" id="pin_field">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="receives-default">True</property>
+                            <property name="has-focus">True</property>
+                            <property name="is-focus">True</property>
                             <property name="activates-default">True</property>
                             <property name="truncate-multiline">True</property>
                             <property name="placeholder-text" translatable="yes" comments="Placeholder for disk encryption pin/password field">PIN</property>

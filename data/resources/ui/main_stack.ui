@@ -100,6 +100,7 @@
             <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="can-default">True</property>
             <property name="receives-default">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>

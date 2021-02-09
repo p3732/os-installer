@@ -49,9 +49,6 @@
                         <property name="can-focus">True</property>
                         <property name="has-focus">True</property>
                         <property name="is-focus">True</property>
-                        <property name="can-default">True</property>
-                        <property name="has-default">True</property>
-                        <property name="receives-default">True</property>
                         <property name="placeholder-text" translatable="yes" comments="Placeholder in user name entry field">Enter a Name</property>
                       </object>
                       <packing>
