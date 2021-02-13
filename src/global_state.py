@@ -6,7 +6,7 @@ from .thread_manager import ThreadManager
 from .language_provider import LanguageProvider
 #from .scripting_provider import ScriptingProvider
 
-import locale
+import locale as Locale
 import subprocess
 import os
 from concurrent.futures import ThreadPoolExecutor
@@ -37,24 +37,28 @@ class GlobalState:
 
     ### installation stages ###
 
-    def apply_language_settings(self):
+    def apply_language_settings(self, language, short_hand, locale):
+        self.set_config('language', language)
+        self.set_config('language_short_hand', short_hand)
+        locale = Locale.normalize(locale)
+        self.set_config('locale', locale)
+
         # set app language
-        new_locale = locale.normalize(self.config['locale'])
-        print(new_locale)
-        self.config['locale'] = new_locale
-        was_set = locale.setlocale(locale.LC_ALL, new_locale)
+        was_set = Locale.setlocale(Locale.LC_ALL, locale)
         if not was_set:
-            language = self.config['language']
             print('Could not set locale to {}, falling back to English.'.format(language))
             print('Installation medium creators, check that you have correctly set up the locales to support {}.'.format(language))
-            locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+            # fallback
+            Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
         if not self.demo_mode:
             # change system locale
             subprocess.run(['localectl', 'set-locale', new_locale])
             return
 
-    def apply_keyboard_layout(self):
+    def apply_keyboard_layout(self, keyboard_layout, short_hand):
+        self.set_config('keyboard_layout', keyboard_layout)
+        self.set_config('keyboard_layout_short_hand', short_hand)
         if not self.demo_mode:
             keyboard_layout = self.config['keyboard_layout_short_hand']
             subprocess.run(['gsettings', 'set', 'org.gnome.desktop.input-sources',
@@ -86,7 +90,8 @@ class GlobalState:
     def terminal_callback(self, terminal, column, row, data):
         print('Terminal call ended.')
 
-    def apply_timezone(self):
+    def apply_timezone(self, timezone):
+        self.set_config('timezone', timezone)
         if not self.demo_mode:
             # TODO change system timezone
             print(self.config['timezone'])

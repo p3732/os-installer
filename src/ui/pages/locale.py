@@ -53,8 +53,7 @@ class LocalePage(Gtk.Box):
 
     def _on_timezone_chosen(self, timezone):
         # set timezone
-        self.global_state.set_config('timezone', timezone)
-        self.global_state.apply_timezone()
+        self.global_state.apply_timezone(timezone)
 
         # UI state
         self.timezone_label.set_label(timezone)

@@ -84,9 +84,7 @@ class KeyboardLayoutPage(Gtk.Box):
             # save here, not on page reloads
             keyboard_layout = row.get_label()
             short_hand = row.info
-            self.global_state.set_config('keyboard_layout', keyboard_layout)
-            self.global_state.set_config('keyboard_layout_short_hand', short_hand)
-            self.global_state.apply_keyboard_layout()
+            self.global_state.apply_keyboard_layout(keyboard_layout, short_hand)
 
     ### public methods ###
 
