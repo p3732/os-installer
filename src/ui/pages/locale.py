@@ -74,6 +74,7 @@ class LocalePage(Gtk.Box):
             self._load_formats_list()
 
     def _on_clicked_confirm_overview_button(self, button):
+        self.global_state.apply_configuration_confirmed()
         self.global_state.advance()
 
     ### public methods ###

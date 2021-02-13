@@ -46,6 +46,7 @@ os_installer_sources = [
   'util/keyboard_layout_provider.py',
   'util/language_provider.py',
   'util/locale_provider.py',
+  'util/scripting_provider.py',
   'util/software_provider.py',
   'util/system_provider.py',
   'util/thread_manager.py',

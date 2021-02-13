@@ -4,6 +4,7 @@ from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 
 from .language_provider import LanguageProvider
+from .scripting_provider import ScriptingProvider
 from .system_provider import SystemProvider
 
 import locale as Locale
@@ -11,7 +12,7 @@ import subprocess
 import os
 from concurrent.futures import ThreadPoolExecutor
 
-from gi.repository import Gio, GLib, GObject, Vte
+from gi.repository import Vte
 
 
 class GlobalState:
@@ -19,7 +20,7 @@ class GlobalState:
         self.demo_mode = False
         self.installation_running = False
         self.stack = None
-        self.terminal = None
+        self.terminal = Vte.Terminal()
 
         # configuration file loader
         self.config = get_config()
@@ -34,7 +35,13 @@ class GlobalState:
 
         # setup providers
         self.language_provider = LanguageProvider(self)
+        self.scripting_provider = ScriptingProvider(self.terminal, self._on_installation_done)
         self.system_provider = SystemProvider(self.thread_manager)
+
+    def _on_installation_done(self):
+        self.installation_running = False
+        # this can only happen if installation page is currently shown, so advancing is fine
+        self.stack.advance()
 
     ### installation stages ###
 
@@ -64,26 +71,17 @@ class GlobalState:
     def apply_connected(self):
         if not self.demo_mode:
             self.system_provider.start_timesync()
+            self.scripting_provider.start_preparation()
 
     def apply_installation_confirmed(self):
-        # create VTE with installation script
-        self.terminal = Vte.Terminal()
         self.installation_running = True
 
         if not self.demo_mode:
-            self.terminal.set_input_enabled(False)
-            self.terminal.set_scroll_on_output(True)
+            self.scripting_provider.start_installation(self.config)
 
-            # TODO start the actual installation
-            pty_flags = Vte.PtyFlags.DEFAULT
-            spawn_flags = GLib.SpawnFlags.DEFAULT
-            cancel = Gio.Cancellable()
-            self.terminal.spawn_async(
-                pty_flags, '/', ['sh', '/etc/os-installer/scripts/installer.sh'],
-                None, spawn_flags, None, None, -1, cancel, self.terminal_callback, None)
-
-    def terminal_callback(self, terminal, column, row, data):
-        print('Terminal call ended.')
+    def apply_configuration_confirmed(self):
+        if not self.demo_mode:
+            self.scripting_provider.start_configuration(self.config)
 
     def apply_timezone(self, timezone):
         self.set_config('timezone', timezone)
