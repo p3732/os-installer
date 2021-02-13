@@ -17,10 +17,15 @@ os-installer -d
 ```
 
 # Translating
-* Get the source code by cloning the repository with `git clone git@gitlab.gnome.org:p3732/os-installer.git` or by [downloading it](https://gitlab.gnome.org/p3732/os-installer/-/archive/master/os-installer-master.zip)
-* In the folder containg the source code first prepare the build with `meson build`
+## Simple Way
+* Create an issue [on Github](https://github.com/p3732/os-installer/issues/new) or [on Gitlab](https://gitlab.gnome.org/p3732/os-installer/-/issues/new) stating what language you want to translate `OS-Installer` into
+* A file will be provided to you. Add the translation underneath the English text [like in this example](https://gitlab.gnome.org/p3732/os-installer/-/blob/master/po/de.po)
+* Upload the translated file back into the issue. Thank you!
+
+## Autonomous Way
+* Fork this repository, clone the source code and create a build folder with `meson build`
 * Add your [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `xx` to the `po/LINGUAS` file
 * Generate a new translation file with `ninja -C build os-installer-update-po`
-* Edit the new translation file `po/xx.po` with an editor of your choice (e.g. a normal text editor or [Translator Editor](https://gitlab.gnome.org/GNOME/gtranslator/))
-* Try out your new translation by following the 'Testing' intructions
-* If everything works, you can submit your translation by simply [opening a new issue](https://gitlab.gnome.org/p3732/os-installer/-/issues/new) and attaching the added .po file or with a [merge request](https://mattstauffer.com/blog/how-to-contribute-to-an-open-source-github-project-using-your-own-fork/) from your forked repository.
+* Edit the translation file `po/xx.po` with an editor of your choice (normal text editor or a [Translator Editor](https://gitlab.gnome.org/GNOME/gtranslator/))
+* Try your new translation by following the '__Testing__' intructions
+* If everything works, commit your changes, push them to your repository and create a merge request. Thank you!
