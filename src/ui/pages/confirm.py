@@ -30,6 +30,3 @@ class ConfirmPage(Gtk.Box):
         # set label (always reload)
         name = self.global_state.get_config('disk_name')
         self.disk_label.set_label(name)
-
-    def save(self):
-        self.global_state.apply_installation_confirmed()
