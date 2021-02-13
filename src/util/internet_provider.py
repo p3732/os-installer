@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from threading import Thread
 import time
 from urllib.request import urlopen
 
@@ -13,7 +12,7 @@ def check_connection(url):
         return False
 
 
-class InternetProvider(Thread):
+class InternetProvider():
     def __init__(self, global_state, callback):
         self.global_state = global_state
         self.callback = callback
