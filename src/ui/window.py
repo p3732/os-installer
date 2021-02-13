@@ -20,34 +20,6 @@ from .failed_installation_popup import FailedInstallationPopup
 
 from gi.repository import Gtk, Handy
 
-# The available pages in order
-PAGES = [
-    [  # section language
-        LanguagePage
-    ],
-    [  # section pre-installation
-        KeyboardLayoutPage,
-        InternetPage,
-        DiskPage,
-        EncryptPage,
-        ConfirmPage
-    ],
-    [  # section configuration
-        UserPage,
-        SoftwarePage,
-        LocalePage
-    ],
-    [  # section installation
-        InstallPage
-    ],
-    [  # section done
-        DonePage
-    ],
-    [  # section restart
-        RestartPage
-    ]
-]
-
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
 class OsInstallerWindow(Handy.ApplicationWindow):
@@ -60,10 +32,40 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
         self.quit_callback = quit_callback
 
+        available_pages = self._determine_available_pages(global_state.get_config)
+
         # setup stack
-        main_stack = MainStack(PAGES, global_state)
+        main_stack = MainStack(available_pages, global_state)
         global_state.stack = main_stack
         self.content_box.add(main_stack)
+
+    def _determine_available_pages(self, get_config):
+        # pre-installation section
+        pre_installation_section = [KeyboardLayoutPage]
+        if get_config('internet_connection_required'):
+            pre_installation_section.append(InternetPage)
+        pre_installation_section.append(DiskPage)
+        if get_config('offer_disk_encryption'):
+            pre_installation_section.append(EncryptPage)
+        pre_installation_section.append(ConfirmPage)
+
+        # configuration section
+        configuration_section = [UserPage]
+        additional_software = get_config('additional_software')
+        if additional_software and len(additional_software) > 0:
+            configuration_section.append(SoftwarePage)
+        configuration_section.append(LocalePage)
+
+        return [
+            [LanguagePage],
+            pre_installation_section,
+            configuration_section,
+            [InstallPage],
+            [DonePage],
+            [RestartPage]
+        ]
+
+    ### public methods ###
 
     def show_about_dialog(self):
         builder = Gtk.Builder.new_from_resource(
