@@ -62,7 +62,7 @@ class UserPage(Gtk.Box):
         if self._can_continue_():
             return 'ok_to_proceed'
 
-    def save(self):
+    def unload(self):
         password = self.password_field.get_text()
         user_name = self.user_name_field.get_text()
         self.global_state.set_config('password', password)

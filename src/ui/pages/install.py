@@ -67,7 +67,7 @@ class InstallPage(Gtk.Box):
         if self.global_state.demo_mode:
             return 'ok_to_proceed'
 
-    def save(self):
+    def unload(self):
         # in demo mode no script disables installation running flag
         if self.global_state.demo_mode:
             self.global_state.installation_running = False

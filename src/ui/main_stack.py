@@ -14,7 +14,7 @@ class MainStack(Gtk.Box):
     MainStack
     Widget to manage a stack of pages with arrows for forward and backward navigation.
     Pages can may allow proceeding or ask for it via return values of their load() method.
-    Pages can save their information by implementing a save() method.
+    Pages can save their information by implementing a unload() method.
     The stack also offers methods for navigating it from outside.
     '''
 
@@ -112,8 +112,8 @@ class MainStack(Gtk.Box):
 
     def _save_current_page(self):
         page = self.current_pages[self.current]
-        if hasattr(page, 'save'):
-            page.save()
+        if hasattr(page, 'unload'):
+            page.unload()
 
     def _update_buttons(self):
         # previous

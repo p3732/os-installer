@@ -46,7 +46,7 @@ class SoftwarePage(Gtk.Box):
         else:
             return 'ok_to_proceed'
 
-    def save(self):
+    def unload(self):
         to_install = []
         for row in self.software_list:
             if row.is_activated():

@@ -50,7 +50,7 @@ class EncryptPage(Gtk.Box):
     def load(self):
         return 'ok_to_proceed'
 
-    def save(self):
+    def unload(self):
         use_encryption = self.switch.get_state()
         pin = self.pin_field.get_text()
         self.global_state.set_config('use_encryption', use_encryption)
