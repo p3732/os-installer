@@ -4,8 +4,10 @@
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkAboutDialog" id="about_dialog">
     <property name="can-focus">False</property>
-    <property name="modal">True</property>
-    <property name="type-hint">normal</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="type-hint">dialog</property>
+    <property name="skip-taskbar-hint">True</property>
+    <property name="gravity">center</property>
     <property name="program-name">OS-Installer</property>
     <property name="version">@VERSION@</property>
     <property name="copyright">© 2021 Peter Eisenmann, et al.</property>
