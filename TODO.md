@@ -1,13 +1,9 @@
 high prio:
-* run scripts for installation phases
+* installer scripting
     * pass settings via ENV variables
-    * phases
-        * system installation with bootloader
-        * system configuration (user creation, additional software, anything else post-install)
     * handle failing installation
 
 * handle potentially needed EFI partition
-    * if grub does not need one it should be fine
 
 mid prio:
 
@@ -19,9 +15,8 @@ low prio:
 * fix progressing with enter for user, encrypt
 * correctly propagte needed size through GtkScrolledWindow/GtkViewport/GtkListbox
 * more config options
-    * make internet optional
     * allow providing minimal installl size and only accept partitions bigger than it
-
+    * allow specifying additional size needed by extra packages?
 
 arch installer specific:
 * Post Install configuration list (Arch)
