@@ -20,13 +20,6 @@ class InstallPage(Gtk.Box):
         self.global_state = global_state
         self.vte_created = False
 
-        self.installed_lock = threading.Lock()
-        self.installed = False
-        self.can_proceed_automatically = False
-
-        # connect to (most likely ongoing) installation
-        callback = self._on_installed
-
         # UI element states
         self.stack.set_visible_child_name('spinner')
 
@@ -51,23 +44,17 @@ class InstallPage(Gtk.Box):
             self.spinner.start()
             self.stack.set_visible_child_name('spinner')
 
-    def _on_installed(self):
-        with self.installed_lock:
-            self.installed = True
-        self.global_state.page_can_proceed_automatically(self.__gtype_name__)
-
     ### public methods ###
 
     def load(self):
-        with self.installed_lock:
-            if self.installed:
-                return 'automatic'
         self.spinner.start()
 
         if self.global_state.demo_mode:
             return 'ok_to_proceed'
 
     def unload(self):
+        self.spinner.stop()
+
         # in demo mode no script disables installation running flag
         if self.global_state.demo_mode:
             self.global_state.installation_running = False
