@@ -1,7 +1,7 @@
 #! /bin/sh
 
 # This is an example installer script. For OS-Installer to use it, place it at:
-# /etc/os-installer/scripts/installer.sh
+# /etc/os-installer/scripts/install.sh
 # The script gets called with the following environment variables set:
 # OSI_LOCALE             : Locale to be used in the new system
 # OSI_DEVICE_PATH        : Device path at which to install
@@ -9,13 +9,14 @@
 # OSI_USE_ENCRYPTION     : 1 if the installation is to be encrypted
 # OSI_ENCRYPTION_PIN     : The encryption pin to use (if encryption is set)
 
+#TODO all variables
 if [ -z ${OSI_DEVICE_PATH+x} ]
 then
     echo "Installer script called without all environment variables set!"
     exit 1
 fi
 
-echo 'Installation started'
+echo 'Installation started.'
 
 # Pretending to do something
 echo 'Pretending to do something'
@@ -27,6 +28,6 @@ do
 done
 
 echo
-echo 'Installation completed!'
+echo 'Installation completed.'
 
 exit 0
