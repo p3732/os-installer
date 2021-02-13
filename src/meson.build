@@ -47,6 +47,7 @@ os_installer_sources = [
   'util/language_provider.py',
   'util/locale_provider.py',
   'util/software_provider.py',
+  'util/system_provider.py',
   'util/thread_manager.py',
 ]
 

@@ -4,7 +4,7 @@ from .config import get_config, check_install_config, check_post_install_config
 from .thread_manager import ThreadManager
 
 from .language_provider import LanguageProvider
-#from .scripting_provider import ScriptingProvider
+from .system_provider import SystemProvider
 
 import locale as Locale
 import subprocess
@@ -34,6 +34,7 @@ class GlobalState:
 
         # setup providers
         self.language_provider = LanguageProvider(self)
+        self.system_provider = SystemProvider(self.thread_manager)
 
     ### installation stages ###
 
@@ -52,23 +53,17 @@ class GlobalState:
             Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
         if not self.demo_mode:
-            # change system locale
-            subprocess.run(['localectl', 'set-locale', new_locale])
-            return
+            self.system_provider.set_system_locale(locale)
 
     def apply_keyboard_layout(self, keyboard_layout, short_hand):
         self.set_config('keyboard_layout', keyboard_layout)
         self.set_config('keyboard_layout_short_hand', short_hand)
         if not self.demo_mode:
-            keyboard_layout = self.config['keyboard_layout_short_hand']
-            subprocess.run(['gsettings', 'set', 'org.gnome.desktop.input-sources',
-                            'sources', "[('xkb','{}')]".format(keyboard_layout)])
+            self.system_provider.set_keyboard_layout(short_hand)
 
     def apply_connected(self):
         if not self.demo_mode:
-            # TODO start ntp and syncing of mirrors
-            # subprocess.run(['timedatectl', 'set-ntp', 'true'])
-            return
+            self.system_provider.start_timesync()
 
     def apply_installation_confirmed(self):
         # create VTE with installation script
@@ -93,13 +88,11 @@ class GlobalState:
     def apply_timezone(self, timezone):
         self.set_config('timezone', timezone)
         if not self.demo_mode:
-            # TODO change system timezone
-            print(self.config['timezone'])
+            self.system_provider.set_timezone(timezone)
 
     def apply_restart(self):
         if not self.demo_mode:
-            # TODO
-            return
+            self.system_provider.restart()
 
     def on_installation_done(self):
         self.installation_running = False
@@ -116,18 +109,10 @@ class GlobalState:
     def set_config(self, setting, value):
         self.config[setting] = value
 
-    ### general helper functions ###
+    ### thread functions ###
 
     def get_future_from(self, function, **params):
         return self.thread_pool.submit(function, **params)
-
-    def open_disks(self):
-        self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
-
-    def open_settings(self, page):
-        # open respective section of 'gnome-control-center'
-        # TODO use correct language setting
-        self.thread_manager.new_thread(subprocess.run, True, ['gnome-control-center', page])
 
     def start_standalone_thread(self, function, daemon=False, args=None):
         self.thread_manager.new_thread(function, daemon, args)
@@ -151,3 +136,11 @@ class GlobalState:
 
     def try_go_to_previous(self):
         self.stack.try_go_to_previous()
+
+    ### system functions ###
+
+    def open_disks(self):
+        self.system_provider.open_disks()
+
+    def open_wifi_settings(self):
+        self.system_provider.open_wifi_settings()

@@ -36,7 +36,7 @@ class InternetPage(Gtk.Box):
     ### callbacks ###
 
     def _on_clicked_settings_button(self, button):
-        self.global_state.open_settings('wifi')
+        self.global_state.open_wifi_settings()
 
     def _on_connected(self):
         notify_global_state = False
@@ -46,11 +46,11 @@ class InternetPage(Gtk.Box):
             self.stack.set_visible_child_name('enabled')
             if self.can_proceed_automatically:
                 notify_global_state = True
+            self.global_state.apply_connected()
 
         # do not hold lock, could cause deadlock with simultaneous load()
         if notify_global_state:
             self.global_state.page_can_proceed_automatically(self.__gtype_name__)
-        self.global_state.apply_connected()
 
     ### public methods ###
 
