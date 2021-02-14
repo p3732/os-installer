@@ -49,7 +49,7 @@ os_installer_sources = [
   'util/scripting_provider.py',
   'util/software_provider.py',
   'util/system_provider.py',
-  'util/thread_manager.py',
+  'util/thread_provider.py',
 ]
 
 install_data(os_installer_sources, install_dir: moduledir)

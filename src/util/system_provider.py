@@ -8,17 +8,17 @@ class SystemProvider:
     All calls to other programs are encapsulated here.
     '''
 
-    def __init__(self, thread_manager):
-        self.thread_manager = thread_manager
+    def __init__(self, thread_provider):
+        self.thread_provider = thread_provider
 
     ### public methods ###
     def open_disks(self):
         # TODO use correct language setting
-        self.thread_manager.new_thread(subprocess.run, True, ['gnome-disks'])
+        self.thread_provider.new_thread(subprocess.run, True, ['gnome-disks'])
 
     def open_wifi_settings(self):
         # TODO use correct language setting
-        self.thread_manager.new_thread(subprocess.run, True, ['gnome-control-center', 'wifi'])
+        self.thread_provider.new_thread(subprocess.run, True, ['gnome-control-center', 'wifi'])
 
     def restart(self):
         subprocess.run(['reboot'])

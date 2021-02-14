@@ -2,14 +2,20 @@
 
 from threading import Condition, Lock, Thread
 
+from concurrent.futures import ThreadPoolExecutor
 
-class ThreadManager:
+
+class ThreadProvider:
     def __init__(self):
-        # for managment thread syncronization
+        # for futures use built in thread pool
+        self.thread_pool = ThreadPoolExecutor()
+
+        # for manager thread syncronization
         self.sync_lock = Lock()
         self.cv = Condition(self.sync_lock)
         self.ended = False
 
+        # manager thread
         self.threads = []
         self.manager_thread = Thread(target=self._manage)
 
@@ -33,6 +39,9 @@ class ThreadManager:
                 self.cv.wait(0.5)
 
     ### public methods ###
+
+    def get_future_from(self, function, **params):
+        return self.thread_pool.submit(function, **params)
 
     def new_thread(self, function, daemon, params=None):
         with self.sync_lock:

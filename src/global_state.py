@@ -1,16 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .config import get_config, check_install_config, check_post_install_config
-from .thread_manager import ThreadManager
 
 from .language_provider import LanguageProvider
 from .scripting_provider import ScriptingProvider
 from .system_provider import SystemProvider
+from .thread_provider import ThreadProvider
 
 import locale as Locale
-import subprocess
-import os
-from concurrent.futures import ThreadPoolExecutor
 
 from gi.repository import Vte
 
@@ -27,16 +24,11 @@ class GlobalState:
         self.set_config('localedir', localedir)
         self.set_config('disk_name', 'Test Dummy')
 
-        # helper to manage proper threads
-        self.thread_manager = ThreadManager()
-
-        # for futures use built in thread pool
-        self.thread_pool = ThreadPoolExecutor()
-
         # setup providers
         self.language_provider = LanguageProvider(self)
         self.scripting_provider = ScriptingProvider(self.terminal, self._on_installation_done)
-        self.system_provider = SystemProvider(self.thread_manager)
+        self.thread_provider = ThreadProvider()
+        self.system_provider = SystemProvider(self.thread_provider)
 
     def _on_installation_done(self):
         self.installation_running = False
@@ -110,10 +102,10 @@ class GlobalState:
     ### thread functions ###
 
     def get_future_from(self, function, **params):
-        return self.thread_pool.submit(function, **params)
+        return self.thread_provider.get_future_from(function, **params)
 
     def start_standalone_thread(self, function, daemon=False, args=None):
-        self.thread_manager.new_thread(function, daemon, args)
+        self.thread_provider.new_thread(function, daemon, args)
 
     ### stack funcitons ###
 
