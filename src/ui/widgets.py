@@ -107,6 +107,14 @@ class LanguageRow(Gtk.ListBoxRow):
         return self.label.get_label()
 
 
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/no_partitions_row.ui')
+class NoPartitionsRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'NoPartitionsRow'
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/partition_row.ui')
 class PartitionRow(Gtk.ListBoxRow):
     __gtype_name__ = 'PartitionRow'

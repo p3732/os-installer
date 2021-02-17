@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .disk_provider import DiskProvider
-from .widgets import DiskBackRow, DiskRow, DiskTooSmallRow, PartitionRow, PartitionTooSmallRow, WholeDiskRow, empty_list
+from .widgets import DiskBackRow, DiskRow, DiskTooSmallRow, NoPartitionsRow, PartitionRow, PartitionTooSmallRow, WholeDiskRow, empty_list
 
 import threading
 
@@ -81,6 +81,8 @@ class DiskPage(Gtk.Box):
                 else:
                     row = PartitionTooSmallRow(partition_info)
                 self.partition_list.add(row)
+        else:
+            self.partition_list.add(NoPartitionsRow())
 
     ### callbacks ###
 
