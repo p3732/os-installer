@@ -25,9 +25,9 @@ class GlobalState:
         self.set_config('disk_name', 'Test Dummy')
 
         # setup providers
+        self.thread_provider = ThreadProvider()
         self.language_provider = LanguageProvider(self)
         self.scripting_provider = ScriptingProvider(self.terminal, self._on_installation_done)
-        self.thread_provider = ThreadProvider()
         self.system_provider = SystemProvider(self.thread_provider)
 
     def _on_installation_done(self):
