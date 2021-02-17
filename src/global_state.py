@@ -129,6 +129,9 @@ class GlobalState:
 
     ### system functions ###
 
+    def has_efi_vars(self):
+        return self.get_future_from(self.system_provider.has_efi_vars)
+
     def open_disks(self):
         self.system_provider.open_disks()
 
