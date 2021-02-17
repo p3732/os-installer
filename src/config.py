@@ -11,6 +11,7 @@ def _get_fallback_config():
         'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
         'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
         'additional_languages': [],
+        'minimum_disk_size': 5,
         'offer_disk_encryption': True,
         'additional_software': {}
     }

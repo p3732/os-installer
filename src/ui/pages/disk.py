@@ -1,11 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .disk_provider import DiskProvider
-from .widgets import DiskBackRow, DiskRow, PartitionRow, WholeDiskRow, empty_list
+from .widgets import DiskBackRow, DiskRow, DiskTooSmallRow, PartitionRow, PartitionTooSmallRow, WholeDiskRow, empty_list
 
 import threading
 
 from gi.repository import Gtk
+
+GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
@@ -24,6 +26,8 @@ class DiskPage(Gtk.Box):
         super().__init__(**kwargs)
 
         self.global_state = global_state
+        minimum_disk_size = global_state.get_config('minimum_disk_size')
+        self.minimum_disk_size = minimum_disk_size * GIGABYTE_FACTOR
 
         self.list_creation_lock = threading.Lock()
 
@@ -48,7 +52,10 @@ class DiskPage(Gtk.Box):
         # fill list
         disks = self.disk_provider.get_disks()
         for disk_info in disks:
-            row = DiskRow(disk_info)
+            if disk_info.size >= self.minimum_disk_size:
+                row = DiskRow(disk_info)
+            else:
+                row = DiskTooSmallRow(disk_info)
             self.disk_list.add(row)
 
         # show
@@ -69,7 +76,10 @@ class DiskPage(Gtk.Box):
         self.partition_list.add(WholeDiskRow(disk_info))
         if disk_uefi_okay:
             for partition_info in disk_info.partitions:
-                row = PartitionRow(partition_info)
+                if partition_info.size >= self.minimum_disk_size:
+                    row = PartitionRow(partition_info)
+                else:
+                    row = PartitionTooSmallRow(partition_info)
                 self.partition_list.add(row)
 
     ### callbacks ###

@@ -26,6 +26,9 @@ additional_languages:
     - 'ja'
     - 'ru'
 
+# Minimum disk size needed for the installation (in Gigabyte)
+minimum_disk_size: 5
+
 # Whether to offer setting a disk encryption PIN
 offer_disk_encryption: yes
 
