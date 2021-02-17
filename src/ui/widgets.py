@@ -32,22 +32,16 @@ class DiskRow(Gtk.ListBoxRow):
     name = Gtk.Template.Child()
     size = Gtk.Template.Child()
 
-    def __init__(self, name, size, device_path, **kwargs):
+    def __init__(self, info, **kwargs):
         super().__init__(**kwargs)
 
-        self.device_path.set_label(device_path)
-        if name:
-            self.name.set_label(name)
-        self.size.set_label(size)
-
-    def get_device_path(self):
-        return self.device_path.get_label()
-
-    def get_disk_name(self):
-        return self.name.get_label()
-
-    def get_disk_size(self):
-        return self.size.get_label()
+        self.info = info
+        if info.name:
+            self.name.set_label(info.name)
+        else:
+            info.name = self.name.get_label()
+        self.size.set_label(info.size_text)
+        self.device_path.set_label(info.device_path)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_back_row.ui')
@@ -56,15 +50,10 @@ class DiskBackRow(Gtk.ListBoxRow):
 
     label = Gtk.Template.Child()
 
-    def __init__(self, label, additional_info=None, **kwargs):
+    def __init__(self, label, **kwargs):
         super().__init__(**kwargs)
 
         self.label.set_label(label)
-
-        self.info = additional_info
-
-    def get_label(self):
-        return self.label.get_label()
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/keyboard_layout_back_row.ui')
@@ -109,21 +98,18 @@ class PartitionRow(Gtk.ListBoxRow):
     name = Gtk.Template.Child()
     device_path = Gtk.Template.Child()
 
-    def __init__(self, name, size, device_path, **kwargs):
+    def __init__(self, info, **kwargs):
         super().__init__(**kwargs)
 
-        self.name.set_label(name)
-        self.size.set_label(size)
-        self.device_path.set_label(device_path)
+        self.info = info
 
-    def get_device_path(self):
-        return self.device_path.get_label()
+        new_name = self.name.get_label() + ' ' + info.name
+        self.name.set_label(new_name)
+        self.size.set_label(info.size_text)
+        self.device_path.set_label(info.device_path)
 
-    def get_partition_name(self):
+    def get_device_name(self):
         return self.name.get_label()
-
-    def get_partition_size(self):
-        return self.size.get_label()
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
@@ -197,19 +183,13 @@ class WholeDiskRow(Gtk.ListBoxRow):
     size = Gtk.Template.Child()
     device_path = Gtk.Template.Child()
 
-    def __init__(self, name, size, device_path, **kwargs):
+    def __init__(self, info, **kwargs):
         super().__init__(**kwargs)
 
-        self.name = name
+        self.info = info
 
-        self.size.set_label(size)
-        self.device_path.set_label(device_path)
+        self.size.set_label(info.size_text)
+        self.device_path.set_label(info.device_path)
 
-    def get_device_path(self):
-        return self.device_path.get_label()
-
-    def get_partition_name(self):
-        return self.name
-
-    def get_partition_size(self):
-        return self.size.get_label()
+    def get_device_name(self):
+        return self.info.name

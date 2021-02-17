@@ -2,74 +2,97 @@
 
 from gi.repository import GLib, UDisks
 
+EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
+EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
+
+
+class DiskInfo:
+    name: str
+    size: int
+    size_text: str
+    device_path: str
+    is_gpt: bool
+    efi_partition: str
+    partitions: list = []
+
+
+class PartitionInfo:
+    name: str
+    size: int
+    size_text: str
+    device_path: str
+
 
 class DiskProvider:
-    def __init__(self, global_state):
-        self.global_state = global_state
+    def __init__(self):
         self.udisks_client = None
-        self.disks_info = None
-        self.partitions_info = None
 
-    def _get_disk_info(self, udisks_object):
-        block = udisks_object.get_block()
-        drive = self.udisks_client.get_drive_for_block(block)
-
-        if block and drive:
-            name = (drive.props.vendor + ' ' + drive.props.model).strip()
-            size = self._size_to_str(block.props.size)
-            device_path = block.props.device
-
-            return (name, size, device_path)
+    def _parse_one_partition(self, partition, block, disk_info):
+        # partition info
+        partition_info = PartitionInfo()
+        label = block.props.id_label
+        if label == '':
+            # no partition name, use number
+            partition_info.name = str(partition.props.number)
         else:
-            return None
+            partition_info.name = label
+        partition_info.size = block.props.size
+        partition_info.size_text = self._size_to_str(partition_info.size)
+        partition_info.device_path = block.props.device
 
-    def _get_partition_info(self, partition_object):
-        block = partition_object.get_block()
-        partition = partition_object.get_partition()
+        # check if EFI System Partiton
+        if (partition.props.flags == EFI_PARTITON_FLAGS
+                and partition.props.type == EFI_PARTITION_GUID):
+            disk_info.efi_partition = partition_info.device_path
 
-        if block:
-            name = block.props.id_label
-            # use number as name
-            if name == '':
-                name = str(partition.props.number)
-            size = self._size_to_str(block.props.size)
-            device_path = block.props.device
+        # add to disk info
+        disk_info.partitions.append(partition_info)
 
-            return (name, size, device_path)
-        else:
-            return None
+    def _parse_partitions(self, partition_table, disk_info):
+        for partition_name in partition_table.props.partitions:
+            partition_object = self.udisks_client.get_object(partition_name)
+            if partition_object:
+                block = partition_object.get_block()
+                partition = partition_object.get_partition()
+                if block and partition:
+                    self._parse_one_partition(partition, block, disk_info)
+                else:
+                    print('Unhandled partiton in partition table, ignoring.')
 
-    def _load_udisks_info(self):
-        if not self.udisks_client:
-            self.udisks_client = UDisks.Client.new_sync()
+    def _get_disk_info(self, block, drive, partition_table):
+        # disk info
+        disk_info = DiskInfo()
+        disk_info.name = (drive.props.vendor + ' ' + drive.props.model).strip()
+        disk_info.size = block.props.size
+        disk_info.size_text = self._size_to_str(disk_info.size)
+        disk_info.device_path = block.props.device
+        disk_info.is_gpt = 'gpt' == partition_table.props.type
+
+        # partitions
+        self._parse_partitions(partition_table, disk_info)
+
+        return disk_info
+
+    def _get_available_disks(self):
+        disks = []
 
         # get available devices
         dummy_var = GLib.Variant('a{sv}', None)
         devices = self.udisks_client.get_manager().call_get_block_devices_sync(dummy_var, None)
 
         # get device information
-        self.disks_info = []
-        self.partitions_info = {}
         for device in devices:
             udisks_object = self.udisks_client.get_object(device)
-            if udisks_object and udisks_object.props.partition_table:
-                # disk info
-                disk_info = self._get_disk_info(udisks_object)
-                if not disk_info:
-                    continue
-                self.disks_info.append(disk_info)
-                disk_device_path = disk_info[2]
-                self.partitions_info[disk_device_path] = []
-
-                # partitions info
+            if udisks_object:
+                block = udisks_object.get_block()
                 partition_table = udisks_object.get_partition_table()
-                for partition_name in partition_table.props.partitions:
-                    partition_object = self.udisks_client.get_object(partition_name)
-                    if partition_object and partition_object.props.partition:
-                        partition_info = self._get_partition_info(partition_object)
-                        if not partition_info:
-                            continue
-                        self.partitions_info[disk_device_path].append(partition_info)
+                if block and partition_table:
+                    drive = self.udisks_client.get_drive_for_block(block)
+                    if drive:
+                        disk_info = self._get_disk_info(block, drive, partition_table)
+                        disks.append(disk_info)
+
+        return disks
 
     def _size_to_str(self, size):
         return self.udisks_client.get_size_for_display(size, False, False)
@@ -77,10 +100,8 @@ class DiskProvider:
     ### public methods ###
 
     def get_disks(self):
-        # always reload information from udisks
-        self._load_udisks_info()
-        return self.disks_info
+        if not self.udisks_client:
+            self.udisks_client = UDisks.Client.new_sync()
 
-    def get_partitions(self, device_path):
-        # reuse existing info
-        return self.partitions_info[device_path]
+        # get current disks information via udisks
+        return self._get_available_disks()

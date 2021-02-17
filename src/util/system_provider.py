@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import os
 import subprocess
 
 
@@ -12,6 +13,10 @@ class SystemProvider:
         self.thread_provider = thread_provider
 
     ### public methods ###
+
+    def has_efi_vars(self):
+        return os.path.isdir("/sys/firmware/efi/efivars")
+
     def open_disks(self):
         # TODO use correct language setting
         self.thread_provider.new_thread(subprocess.run, True, ['gnome-disks'])
