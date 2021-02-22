@@ -27,7 +27,7 @@ class DiskProvider:
     def __init__(self):
         self.udisks_client = None
 
-    def _parse_one_partition(self, partition, block, disk_info):
+    def _get_one_partition(self, partition, block):
         # partition info
         partition_info = PartitionInfo()
         label = block.props.id_label
@@ -41,23 +41,29 @@ class DiskProvider:
         partition_info.device_path = block.props.device
 
         # check if EFI System Partiton
-        if (partition.props.flags == EFI_PARTITON_FLAGS
-                and partition.props.type == EFI_PARTITION_GUID):
-            disk_info.efi_partition = partition_info.device_path
+        is_efi_partition = (partition.props.flags == EFI_PARTITON_FLAGS
+                            and partition.props.type == EFI_PARTITION_GUID)
 
         # add to disk info
-        disk_info.partitions.append(partition_info)
+        return (partition_info, is_efi_partition)
 
-    def _parse_partitions(self, partition_table, disk_info):
+    def _get_partitions(self, partition_table, disk_info):
+        partitions = []
+        efi_partition = None
         for partition_name in partition_table.props.partitions:
             partition_object = self.udisks_client.get_object(partition_name)
             if partition_object:
                 block = partition_object.get_block()
                 partition = partition_object.get_partition()
                 if block and partition:
-                    self._parse_one_partition(partition, block, disk_info)
+                    partition_info, is_efi_partition = self._get_one_partition(partition, block)
+
+                    partitions.append(partition_info)
+                    if is_efi_partition:
+                        efi_partition = partition_info.device_path
                 else:
                     print('Unhandled partiton in partition table, ignoring.')
+        return (partitions, efi_partition)
 
     def _get_disk_info(self, block, drive, partition_table):
         # disk info
@@ -69,7 +75,7 @@ class DiskProvider:
         disk_info.is_gpt = 'gpt' == partition_table.props.type
 
         # partitions
-        self._parse_partitions(partition_table, disk_info)
+        disk_info.partitions, disk_info.efi_partition = self._get_partitions(partition_table, disk_info)
 
         return disk_info
 
