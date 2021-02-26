@@ -34,7 +34,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes" comments="Shown if no name can be determined for a disk.">Partition selection is not available.</property>
+                <property name="label" translatable="yes" comments="Shown if a disk is currently not compatible with the way a system was booted.">Selecting a partition is not possible.</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
               </object>
@@ -48,7 +48,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes" comments="Shown if no name can be determined for a disk.">The disk requires GPT partitioning and an EFI partition.</property>
+                <property name="label" translatable="yes" comments="Followed by a list of requirements">The disk requires:</property>
                 <property name="wrap">True</property>
                 <property name="xalign">0</property>
                 <attributes>
@@ -59,6 +59,51 @@
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkStack">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="hhomogeneous">False</property>
+                <property name="vhomogeneous">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes" comments="Technical terms, the abbreviations should not be translated.">  • GPT partitioning
+  • EFI partition</property>
+                    <property name="wrap">True</property>
+                    <property name="xalign">0</property>
+                    <attributes>
+                      <attribute name="weight" value="light"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="name">efi</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes" comments="Technical terms, the abbreviations should not be translated">  • BIOS boot partition</property>
+                    <property name="wrap">True</property>
+                    <property name="xalign">0</property>
+                    <attributes>
+                      <attribute name="weight" value="light"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="name">bios</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
