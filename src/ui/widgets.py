@@ -24,41 +24,42 @@ class BackRow(Gtk.ListBoxRow):
         return self.label.get_label()
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_row.ui')
-class DiskRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'DiskRow'
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
+class DeviceRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'DeviceRow'
 
-    device_path = Gtk.Template.Child()
-    name = Gtk.Template.Child()
+    name_stack = Gtk.Template.Child()
+    static_label = Gtk.Template.Child()
+    partition_name = Gtk.Template.Child()
+    disk_name = Gtk.Template.Child()
+
+    too_small_label = Gtk.Template.Child()
+
     size = Gtk.Template.Child()
+    arrow_stack = Gtk.Template.Child()
+    device_path = Gtk.Template.Child()
 
-    def __init__(self, info, **kwargs):
+    def __init__(self, row_type, info, too_small, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info
-        if info.name:
-            self.name.set_label(info.name)
-        else:
-            info.name = self.name.get_label()
         self.size.set_label(info.size_text)
         self.device_path.set_label(info.device_path)
 
+        self.name_stack.set_visible_child_name(row_type)
+        if 'disk' == row_type:
+            if info.name:
+                self.disk_name.set_label(info.name)
+        elif 'partition' == row_type:
+            new_name = self.partition_name.get_label() + ' ' + info.name
+            self.partition_name.set_label(new_name)
+            info.name = new_name
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_too_small_row.ui')
-class DiskTooSmallRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'DiskTooSmallRow'
-
-    device_path = Gtk.Template.Child()
-    name = Gtk.Template.Child()
-    size = Gtk.Template.Child()
-
-    def __init__(self, info, **kwargs):
-        super().__init__(**kwargs)
-
-        if info.name:
-            self.name.set_label(info.name)
-        self.size.set_label(info.size_text)
-        self.device_path.set_label(info.device_path)
+        if too_small:
+            self.set_activatable(False)
+            self.too_small_label.set_visible(True)
+            self.arrow_stack.set_visible_child_name('too_small')
+            # TODO set labels attribute weight to light
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_back_row.ui')
@@ -113,45 +114,6 @@ class NoPartitionsRow(Gtk.ListBoxRow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
-
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/partition_row.ui')
-class PartitionRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'PartitionRow'
-
-    size = Gtk.Template.Child()
-    name = Gtk.Template.Child()
-    device_path = Gtk.Template.Child()
-
-    def __init__(self, info, **kwargs):
-        super().__init__(**kwargs)
-
-        self.info = info
-
-        new_name = self.name.get_label() + ' ' + info.name
-        self.name.set_label(new_name)
-        self.size.set_label(info.size_text)
-        self.device_path.set_label(info.device_path)
-
-    def get_device_name(self):
-        return self.name.get_label()
-
-
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/partition_too_small_row.ui')
-class PartitionTooSmallRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'PartitionTooSmallRow'
-
-    size = Gtk.Template.Child()
-    name = Gtk.Template.Child()
-    device_path = Gtk.Template.Child()
-
-    def __init__(self, info, **kwargs):
-        super().__init__(**kwargs)
-
-        new_name = self.name.get_label() + ' ' + info.name
-        self.name.set_label(new_name)
-        self.size.set_label(info.size_text)
-        self.device_path.set_label(info.device_path)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
@@ -216,22 +178,3 @@ class SoftwareRow(Gtk.ListBoxRow):
 
     def set_activated(self, state):
         return self.switch.set_active(state)
-
-
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/whole_disk_row.ui')
-class WholeDiskRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'WholeDiskRow'
-
-    size = Gtk.Template.Child()
-    device_path = Gtk.Template.Child()
-
-    def __init__(self, info, **kwargs):
-        super().__init__(**kwargs)
-
-        self.info = info
-
-        self.size.set_label(info.size_text)
-        self.device_path.set_label(info.device_path)
-
-    def get_device_name(self):
-        return self.info.name

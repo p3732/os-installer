@@ -2,8 +2,7 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="PartitionTooSmallRow" parent="GtkListBoxRow">
-    <property name="name">too_small</property>
+  <template class="DeviceRow" parent="GtkListBoxRow">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
     <property name="selectable">False</property>
@@ -39,43 +38,71 @@
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkStack" id="name_stack">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="valign">start</property>
-                <property name="spacing">4</property>
+                <child>
+                  <object class="GtkLabel" id="disk_name">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes" comments="Shown if no name can be determined for a disk.">Unknow Disk</property>
+                    <property name="ellipsize">end</property>
+                    <property name="xalign">0</property>
+                  </object>
+                  <packing>
+                    <property name="name">disk</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="valign">start</property>
+                    <property name="spacing">4</property>
+                    <child>
+                      <object class="GtkLabel" id="static_label">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes" comments="Followed by 'Partition' and a partiton name or number.">Use</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="partition_name">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes" comments="Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.">Partition</property>
+                        <property name="ellipsize">end</property>
+                        <property name="width-chars">8</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="name">partition</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes" comments="Followed by 'Partition' and a partiton name or number.">Use</property>
+                    <property name="label" translatable="yes" comments="Label for installing on the whole selected disk">Use Whole Disk</property>
                     <property name="xalign">0</property>
-                    <attributes>
-                      <attribute name="weight" value="light"/>
-                    </attributes>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="name">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes" comments="Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.">Partition</property>
-                    <property name="ellipsize">end</property>
-                    <property name="width-chars">8</property>
-                    <property name="xalign">0</property>
-                    <attributes>
-                      <attribute name="weight" value="light"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
+                    <property name="name">whole_disk</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
@@ -86,8 +113,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
+              <object class="GtkLabel" id="too_small_label">
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes" comments="Shown for partitions that are not big enough to be installed on">Too small for installation</property>
                 <property name="xalign">0</property>
@@ -109,10 +135,27 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage">
+          <object class="GtkStack" id="arrow_stack">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="valign">start</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">go-next-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+              </object>
+              <packing>
+                <property name="name">too_small</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>

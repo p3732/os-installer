@@ -6,21 +6,21 @@ EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
 EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
 
 
-class DiskInfo:
+class DeviceInfo:
+    device_path: str
+    efi_partition: str
+    is_partition: bool = True
     name: str
     size: int
     size_text: str
-    device_path: str
+
+
+class DeviceWithTableInfo(DeviceInfo):
     is_gpt: bool
-    efi_partition: str
     partitions: list = []
 
-
-class PartitionInfo:
-    name: str
-    size: int
-    size_text: str
-    device_path: str
+    def __init__(self):
+        self.is_partition = False
 
 
 class DiskProvider:
@@ -29,7 +29,7 @@ class DiskProvider:
 
     def _get_one_partition(self, partition, block):
         # partition info
-        partition_info = PartitionInfo()
+        partition_info = DeviceInfo()
         label = block.props.id_label
         if label == '':
             # no partition name, use number
@@ -63,11 +63,16 @@ class DiskProvider:
                         efi_partition = partition_info.device_path
                 else:
                     print('Unhandled partiton in partition table, ignoring.')
+
+        # set efi partition
+        for partition in partitions:
+            partition.efi_partition = efi_partition
+
         return (partitions, efi_partition)
 
     def _get_disk_info(self, block, drive, partition_table):
         # disk info
-        disk_info = DiskInfo()
+        disk_info = DeviceWithTableInfo()
         disk_info.name = (drive.props.vendor + ' ' + drive.props.model).strip()
         disk_info.size = block.props.size
         disk_info.size_text = self._size_to_str(disk_info.size)

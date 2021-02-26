@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .disk_provider import DiskProvider
-from .widgets import DiskBackRow, DiskRow, DiskTooSmallRow, NoPartitionsRow, PartitionRow, PartitionTooSmallRow, WholeDiskRow, empty_list
-
-import threading
-
 from gi.repository import Gtk
+import threading
+from .disk_provider import DiskProvider
+from .widgets import DeviceRow, DiskBackRow, NoPartitionsRow, empty_list
+
 
 GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
@@ -52,10 +51,8 @@ class DiskPage(Gtk.Box):
         # fill list
         disks = self.disk_provider.get_disks()
         for disk_info in disks:
-            if disk_info.size >= self.minimum_disk_size:
-                row = DiskRow(disk_info)
-            else:
-                row = DiskTooSmallRow(disk_info)
+            too_small = disk_info.size < self.minimum_disk_size
+            row = DeviceRow('disk', disk_info, too_small)
             self.disk_list.add(row)
 
         # show
@@ -73,13 +70,11 @@ class DiskPage(Gtk.Box):
 
         # fill list: back row, whole disk row, partitions
         self.partition_list.add(DiskBackRow(disk_info.name))
-        self.partition_list.add(WholeDiskRow(disk_info))
+        self.partition_list.add(DeviceRow('whole_disk', disk_info, False))
         if disk_uefi_okay:
             for partition_info in disk_info.partitions:
-                if partition_info.size >= self.minimum_disk_size:
-                    row = PartitionRow(partition_info)
-                else:
-                    row = PartitionTooSmallRow(partition_info)
+                too_small = partition_info.size < self.minimum_disk_size
+                row = DeviceRow('partition', partition_info, too_small)
                 self.partition_list.add(row)
         else:
             self.partition_list.add(NoPartitionsRow())
@@ -93,25 +88,24 @@ class DiskPage(Gtk.Box):
         self.load()
 
     def _on_disk_row_activated(self, list_box, row):
-        if row.get_name() != 'too_small':
-            # load partition list if not already loading
-            if self.list_creation_lock.acquire(blocking=False):
-                self._setup_partition_list(row.info)
-                self.stack.set_visible_child_name('partitions')
+        # load partition list if not already loading
+        if self.list_creation_lock.acquire(blocking=False):
+            self._setup_partition_list(row.info)
+            self.stack.set_visible_child_name('partitions')
 
-                self.list_creation_lock.release()
+            self.list_creation_lock.release()
 
     def _on_partition_row_activated(self, list_box, row):
         if row.get_name() == 'back_row':
             with self.list_creation_lock:
                 self.stack.set_visible_child_name('disks')
-        elif row.get_name() != 'too_small':
+        else:
             list_box.select_row(row)
 
+            self.global_state.set_config('disk_name', row.info.name)
             self.global_state.set_config('disk_device_path', row.info.device_path)
-            is_partiton = row.get_name() == 'whole_disk_row'
-            self.global_state.set_config('disk_is_partition', is_partiton)
-            self.global_state.set_config('disk_name', row.get_device_name())
+            self.global_state.set_config('disk_is_partition', row.info.is_partition)
+            self.global_state.set_config('disk_efi_partition', row.info.efi_partition)
 
             self.global_state.advance()
 
