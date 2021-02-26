@@ -19,10 +19,9 @@ data/resources/ui/pages/restart.ui
 data/resources/ui/pages/software.ui
 data/resources/ui/pages/user.ui
 
-data/resources/ui/widgets/disk_row.ui
+data/resources/ui/widgets/device_row.ui
 data/resources/ui/widgets/disk_back_row.ui
 data/resources/ui/widgets/keyboard_layout_back_row.ui
-data/resources/ui/widgets/partition_row.ui
+data/resources/ui/widgets/no_partitions_row.ui
 data/resources/ui/widgets/timezone_chooser.ui
-data/resources/ui/widgets/whole_disk_row.ui
 
