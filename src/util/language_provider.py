@@ -41,36 +41,41 @@ language_to_default_locale = {
     'yi': 'yi_US.UTF-8', 'yo': 'yo_NG.UTF-8', 'za': 'zu_ZA.UTF-8', 'zu': 'zu_ZA.UTF-8'}
 
 
+class LanguageInfo:
+    name: str
+    language_code: str
+    locale: str
+
+    def __init__(self, name, language_code, locale):
+        self.name = name
+        self.language_code = language_code
+        self.locale = locale
+
+
 class LanguageProvider:
     def __init__(self, global_state):
-        # load all languages/existing translations
-        localedir = global_state.get_config('localedir')
-        self.existing_translations_loaded = False
-        self.existing_translations_lock = Lock()
-        self.existing_translations = global_state.get_future_from(self._load_existing_translations, localedir=localedir)
-
-        # language lists
-        self.all_languages_loaded = False
-        self.suggested_languages_loaded = False
         self.config_suggested_languages = global_state.get_config('suggested_languages')
-        self.config_additional_languages = global_state.get_config('additional_languages')
 
-    def _add_language_if_available(self, language, language_list):
-        locale = self._get_default_locale(language)
-        name = GnomeDesktop.get_language_from_code(language, locale)
-        if not name:
-            # locale not available in current system
-            return
-        if language in self.existing_translations:
-            language_list.append((name, language, locale))
-        else:
-            print(name, 'does not have any translations, yet. (Consider contributing a translation for it.)')
+        self.languages_loaded = False
+        self.languages_loading_lock = Lock()
 
-    def _assert_existing_translations_loaded(self):
-        with self.existing_translations_lock:
-            if not self.existing_translations_loaded:
-                self.existing_translations = self.existing_translations.result()
-                self.existing_translations_loaded = True
+        # load all languages from existing translations
+        localedir = global_state.get_config('localedir')
+        self.languages = global_state.get_future_from(self._get_languages, localedir=localedir)
+
+    def _assert_languages_loaded(self):
+        with self.languages_loading_lock:
+            if not self.languages_loaded:
+                self.suggested_languages, self.additional_languages = self.languages.result()
+                self.languages = None
+                self.languages_loaded = True
+
+    def _get_all_languages(self, locale):
+        all_languages = []
+        for language_info in self.suggested_languages + self.additional_languages:
+            language_info.name = GnomeDesktop.get_language_from_code(language_info.language_code, locale)
+            all_languages.append(language_info)
+        return all_languages
 
     def _get_default_locale(self, language):
         if language in language_to_default_locale:
@@ -78,35 +83,11 @@ class LanguageProvider:
         else:
             return None
 
-    def _get_language_name(self, language):
-        translation_locale = self._get_default_locale(language)
-        return GnomeDesktop.get_language_from_code(language, translation_locale)
-
-    def _load_all_languages(self):
-        '''
-        Load all languages by using all existing translations.
-        '''
-        self._assert_existing_translations_loaded()
-        if self.config_additional_languages:
-            enabled_languages = set()
-            for language in self.config_suggested_languages + self.config_additional_languages:
-                enabled_languages.add(language)
-        else:
-            enabled_languages = self.existing_translations
-
-        self.all_languages = []
-        for language in enabled_languages:
-            self._add_language_if_available(language, self.all_languages)
-
-        # sort by name
-        self.all_languages.sort()
-
-    def _load_existing_translations(self, localedir):
-        '''
-        Load all existing translations by checking for existing translations in the locale folder.
-        '''
+    def _get_existing_translations(self, localedir):
+        # English always exists
         existing_translations = {'en'}
 
+        # check what translations exist in the locale folder
         for file in os.scandir(localedir):
             if file.is_dir():
                 locale_folder = os.path.join(file.path, 'LC_MESSAGES')
@@ -117,29 +98,46 @@ class LanguageProvider:
                             existing_translations.add(language)
         return existing_translations
 
-    def _load_suggested_languages(self):
-        '''
-        Load the suggested languages and filter them for those with actually existing translations.
-        '''
-        self._assert_existing_translations_loaded()
+    def _get_language_info(self, language_code, locale=None):
+        if not locale:
+            locale = self._get_default_locale(language_code)
+        name = GnomeDesktop.get_language_from_code(language_code, locale)
+        if not name:
+            print('Distribution developer hint:', name, 'is not available as a locale in current system.')
+        else:
+            return LanguageInfo(name, language_code, locale)
 
-        self.suggested_languages = []
-        for language in self.config_suggested_languages:
-            self._add_language_if_available(language, self.suggested_languages)
+    def _get_languages(self, localedir):
+        translations = self._get_existing_translations(localedir)
 
-        # sort by name
-        self.suggested_languages
+        suggested_languages = []
+        additional_languages = []
+        for language_code in translations:
+            language_info = self._get_language_info(language_code)
+            if not language_info:
+                continue
+            if language_code in self.config_suggested_languages:
+                suggested_languages.append(language_info)
+            else:
+                additional_languages.append(language_info)
+
+        return (sorted(suggested_languages, key=lambda k: k.name),
+                sorted(additional_languages, key=lambda k: k.name))
 
     ### public methods ###
 
-    def get_all_languages(self):
-        if not self.all_languages_loaded:
-            self._load_all_languages()
-            self.all_languages_loaded = True
-        return self.all_languages
+    def get_additional_languages(self):
+        self._assert_languages_loaded()
+        return self.additional_languages
+
+    def get_all_languages(self, locale):
+        self._assert_languages_loaded()
+        return self._get_all_languages(locale)
 
     def get_suggested_languages(self):
-        if not self.suggested_languages_loaded:
-            self._load_suggested_languages()
-            self.suggested_languages_loaded = True
+        self._assert_languages_loaded()
         return self.suggested_languages
+
+    def has_additional_languages(self):
+        self._assert_languages_loaded()
+        return len(self.additional_languages) > 0

@@ -37,17 +37,18 @@ class GlobalState:
 
     ### installation stages ###
 
-    def apply_language_settings(self, language, short_hand, locale):
-        self.set_config('language', language)
-        self.set_config('language_short_hand', short_hand)
-        locale = Locale.normalize(locale)
+    def apply_language_settings(self, language_info):
+        self.set_config('language', language_info.name)
+        self.set_config('language_short_hand', language_info.language_code)
+        locale = Locale.normalize(language_info.locale)
         self.set_config('locale', locale)
 
         # set app language
         was_set = Locale.setlocale(Locale.LC_ALL, locale)
         if not was_set:
             print('Could not set locale to {}, falling back to English.'.format(language))
-            print('Installation medium creators, check that you have correctly set up the locales to support {}.'.format(language))
+            print('Installation medium creators, check that you have correctly set up the locales',
+                  'to support {}.'.format(language_info.name))
             # fallback
             Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 

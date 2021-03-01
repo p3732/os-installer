@@ -32,10 +32,10 @@ class KeyboardLayoutPage(Gtk.Box):
         self.layout_list.connect('row-activated', self._on_layout_row_activated)
 
     def _setup_languages_list(self):
-        all_languages = self.language_provider.get_all_languages()
+        all_languages = self.language_provider.get_all_languages(self.global_state.get_config('locale'))
 
-        for name, language, _ in all_languages:
-            row = LanguageRow(name, language)
+        for language_info in all_languages:
+            row = LanguageRow(language_info)
             self.language_list.add(row)
 
     def _setup_layout_list(self, language, short_hand):
@@ -65,9 +65,8 @@ class KeyboardLayoutPage(Gtk.Box):
 
     def _on_language_row_activated(self, list_box, row):
         # show layouts for language
-        language = row.get_label()
-        short_hand = row.info
-        self._setup_layout_list(language, short_hand)
+        language_info = row.info
+        self._setup_layout_list(language_info.name, language_info.language_code)
         self.stack.set_visible_child_name('layouts')
 
     def _on_layout_row_activated(self, list_box, row):

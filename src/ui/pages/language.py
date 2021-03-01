@@ -9,10 +9,8 @@ from gi.repository import Gtk
 class LanguagePage(Gtk.Box):
     __gtype_name__ = 'LanguagePage'
 
-    stack = Gtk.Template.Child()
-
-    suggested_list = Gtk.Template.Child()
-    all_list = Gtk.Template.Child()
+    language_list = Gtk.Template.Child()
+    show_all_row = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
@@ -23,43 +21,36 @@ class LanguagePage(Gtk.Box):
         # provider
         self.language_provider = global_state.language_provider
 
-        # UI element states
-        self.stack.set_visible_child_name('suggested')
-
         # signals
-        self.suggested_list.connect('row-activated', self._on_language_row_activated)
-        self.all_list.connect('row-activated', self._on_language_row_activated)
+        self.language_list.connect('row-activated', self._on_language_row_activated)
 
-    def _setup_suggested_list(self):
-        suggested_languages = self.language_provider.get_suggested_languages()
-
+    def _setup_list(self):
         # insert all suggested languages before show all row
         position = 0
-        for name, language, locale in suggested_languages:
-            row = LanguageRow(name, (language, locale))
-            self.suggested_list.insert(row, position)
+        for language_info in self.language_provider.get_suggested_languages():
+            row = LanguageRow(language_info)
+            self.language_list.insert(row, position)
             position += 1
+        if self.language_provider.has_additional_languages():
+            self.show_all_row.set_visible(True)
 
-    def _setup_all_list(self):
-        all_languages = self.language_provider.get_all_languages()
+    def _show_all(self):
+        self.show_all_row.set_visible(False)
 
-        for name, language, locale in all_languages:
-            row = LanguageRow(name, (language, locale))
-            self.all_list.add(row)
+        for language_info in self.language_provider.get_additional_languages():
+            row = LanguageRow(language_info)
+            self.language_list.add(row)
 
     ### callbacks ###
 
     def _on_language_row_activated(self, list_box, row):
         if row.get_name() == 'show_all_row':
-            self._setup_all_list()
-            self.stack.set_visible_child_name('all')
+            self._show_all()
         else:
             list_box.select_row(row)
 
             # set language
-            language = row.get_label()
-            short_hand, locale = row.info
-            self.global_state.apply_language_settings(language, short_hand, locale)
+            self.global_state.apply_language_settings(row.info)
 
             self.global_state.advance()
 
@@ -67,5 +58,5 @@ class LanguagePage(Gtk.Box):
 
     def load(self):
         if not self.loaded:
-            self._setup_suggested_list()
+            self._setup_list()
             self.loaded = True

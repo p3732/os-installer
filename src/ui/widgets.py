@@ -97,15 +97,11 @@ class LanguageRow(Gtk.ListBoxRow):
 
     label = Gtk.Template.Child()
 
-    def __init__(self, label, additional_info=None, **kwargs):
+    def __init__(self, info, **kwargs):
         super().__init__(**kwargs)
 
-        self.label.set_label(label)
-
-        self.info = additional_info
-
-    def get_label(self):
-        return self.label.get_label()
+        self.info = info
+        self.label.set_label(info.name)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/no_partitions_row.ui')
