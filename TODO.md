@@ -1,4 +1,10 @@
 high prio:
+* no forward backward sliding within page
+    * rework keyboard layouts page
+* test internet checking, something seems to be broken
+
+* fix partition name prefixing
+
 * installer scripting
     * pass settings via ENV variables
     * handle failing installation
