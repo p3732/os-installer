@@ -2,11 +2,14 @@
 ---
 # This is an example config file for OS-Installer.
 # Place your config under /etc/os-installer/config.yaml for it to be used.
+# If a value is not defined, it's default will be used.
 
 # Whether the installation needs an internet connection.
+# Default: yes
 internet_connection_required: yes
 
 # A URL/IP address to be used to check for an existing internet connection.
+# Default: 'http://nmcheck.gnome.org/check_network_status.txt'
 internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 
 # A selection of languages the installer should present by default.
@@ -24,15 +27,18 @@ suggested_languages:
     - 'zh'
 
 # Minimum disk size needed for the installation (in Gigabyte)
+# Default: 5
 minimum_disk_size: 5
 
 # Whether to offer setting a disk encryption PIN
+# Default: yes
 offer_disk_encryption: yes
 
 # A list of additional software packages that can be optionally be selected
 # from the installer. The package string will be passed to the installation
 # script without changes, so you can bundle multiple packages as one point.
 # All fields are required (package, default, name, description, icon_path).
+# Default: []
 additional_software:
     - package     : 'firefox'
       default     : yes
