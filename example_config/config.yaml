@@ -9,22 +9,19 @@ internet_connection_required: yes
 # A URL/IP address to be used to check for an existing internet connection.
 internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 
-# Languages that you want the installer to offer. In order
-# Only those with existing translations will actually be available.
+# A selection of languages the installer should present by default.
+# Note: For a language to be available, it needs to be provided by the system
+# and the installer needs to have a translation into that language.
+# Default: ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh']
 suggested_languages: 
-    - 'en'
+    - 'ar'
     - 'de' 
+    - 'en'
     - 'es'
-    - 'hr'
-
-# Other languages supported by a live medium. If empty, all languages with
-# existing translations will be provided.
-# Do not need repeat any languages listed under `suggested_languages`.
-# Only those with existing translations will actually be available.
-additional_languages:
-    - 'eo'
+    - 'fr'
     - 'ja'
     - 'ru'
+    - 'zh'
 
 # Minimum disk size needed for the installation (in Gigabyte)
 minimum_disk_size: 5
