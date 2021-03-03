@@ -117,7 +117,7 @@ class SelectionRow(Gtk.ListBoxRow):
     __gtype_name__ = 'SelectionRow'
 
     label = Gtk.Template.Child()
-    check_mark = Gtk.Template.Child()
+    check_mark_revealer = Gtk.Template.Child()
 
     def __init__(self, label, additional_info, **kwargs):
         super().__init__(**kwargs)
@@ -130,7 +130,7 @@ class SelectionRow(Gtk.ListBoxRow):
         return self.label.get_label()
 
     def set_activated(self, active):
-        self.check_mark.set_visible(active)
+        self.check_mark_revealer.set_reveal_child(active)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_row.ui')
