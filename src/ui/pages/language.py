@@ -10,49 +10,52 @@ class LanguagePage(Gtk.Box):
     __gtype_name__ = 'LanguagePage'
 
     language_list = Gtk.Template.Child()
-    show_all_row = Gtk.Template.Child()
+    show_all_button = Gtk.Template.Child()
+    show_all_revealer = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
         self.global_state = global_state
         self.loaded = False
+        self.all_shown = False
 
         # provider
         self.language_provider = global_state.language_provider
 
         # signals
+        self.show_all_button.connect('clicked', self._on_show_all_button_clicked)
         self.language_list.connect('row-activated', self._on_language_row_activated)
 
     def _setup_list(self):
-        # insert all suggested languages before show all row
-        position = 0
+        # language rows
         for language_info in self.language_provider.get_suggested_languages():
-            row = LanguageRow(language_info)
-            self.language_list.insert(row, position)
-            position += 1
-        if self.language_provider.has_additional_languages():
-            self.show_all_row.set_visible(True)
+            self.language_list.add(LanguageRow(language_info))
+
+        # show all button
+        present_show_all = self.language_provider.has_additional_languages()
+        self.show_all_revealer.set_reveal_child(present_show_all)
 
     def _show_all(self):
-        self.show_all_row.set_visible(False)
-
         for language_info in self.language_provider.get_additional_languages():
-            row = LanguageRow(language_info)
-            self.language_list.add(row)
+            self.language_list.add(LanguageRow(language_info))
 
     ### callbacks ###
 
-    def _on_language_row_activated(self, list_box, row):
-        if row.get_name() == 'show_all_row':
+    def _on_show_all_button_clicked(self, button):
+        if not self.all_shown:
+            self.all_shown = True
+
+            self.show_all_revealer.set_reveal_child(False)
             self._show_all()
-        else:
-            list_box.select_row(row)
 
-            # set language
-            self.global_state.apply_language_settings(row.info)
+    def _on_language_row_activated(self, list_box, row):
+        list_box.select_row(row)
 
-            self.global_state.advance()
+        # set language
+        self.global_state.apply_language_settings(row.info)
+
+        self.global_state.advance()
 
     ### public methods ###
 
