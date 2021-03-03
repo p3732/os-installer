@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .keyboard_layout_provider import KeyboardLayoutProvider
-from .widgets import KeyboardLayoutBackRow, LanguageRow, SelectionRow, empty_list
+from .widgets import LanguageRow, SelectionRow, empty_list
 
 from gi.repository import Gtk
 
@@ -10,8 +10,10 @@ from gi.repository import Gtk
 class KeyboardLayoutPage(Gtk.Box):
     __gtype_name__ = 'KeyboardLayoutPage'
 
-    stack = Gtk.Template.Child()
+    change_language_list = Gtk.Template.Child()
+    language_label = Gtk.Template.Child()
 
+    stack = Gtk.Template.Child()
     language_list = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
 
@@ -28,6 +30,7 @@ class KeyboardLayoutPage(Gtk.Box):
         self.keyboard_layout_provider = KeyboardLayoutProvider(global_state)
 
         # signals
+        self.change_language_list.connect('row-activated', self._show_language_selection)
         self.language_list.connect('row-activated', self._on_language_row_activated)
         self.layout_list.connect('row-activated', self._on_layout_row_activated)
 
@@ -38,12 +41,16 @@ class KeyboardLayoutPage(Gtk.Box):
             row = LanguageRow(language_info)
             self.language_list.add(row)
 
-    def _setup_layout_list(self, language, short_hand):
+    def _load_layout_list(self, language, short_hand):
+        self.stack.set_visible_child_name('layouts')
+
+        if self.loaded_language == short_hand:
+            return
+        self.loaded_language = short_hand
+
         empty_list(self.layout_list)
 
-        # add back row
-        row = KeyboardLayoutBackRow(language)
-        self.layout_list.add(row)
+        self.language_label.set_label(language)
 
         # fill list with all keyboard layouts for given language
         layouts = self.keyboard_layout_provider.get_layouts_for(short_hand, language)
@@ -52,55 +59,47 @@ class KeyboardLayoutPage(Gtk.Box):
             row = SelectionRow(name, keyboard_layout)
             self.layout_list.add(row)
 
-        self.loaded_language = short_hand
+        # set current layout to first in list
+        row = self.layout_list.get_row_at_index(0)
+        self._use_layout(row)
 
-    def _select_layout_row(self, list_box, row):
+    def _use_layout(self, row):
         if self.current_row:
             self.current_row.set_activated(False)
         self.current_row = row
         row.set_activated(True)
-        list_box.select_row(row)
+
+        self.layout_list.select_row(row)
+
+        # use selected keyboard layout
+        keyboard_layout = row.get_label()
+        short_hand = row.info
+        self.global_state.apply_keyboard_layout(keyboard_layout, short_hand)
 
     ### callbacks ###
 
     def _on_language_row_activated(self, list_box, row):
         # show layouts for language
         language_info = row.info
-        self._setup_layout_list(language_info.name, language_info.language_code)
-        self.stack.set_visible_child_name('layouts')
+        self._load_layout_list(language_info.name, language_info.language_code)
 
     def _on_layout_row_activated(self, list_box, row):
-        if row.get_name() == 'back_row':
-            # show language selection
-            if not self.language_list_setup:
-                self._setup_languages_list()
-                self.language_list_setup = True
-            self.stack.set_visible_child_name('languages')
-        else:
-            # layout selected
-            self._select_layout_row(list_box, row)
+        # layout selected
+        self._use_layout(row)
 
-            # save here, not on page reloads
-            keyboard_layout = row.get_label()
-            short_hand = row.info
-            self.global_state.apply_keyboard_layout(keyboard_layout, short_hand)
+    def _show_language_selection(self, list_box, row):
+        # show language selection
+        if not self.language_list_setup:
+            self.language_list_setup = True
+            self._setup_languages_list()
+        self.stack.set_visible_child_name('languages')
 
     ### public methods ###
 
     def load(self):
-        # load suggested list
+        # fill layout list if different language
         short_hand = self.global_state.get_config('language_short_hand')
-        if not self.loaded_language == short_hand:
-            # fill layout list if different language
-            language = self.global_state.get_config('language')
-            self._setup_layout_list(language, short_hand)
-
-            # set current layout to first in list
-            row = self.layout_list.get_row_at_index(1)
-            self._select_layout_row(self.layout_list, row)
-
-            self.loaded_language = short_hand
-
-        self.stack.set_visible_child_name('layouts')
+        language = self.global_state.get_config('language')
+        self._load_layout_list(language, short_hand)
 
         return 'ok_to_proceed_and_enforce_back'
