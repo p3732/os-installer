@@ -3,7 +3,7 @@
 from gi.repository import Gtk
 import threading
 from .disk_provider import DiskProvider
-from .widgets import DeviceRow, DiskBackRow, NoPartitionsRow, empty_list
+from .widgets import DeviceRow, NoPartitionsRow, empty_list
 
 
 GIGABYTE_FACTOR = 1024 * 1024 * 1024
@@ -14,8 +14,9 @@ class DiskPage(Gtk.Box):
     __gtype_name__ = 'DiskPage'
 
     stack = Gtk.Template.Child()
-
     disk_list = Gtk.Template.Child()
+    disk_label = Gtk.Template.Child()
+    change_disk_list = Gtk.Template.Child()
     partition_list = Gtk.Template.Child()
 
     settings_button = Gtk.Template.Child()
@@ -35,6 +36,7 @@ class DiskPage(Gtk.Box):
 
         # signals
         self.disk_list.connect('row-activated', self._on_disk_row_activated)
+        self.change_disk_list.connect('row-activated', self._show_disks)
         self.partition_list.connect('row-activated', self._on_partition_row_activated)
 
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
@@ -68,8 +70,10 @@ class DiskPage(Gtk.Box):
             self.efi_vars_checked = True
         disk_uefi_okay = not self.uses_uefi or disk_info.efi_partition
 
-        # fill list: back row, whole disk row, partitions
-        self.partition_list.add(DiskBackRow(disk_info.name))
+        # set disk label
+        self.disk_label.set_label(disk_info.name)
+
+        # fill list: whole disk row, partitions
         self.partition_list.add(DeviceRow('whole_disk', disk_info, False))
         if disk_uefi_okay:
             for partition_info in disk_info.partitions:
@@ -96,18 +100,18 @@ class DiskPage(Gtk.Box):
             self.list_creation_lock.release()
 
     def _on_partition_row_activated(self, list_box, row):
-        if row.get_name() == 'back_row':
-            with self.list_creation_lock:
-                self.stack.set_visible_child_name('disks')
-        else:
-            list_box.select_row(row)
+        list_box.select_row(row)
 
-            self.global_state.set_config('disk_name', row.info.name)
-            self.global_state.set_config('disk_device_path', row.info.device_path)
-            self.global_state.set_config('disk_is_partition', row.info.is_partition)
-            self.global_state.set_config('disk_efi_partition', row.info.efi_partition)
+        self.global_state.set_config('disk_name', row.info.name)
+        self.global_state.set_config('disk_device_path', row.info.device_path)
+        self.global_state.set_config('disk_is_partition', row.info.is_partition)
+        self.global_state.set_config('disk_efi_partition', row.info.efi_partition)
 
-            self.global_state.advance()
+        self.global_state.advance()
+
+    def _show_disks(self, list_box, row):
+        with self.list_creation_lock:
+            self.stack.set_visible_child_name('disks')
 
     ### public methods ###
 

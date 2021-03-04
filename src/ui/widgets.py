@@ -62,18 +62,6 @@ class DeviceRow(Gtk.ListBoxRow):
             # TODO set labels attribute weight to light
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/disk_back_row.ui')
-class DiskBackRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'DiskBackRow'
-
-    label = Gtk.Template.Child()
-
-    def __init__(self, label, **kwargs):
-        super().__init__(**kwargs)
-
-        self.label.set_label(label)
-
-
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/language_row.ui')
 class LanguageRow(Gtk.ListBoxRow):
     __gtype_name__ = 'LanguageRow'
