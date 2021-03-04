@@ -61,7 +61,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Showing Layouts for</property>
+                    <property name="label" translatable="yes" comments="Followed by a language name.">Keyboard Layouts for</property>
                     <property name="wrap">True</property>
                   </object>
                   <packing>
