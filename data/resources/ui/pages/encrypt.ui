@@ -29,6 +29,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes" comments="Used with option to enable disk encryption">Encrypt Installation</property>
+                    <property name="wrap">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -41,6 +42,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -83,6 +85,7 @@
         <property name="can-focus">False</property>
         <property name="valign">start</property>
         <property name="transition-duration">200</property>
+        <property name="reveal-child">True</property>
         <child>
           <object class="GtkListBox">
             <property name="visible">True</property>
@@ -110,9 +113,11 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes" comments="Description of entry field for pin/password used for disk encryption">Encryption PIN</property>
+                            <property name="wrap">True</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
+                            <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="position">0</property>
                           </packing>
@@ -124,12 +129,14 @@
                             <property name="has-focus">True</property>
                             <property name="is-focus">True</property>
                             <property name="activates-default">True</property>
+                            <property name="width-chars">10</property>
+                            <property name="max-width-chars">16</property>
                             <property name="truncate-multiline">True</property>
                             <property name="placeholder-text" translatable="yes" comments="Placeholder for disk encryption pin/password field">PIN</property>
                             <property name="input-purpose">pin</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
+                            <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="pack-type">end</property>
                             <property name="position">1</property>
@@ -166,10 +173,9 @@
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes" comments="Warning label for disk encryption">Memorize this PIN well. Without it you will not be able to access your files.</property>
                             <property name="wrap">True</property>
-                            <property name="wrap-mode">word-char</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
+                            <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
                           </packing>

@@ -12,6 +12,7 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="label" translatable="yes" comments="Informative label with list of continents and countries">Select a Location</property>
+        <property name="wrap">True</property>
         <attributes>
           <attribute name="weight" value="bold"/>
         </attributes>
@@ -26,15 +27,15 @@
       <object class="GtkScrolledWindow">
         <property name="visible">True</property>
         <property name="can-focus">True</property>
+        <property name="hscrollbar-policy">external</property>
         <property name="vscrollbar-policy">external</property>
-        <property name="min-content-width">400</property>
-        <property name="min-content-height">400</property>
         <property name="propagate-natural-width">True</property>
         <property name="propagate-natural-height">True</property>
         <child>
           <object class="GtkViewport">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="vscroll-policy">natural</property>
             <child>
               <object class="GtkStack" id="stack">
                 <property name="visible">True</property>

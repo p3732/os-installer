@@ -36,9 +36,11 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes" comments="Used with entry field for User's name">User Name</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
@@ -49,10 +51,12 @@
                         <property name="can-focus">True</property>
                         <property name="has-focus">True</property>
                         <property name="is-focus">True</property>
+                        <property name="width-chars">10</property>
+                        <property name="max-width-chars">16</property>
                         <property name="placeholder-text" translatable="yes" comments="Placeholder in user name entry field">Enter a Name</property>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="pack-type">end</property>
                         <property name="position">1</property>
@@ -78,6 +82,7 @@
                       <object class="GtkSwitch" id="autologin_switch">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="valign">center</property>
                         <property name="active">True</property>
                       </object>
                       <packing>
@@ -92,6 +97,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes" comments="Used with option to enable automatic login of user upon booting">Automatic Login</property>
+                        <property name="wrap">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -142,9 +148,11 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes" comments="Used with entry field for setting a password for new user">Password</property>
+                            <property name="wrap">True</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
+                            <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="position">0</property>
                           </packing>
@@ -155,11 +163,13 @@
                             <property name="can-focus">True</property>
                             <property name="visibility">False</property>
                             <property name="invisible-char">●</property>
+                            <property name="width-chars">10</property>
+                            <property name="max-width-chars">16</property>
                             <property name="placeholder-text" translatable="yes" comments="Placeholder in password entry field">Enter a Password</property>
                             <property name="input-purpose">password</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
+                            <property name="expand">True</property>
                             <property name="fill">True</property>
                             <property name="pack-type">end</property>
                             <property name="position">1</property>

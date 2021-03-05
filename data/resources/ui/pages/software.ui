@@ -42,6 +42,8 @@
         <property name="can-focus">False</property>
         <property name="valign">end</property>
         <property name="label" translatable="yes" comments="Informative label above a list of software that can be selected for installation">Select Additional Software to Install</property>
+        <property name="justify">center</property>
+        <property name="wrap">True</property>
       </object>
       <packing>
         <property name="expand">True</property>

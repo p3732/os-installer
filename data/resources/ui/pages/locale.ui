@@ -41,6 +41,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes" comments="Label presented next to the current Timezone">Timezone</property>
+                            <property name="wrap">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -65,6 +66,7 @@
                           <object class="GtkLabel" id="timezone_label">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="wrap">True</property>
                             <property name="ellipsize">end</property>
                           </object>
                           <packing>
@@ -95,6 +97,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes" comments="Label presented next to the current Formats">Formats</property>
+                            <property name="wrap">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -119,6 +122,7 @@
                           <object class="GtkLabel" id="formats_label">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="wrap">True</property>
                             <property name="ellipsize">end</property>
                           </object>
                           <packing>
