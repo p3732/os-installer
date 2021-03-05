@@ -113,6 +113,9 @@ class GlobalState:
     def advance(self, name=None):
         self.stack.advance(name)
 
+    def allow_forward_navigation(self):
+        self.stack.allow_forward_navigation()
+
     def load_initial_page(self):
         self.stack.load_initial_page()
 

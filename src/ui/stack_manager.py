@@ -80,9 +80,7 @@ class StackManager:
             # set icon
             self.global_state.window._set_image(icon_name)
 
-            # update navigation buttons
-            self.previous_stack.set_visible_child_name('enabled' if self.current > 0 else 'disabled')
-            self.next_stack.set_visible_child_name('enabled' if self.accessible > self.current else 'disabled')
+            self._update_navigation_buttons()
 
     def _make_accessible(self, page):
         # setting accessible bigger than the maximum allows for forward navigation
@@ -90,6 +88,11 @@ class StackManager:
 
     def _make_inaccessible(self, page):
         self.accessible = max(self.current, page-1)
+
+    def _update_navigation_buttons(self):
+        # update navigation buttons
+        self.previous_stack.set_visible_child_name('enabled' if self.current > 0 else 'disabled')
+        self.next_stack.set_visible_child_name('enabled' if self.accessible > self.current else 'disabled')
 
     ### public methods ###
 
@@ -100,6 +103,11 @@ class StackManager:
                 if not name == current_page_name:
                     return
             self._go_to_next()
+
+    def allow_forward_navigation(self):
+        # no lock, only allowed during page load
+        self._make_accessible(self.current + 1)
+        self._update_navigation_buttons()
 
     def load_initial_page(self):
         with self.navigation_lock:

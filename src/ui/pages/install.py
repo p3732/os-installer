@@ -47,11 +47,10 @@ class InstallPage(Gtk.Box):
     ### public methods ###
 
     def load(self):
-        self.spinner.start()
+        if self.global_state.demo_mode:
+            self.global_state.allow_forward_navigation()
 
-        # TODO
-        # if self.global_state.demo_mode:
-        #    return 'ok_to_proceed'
+        self.spinner.start()
 
         return 'OS-Installer-symbolic'
 

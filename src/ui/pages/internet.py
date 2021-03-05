@@ -50,15 +50,16 @@ class InternetPage(Gtk.Box):
     ### public methods ###
 
     def load(self):
+        if self.global_state.demo_mode:
+            self.global_state.allow_forward_navigation()
         with self.connected_lock:
             if self.connected:
                 if self.can_proceed_automatically:
                     # page was already loaded once, do not skip automatically
-                    return 'network-wireless-symbolic'
+                    icon_name = 'network-wireless-symbolic'
                 else:
-                    self.can_proceed_automatically = True
-                    return None
+                    icon_name = None
             else:
-                self.can_proceed_automatically = True
-                if self.global_state.demo_mode:
-                    return 'network-wireless-disabled-symbolic'
+                icon_name = 'network-wireless-disabled-symbolic'
+            self.can_proceed_automatically = True
+            return icon_name

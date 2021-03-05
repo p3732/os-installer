@@ -63,8 +63,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             [LanguagePage],
             pre_installation_section,
             configuration_section,
-            [InstallPage],
-            [DonePage],
+            [InstallPage, DonePage],
             [RestartPage]
         ]
 
