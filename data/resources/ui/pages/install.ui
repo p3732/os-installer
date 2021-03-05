@@ -6,7 +6,7 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
-    <property name="spacing">18</property>
+    <property name="spacing">12</property>
     <child>
       <object class="GtkToggleButton" id="terminal_button">
         <property name="width-request">64</property>
@@ -94,7 +94,7 @@
         </child>
       </object>
       <packing>
-        <property name="expand">False</property>
+        <property name="expand">True</property>
         <property name="fill">True</property>
         <property name="position">1</property>
       </packing>
