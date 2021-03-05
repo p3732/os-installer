@@ -81,7 +81,7 @@
                       <object class="GtkStack" id="previous_stack">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="transition-type">slide-left-right</property>
+                        <property name="transition-type">crossfade</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
@@ -131,7 +131,7 @@
                       <object class="GtkStack" id="next_stack">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="transition-type">slide-left-right</property>
+                        <property name="transition-type">crossfade</property>
                         <child>
                           <object class="GtkBox">
                             <property name="visible">True</property>
