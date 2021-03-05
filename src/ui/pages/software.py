@@ -12,28 +12,34 @@ class SoftwarePage(Gtk.Box):
 
     software_list = Gtk.Template.Child()
 
+    continue_button = Gtk.Template.Child()
+
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
         self.global_state = global_state
         self.loaded = False
-        self.always_skip = False
 
         self.software_provider = SoftwareProvider(global_state)
+
+        # signals
+        self.continue_button.connect('clicked', self._continue)
         self.software_list.connect('row-activated', self._on_software_row_activated)
+
+    def _setup_software(self):
+        suggestions = self.software_provider.get_suggestions()
+        for package_name, default, name, description, icon_path in suggestions:
+            row = SoftwareRow(name, description, package_name, default, icon_path)
+            self.software_list.add(row)
+
+    ### callbacks ###
+
+    def _continue(self, button):
+        self.global_state.advance()
 
     def _on_software_row_activated(self, list_box, row):
         new_state = not row.is_activated()
         row.set_activated(new_state)
-
-    def _setup_software(self):
-        suggestions = self.software_provider.get_suggestions()
-        if len(suggestions) == 0:
-            self.always_skip = True
-        else:
-            for package_name, default, name, description, icon_path in suggestions:
-                row = SoftwareRow(name, description, package_name, default, icon_path)
-                self.software_list.add(row)
 
     ### public methods ###
 
@@ -41,10 +47,8 @@ class SoftwarePage(Gtk.Box):
         if not self.loaded:
             self._setup_software()
             self.loaded = True
-        if self.always_skip:
-            return 'automatic'
-        else:
-            return 'ok_to_proceed'
+
+        return 'system-software-install-symbolic'
 
     def unload(self):
         to_install = []

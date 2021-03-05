@@ -86,3 +86,5 @@ class LocalePage(Gtk.Box):
         self.timezone_label.set_label(timezone)
 
         self.stack.set_visible_child_name('overview')
+
+        return 'globe-symbolic'

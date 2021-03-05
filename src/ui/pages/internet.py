@@ -11,7 +11,6 @@ from gi.repository import Gtk
 class InternetPage(Gtk.Box):
     __gtype_name__ = 'InternetPage'
 
-    stack = Gtk.Template.Child()
     settings_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
@@ -27,9 +26,6 @@ class InternetPage(Gtk.Box):
         callback = self._on_connected
         self.internet_provider = InternetProvider(global_state, callback)
 
-        # UI element states
-        self.stack.set_visible_child_name('disabled')
-
         # signals
         self.settings_button.connect('clicked', self._on_clicked_settings_button)
 
@@ -43,14 +39,13 @@ class InternetPage(Gtk.Box):
 
         with self.connected_lock:
             self.connected = True
-            self.stack.set_visible_child_name('enabled')
             if self.can_proceed_automatically:
                 notify_global_state = True
             self.global_state.apply_connected()
 
         # do not hold lock, could cause deadlock with simultaneous load()
         if notify_global_state:
-            self.global_state.page_can_proceed_automatically(self.__gtype_name__)
+            self.global_state.advance(self.__gtype_name__)
 
     ### public methods ###
 
@@ -59,12 +54,11 @@ class InternetPage(Gtk.Box):
             if self.connected:
                 if self.can_proceed_automatically:
                     # page was already loaded once, do not skip automatically
-                    return
+                    return 'network-wireless-symbolic'
                 else:
                     self.can_proceed_automatically = True
-                    return 'automatic'
+                    return None
             else:
+                self.can_proceed_automatically = True
                 if self.global_state.demo_mode:
-                    return 'ok_to_proceed'
-                else:
-                    return 'waiting'
+                    return 'network-wireless-disabled-symbolic'

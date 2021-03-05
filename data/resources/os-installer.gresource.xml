@@ -18,7 +18,6 @@
     <file preprocess="xml-stripblanks">about_dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/confirm_quit_popup.ui</file>
     <file preprocess="xml-stripblanks">ui/failed_installation_popup.ui</file>
-    <file preprocess="xml-stripblanks">ui/main_stack.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
 
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
@@ -36,7 +35,6 @@
 
     <file preprocess="xml-stripblanks">ui/widgets/back_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
-    <file preprocess="xml-stripblanks">ui/widgets/disk_back_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/formats_chooser.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/language_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/no_partitions_row.ui</file>

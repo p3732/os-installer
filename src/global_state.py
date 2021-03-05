@@ -110,17 +110,11 @@ class GlobalState:
 
     ### stack funcitons ###
 
-    def advance(self):
-        self.stack.advance()
+    def advance(self, name=None):
+        self.stack.advance(name)
 
     def load_initial_page(self):
         self.stack.load_initial_page()
-
-    def page_can_proceed_automatically(self, name):
-        self.stack.page_can_proceed_automatically(name)
-
-    def page_is_ok_to_proceed(self, name, ok=True):
-        self.stack.page_is_ok_to_proceed(name, ok)
 
     def try_go_to_next(self):
         self.stack.try_go_to_next()

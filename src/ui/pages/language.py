@@ -1,8 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .widgets import LanguageRow
-
 from gi.repository import Gtk
+from .widgets import LanguageRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
@@ -63,3 +62,4 @@ class LanguagePage(Gtk.Box):
         if not self.loaded:
             self._setup_list()
             self.loaded = True
+        return 'language-symbolic'

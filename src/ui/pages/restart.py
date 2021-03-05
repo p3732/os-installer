@@ -16,3 +16,4 @@ class RestartPage(Gtk.Box):
 
     def load(self):
         self.global_state.apply_restart()
+        return 'system-reboot-symbolic'

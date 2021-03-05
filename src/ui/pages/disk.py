@@ -120,3 +120,4 @@ class DiskPage(Gtk.Box):
         if self.list_creation_lock.acquire(blocking=False):
             self._setup_disk_list()
             self.list_creation_lock.release()
+        return 'drive-harddisk-system-symbolic'

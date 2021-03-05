@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .main_stack import MainStack
+from .stack_manager import StackManager
 
 from .confirm import ConfirmPage
 from .disk import DiskPage
@@ -25,7 +25,10 @@ from gi.repository import Gtk, Handy
 class OsInstallerWindow(Handy.ApplicationWindow):
     __gtype_name__ = 'OsInstallerWindow'
 
-    content_box = Gtk.Template.Child()
+    main_stack = Gtk.Template.Child()
+    image_stack = Gtk.Template.Child()
+    previous_stack = Gtk.Template.Child()
+    next_stack = Gtk.Template.Child()
 
     def __init__(self, global_state, quit_callback, **kwargs):
         super().__init__(**kwargs)
@@ -34,10 +37,10 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
         available_pages = self._determine_available_pages(global_state.get_config)
 
-        # setup stack
-        main_stack = MainStack(available_pages, global_state)
-        global_state.stack = main_stack
-        self.content_box.add(main_stack)
+        # stack manager
+        stacks = (self.main_stack, self.image_stack, self.previous_stack, self.next_stack)
+        stack_manager = StackManager(stacks, available_pages, global_state)
+        global_state.stack = stack_manager
 
     def _determine_available_pages(self, get_config):
         # pre-installation section
@@ -64,6 +67,13 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             [DonePage],
             [RestartPage]
         ]
+
+    def _set_image(self, icon_name):
+        current = self.image_stack.get_visible_child_name()
+        other = '1' if current == '2' else '2'
+        image = self.image_stack.get_child_by_name(other)
+        image.set_from_icon_name(icon_name, 0)
+        self.image_stack.set_visible_child_name(other)
 
     ### public methods ###
 

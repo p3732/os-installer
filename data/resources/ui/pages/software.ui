@@ -6,36 +6,7 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
-    <property name="spacing">18</property>
-    <child type="center">
-      <object class="GtkListBox" id="software_list">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="selection-mode">none</property>
-        <style>
-          <class name="content"/>
-        </style>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">2</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkImage">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="pixel-size">128</property>
-        <property name="icon-name">system-software-install-symbolic</property>
-        <property name="icon_size">0</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
+    <property name="spacing">12</property>
     <child>
       <object class="GtkLabel">
         <property name="visible">True</property>
@@ -46,7 +17,60 @@
         <property name="wrap">True</property>
       </object>
       <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="hscrollbar-policy">external</property>
+        <property name="vscrollbar-policy">external</property>
+        <property name="propagate-natural-width">True</property>
+        <property name="propagate-natural-height">True</property>
+        <child>
+          <object class="GtkViewport">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="vscroll-policy">natural</property>
+            <property name="shadow-type">none</property>
+            <child>
+              <object class="GtkListBox" id="software_list">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="selection-mode">none</property>
+                <style>
+                  <class name="content"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
         <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkButton" id="continue_button">
+        <property name="label" translatable="yes" comments="On button.">_Continue</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="use-underline">True</property>
+        <style>
+          <class name="suggested-action"/>
+          <class name="large-button"/>
+        </style>
+      </object>
+      <packing>
+        <property name="expand">False</property>
         <property name="fill">True</property>
         <property name="position">2</property>
       </packing>

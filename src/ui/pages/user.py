@@ -14,33 +14,30 @@ class UserPage(Gtk.Box):
     revealer = Gtk.Template.Child()
     password_field = Gtk.Template.Child()
 
+    continue_button = Gtk.Template.Child()
+
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
         self.global_state = global_state
 
         # signals
+        self.continue_button.connect('clicked', self._continue)
         self.default_list.connect('row-activated', self._on_row_activated)
         self.autologin_switch.connect("state-set", self._on_autologin_switch_flipped)
-        self.user_name_field.connect("changed", self._on_user_name_changed)
-        self.password_field.connect("changed", self._on_password_changed)
+        self.user_name_field.connect("changed", self._on_entry_changed)
+        self.password_field.connect("changed", self._on_entry_changed)
 
-    def _can_continue_(self, switch_state=None):
+    def _set_continue_button(self, autologin):
         has_user_name = not self.user_name_field.get_text() == ''
         has_password = not self.password_field.get_text() == ''
-        if switch_state == None:
-            needs_password = not self.autologin_switch.get_state()
-        else:
-            needs_password = not switch_state
+        can_continue = has_user_name and (autologin or has_password)
+        self.continue_button.set_sensitive(can_continue)
 
-        # can not continue if no auto-login and no password given
-        return has_user_name and ((not needs_password) or has_password)
+    # callbacks ###stack_manager
 
-    def _set_navigation(self, switch_state=None):
-        ok_to_proceed = self._can_continue_(switch_state)
-        self.global_state.page_is_ok_to_proceed(self.__gtype_name__, ok_to_proceed)
-
-    ### callbacks ###
+    def _continue(self, button):
+        self.global_state.advance()
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'automatic_login':
@@ -48,19 +45,15 @@ class UserPage(Gtk.Box):
 
     def _on_autologin_switch_flipped(self, autologin_switch, state):
         self.revealer.set_reveal_child(not state)
-        self._set_navigation(state)
+        self._set_continue_button(state)
 
-    def _on_user_name_changed(self, editable):
-        self._set_navigation()
-
-    def _on_password_changed(self, editable):
-        self._set_navigation()
+    def _on_entry_changed(self, editable):
+        self._set_continue_button(self.autologin_switch.get_state())
 
     ### public methods ###
 
     def load(self):
-        if self._can_continue_():
-            return 'ok_to_proceed'
+        return 'user-symbolic'
 
     def unload(self):
         password = self.password_field.get_text()

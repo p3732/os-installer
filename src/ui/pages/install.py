@@ -49,8 +49,11 @@ class InstallPage(Gtk.Box):
     def load(self):
         self.spinner.start()
 
-        if self.global_state.demo_mode:
-            return 'ok_to_proceed'
+        # TODO
+        # if self.global_state.demo_mode:
+        #    return 'ok_to_proceed'
+
+        return 'OS-Installer-symbolic'
 
     def unload(self):
         self.spinner.stop()

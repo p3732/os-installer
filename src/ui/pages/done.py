@@ -25,4 +25,4 @@ class DonePage(Gtk.Box):
     ### public methods ###
 
     def load(self):
-        return
+        return 'checkbox-checked-symbolic'

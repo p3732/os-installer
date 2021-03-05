@@ -13,24 +13,27 @@ class EncryptPage(Gtk.Box):
     revealer = Gtk.Template.Child()
     pin_field = Gtk.Template.Child()
 
+    continue_button = Gtk.Template.Child()
+
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
         self.global_state = global_state
 
         # signals
+        self.continue_button.connect('clicked', self._continue)
         self.default_list.connect('row-activated', self._on_row_activated)
         self.switch.connect("state-set", self._on_switch_flipped)
         self.pin_field.connect("changed", self._on_pin_changed)
 
-    def _can_proceed(self, needs_pin=None, pin=None):
-        if needs_pin == None:
-            needs_pin = self.switch.get_state()
-        if pin == None:
-            pin = self.pin_field.get_text()
-        return not needs_pin or not pin == ''
+    def _set_continue_button(self, needs_pin, has_pin):
+        can_continue = not needs_pin or has_pin
+        self.continue_button.set_sensitive(can_continue)
 
     ### callbacks ###
+
+    def _continue(self, button):
+        self.global_state.advance()
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'encryption':
@@ -38,17 +41,20 @@ class EncryptPage(Gtk.Box):
 
     def _on_switch_flipped(self, switch, state):
         self.revealer.set_reveal_child(state)
-        can_proceed = self._can_proceed(needs_pin=state)
-        self.global_state.page_is_ok_to_proceed(self.__gtype_name__, can_proceed)
+
+        needs_pin = state
+        has_pin = len(self.pin_field.get_text()) > 0
+        self._set_continue_button(needs_pin, has_pin)
 
     def _on_pin_changed(self, editable):
-        can_proceed = self._can_proceed(pin=editable.get_text())
-        self.global_state.page_is_ok_to_proceed(self.__gtype_name__, can_proceed)
+        needs_pin = self.switch.get_state()
+        has_pin = len(editable.get_text()) > 0
+        self._set_continue_button(needs_pin, has_pin)
 
     ### public methods ###
 
     def load(self):
-        return 'ok_to_proceed'
+        return 'dialog-password-symbolic'
 
     def unload(self):
         use_encryption = self.switch.get_state()

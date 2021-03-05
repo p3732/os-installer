@@ -17,6 +17,8 @@ class KeyboardLayoutPage(Gtk.Box):
     language_list = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
 
+    continue_button = Gtk.Template.Child()
+
     def __init__(self, global_state, **kwargs):
         super().__init__(**kwargs)
 
@@ -30,6 +32,7 @@ class KeyboardLayoutPage(Gtk.Box):
         self.keyboard_layout_provider = KeyboardLayoutProvider(global_state)
 
         # signals
+        self.continue_button.connect('clicked', self._continue)
         self.change_language_list.connect('row-activated', self._show_language_selection)
         self.language_list.connect('row-activated', self._on_language_row_activated)
         self.layout_list.connect('row-activated', self._on_layout_row_activated)
@@ -78,6 +81,9 @@ class KeyboardLayoutPage(Gtk.Box):
 
     ### callbacks ###
 
+    def _continue(self, button):
+        self.global_state.advance()
+
     def _on_language_row_activated(self, list_box, row):
         # show layouts for language
         language_info = row.info
@@ -102,4 +108,4 @@ class KeyboardLayoutPage(Gtk.Box):
         language = self.global_state.get_config('language')
         self._load_layout_list(language, short_hand)
 
-        return 'ok_to_proceed_and_enforce_back'
+        return 'input-keyboard-symbolic'
