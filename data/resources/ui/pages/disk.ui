@@ -143,7 +143,7 @@
             <property name="orientation">vertical</property>
             <property name="spacing">12</property>
             <child>
-              <object class="GtkListBox" id="change_disk_list">
+              <object class="GtkListBox" id="whole_disk_list">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="selection-mode">none</property>
@@ -172,6 +172,7 @@
                               <object class="GtkLabel" id="disk_label">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
+                                <property name="wrap">True</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -186,7 +187,8 @@
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes" comments="Label to go back to overview of all disks">Use Different Disk</property>
+                                <property name="label" translatable="yes" comments="Label to go back to overview of all disks">Use Whole Disk</property>
+                                <property name="wrap">True</property>
                                 <attributes>
                                   <attribute name="weight" value="light"/>
                                 </attributes>
@@ -208,12 +210,30 @@
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="icon-name">go-previous-symbolic</property>
+                            <property name="icon-name">go-next-symbolic</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
+                            <property name="pack-type">end</property>
                             <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="disk_size">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="width-chars">5</property>
+                            <property name="max-width-chars">7</property>
+                            <property name="xalign">1</property>
+                            <attributes>
+                              <attribute name="weight" value="light"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                       </object>
@@ -261,6 +281,67 @@
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkListBox" id="change_disk_list">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="selection-mode">none</property>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="name">back_row</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="selectable">False</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                        <property name="spacing">18</property>
+                        <child type="center">
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes" comments="Label to go back to overview of all disks">Use Different Disk</property>
+                            <attributes>
+                              <attribute name="weight" value="light"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">go-previous-symbolic</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <style>
+                  <class name="content"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>

@@ -14,10 +14,14 @@ class DiskPage(Gtk.Box):
     __gtype_name__ = 'DiskPage'
 
     stack = Gtk.Template.Child()
+
     disk_list = Gtk.Template.Child()
+
+    whole_disk_list = Gtk.Template.Child()
+    disk_size = Gtk.Template.Child()
     disk_label = Gtk.Template.Child()
-    change_disk_list = Gtk.Template.Child()
     partition_list = Gtk.Template.Child()
+    change_disk_list = Gtk.Template.Child()
 
     settings_button = Gtk.Template.Child()
     refresh_button = Gtk.Template.Child()
@@ -29,6 +33,8 @@ class DiskPage(Gtk.Box):
         minimum_disk_size = global_state.get_config('minimum_disk_size')
         self.minimum_disk_size = minimum_disk_size * GIGABYTE_FACTOR
 
+        self.current_disk = None
+
         self.list_creation_lock = threading.Lock()
 
         # provider
@@ -38,6 +44,7 @@ class DiskPage(Gtk.Box):
         self.disk_list.connect('row-activated', self._on_disk_row_activated)
         self.change_disk_list.connect('row-activated', self._show_disks)
         self.partition_list.connect('row-activated', self._on_partition_row_activated)
+        self.whole_disk_list.connect('row-activated', self._use_whole_disk)
 
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
         self.refresh_button.connect('clicked', self._on_clicked_reload_button)
@@ -61,6 +68,8 @@ class DiskPage(Gtk.Box):
         self.stack.set_visible_child_name('disks')
 
     def _setup_partition_list(self, disk_info):
+        if self.current_disk == disk_info:
+            return
         # clear list
         empty_list(self.partition_list)
 
@@ -70,11 +79,11 @@ class DiskPage(Gtk.Box):
             self.efi_vars_checked = True
         disk_uefi_okay = not self.uses_uefi or disk_info.efi_partition
 
-        # set disk label
+        # set disk info
         self.disk_label.set_label(disk_info.name)
+        self.disk_size.set_label(disk_info.size_text)
 
         # fill list: whole disk row, partitions
-        self.partition_list.add(DeviceRow('whole_disk', disk_info, False))
         if disk_uefi_okay:
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
@@ -82,6 +91,12 @@ class DiskPage(Gtk.Box):
                 self.partition_list.add(row)
         else:
             self.partition_list.add(NoPartitionsRow())
+
+    def _store_device_info(self, info):
+        self.global_state.set_config('disk_name', info.name)
+        self.global_state.set_config('disk_device_path', info.device_path)
+        self.global_state.set_config('disk_is_partition', info.is_partition)
+        self.global_state.set_config('disk_efi_partition', info.efi_partition)
 
     ### callbacks ###
 
@@ -95,23 +110,24 @@ class DiskPage(Gtk.Box):
         # load partition list if not already loading
         if self.list_creation_lock.acquire(blocking=False):
             self._setup_partition_list(row.info)
+            self.current_disk = row.info
             self.stack.set_visible_child_name('partitions')
 
             self.list_creation_lock.release()
 
     def _on_partition_row_activated(self, list_box, row):
         list_box.select_row(row)
-
-        self.global_state.set_config('disk_name', row.info.name)
-        self.global_state.set_config('disk_device_path', row.info.device_path)
-        self.global_state.set_config('disk_is_partition', row.info.is_partition)
-        self.global_state.set_config('disk_efi_partition', row.info.efi_partition)
-
+        self._store_device_info(row.info)
         self.global_state.advance()
 
     def _show_disks(self, list_box, row):
         with self.list_creation_lock:
             self.stack.set_visible_child_name('disks')
+
+    def _use_whole_disk(self, list_box, row):
+        list_box.select_row(row)
+        self._store_device_info(self.current_disk)
+        self.global_state.advance()
 
     ### public methods ###
 
