@@ -1,11 +1,13 @@
 high prio:
 * test internet checking, something seems to be broken
 
-* fix partition name prefixing
+* don't select default keyboard layout, set continue button to sensitive accordingly
 
-* fix language selection
+* show password field by default (autologin -> pessword protection)
 
-* somehow allow continuing of install page in demo mode
+* make scrollableness more noticeable
+
+* locale navigation with back/forward is confusing, as top navigation buttons don't relate to it
 
 * installer scripting
     * pass settings via ENV variables
@@ -20,6 +22,7 @@ mid prio:
 
 low prio:
 
+* translation of main menu entry?
 * check all used library calls for needed unref()
 * focus entry field when clicking on row with entry field (encrypt, user*2)
 * fix focus inputs
