@@ -59,7 +59,12 @@ class DeviceRow(Gtk.ListBoxRow):
             self.set_activatable(False)
             self.too_small_label.set_visible(True)
             self.arrow_stack.set_visible_child_name('too_small')
-            # TODO set labels attribute weight to light
+            self._make_light_weight(self.static_label)
+            self._make_light_weight(self.disk_name)
+            self._make_light_weight(self.partition_name)
+
+    def _make_light_weight(self, label):
+        label.set_label('<span font_weight="light">' + label.get_label() + '</span>')
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/language_row.ui')
