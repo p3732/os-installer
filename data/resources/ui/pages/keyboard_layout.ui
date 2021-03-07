@@ -97,56 +97,89 @@
       </packing>
     </child>
     <child>
-      <object class="GtkScrolledWindow">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="hscrollbar-policy">external</property>
-        <property name="vscrollbar-policy">external</property>
-        <property name="propagate-natural-width">True</property>
-        <property name="propagate-natural-height">True</property>
-        <child>
-          <object class="GtkViewport">
+        <property name="can-focus">False</property>
+        <property name="spacing">6</property>
+        <child type="center">
+          <object class="GtkScrolledWindow">
             <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="vscroll-policy">natural</property>
-            <property name="shadow-type">none</property>
+            <property name="can-focus">True</property>
+            <property name="vadjustment">scrolling</property>
+            <property name="hscrollbar-policy">external</property>
+            <property name="vscrollbar-policy">external</property>
+            <property name="overlay-scrolling">False</property>
+            <property name="propagate-natural-width">True</property>
+            <property name="propagate-natural-height">True</property>
             <child>
-              <object class="GtkStack" id="stack">
+              <object class="GtkViewport">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="vhomogeneous">False</property>
-                <property name="transition-type">crossfade</property>
+                <property name="vscroll-policy">natural</property>
+                <property name="shadow-type">none</property>
                 <child>
-                  <object class="GtkListBox" id="layout_list">
+                  <object class="GtkStack" id="stack">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="receives-default">True</property>
-                    <style>
-                      <class name="content"/>
-                    </style>
+                    <property name="vhomogeneous">False</property>
+                    <property name="transition-type">crossfade</property>
+                    <child>
+                      <object class="GtkListBox" id="layout_list">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="receives-default">True</property>
+                        <style>
+                          <class name="content"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="name">layouts</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkListBox" id="language_list">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="receives-default">True</property>
+                        <style>
+                          <class name="content"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="name">languages</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="name">layouts</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkListBox" id="language_list">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="receives-default">True</property>
-                    <style>
-                      <class name="content"/>
-                    </style>
-                  </object>
-                  <packing>
-                    <property name="name">languages</property>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
               </object>
             </child>
           </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
         </child>
+        <child>
+          <object class="GtkScrollbar">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="adjustment">scrolling</property>
+            <style>
+              <class name="scrollbar"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <style>
+          <class name="linked"/>
+        </style>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -192,4 +225,9 @@
       </packing>
     </child>
   </template>
+  <object class="GtkAdjustment" id="scrolling">
+    <property name="upper">100</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
+  </object>
 </interface>
