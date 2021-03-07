@@ -11,6 +11,7 @@ class DeviceInfo:
     efi_partition: str
     is_partition: bool = True
     name: str
+    prefixed: bool = False
     size: int
     size_text: str
 
@@ -30,12 +31,9 @@ class DiskProvider:
     def _get_one_partition(self, partition, block):
         # partition info
         partition_info = DeviceInfo()
-        label = block.props.id_label
-        if label == '':
-            # no partition name, use number
+        partition_info.name = block.props.id_label
+        if partition_info.name == '':
             partition_info.name = str(partition.props.number)
-        else:
-            partition_info.name = label
         partition_info.size = block.props.size
         partition_info.size_text = self._size_to_str(partition_info.size)
         partition_info.device_path = block.props.device

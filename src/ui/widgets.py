@@ -51,9 +51,10 @@ class DeviceRow(Gtk.ListBoxRow):
             if info.name:
                 self.disk_name.set_label(info.name)
         elif 'partition' == row_type:
-            new_name = self.partition_name.get_label() + ' ' + info.name
-            self.partition_name.set_label(new_name)
-            info.name = new_name
+            if not info.prefixed:
+                info.name = self.partition_name.get_label() + ' ' + info.name
+                info.prefixed = True
+            self.partition_name.set_label(info.name)
 
         if too_small:
             self.set_activatable(False)
