@@ -60,7 +60,7 @@ class DeviceRow(Gtk.ListBoxRow):
             self.set_activatable(False)
             self.too_small_label.set_visible(True)
             self.arrow_stack.set_visible_child_name('too_small')
-            self._make_light_weight(self.static_label)
+            self.static_label.set_visible(False)
             self._make_light_weight(self.disk_name)
             self._make_light_weight(self.partition_name)
 
