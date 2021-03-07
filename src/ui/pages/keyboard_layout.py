@@ -62,13 +62,24 @@ class KeyboardLayoutPage(Gtk.Box):
             row = SelectionRow(name, keyboard_layout)
             self.layout_list.add(row)
 
-        # set current layout to first in list
-        row = self.layout_list.get_row_at_index(0)
-        self._use_layout(row)
-
-    def _use_layout(self, row):
+    def _unselect_current_row(self):
         if self.current_row:
             self.current_row.set_activated(False)
+
+    ### callbacks ###
+
+    def _continue(self, button):
+        self.global_state.advance()
+
+    def _on_language_row_activated(self, list_box, row):
+        self._unselect_current_row()
+
+        # show layouts for language
+        language_info = row.info
+        self._load_layout_list(language_info.name, language_info.language_code)
+
+    def _on_layout_row_activated(self, list_box, row):
+        self._unselect_current_row()
         self.current_row = row
         row.set_activated(True)
 
@@ -79,19 +90,7 @@ class KeyboardLayoutPage(Gtk.Box):
         short_hand = row.info
         self.global_state.apply_keyboard_layout(keyboard_layout, short_hand)
 
-    ### callbacks ###
-
-    def _continue(self, button):
-        self.global_state.advance()
-
-    def _on_language_row_activated(self, list_box, row):
-        # show layouts for language
-        language_info = row.info
-        self._load_layout_list(language_info.name, language_info.language_code)
-
-    def _on_layout_row_activated(self, list_box, row):
-        # layout selected
-        self._use_layout(row)
+        self.continue_button.set_sensitive(True)
 
     def _show_language_selection(self, list_box, row):
         # show language selection
@@ -99,6 +98,8 @@ class KeyboardLayoutPage(Gtk.Box):
             self.language_list_setup = True
             self._setup_languages_list()
         self.stack.set_visible_child_name('languages')
+
+        self.continue_button.set_sensitive(False)
 
     ### public methods ###
 
