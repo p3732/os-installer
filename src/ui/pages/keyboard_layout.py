@@ -29,7 +29,7 @@ class KeyboardLayoutPage(Gtk.Box):
 
         # providers
         self.language_provider = global_state.language_provider
-        self.keyboard_layout_provider = KeyboardLayoutProvider(global_state)
+        self.keyboard_layout_provider = KeyboardLayoutProvider()
 
         # signals
         self.continue_button.connect('clicked', self._continue)

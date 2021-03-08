@@ -4,17 +4,15 @@ from gi.repository.GnomeDesktop import XkbInfo
 
 
 class KeyboardLayoutProvider:
-    def __init__(self, global_state):
-        self.xkb_info = XkbInfo()
-
     ### public methods ###
 
     def get_layouts_for(self, language_short_hand, language):
-        layouts = self.xkb_info.get_layouts_for_language(language_short_hand)
+        xkb_info = XkbInfo()
+        layouts = xkb_info.get_layouts_for_language(language_short_hand)
 
         named_layouts = []
         for layout in layouts:
-            name = self.xkb_info.get_layout_info(layout).display_name
+            name = xkb_info.get_layout_info(layout).display_name
             named_layouts.append((layout, name))
 
         # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
