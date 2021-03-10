@@ -23,7 +23,6 @@ class DiskPage(Gtk.Box, Page):
     disk_size = Gtk.Template.Child()
     disk_label = Gtk.Template.Child()
     partition_list = Gtk.Template.Child()
-    change_disk_list = Gtk.Template.Child()
 
     settings_button = Gtk.Template.Child()
     refresh_button = Gtk.Template.Child()
@@ -37,14 +36,13 @@ class DiskPage(Gtk.Box, Page):
 
         self.current_disk = None
 
-        self.list_creation_lock = threading.Lock()
+        self.lock = threading.Lock()
 
         # provider
         self.disk_provider = DiskProvider()
 
         # signals
         self.disk_list.connect('row-activated', self._on_disk_row_activated)
-        self.change_disk_list.connect('row-activated', self._show_disks)
         self.partition_list.connect('row-activated', self._on_partition_row_activated)
         self.whole_disk_list.connect('row-activated', self._use_whole_disk)
 
@@ -72,6 +70,7 @@ class DiskPage(Gtk.Box, Page):
     def _setup_partition_list(self, disk_info):
         if self.current_disk == disk_info:
             return
+        self.current_disk = disk_info
         # clear list
         empty_list(self.partition_list)
 
@@ -94,6 +93,9 @@ class DiskPage(Gtk.Box, Page):
         else:
             self.partition_list.add(NoPartitionsRow())
 
+        # show
+        self.stack.set_visible_child_name('partitions')
+
     def _store_device_info(self, info):
         self.global_state.set_config('disk_name', info.name)
         self.global_state.set_config('disk_device_path', info.device_path)
@@ -109,22 +111,16 @@ class DiskPage(Gtk.Box, Page):
         self.load()
 
     def _on_disk_row_activated(self, list_box, row):
-        # load partition list if not already loading
-        if self.list_creation_lock.acquire(blocking=False):
-            self._setup_partition_list(row.info)
-            self.current_disk = row.info
-            self.stack.set_visible_child_name('partitions')
-
-            self.list_creation_lock.release()
+        if not self.lock.acquire(blocking=False):
+            return
+        self._setup_partition_list(row.info)
+        self.can_navigate_backward = True
+        self.lock.release()
 
     def _on_partition_row_activated(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(row.info)
         self.global_state.advance()
-
-    def _show_disks(self, list_box, row):
-        with self.list_creation_lock:
-            self.stack.set_visible_child_name('disks')
 
     def _use_whole_disk(self, list_box, row):
         list_box.select_row(row)
@@ -134,7 +130,15 @@ class DiskPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        # reload disk list if not already loading
-        if self.list_creation_lock.acquire(blocking=False):
-            self._setup_disk_list()
-            self.list_creation_lock.release()
+        if not self.lock.acquire(blocking=False):
+            return
+        self.can_navigate_backward = False
+        self._setup_disk_list()
+        self.lock.release()
+
+    def navigate_backward(self):
+        self.can_navigate_backward = False
+        if not self.lock.acquire(blocking=False):
+            return
+        self.stack.set_visible_child_name('disks')
+        self.lock.release()
