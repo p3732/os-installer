@@ -30,8 +30,8 @@ class SoftwarePage(Gtk.Box, Page):
 
     def _setup_software(self):
         suggestions = self.software_provider.get_suggestions()
-        for package_name, default, name, description, icon_path in suggestions:
-            row = SoftwareRow(name, description, package_name, default, icon_path)
+        for package in suggestions:
+            row = SoftwareRow(package)
             self.software_list.add(row)
 
     ### callbacks ###

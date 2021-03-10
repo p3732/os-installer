@@ -136,15 +136,14 @@ class SoftwareRow(Gtk.ListBoxRow):
     description_label = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    def __init__(self, name, description, package_name, default=False, icon_path='', **kwargs):
+    def __init__(self, package, **kwargs):
         super().__init__(**kwargs)
+        self.name_label.set_label(package['name'])
+        self.description_label.set_label(package['description'])
+        self.icon.set_from_file(package['icon_path'])
+        self.switch.set_state(package['default'])
 
-        self.name_label.set_label(name)
-        self.description_label.set_label(description)
-        self.icon.set_from_file(icon_path)
-        self.switch.set_state(default)
-
-        self.package_name = package_name
+        self.package_name = package['package']
 
     def is_activated(self):
         return self.switch.get_active()
