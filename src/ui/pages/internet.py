@@ -1,20 +1,22 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .internet_provider import InternetProvider
-
-import threading
+from .page import Page
 
 from gi.repository import Gtk
 
+import threading
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
-class InternetPage(Gtk.Box):
-    __gtype_name__ = 'InternetPage'
+class InternetPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'OS-Installer-symbolic'
 
     settings_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
 
@@ -50,16 +52,15 @@ class InternetPage(Gtk.Box):
     ### public methods ###
 
     def load(self):
-        if self.global_state.demo_mode:
-            self.global_state.allow_forward_navigation()
         with self.connected_lock:
             if self.connected:
-                if self.can_proceed_automatically:
-                    # page was already loaded once, do not skip automatically
-                    icon_name = 'network-wireless-symbolic'
-                else:
-                    icon_name = None
+                if not self.can_proceed_automatically:
+                    # page was not loaded already, skip automatically
+                    self.can_proceed_automatically = True
+                    return True
+                self.image_name = 'network-wireless-symbolic'
             else:
-                icon_name = 'network-wireless-disabled-symbolic'
-            self.can_proceed_automatically = True
-            return icon_name
+                self.can_proceed_automatically = True
+                if self.global_state.demo_mode:
+                    return True
+                self.image_name = 'network-wireless-disabled-symbolic'

@@ -1,14 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .keyboard_layout_provider import KeyboardLayoutProvider
+from .page import Page
 from .widgets import LanguageRow, SelectionRow, empty_list
 
 from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
-class KeyboardLayoutPage(Gtk.Box):
-    __gtype_name__ = 'KeyboardLayoutPage'
+class KeyboardLayoutPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'input-keyboard-symbolic'
 
     change_language_list = Gtk.Template.Child()
     language_label = Gtk.Template.Child()
@@ -20,7 +22,7 @@ class KeyboardLayoutPage(Gtk.Box):
     continue_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
         self.loaded_language = ''
@@ -108,5 +110,3 @@ class KeyboardLayoutPage(Gtk.Box):
         short_hand = self.global_state.get_config('language_short_hand')
         language = self.global_state.get_config('language')
         self._load_layout_list(language, short_hand)
-
-        return 'input-keyboard-symbolic'

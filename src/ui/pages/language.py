@@ -1,23 +1,26 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+from .page import Page
 from .widgets import LanguageRow
+from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
-class LanguagePage(Gtk.Box):
-    __gtype_name__ = 'LanguagePage'
+class LanguagePage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'language-symbolic'
 
     language_list = Gtk.Template.Child()
     show_all_button = Gtk.Template.Child()
     show_all_revealer = Gtk.Template.Child()
 
+    all_shown = False
+    loaded = False
+
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
-        self.loaded = False
-        self.all_shown = False
 
         # provider
         self.language_provider = global_state.language_provider
@@ -62,4 +65,3 @@ class LanguagePage(Gtk.Box):
         if not self.loaded:
             self._setup_list()
             self.loaded = True
-        return 'language-symbolic'

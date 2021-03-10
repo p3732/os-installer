@@ -1,17 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
-import threading
 from .disk_provider import DiskProvider
+from .page import Page
 from .widgets import DeviceRow, NoPartitionsRow, empty_list
 
+from gi.repository import Gtk
+import threading
 
 GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
-class DiskPage(Gtk.Box):
-    __gtype_name__ = 'DiskPage'
+class DiskPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'drive-harddisk-system-symbolic'
 
     stack = Gtk.Template.Child()
 
@@ -27,7 +29,7 @@ class DiskPage(Gtk.Box):
     refresh_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
         minimum_disk_size = global_state.get_config('minimum_disk_size')
@@ -136,4 +138,3 @@ class DiskPage(Gtk.Box):
         if self.list_creation_lock.acquire(blocking=False):
             self._setup_disk_list()
             self.list_creation_lock.release()
-        return 'drive-harddisk-system-symbolic'

@@ -1,16 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from .page import Page
+
 from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/done.ui')
-class DonePage(Gtk.Box):
-    __gtype_name__ = 'DonePage'
+class DonePage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'checkbox-checked-symbolic'
 
     restart_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
 
@@ -21,8 +24,3 @@ class DonePage(Gtk.Box):
 
     def _on_restart_button_clicked(self, button):
         self.global_state.advance()
-
-    ### public methods ###
-
-    def load(self):
-        return 'checkbox-checked-symbolic'

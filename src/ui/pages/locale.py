@@ -2,6 +2,7 @@
 
 from .formats_chooser import FormatsChooser
 from .locale_provider import LocaleProvider
+from .page import Page
 from .timezone_chooser import TimezoneChooser
 from .widgets import ProgressRow
 
@@ -9,8 +10,9 @@ from gi.repository import GLib, Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
-class LocalePage(Gtk.Box):
-    __gtype_name__ = 'LocalePage'
+class LocalePage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'globe-symbolic'
 
     stack = Gtk.Template.Child()
 
@@ -20,7 +22,7 @@ class LocalePage(Gtk.Box):
     confirm_overview_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
         self.timezone_chooser_setup = False
@@ -86,5 +88,3 @@ class LocalePage(Gtk.Box):
         self.timezone_label.set_label(timezone)
 
         self.stack.set_visible_child_name('overview')
-
-        return 'globe-symbolic'

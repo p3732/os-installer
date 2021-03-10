@@ -1,11 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from .page import Page
+
 from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/encrypt.ui')
-class EncryptPage(Gtk.Box):
-    __gtype_name__ = 'EncryptPage'
+class EncryptPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'dialog-password-symbolic'
 
     default_list = Gtk.Template.Child()
     switch = Gtk.Template.Child()
@@ -16,7 +19,7 @@ class EncryptPage(Gtk.Box):
     continue_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
 
@@ -52,9 +55,6 @@ class EncryptPage(Gtk.Box):
         self._set_continue_button(needs_pin, has_pin)
 
     ### public methods ###
-
-    def load(self):
-        return 'dialog-password-symbolic'
 
     def unload(self):
         use_encryption = self.switch.get_state()

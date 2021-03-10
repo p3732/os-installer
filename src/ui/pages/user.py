@@ -1,11 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from .page import Page
+
 from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
-class UserPage(Gtk.Box):
-    __gtype_name__ = 'UserPage'
+class UserPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'user-symbolic'
 
     default_list = Gtk.Template.Child()
     user_name_field = Gtk.Template.Child()
@@ -17,7 +20,7 @@ class UserPage(Gtk.Box):
     continue_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
 
@@ -51,9 +54,6 @@ class UserPage(Gtk.Box):
         self._set_continue_button(self.autologin_switch.get_state())
 
     ### public methods ###
-
-    def load(self):
-        return 'user-symbolic'
 
     def unload(self):
         password = self.password_field.get_text()

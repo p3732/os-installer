@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from .page import Page
 from .software_provider import SoftwareProvider
 from .widgets import SoftwareRow
 
@@ -7,15 +8,16 @@ from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/software.ui')
-class SoftwarePage(Gtk.Box):
-    __gtype_name__ = 'SoftwarePage'
+class SoftwarePage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'system-software-install-symbolic'
 
     software_list = Gtk.Template.Child()
 
     continue_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
         self.loaded = False
@@ -47,8 +49,6 @@ class SoftwarePage(Gtk.Box):
         if not self.loaded:
             self._setup_software()
             self.loaded = True
-
-        return 'system-software-install-symbolic'
 
     def unload(self):
         to_install = []

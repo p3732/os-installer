@@ -1,13 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import threading
+from .page import Page
 
 from gi.repository import Gtk
 
+import threading
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/install.ui')
-class InstallPage(Gtk.Box):
-    __gtype_name__ = 'InstallPage'
+class InstallPage(Gtk.Box, Page):
+    __gtype_name__ = __qualname__
+    image_name = 'OS-Installer-symbolic'
 
     terminal_box = Gtk.Template.Child()
     terminal_button = Gtk.Template.Child()
@@ -15,7 +18,7 @@ class InstallPage(Gtk.Box):
     spinner = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
-        super().__init__(**kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
         self.vte_created = False
@@ -48,11 +51,9 @@ class InstallPage(Gtk.Box):
 
     def load(self):
         if self.global_state.demo_mode:
-            self.global_state.allow_forward_navigation()
+            return True
 
         self.spinner.start()
-
-        return 'OS-Installer-symbolic'
 
     def unload(self):
         self.spinner.stop()
