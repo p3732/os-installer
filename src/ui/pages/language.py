@@ -6,7 +6,7 @@ from gi.repository import Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
-class LanguagePage(Gtk.Box, Page):
+class LanguagePage(Gtk.Overlay, Page):
     __gtype_name__ = __qualname__
     image_name = 'language-symbolic'
 
@@ -18,7 +18,7 @@ class LanguagePage(Gtk.Box, Page):
     loaded = False
 
     def __init__(self, global_state, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        Gtk.Overlay.__init__(self, **kwargs)
 
         self.global_state = global_state
 
