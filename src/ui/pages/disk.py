@@ -53,7 +53,6 @@ class DiskPage(Gtk.Overlay, Page):
         self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
         # start gl checking
-        self.efi_vars_checked = False
         self.uses_uefi = global_state.has_efi_vars()
 
     def _setup_disk_list(self):
@@ -75,21 +74,19 @@ class DiskPage(Gtk.Overlay, Page):
         if self.current_disk == disk_info:
             return
         self.current_disk = disk_info
-        # clear list
+
         empty_list(self.partition_list)
 
         # efi vars
-        if not self.efi_vars_checked:
-            self.uses_uefi = self.uses_uefi.result()
-            self.efi_vars_checked = True
-        disk_uefi_okay = not self.uses_uefi or disk_info.efi_partition
+        uses_uefi = self.uses_uefi.result()
+        disk_uefi_okay = not uses_uefi or disk_info.efi_partition
 
         # set disk info
         self.disk_label.set_label(disk_info.name)
         self.disk_device_path.set_label(disk_info.device_path)
         self.disk_size.set_label(disk_info.size_text)
 
-        # fill list: whole disk row, partitions
+        # fill partition list
         if disk_uefi_okay:
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
@@ -100,7 +97,6 @@ class DiskPage(Gtk.Overlay, Page):
 
         # show
         self.list_stack.set_visible_child_name('partitions')
-        self.text_stack.set_visible_child_name('partitions')
 
     def _store_device_info(self, info):
         self.global_state.set_config('disk_name', info.name)
