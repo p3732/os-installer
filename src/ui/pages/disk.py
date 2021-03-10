@@ -23,6 +23,8 @@ class DiskPage(Gtk.Overlay, Page):
     whole_disk_list = Gtk.Template.Child()
     disk_size = Gtk.Template.Child()
     disk_label = Gtk.Template.Child()
+    disk_device_path = Gtk.Template.Child()
+
     partition_list = Gtk.Template.Child()
 
     settings_button = Gtk.Template.Child()
@@ -84,6 +86,7 @@ class DiskPage(Gtk.Overlay, Page):
 
         # set disk info
         self.disk_label.set_label(disk_info.name)
+        self.disk_device_path.set_label(disk_info.device_path)
         self.disk_size.set_label(disk_info.size_text)
 
         # fill list: whole disk row, partitions
