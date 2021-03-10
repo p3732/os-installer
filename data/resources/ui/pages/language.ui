@@ -132,8 +132,5 @@
         <property name="index">1</property>
       </packing>
     </child>
-    <style>
-      <class name="upper-gradient"/>
-    </style>
   </template>
 </interface>

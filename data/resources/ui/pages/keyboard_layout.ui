@@ -104,7 +104,6 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="vexpand">False</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkScrolledWindow">
@@ -246,9 +245,6 @@
             <property name="index">3</property>
           </packing>
         </child>
-        <style>
-          <class name="upper-gradient"/>
-        </style>
       </object>
       <packing>
         <property name="expand">True</property>

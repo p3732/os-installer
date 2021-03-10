@@ -124,8 +124,5 @@
         <property name="index">3</property>
       </packing>
     </child>
-    <style>
-      <class name="upper-gradient"/>
-    </style>
   </template>
 </interface>
