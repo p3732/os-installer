@@ -30,6 +30,6 @@ class ConfirmPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        # set label (always reload)
+        # set label
         name = self.global_state.get_config('disk_name')
         self.disk_label.set_label(name)

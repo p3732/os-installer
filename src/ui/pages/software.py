@@ -20,7 +20,6 @@ class SoftwarePage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
-        self.loaded = False
 
         self.software_provider = SoftwareProvider(global_state)
 
@@ -45,15 +44,12 @@ class SoftwarePage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load(self):
-        if not self.loaded:
-            self._setup_software()
-            self.loaded = True
+    def load_once(self):
+        self._setup_software()
 
     def unload(self):
         to_install = []
         for row in self.software_list:
             if row.is_activated():
-                package_name = row.package_name
-                to_install.append(package_name)
+                to_install.append(row.package_name)
         self.global_state.set_config('additional_software', to_install)

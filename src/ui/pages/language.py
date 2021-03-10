@@ -15,7 +15,6 @@ class LanguagePage(Gtk.Overlay, Page):
     show_all_revealer = Gtk.Template.Child()
 
     all_shown = False
-    loaded = False
 
     def __init__(self, global_state, **kwargs):
         Gtk.Overlay.__init__(self, **kwargs)
@@ -61,7 +60,5 @@ class LanguagePage(Gtk.Overlay, Page):
 
     ### public methods ###
 
-    def load(self):
-        if not self.loaded:
-            self._setup_list()
-            self.loaded = True
+    def load_once(self):
+        self._setup_list()

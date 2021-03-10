@@ -3,6 +3,8 @@ class Page:
     can_navigate_backward: bool = False
     can_navigate_forward: bool = False
 
+    loaded: bool = False
+
     def get_name(self):
         return type(self).__qualname__
 
@@ -22,7 +24,17 @@ class Page:
 
     def load(self):
         '''
-        Called before the page is shown. Used for e.g. filling lists.
+        Called before the page is shown.
+        Pages can overwrite this to receive call every time.
+        Returning True means the page can be skipped.
+        '''
+        if not self.loaded:
+            self.loaded = True
+            return self.load_once()
+
+    def load_once(self):
+        '''
+        Called once on first page construction. Used for e.g. filling lists.
         Returning True means the page can be skipped.
         '''
         return

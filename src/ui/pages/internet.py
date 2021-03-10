@@ -52,16 +52,8 @@ class InternetPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load(self):
+    def load_once(self):
         with self.connected_lock:
-            if self.connected:
-                if not self.can_proceed_automatically:
-                    # page was not loaded already, skip automatically
-                    self.can_proceed_automatically = True
-                    return True
-                self.image_name = 'network-wireless-symbolic'
-            else:
-                self.can_proceed_automatically = True
-                if self.global_state.demo_mode:
-                    return True
-                self.image_name = 'network-wireless-disabled-symbolic'
+            self.can_proceed_automatically = True
+            if self.connected or self.global_state.demo_mode:
+                return True

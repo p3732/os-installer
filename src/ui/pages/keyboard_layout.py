@@ -106,8 +106,8 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load(self):
-        # fill layout list if different language
+    def load_once(self):
+        # page gets reconstructed if different app language is chosen
         short_hand = self.global_state.get_config('language_short_hand')
         language = self.global_state.get_config('language')
         self._load_layout_list(language, short_hand)

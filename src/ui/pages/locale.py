@@ -81,7 +81,7 @@ class LocalePage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load(self):
+    def load_once(self):
         name, _ = self.locale_provider.get_current_formats()
         self.formats_label.set_label(name)
         timezone = self.locale_provider.get_timezone()
