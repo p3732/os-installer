@@ -11,7 +11,7 @@ import threading
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
 class InternetPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image_name = 'OS-Installer-symbolic'
+    image_name = 'network-wireless-disabled-symbolic'
 
     settings_button = Gtk.Template.Child()
 
@@ -41,6 +41,7 @@ class InternetPage(Gtk.Box, Page):
 
         with self.connected_lock:
             self.connected = True
+            self.image_name = 'network-wireless-symbolic'
             if self.can_proceed_automatically:
                 notify_global_state = True
             self.global_state.apply_connected()
