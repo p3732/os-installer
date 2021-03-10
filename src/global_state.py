@@ -85,10 +85,6 @@ class GlobalState:
         if not self.demo_mode:
             self.system_provider.restart()
 
-    def on_installation_done(self):
-        self.installation_running = False
-        self.stack.advance()
-
     ### config functions ###
 
     def get_config(self, setting):
