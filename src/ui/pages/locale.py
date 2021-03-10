@@ -19,7 +19,7 @@ class LocalePage(Gtk.Box, Page):
     overview_list = Gtk.Template.Child()
     formats_label = Gtk.Template.Child()
     timezone_label = Gtk.Template.Child()
-    confirm_overview_button = Gtk.Template.Child()
+    confirm_button = Gtk.Template.Child()
 
     def __init__(self, global_state, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
@@ -33,7 +33,7 @@ class LocalePage(Gtk.Box, Page):
 
         # signals
         self.overview_list.connect('row-activated', self._on_overview_row_activated)
-        self.confirm_overview_button.connect('clicked', self._on_clicked_confirm_overview_button)
+        self.confirm_button.connect('clicked', self._on_clicked_confirm_button)
 
     def _load_formats_list(self):
         if not self.formats_chooser_setup:
@@ -75,7 +75,7 @@ class LocalePage(Gtk.Box, Page):
         elif row.get_name() == 'formats':
             self._load_formats_list()
 
-    def _on_clicked_confirm_overview_button(self, button):
+    def _on_clicked_confirm_button(self, button):
         self.global_state.apply_configuration_confirmed()
         self.global_state.advance()
 

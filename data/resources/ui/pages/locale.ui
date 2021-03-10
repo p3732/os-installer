@@ -12,7 +12,7 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="vhomogeneous">False</property>
-        <property name="transition-type">slide-left</property>
+        <property name="transition-type">crossfade</property>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
@@ -97,13 +97,53 @@
                         <property name="margin-end">12</property>
                         <property name="margin-top">6</property>
                         <property name="margin-bottom">6</property>
-                        <property name="spacing">12</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">6</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="label" translatable="yes" comments="Label presented next to the current Formats">Formats</property>
-                            <property name="wrap">True</property>
+                            <property name="spacing">12</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes" comments="Label presented next to the current Formats">Formats</property>
+                                <property name="wrap">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">emblem-system-symbolic</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="formats_label">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="wrap">True</property>
+                                <property name="ellipsize">end</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="pack-type">end</property>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -112,30 +152,21 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkImage">
+                          <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="icon-name">emblem-system-symbolic</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="pack-type">end</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="formats_label">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
+                            <property name="label" translatable="yes" comments="Description of what is covered by formats">Defines the default format used for dates, times, numbers, etc.</property>
                             <property name="wrap">True</property>
-                            <property name="ellipsize">end</property>
+                            <property name="max-width-chars">60</property>
+                            <property name="xalign">0</property>
+                            <attributes>
+                              <attribute name="weight" value="light"/>
+                            </attributes>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="pack-type">end</property>
-                            <property name="position">2</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                       </object>
@@ -153,7 +184,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="confirm_overview_button">
+              <object class="GtkButton" id="confirm_button">
                 <property name="label" translatable="yes" comments="Button label for confirming timezone and formats choice">_Confirm</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
