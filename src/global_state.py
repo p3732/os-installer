@@ -16,7 +16,6 @@ class GlobalState:
     def __init__(self, localedir):
         self.demo_mode = False
         self.installation_running = False
-        self.stack = None
         self.terminal = Vte.Terminal()
 
         # configuration file loader
@@ -33,7 +32,7 @@ class GlobalState:
     def _on_installation_done(self):
         self.installation_running = False
         # this can only happen if installation page is currently shown, so advancing is fine
-        self.stack.advance()
+        self.window.advance()
 
     ### installation stages ###
 
@@ -104,22 +103,13 @@ class GlobalState:
     def start_standalone_thread(self, function, daemon=False, args=None):
         self.thread_provider.new_thread(function, daemon, args)
 
-    ### stack funcitons ###
+    ### window functions ###
 
     def advance(self, name=None):
-        self.stack.advance(name)
+        self.window.advance(name)
 
-    def allow_forward_navigation(self):
-        self.stack.allow_forward_navigation()
-
-    def load_initial_page(self):
-        self.stack.load_initial_page()
-
-    def try_go_to_next(self):
-        self.stack.try_go_to_next()
-
-    def try_go_to_previous(self):
-        self.stack.try_go_to_previous()
+    def advance_without_return(self):
+        self.window.advance_without_return()
 
     ### system functions ###
 

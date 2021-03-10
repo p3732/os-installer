@@ -89,15 +89,18 @@ class Application(Gtk.Application):
     def do_activate(self):
         # create window if not existing
         self.window = self.props.active_window
-        if not self.window:
+        if self.window:
+            self.window.present()
+        else:
             self.window = OsInstallerWindow(self.global_state, self.quit, application=self)
-        self.window.present()
+            self.window.present()
+            self.global_state.window = self.window
 
-        # Grab window delete-event
-        self.window.connect('delete-event', self._on_quit)
+            # load initial page
+            self.window.advance()
 
-        self.global_state.window = self.window
-        self.global_state.load_initial_page()
+            # Grab window delete-event
+            self.window.connect('delete-event', self._on_quit)
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
@@ -122,10 +125,10 @@ class Application(Gtk.Application):
     ### callbacks ###
 
     def _on_next_page(self, action, param):
-        self.global_state.try_go_to_next()
+        self.window.navigate_forward()
 
     def _on_previous_page(self, action, param):
-        self.global_state.try_go_to_previous()
+        self.window.navigate_backward()
 
     def _on_about(self, a, b):
         self.window.show_about_dialog()

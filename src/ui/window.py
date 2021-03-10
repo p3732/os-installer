@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .stack_manager import StackManager
-
 from .confirm import ConfirmPage
 from .disk import DiskPage
 from .done import DonePage
@@ -20,79 +18,175 @@ from .failed_installation_popup import FailedInstallationPopup
 
 from gi.repository import Gtk, Handy
 
+import threading
+import sys
+
+
+class NavigationState:
+    current: int = -1
+    earliest: int = 0
+    furthest: int = 0
+
+    def is_not_earliest(self):
+        return self.current > self.earliest
+
+    def is_not_furthest(self):
+        return self.current < self.furthest
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
 class OsInstallerWindow(Handy.ApplicationWindow):
     __gtype_name__ = 'OsInstallerWindow'
 
-    main_stack = Gtk.Template.Child()
     image_stack = Gtk.Template.Child()
-    previous_stack = Gtk.Template.Child()
+    main_stack = Gtk.Template.Child()
     next_stack = Gtk.Template.Child()
+    previous_stack = Gtk.Template.Child()
+
+    current_page = None
+    navigation_lock = threading.Lock()
+    navigation_state = NavigationState()
+    pages = []
 
     def __init__(self, global_state, quit_callback, **kwargs):
         super().__init__(**kwargs)
 
         self.quit_callback = quit_callback
+        self.global_state = global_state
 
-        available_pages = self._determine_available_pages(global_state.get_config)
+        # determine available pages
+        self._determine_available_pages(global_state.get_config)
 
-        # stack manager
-        stacks = (self.main_stack, self.image_stack, self.previous_stack, self.next_stack)
-        stack_manager = StackManager(stacks, available_pages, global_state)
-        global_state.stack = stack_manager
+        # initialize language page
+        self._initialize_page(self.available_pages[0])
 
     def _determine_available_pages(self, get_config):
-        # pre-installation section
-        pre_installation_section = [KeyboardLayoutPage]
-        if get_config('internet_connection_required'):
-            pre_installation_section.append(InternetPage)
-        pre_installation_section.append(DiskPage)
-        if get_config('offer_disk_encryption'):
-            pre_installation_section.append(EncryptPage)
-        pre_installation_section.append(ConfirmPage)
-
-        # configuration section
-        configuration_section = [UserPage]
+        offer_internet_connection = get_config('internet_connection_required')
+        offer_disk_encryption = get_config('offer_disk_encryption')
         additional_software = get_config('additional_software')
-        if additional_software and len(additional_software) > 0:
-            configuration_section.append(SoftwarePage)
-        configuration_section.append(LocalePage)
+        offer_additional_software = additional_software and len(additional_software) > 0
 
-        return [
-            [LanguagePage],
-            pre_installation_section,
-            configuration_section,
-            [InstallPage, DonePage],
-            [RestartPage]
+        self.available_pages = [
+            # pre-installation section
+            LanguagePage,
+            KeyboardLayoutPage,
+            InternetPage if offer_internet_connection else None,
+            DiskPage,
+            EncryptPage if offer_disk_encryption else None,
+            ConfirmPage,
+            # configuration section
+            UserPage,
+            SoftwarePage if offer_additional_software else None,
+            LocalePage,
+            # installation
+            InstallPage,
+            # post-installation
+            DonePage,
+            RestartPage
         ]
 
-    def _set_image(self, icon_name):
-        current = self.image_stack.get_visible_child_name()
-        other = '1' if current == '2' else '2'
-        image = self.image_stack.get_child_by_name(other)
-        image.set_from_icon_name(icon_name, 0)
-        self.image_stack.set_visible_child_name(other)
+    def _initialize_page(self, page_to_initialize):
+        if not page_to_initialize == None:
+            page = page_to_initialize(self.global_state)
+            self.main_stack.add_named(page, page.get_name())
+            self.pages.append(page)
+
+    def _initialize_pages_translated(self):
+        # delete pages that are not the language page
+        for child in self.main_stack.get_children():
+            if not child is self.current_page:
+                child.destroy()
+        self.pages = [self.current_page]
+
+        for unintialized_page in self.available_pages[1:]:
+            self._initialize_page(unintialized_page)
+
+    def _load_page(self, page_number):
+        # special case language page
+        if self.navigation_state.current == 0:
+            self._initialize_pages_translated()
+
+        assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
+        assert page_number < len(self.pages), 'Tried to go to non-existent page (overflow)'
+
+        # unload previous page
+        if self.current_page:
+            self.current_page.unload()
+
+        self.navigation_state.current = page_number
+        self.navigation_state.furthest = max(self.navigation_state.furthest, page_number)
+
+        # load page
+        self.current_page = self.pages[self.navigation_state.current]
+        if not self.current_page.load():
+            self.main_stack.set_visible_child_name(self.current_page.get_name())
+
+            # set icon
+            name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
+            new_image = self.image_stack.get_child_by_name(name)
+            new_image.set_from_icon_name(self.current_page.image_name, 0)
+            self.image_stack.set_visible_child_name(name)
+
+            self._update_navigation_buttons()
+        else:  # load next if load() returned True
+            self._load_page(self.navigation_state.current + 1)
+
+    def _show_dialog(self, dialog):
+        dialog.show_all()
+        dialog.set_transient_for(self)
+        dialog.set_modal(True)
+
+    def _update_navigation_buttons(self):
+        # backward
+        show_backward = self.current_page.can_navigate_backward or self.navigation_state.is_not_earliest()
+        self.previous_stack.set_visible_child_name('enabled' if show_backward else 'disabled')
+
+        # forward
+        show_forward = self.current_page.can_navigate_forward or self.navigation_state.is_not_furthest()
+        self.next_stack.set_visible_child_name('enabled' if show_forward else 'disabled')
 
     ### public methods ###
+
+    def advance(self, name=None):
+        with self.navigation_lock:
+            if not name or name == self.current_page.get_name():
+                self._load_page(self.navigation_state.current + 1)
+
+    def advance_without_return(self):
+        with self.navigation_lock:
+            previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
+            self.navigation_state.earliest = self.navigation_state.current + 1
+
+            self._load_page(self.navigation_state.current + 1)
+
+            for page in previous_pages:
+                page.destroy()
+
+    def navigate_backward(self):
+        with self.navigation_lock:
+            if self.current_page.can_navigate_backward:
+                self.current_page.navigate_backward()
+            elif self.navigation_state.is_not_earliest():
+                self._load_page(self.navigation_state.current - 1)
+
+    def navigate_forward(self):
+        with self.navigation_lock:
+            if self.current_page.can_navigate_forward:
+                self.current_page.navigate_forward()
+            elif self.navigation_state.is_not_furthest():
+                self._load_page(self.navigation_state.current + 1)
 
     def show_about_dialog(self):
         builder = Gtk.Builder.new_from_resource(
             '/com/github/p3732/os-installer/about_dialog.ui'
         )
         about_dialog = builder.get_object('about_dialog')
-        about_dialog.show_all()
-        about_dialog.set_transient_for(self)
-        about_dialog.set_modal(True)
+        self._show_dialog(about_dialog)
 
     def show_confirm_quit_dialog(self):
         popup = ConfirmQuitPopup(self.quit_callback)
-        popup.show_all()
-        popup.set_transient_for(self)
-        popup.set_modal(True)
+        self._show_dialog(popup)
 
     def show_failed_installation_dialog(self, error_text):
         popup = FailedInstallationPopup(self.quit_callback, error_text)
-        popup.show_all()
-        popup.set_transient_for(self)
-        popup.set_modal(True)
+        self._show_dialog(popup)
