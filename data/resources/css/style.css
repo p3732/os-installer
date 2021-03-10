@@ -10,17 +10,11 @@
   padding: 6px 12px;
 }
 
-.scrollbar {
-  border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
-  padding: 0px 0px;
-}
-
 .top-gradient {
-  background-image: linear-gradient(to bottom, @theme_base_color, alpha(@theme_base_color, 0) 100%);
+  background-image: linear-gradient(to bottom, @theme_bg_color, alpha(@theme_bg_color, 0) 100%);
 }
 
 .bottom-gradient {
-  background-image: linear-gradient(to top, @theme_base_color, alpha(@theme_base_color, 0) 100%);
+  background-image: linear-gradient(to top, @theme_bg_color, alpha(@theme_bg_color, 0) 100%);
 }
 
