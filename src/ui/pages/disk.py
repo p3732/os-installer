@@ -15,7 +15,8 @@ class DiskPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'drive-harddisk-system-symbolic'
 
-    stack = Gtk.Template.Child()
+    list_stack = Gtk.Template.Child()
+    text_stack = Gtk.Template.Child()
 
     disk_list = Gtk.Template.Child()
 
@@ -65,7 +66,8 @@ class DiskPage(Gtk.Box, Page):
             self.disk_list.add(row)
 
         # show
-        self.stack.set_visible_child_name('disks')
+        self.list_stack.set_visible_child_name('disks')
+        self.text_stack.set_visible_child_name('disks')
 
     def _setup_partition_list(self, disk_info):
         if self.current_disk == disk_info:
@@ -94,7 +96,8 @@ class DiskPage(Gtk.Box, Page):
             self.partition_list.add(NoPartitionsRow())
 
         # show
-        self.stack.set_visible_child_name('partitions')
+        self.list_stack.set_visible_child_name('partitions')
+        self.text_stack.set_visible_child_name('partitions')
 
     def _store_device_info(self, info):
         self.global_state.set_config('disk_name', info.name)
@@ -140,5 +143,6 @@ class DiskPage(Gtk.Box, Page):
         self.can_navigate_backward = False
         if not self.lock.acquire(blocking=False):
             return
-        self.stack.set_visible_child_name('disks')
+        self.list_stack.set_visible_child_name('disks')
+        self.text_stack.set_visible_child_name('disks')
         self.lock.release()
