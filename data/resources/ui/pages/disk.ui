@@ -233,15 +233,54 @@
         <property name="valign">start</property>
         <property name="transition-type">slide-left-right</property>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes" comments="Explanation for disk selection page.">Select Drive for Installation</property>
-            <property name="justify">center</property>
-            <property name="wrap">True</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
+            <property name="spacing">12</property>
+            <child type="center">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes" comments="Explanation for disk selection page.">Select Drive for Installation</property>
+                <property name="justify">center</property>
+                <property name="wrap">True</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="refresh_button">
+                <property name="width-request">32</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="relief">none</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="icon-name">view-refresh-symbolic</property>
+                  </object>
+                </child>
+                <style>
+                  <class name="circular"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="pack-type">end</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="name">disks</property>
@@ -268,72 +307,24 @@
       </packing>
     </child>
     <child type="overlay">
-      <object class="GtkFlowBox">
+      <object class="GtkButton" id="settings_button">
+        <property name="label" translatable="yes" comments="Button label to open disk management tool. Underscore can not be for same as for 'Reload'">_Manage Disks</property>
         <property name="visible">True</property>
-        <property name="can-focus">False</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">False</property>
         <property name="halign">center</property>
         <property name="valign">end</property>
         <property name="margin-bottom">18</property>
-        <property name="homogeneous">True</property>
-        <property name="column-spacing">6</property>
-        <property name="min-children-per-line">1</property>
-        <property name="max-children-per-line">2</property>
-        <property name="selection-mode">none</property>
-        <property name="activate-on-single-click">False</property>
-        <child>
-          <object class="GtkFlowBoxChild">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <child>
-              <object class="GtkButton" id="settings_button">
-                <property name="label" translatable="yes" comments="Button label to open disk management tool. Underscore can not be for same as for 'Reload'">_Manage Disks</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <style>
-                  <class name="circular"/>
-                  <class name="big-button"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkFlowBoxChild">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <child>
-              <object class="GtkButton" id="refresh_button">
-                <property name="label" translatable="yes" comments="Button label to reload current (disk) page. Underscore can not be for same as for 'Manage Disks'">_Reload</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <style>
-                  <class name="circular"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
+        <property name="use-underline">True</property>
+        <style>
+          <class name="circular"/>
+          <class name="big-button"/>
+        </style>
       </object>
       <packing>
         <property name="index">3</property>
       </packing>
     </child>
-    <style>
-      <class name="upper-gradient"/>
-    </style>
   </template>
-  <object class="GtkSizeGroup">
-    <widgets>
-      <widget name="settings_button"/>
-      <widget name="refresh_button"/>
-    </widgets>
-  </object>
+  <object class="GtkSizeGroup"/>
 </interface>
