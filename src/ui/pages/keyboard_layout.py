@@ -95,12 +95,13 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.continue_button.set_sensitive(True)
 
     def _show_language_selection(self, list_box, row):
-        # show language selection
         if not self.language_list_setup:
             self.language_list_setup = True
             self._setup_languages_list()
-        self.stack.set_visible_child_name('languages')
 
+        # show language selection
+        self.stack.set_visible_child_name('languages')
+        self.can_navigate_backward = True
         self.continue_button.set_sensitive(False)
 
     ### public methods ###
@@ -110,3 +111,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         short_hand = self.global_state.get_config('language_short_hand')
         language = self.global_state.get_config('language')
         self._load_layout_list(language, short_hand)
+
+    def navigate_backward(self):
+        self.can_navigate_backward = False
+        self.stack.set_visible_child_name('layouts')
