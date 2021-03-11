@@ -94,6 +94,10 @@ class LocalePage(Gtk.Box, Page):
 
     ### callbacks ###
 
+    def _on_clicked_confirm_button(self, button):
+        self.global_state.apply_configuration_confirmed()
+        self.global_state.advance_without_return()
+
     def _on_formats_row_activated(self, list_box, row):
         self.global_state.set_config('formats', row.info)
 
@@ -106,10 +110,6 @@ class LocalePage(Gtk.Box, Page):
         elif row.get_name() == 'formats':
             self._load_formats_list()
         self.can_navigate_backward = True
-
-    def _on_clicked_confirm_button(self, button):
-        self.global_state.apply_configuration_confirmed()
-        self.global_state.advance()
 
     def _on_timezone_row_activated(self, list_box, row):
         list_box.select_row(row)

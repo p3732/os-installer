@@ -23,4 +23,4 @@ class DonePage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_restart_button_clicked(self, button):
-        self.global_state.advance()
+        self.global_state.advance_without_return()

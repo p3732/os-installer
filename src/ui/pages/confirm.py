@@ -25,7 +25,7 @@ class ConfirmPage(Gtk.Box, Page):
 
     def _on_clicked_confirm(self, button):
         self.global_state.apply_installation_confirmed()
-        self.global_state.advance()
+        self.global_state.advance_without_return()
 
     ### public methods ###
 
