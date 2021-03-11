@@ -48,7 +48,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="valign">start</property>
-            <property name="label" translatable="yes" comments="Above list of continents and countries">Select Locale for Formats</property>
+            <property name="label" translatable="yes" comments="Above list of format locales">Select Locale for Formats</property>
             <property name="justify">center</property>
             <property name="wrap">True</property>
             <attributes>
@@ -123,7 +123,7 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="label" translatable="yes" comments="Label presented next to the current Timezone">Timezone</property>
+                                        <property name="label" translatable="yes" comments="Presented next to the current Timezone.">Timezone</property>
                                         <property name="wrap">True</property>
                                       </object>
                                       <packing>
@@ -188,7 +188,7 @@
                                           <object class="GtkLabel">
                                             <property name="visible">True</property>
                                             <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes" comments="Label presented next to the current Formats">Formats</property>
+                                            <property name="label" translatable="yes" comments="Presented next to the current Formats.">Formats</property>
                                             <property name="wrap">True</property>
                                           </object>
                                           <packing>
@@ -235,7 +235,7 @@
                                       <object class="GtkLabel">
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>
-                                        <property name="label" translatable="yes" comments="Description of what is covered by formats">Defines the default format used for dates, times, numbers, etc.</property>
+                                        <property name="label" translatable="yes" comments="Description of what is covered by formats.">Defines the default format used for dates, times, numbers, etc.</property>
                                         <property name="wrap">True</property>
                                         <property name="max-width-chars">60</property>
                                         <property name="xalign">0</property>
@@ -265,7 +265,7 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="confirm_button">
-                            <property name="label" translatable="yes" comments="Button label for confirming timezone and formats choice">_Confirm</property>
+                            <property name="label" translatable="yes" comments="On button.">_Confirm</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
