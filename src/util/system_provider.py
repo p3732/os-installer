@@ -29,14 +29,14 @@ class SystemProvider:
         subprocess.run(['reboot'])
 
     def set_keyboard_layout(self, keyboard_layout):
-        subprocess.run(['gsettings', 'set', 'org.gnome.desktop.input-sources',
-                        'sources', "[('xkb','{}')]".format(keyboard_layout)])
+        subprocess.run(['gsettings set org.gnome.desktop.input-sources sources',
+                        "[('xkb','{}')]".format(keyboard_layout)])
 
     def set_system_locale(self, new_locale):
-        subprocess.run(['localectl', 'set-locale', new_locale])
+        subprocess.run(['localectl set-locale', new_locale])
 
     def set_timezone(self, timezone):
-        subprocess.run(['timedatectl', 'set-timezone', timezone])
+        subprocess.run(['timedatectl set-timezone', timezone])
 
     def start_timesync(self):
-        subprocess.run(['timedatectl', 'set-ntp', 'true'])
+        subprocess.run(['timedatectl set-ntp true'])
