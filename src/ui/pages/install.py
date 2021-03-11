@@ -49,7 +49,7 @@ class InstallPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load(self):
+    def load_once(self):
         if self.global_state.demo_mode:
             return True
 
