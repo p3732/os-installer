@@ -36,12 +36,10 @@
 
     <file preprocess="xml-stripblanks">ui/widgets/back_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
-    <file preprocess="xml-stripblanks">ui/widgets/formats_chooser.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/language_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/no_partitions_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/software_row.ui</file>
-    <file preprocess="xml-stripblanks">ui/widgets/timezone_chooser.ui</file>
   </gresource>
 </gresources>

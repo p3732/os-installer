@@ -1,12 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .formats_chooser import FormatsChooser
 from .locale_provider import LocaleProvider
 from .page import Page
-from .timezone_chooser import TimezoneChooser
-from .widgets import ProgressRow
-
-from gi.repository import GLib, Gtk
+from .widgets import ProgressRow, empty_list
+from gi.repository import GLib, Gtk, GWeather
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
@@ -14,19 +11,29 @@ class LocalePage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'globe-symbolic'
 
-    stack = Gtk.Template.Child()
+    text_stack = Gtk.Template.Child()
+    list_stack = Gtk.Template.Child()
 
+    # overview
     overview_list = Gtk.Template.Child()
     formats_label = Gtk.Template.Child()
     timezone_label = Gtk.Template.Child()
     confirm_button = Gtk.Template.Child()
 
+    # formats
+    formats_list = Gtk.Template.Child()
+    formats_list_loaded = False
+
+    # locale
+    continents_list = Gtk.Template.Child()
+    countries_list = Gtk.Template.Child()
+    subzones_list = Gtk.Template.Child()
+    continents_list_loaded = False
+
     def __init__(self, global_state, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
         self.global_state = global_state
-        self.timezone_chooser_setup = False
-        self.formats_chooser_setup = False
 
         # provider
         self.locale_provider = LocaleProvider(global_state)
@@ -34,50 +41,85 @@ class LocalePage(Gtk.Box, Page):
         # signals
         self.overview_list.connect('row-activated', self._on_overview_row_activated)
         self.confirm_button.connect('clicked', self._on_clicked_confirm_button)
+        self.formats_list.connect('row-activated', self._on_formats_row_activated)
+        for timezone_list in [self.continents_list, self.countries_list, self.subzones_list]:
+            timezone_list.connect('row-activated', self._on_timezone_row_activated)
+
+    def _load_continents_list(self):
+        if not self.continents_list_loaded:
+            self.continents_list_loaded = True
+            for continent in GWeather.Location.get_world().get_children():
+                if not continent.get_timezone():  # skip dummy locations
+                    self.continents_list.add(ProgressRow(continent.get_name(), continent))
+
+        self.list_stack.set_visible_child_name('timezone_continents')
+        self.text_stack.set_visible_child_name('timezone')
+
+    def _load_countries_list(self, continent):
+        empty_list(self.countries_list)
+
+        for country in continent.get_children():
+            self.countries_list.add(ProgressRow(country.get_name(), country))
+
+        self.list_stack.set_visible_child_name('timezone_countries')
 
     def _load_formats_list(self):
-        if not self.formats_chooser_setup:
-            self.formats_chooser = FormatsChooser(self.locale_provider, self._on_formats_chosen)
-            self.stack.add_named(self.formats_chooser, 'formats')
-            self.formats_chooser_setup = True
-        self.formats_chooser.load()
-        self.stack.set_visible_child_name('formats')
+        if not self.formats_list_loaded:
+            self.formats_list_loaded = True
+            for name, locale in self.locale_provider.get_formats():
+                self.formats_list.add(ProgressRow(name, locale))
 
-    def _load_timezone_chooser(self):
-        if not self.timezone_chooser_setup:
-            self.timezone_chooser = TimezoneChooser(self._on_timezone_chosen)
-            self.stack.add_named(self.timezone_chooser, 'timezone')
-            self.timezone_chooser_setup = True
-        self.timezone_chooser.load()
-        self.stack.set_visible_child_name('timezone')
+        self.text_stack.set_visible_child_name('formats')
+        self.list_stack.set_visible_child_name('formats')
+
+    def _load_subzones_list(self, country):
+        empty_list(self.subzones_list)
+
+        for subzone in country.get_children():
+            if subzone.get_timezone():
+                self.subzones_list.add(ProgressRow(subzone.get_name(), subzone))
+
+        self.list_stack.set_visible_child_name('timezone_subzones')
+
+    def _set_timezone(self, timezone):
+        self.global_state.apply_timezone(timezone)
+
+        self.timezone_label.set_label(timezone)
+        self.text_stack.set_visible_child_name('overview')
+        self.list_stack.set_visible_child_name('overview')
 
     ### callbacks ###
 
-    def _on_timezone_chosen(self, timezone):
-        # set timezone
-        self.global_state.apply_timezone(timezone)
+    def _on_formats_row_activated(self, list_box, row):
+        self.global_state.set_config('formats', row.info)
 
-        # UI state
-        self.timezone_label.set_label(timezone)
-        self.stack.set_visible_child_name('overview')
-
-    def _on_formats_chosen(self, name, formats):
-        print(name, formats)
-        self.global_state.set_config('formats', formats)
-
-        # UI state
-        self.formats_label.set_label(name)
-        self.stack.set_visible_child_name('overview')
+        self.formats_label.set_label(row.get_label())
+        self.text_stack.set_visible_child_name('overview')
+        self.list_stack.set_visible_child_name('overview')
 
     def _on_overview_row_activated(self, list_box, row):
         if row.get_name() == 'timezone':
-            self._load_timezone_chooser()
+            self._load_continents_list()
         elif row.get_name() == 'formats':
             self._load_formats_list()
 
     def _on_clicked_confirm_button(self, button):
         self.global_state.apply_configuration_confirmed()
         self.global_state.advance()
+
+    def _on_timezone_row_activated(self, list_box, row):
+        list_box.select_row(row)
+        chosen = row.info
+        timezone = chosen.get_timezone_str()
+        if timezone:
+            self._set_timezone(timezone)
+        elif list_box == self.subzones_list:
+            print('Subzone', subzone, 'does not have any timezone attached to it! Falling back to UTC.')
+            self._set_timezone('UTC')
+        elif list_box == self.continents_list:
+            self._load_countries_list(chosen)
+        elif list_box == self.countries_list:
+            self._load_subzones_list(chosen)
 
     ### public methods ###
 
@@ -86,5 +128,3 @@ class LocalePage(Gtk.Box, Page):
         self.formats_label.set_label(name)
         timezone = self.locale_provider.get_timezone()
         self.timezone_label.set_label(timezone)
-
-        self.stack.set_visible_child_name('overview')
