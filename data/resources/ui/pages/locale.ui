@@ -116,8 +116,8 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-start">12</property>
                                     <property name="margin-end">12</property>
-                                    <property name="margin-top">6</property>
-                                    <property name="margin-bottom">6</property>
+                                    <property name="margin-top">12</property>
+                                    <property name="margin-bottom">12</property>
                                     <property name="spacing">12</property>
                                     <child>
                                       <object class="GtkLabel">
@@ -175,8 +175,8 @@
                                     <property name="can-focus">False</property>
                                     <property name="margin-start">12</property>
                                     <property name="margin-end">12</property>
-                                    <property name="margin-top">6</property>
-                                    <property name="margin-bottom">6</property>
+                                    <property name="margin-top">12</property>
+                                    <property name="margin-bottom">12</property>
                                     <property name="orientation">vertical</property>
                                     <property name="spacing">6</property>
                                     <child>
