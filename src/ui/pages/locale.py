@@ -85,8 +85,12 @@ class LocalePage(Gtk.Box, Page):
         self.global_state.apply_timezone(timezone)
 
         self.timezone_label.set_label(timezone)
+        self._show_overview()
+
+    def _show_overview(self):
         self.text_stack.set_visible_child_name('overview')
         self.list_stack.set_visible_child_name('overview')
+        self.can_navigate_backward = False
 
     ### callbacks ###
 
@@ -94,14 +98,14 @@ class LocalePage(Gtk.Box, Page):
         self.global_state.set_config('formats', row.info)
 
         self.formats_label.set_label(row.get_label())
-        self.text_stack.set_visible_child_name('overview')
-        self.list_stack.set_visible_child_name('overview')
+        self._show_overview()
 
     def _on_overview_row_activated(self, list_box, row):
         if row.get_name() == 'timezone':
             self._load_continents_list()
         elif row.get_name() == 'formats':
             self._load_formats_list()
+        self.can_navigate_backward = True
 
     def _on_clicked_confirm_button(self, button):
         self.global_state.apply_configuration_confirmed()
@@ -128,3 +132,12 @@ class LocalePage(Gtk.Box, Page):
         self.formats_label.set_label(name)
         timezone = self.locale_provider.get_timezone()
         self.timezone_label.set_label(timezone)
+
+    def navigate_backward(self):
+        current_list = self.list_stack.get_visible_child()
+        if current_list == self.formats_list or current_list == self.continents_list:
+            self._show_overview()
+        elif current_list == self.countries_list:
+            self.list_stack.set_visible_child_name('timezone_continents')
+        elif current_list == self.subzones_list:
+            self.list_stack.set_visible_child_name('timezone_countries')
