@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 12:24+0100\n"
-"PO-Revision-Date: 2021-02-26 12:26+0100\n"
+"POT-Creation-Date: 2021-03-11 02:24+0100\n"
+"PO-Revision-Date: 2021-03-11 02:31+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
 "Language: de\n"
@@ -69,26 +69,31 @@ msgstr "_Hrmpf."
 msgid "_About OS-Installer"
 msgstr "_Über OS-Installer"
 
-#. Button label to confirm disk deletion
-#. Button label for confirming timezone and formats choice
-#: data/resources/ui/pages/confirm.ui data/resources/ui/pages/locale.ui
-msgid "_Confirm"
-msgstr "_Bestätigen"
-
 #. Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.ui
 msgid "This will delete all data on"
 msgstr "Hiermit werden alle Dateien gelöscht von"
 
+#. Button label to confirm disk deletion
+#. On button.
+#: data/resources/ui/pages/confirm.ui data/resources/ui/pages/locale.ui
+msgid "_Confirm"
+msgstr "_Bestätigen"
+
+#. Label to go back to overview of all disks
+#: data/resources/ui/pages/disk.ui
+msgid "Use Whole Disk"
+msgstr "Nutze gesamtes Laufwerk"
+
+#. Explanation for disk selection page.
+#: data/resources/ui/pages/disk.ui
+msgid "Select Drive for Installation"
+msgstr "Wähle ein Laufwerk zur Installation"
+
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
 #: data/resources/ui/pages/disk.ui
 msgid "_Manage Disks"
 msgstr "_Laufwerke verwalten"
-
-#. Button label to reload current (disk) page. Underscore can not be for same as for 'Manage Disks'
-#: data/resources/ui/pages/disk.ui
-msgid "_Reload"
-msgstr "_Neu Laden"
 
 #. Informative label after successful installation
 #: data/resources/ui/pages/done.ui
@@ -128,37 +133,69 @@ msgstr ""
 "Präge dir diesen PIN gut ein. Ohne ihn wirst du nicht auf deine Dateien "
 "zugreifen können."
 
-#. Simple label used during Installation
-#: data/resources/ui/pages/install.ui
-msgid "Installing"
-msgstr "Installation läuft"
+#. On button.
+#: data/resources/ui/pages/encrypt.ui
+#: data/resources/ui/pages/keyboard_layout.ui
+#: data/resources/ui/pages/software.ui data/resources/ui/pages/user.ui
+msgid "_Continue"
+msgstr "_Weiter"
 
 #. Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/install.ui
 msgid "Show Terminal Output"
 msgstr "Terminal-Ausgabe anzeigen"
 
-#. Button label for starting opening the wifi settings
+#. Simple label used during Installation
+#: data/resources/ui/pages/install.ui
+msgid "Installing"
+msgstr "Installation läuft"
+
+#. On button for opening wifi settings.
 #: data/resources/ui/pages/internet.ui
 msgid "_Setup Internet Connection"
 msgstr "_Internetverbindung einrichten"
+
+#. Explanation for keyboard layout selection page.
+#: data/resources/ui/pages/keyboard_layout.ui
+msgid "Select Keyboard Layout"
+msgstr "Wähle eine Tastaturbelegung"
+
+#. Followed by a language name.
+#: data/resources/ui/pages/keyboard_layout.ui
+msgid "Showing Keyboard Layouts for"
+msgstr "Zeige Tastaturbelegung für"
 
 #. Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_layout.ui
 msgid "Test the Keyboard Layout Here"
 msgstr "Teste die Tastaturbelegung hier"
 
-#. Label presented next to the current Timezone
+#. Above list of continents and countries
+#: data/resources/ui/pages/locale.ui
+msgid "Select a Location"
+msgstr "Wähle einen Standort"
+
+#. Above list of format locales
+#: data/resources/ui/pages/locale.ui
+msgid "Select Locale for Formats"
+msgstr "Wähle Lokalisierung für Formate"
+
+#. Presented next to the current Timezone.
 #: data/resources/ui/pages/locale.ui
 msgid "Timezone"
 msgstr "Zeitzone"
 
-#. Label presented next to the current Formats
+#. Presented next to the current Formats.
 #: data/resources/ui/pages/locale.ui
 msgid "Formats"
 msgstr "Formate"
 
-#. Simple label used when restarting
+#. Description of what is covered by formats.
+#: data/resources/ui/pages/locale.ui
+msgid "Defines the default format used for dates, times, numbers, etc."
+msgstr "Bestimmt die Standardformatierung von Datum, Uhrzeit, Zahlen, etc."
+
+#. Shown when restarting system after installation.
 #: data/resources/ui/pages/restart.ui
 msgid "Restarting"
 msgstr "Neustarten"
@@ -168,10 +205,15 @@ msgstr "Neustarten"
 msgid "Select Additional Software to Install"
 msgstr "Wähle zusätzliche Programme zur Installation aus"
 
+#. Explanation for disk selection page.
+#: data/resources/ui/pages/user.ui
+msgid "Enter Account Information"
+msgstr "Gebe Informationen für Benutzerkonto ein"
+
 #. Used with entry field for User's name
 #: data/resources/ui/pages/user.ui
-msgid "User Name"
-msgstr "Benutzername"
+msgid "Name"
+msgstr "Name"
 
 #. Placeholder in user name entry field
 #: data/resources/ui/pages/user.ui
@@ -208,25 +250,10 @@ msgstr "Nutze"
 msgid "Partition"
 msgstr "Partition"
 
-#. Label for installing on the whole selected disk
-#: data/resources/ui/widgets/device_row.ui
-msgid "Use Whole Disk"
-msgstr "Nutze gesamtes Laufwerk"
-
 #. Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.ui
 msgid "Too small for installation"
 msgstr "Zu klein für Installation"
-
-#. Label to go back to overview of all disks
-#: data/resources/ui/widgets/disk_back_row.ui
-msgid "Use Different Disk"
-msgstr "Wähle anderes Laufwerk"
-
-#. Used to navigate to a list of all keyboard layouts
-#: data/resources/ui/widgets/keyboard_layout_back_row.ui
-msgid "Show All Keyboard Layouts"
-msgstr "Zeige alle Tastaturbelegungen"
 
 #. Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/widgets/no_partitions_row.ui
@@ -252,7 +279,11 @@ msgstr ""
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS Boot-Partition"
 
-#. Informative label with list of continents and countries
-#: data/resources/ui/widgets/timezone_chooser.ui
-msgid "Select a Location"
-msgstr "Wähle einen Standort"
+#~ msgid "_Reload"
+#~ msgstr "_Neuladen"
+
+#~ msgid "Use Different Disk"
+#~ msgstr "Wähle ein anderes Laufwerk"
+
+#~ msgid "Showing Layouts for"
+#~ msgstr "Tastaturbelelgungen für"
