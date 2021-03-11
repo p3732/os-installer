@@ -1,25 +1,18 @@
 high prio:
-* don't select default keyboard layout, set continue button to sensitive accordingly
-
 * show password field by default (autologin -> pessword protection)
 
-* make scrollableness more noticeable
-
-* locale navigation with back/forward is confusing, as top navigation buttons don't relate to it
+* make bottom gradients bigger in some place for better scrollability discoverability
 
 * installer scripting
     * pass settings via ENV variables
     * handle failing installation
 
-* make back navigation work for in-page, drop back navigation rows
-
 * use python global for global state
 
 mid prio:
 
+* correctly store timezone and formats in config
 * handle potentially needed legacy boot partition for MBR
-* allow backwards navigation to language again?
-* don't pick a keyboard by default
 * correctly expand terminal output window
 
 low prio:
