@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-26 12:24+0100\n"
+"POT-Creation-Date: 2021-03-11 02:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,25 +65,30 @@ msgstr ""
 msgid "_About OS-Installer"
 msgstr ""
 
-#. Button label to confirm disk deletion
-#. Button label for confirming timezone and formats choice
-#: data/resources/ui/pages/confirm.ui data/resources/ui/pages/locale.ui
-msgid "_Confirm"
-msgstr ""
-
 #. Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.ui
 msgid "This will delete all data on"
 msgstr ""
 
+#. Button label to confirm disk deletion
+#. On button.
+#: data/resources/ui/pages/confirm.ui data/resources/ui/pages/locale.ui
+msgid "_Confirm"
+msgstr ""
+
+#. Label to go back to overview of all disks
+#: data/resources/ui/pages/disk.ui
+msgid "Use Whole Disk"
+msgstr ""
+
+#. Explanation for disk selection page.
+#: data/resources/ui/pages/disk.ui
+msgid "Select Drive for Installation"
+msgstr ""
+
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
 #: data/resources/ui/pages/disk.ui
 msgid "_Manage Disks"
-msgstr ""
-
-#. Button label to reload current (disk) page. Underscore can not be for same as for 'Manage Disks'
-#: data/resources/ui/pages/disk.ui
-msgid "_Reload"
 msgstr ""
 
 #. Informative label after successful installation
@@ -122,9 +127,11 @@ msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 
-#. Simple label used during Installation
-#: data/resources/ui/pages/install.ui
-msgid "Installing"
+#. On button.
+#: data/resources/ui/pages/encrypt.ui
+#: data/resources/ui/pages/keyboard_layout.ui
+#: data/resources/ui/pages/software.ui data/resources/ui/pages/user.ui
+msgid "_Continue"
 msgstr ""
 
 #. Hover information on toggle button that shows terminal output during installation.
@@ -132,9 +139,24 @@ msgstr ""
 msgid "Show Terminal Output"
 msgstr ""
 
-#. Button label for starting opening the wifi settings
+#. Simple label used during Installation
+#: data/resources/ui/pages/install.ui
+msgid "Installing"
+msgstr ""
+
+#. On button for opening wifi settings.
 #: data/resources/ui/pages/internet.ui
 msgid "_Setup Internet Connection"
+msgstr ""
+
+#. Explanation for keyboard layout selection page.
+#: data/resources/ui/pages/keyboard_layout.ui
+msgid "Select Keyboard Layout"
+msgstr ""
+
+#. Followed by a language name.
+#: data/resources/ui/pages/keyboard_layout.ui
+msgid "Showing Keyboard Layouts for"
 msgstr ""
 
 #. Used as placeholder in a entry field to try out a keyboard layout
@@ -142,17 +164,32 @@ msgstr ""
 msgid "Test the Keyboard Layout Here"
 msgstr ""
 
-#. Label presented next to the current Timezone
+#. Above list of continents and countries
+#: data/resources/ui/pages/locale.ui
+msgid "Select a Location"
+msgstr ""
+
+#. Above list of format locales
+#: data/resources/ui/pages/locale.ui
+msgid "Select Locale for Formats"
+msgstr ""
+
+#. Presented next to the current Timezone.
 #: data/resources/ui/pages/locale.ui
 msgid "Timezone"
 msgstr ""
 
-#. Label presented next to the current Formats
+#. Presented next to the current Formats.
 #: data/resources/ui/pages/locale.ui
 msgid "Formats"
 msgstr ""
 
-#. Simple label used when restarting
+#. Description of what is covered by formats.
+#: data/resources/ui/pages/locale.ui
+msgid "Defines the default format used for dates, times, numbers, etc."
+msgstr ""
+
+#. Shown when restarting system after installation.
 #: data/resources/ui/pages/restart.ui
 msgid "Restarting"
 msgstr ""
@@ -162,9 +199,14 @@ msgstr ""
 msgid "Select Additional Software to Install"
 msgstr ""
 
+#. Explanation for disk selection page.
+#: data/resources/ui/pages/user.ui
+msgid "Enter Account Information"
+msgstr ""
+
 #. Used with entry field for User's name
 #: data/resources/ui/pages/user.ui
-msgid "User Name"
+msgid "Name"
 msgstr ""
 
 #. Placeholder in user name entry field
@@ -202,24 +244,9 @@ msgstr ""
 msgid "Partition"
 msgstr ""
 
-#. Label for installing on the whole selected disk
-#: data/resources/ui/widgets/device_row.ui
-msgid "Use Whole Disk"
-msgstr ""
-
 #. Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.ui
 msgid "Too small for installation"
-msgstr ""
-
-#. Label to go back to overview of all disks
-#: data/resources/ui/widgets/disk_back_row.ui
-msgid "Use Different Disk"
-msgstr ""
-
-#. Used to navigate to a list of all keyboard layouts
-#: data/resources/ui/widgets/keyboard_layout_back_row.ui
-msgid "Show All Keyboard Layouts"
 msgstr ""
 
 #. Shown if a disk is currently not compatible with the way a system was booted.
@@ -242,9 +269,4 @@ msgstr ""
 #. Technical terms, the abbreviations should not be translated
 #: data/resources/ui/widgets/no_partitions_row.ui
 msgid "  • BIOS boot partition"
-msgstr ""
-
-#. Informative label with list of continents and countries
-#: data/resources/ui/widgets/timezone_chooser.ui
-msgid "Select a Location"
 msgstr ""
