@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-12 01:50+0100\n"
-"PO-Revision-Date: 2021-03-12 01:51+0100\n"
+"POT-Creation-Date: 2021-03-12 13:40+0100\n"
+"PO-Revision-Date: 2021-03-12 13:46+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
 "Language: de\n"
@@ -252,8 +252,8 @@ msgstr "Partition"
 
 #. Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.ui
-msgid "Too small for installation"
-msgstr "Zu klein für Installation"
+msgid "Not enough space for installation"
+msgstr "Nicht groß genug für Installation"
 
 #. Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/widgets/no_partitions_row.ui

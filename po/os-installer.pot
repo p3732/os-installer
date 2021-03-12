@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-12 01:50+0100\n"
+"POT-Creation-Date: 2021-03-12 13:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,7 +246,7 @@ msgstr ""
 
 #. Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.ui
-msgid "Too small for installation"
+msgid "Not enough space for installation"
 msgstr ""
 
 #. Shown if a disk is currently not compatible with the way a system was booted.
