@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 02:24+0100\n"
-"PO-Revision-Date: 2021-03-11 02:31+0100\n"
+"POT-Creation-Date: 2021-03-12 01:50+0100\n"
+"PO-Revision-Date: 2021-03-12 01:51+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
 "Language: de\n"
@@ -172,13 +172,13 @@ msgstr "Teste die Tastaturbelegung hier"
 
 #. Above list of continents and countries
 #: data/resources/ui/pages/locale.ui
-msgid "Select a Location"
+msgid "Select Location"
 msgstr "Wähle einen Standort"
 
 #. Above list of format locales
 #: data/resources/ui/pages/locale.ui
-msgid "Select Locale for Formats"
-msgstr "Wähle Lokalisierung für Formate"
+msgid "Select Region"
+msgstr "Wähle eine Region"
 
 #. Presented next to the current Timezone.
 #: data/resources/ui/pages/locale.ui
@@ -278,6 +278,9 @@ msgstr ""
 #: data/resources/ui/widgets/no_partitions_row.ui
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS Boot-Partition"
+
+#~ msgid "Select Locale for Formats"
+#~ msgstr "Wähle Lokalisierung für Formate"
 
 #~ msgid "_Reload"
 #~ msgstr "_Neuladen"

@@ -31,7 +31,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="valign">start</property>
-            <property name="label" translatable="yes" comments="Above list of continents and countries">Select a Location</property>
+            <property name="label" translatable="yes" comments="Above list of continents and countries">Select Location</property>
             <property name="justify">center</property>
             <property name="wrap">True</property>
             <attributes>
@@ -48,7 +48,7 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="valign">start</property>
-            <property name="label" translatable="yes" comments="Above list of format locales">Select Locale for Formats</property>
+            <property name="label" translatable="yes" comments="Above list of format locales">Select Region</property>
             <property name="justify">center</property>
             <property name="wrap">True</property>
             <attributes>

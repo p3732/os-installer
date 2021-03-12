@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 02:24+0100\n"
+"POT-Creation-Date: 2021-03-12 01:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,12 +166,12 @@ msgstr ""
 
 #. Above list of continents and countries
 #: data/resources/ui/pages/locale.ui
-msgid "Select a Location"
+msgid "Select Location"
 msgstr ""
 
 #. Above list of format locales
 #: data/resources/ui/pages/locale.ui
-msgid "Select Locale for Formats"
+msgid "Select Region"
 msgstr ""
 
 #. Presented next to the current Timezone.
