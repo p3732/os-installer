@@ -13,8 +13,6 @@ class UserPage(Gtk.Box, Page):
     default_list = Gtk.Template.Child()
     user_name_field = Gtk.Template.Child()
     autologin_switch = Gtk.Template.Child()
-
-    revealer = Gtk.Template.Child()
     password_field = Gtk.Template.Child()
 
     continue_button = Gtk.Template.Child()
@@ -47,7 +45,6 @@ class UserPage(Gtk.Box, Page):
             self.autologin_switch.do_activate(self.autologin_switch)
 
     def _on_autologin_switch_flipped(self, autologin_switch, state):
-        self.revealer.set_reveal_child(not state)
         self._set_continue_button(state)
 
     def _on_entry_changed(self, editable):
