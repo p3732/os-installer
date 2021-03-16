@@ -5,18 +5,15 @@ from threading import Condition, Lock, Thread
 from concurrent.futures import ThreadPoolExecutor
 
 
-class ThreadProvider:
+class ThreadManager:
+    ''' Singleton class that provides some threading utility functionality'''
+    ended = False
+    sync_lock = Lock()
+    cv = Condition(sync_lock)
+    thread_pool = ThreadPoolExecutor()  # for futures
+    threads = []
+
     def __init__(self):
-        # for futures use built in thread pool
-        self.thread_pool = ThreadPoolExecutor()
-
-        # for manager thread syncronization
-        self.sync_lock = Lock()
-        self.cv = Condition(self.sync_lock)
-        self.ended = False
-
-        # manager thread
-        self.threads = []
         self.manager_thread = Thread(target=self._manage)
 
     def __del__(self):
@@ -43,7 +40,7 @@ class ThreadProvider:
     def get_future_from(self, function, **params):
         return self.thread_pool.submit(function, **params)
 
-    def new_thread(self, function, daemon, params=None):
+    def start_standalone_thread(self, function, daemon, params=None):
         with self.sync_lock:
             if params:
                 args = [params]
@@ -52,3 +49,6 @@ class ThreadProvider:
             thread = Thread(target=function, daemon=daemon, args=args)
             thread.start()
             self.threads.append(thread)
+
+
+thread_manager = ThreadManager()

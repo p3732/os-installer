@@ -1,8 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .page import Page
-from .widgets import LanguageRow
 from gi.repository import Gtk
+
+from .global_state import global_state
+from .language_provider import language_provider
+from .page import Page
+from .system_calls import set_system_language
+from .widgets import LanguageRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
@@ -16,13 +20,10 @@ class LanguagePage(Gtk.Overlay, Page):
 
     all_shown = False
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, **kwargs):
         Gtk.Overlay.__init__(self, **kwargs)
 
-        self.global_state = global_state
-
-        # provider
-        self.language_provider = global_state.language_provider
+        language_provider.prepare()
 
         # signals
         self.show_all_button.connect('clicked', self._on_show_all_button_clicked)
@@ -30,15 +31,15 @@ class LanguagePage(Gtk.Overlay, Page):
 
     def _setup_list(self):
         # language rows
-        for language_info in self.language_provider.get_suggested_languages():
+        for language_info in language_provider.get_suggested_languages():
             self.language_list.add(LanguageRow(language_info))
 
         # show all button
-        present_show_all = self.language_provider.has_additional_languages()
+        present_show_all = language_provider.has_additional_languages()
         self.show_all_revealer.set_reveal_child(present_show_all)
 
     def _show_all(self):
-        for language_info in self.language_provider.get_additional_languages():
+        for language_info in language_provider.get_additional_languages():
             self.language_list.add(LanguageRow(language_info))
 
     ### callbacks ###
@@ -54,9 +55,8 @@ class LanguagePage(Gtk.Overlay, Page):
         list_box.select_row(row)
 
         # set language
-        self.global_state.apply_language_settings(row.info)
-
-        self.global_state.advance()
+        set_system_language(row.info)
+        global_state.advance()
 
     ### public methods ###
 

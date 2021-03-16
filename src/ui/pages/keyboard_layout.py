@@ -1,10 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .keyboard_layout_provider import KeyboardLayoutProvider
-from .page import Page
-from .widgets import LanguageRow, SelectionRow, empty_list
-
 from gi.repository import Gtk
+
+from .global_state import global_state
+from .keyboard_layout_provider import get_layouts_for
+from .language_provider import language_provider
+from .page import Page
+from .system_calls import set_system_keyboard_layout
+from .widgets import LanguageRow, SelectionRow, empty_list
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
@@ -21,17 +24,12 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     continue_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    current_row = None
+    language_list_setup = False
+    loaded_language = ''
+
+    def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        self.global_state = global_state
-        self.loaded_language = ''
-        self.language_list_setup = False
-        self.current_row = None
-
-        # providers
-        self.language_provider = global_state.language_provider
-        self.keyboard_layout_provider = KeyboardLayoutProvider()
 
         # signals
         self.continue_button.connect('clicked', self._continue)
@@ -40,7 +38,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.layout_list.connect('row-activated', self._on_layout_row_activated)
 
     def _setup_languages_list(self):
-        all_languages = self.language_provider.get_all_languages(self.global_state.get_config('locale'))
+        all_languages = language_provider.get_all_languages()
 
         for language_info in all_languages:
             row = LanguageRow(language_info)
@@ -58,7 +56,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.language_label.set_label(language)
 
         # fill list with all keyboard layouts for given language
-        layouts = self.keyboard_layout_provider.get_layouts_for(short_hand, language)
+        layouts = get_layouts_for(short_hand, language)
         assert len(layouts) > 0, 'Language {} has no keyboard layouts! Please report this.'.format(language)
         for keyboard_layout, name in layouts:
             row = SelectionRow(name, keyboard_layout)
@@ -71,7 +69,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     ### callbacks ###
 
     def _continue(self, button):
-        self.global_state.advance()
+        global_state.advance()
 
     def _on_language_row_activated(self, list_box, row):
         self._unselect_current_row()
@@ -90,7 +88,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         # use selected keyboard layout
         keyboard_layout = row.get_label()
         short_hand = row.info
-        self.global_state.apply_keyboard_layout(keyboard_layout, short_hand)
+        set_system_keyboard_layout(keyboard_layout, short_hand)
 
         self.continue_button.set_sensitive(True)
 
@@ -108,8 +106,8 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     def load_once(self):
         # page gets reconstructed if different app language is chosen
-        short_hand = self.global_state.get_config('language_short_hand')
-        language = self.global_state.get_config('language')
+        short_hand = global_state.get_config('language_short_hand')
+        language = global_state.get_config('language')
         self._load_layout_list(language, short_hand)
 
     def navigate_backward(self):

@@ -114,3 +114,6 @@ class DiskProvider:
 
         # get current disks information via udisks
         return self._get_available_disks()
+
+
+disk_provider = DiskProvider()

@@ -1,10 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .page import Page
+import threading
 
 from gi.repository import Gtk
 
-import threading
+from .global_state import global_state
+from .installation_scripting import installation_scripting
+from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/install.ui')
@@ -17,11 +19,10 @@ class InstallPage(Gtk.Box, Page):
     stack = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+    vte_created = False
 
-        self.global_state = global_state
-        self.vte_created = False
+    def __init__(self, **kwargs):
+        Gtk.Box.__init__(self, **kwargs)
 
         # UI element states
         self.stack.set_visible_child_name('spinner')
@@ -30,8 +31,7 @@ class InstallPage(Gtk.Box, Page):
         self.terminal_button.connect('toggled', self._on_toggled_terminal_button)
 
     def _setup_vte(self):
-        terminal = self.global_state.terminal
-        self.terminal_box.add(terminal)
+        self.terminal_box.add(installation_scripting.terminal)
         self.terminal_box.show_all()
 
     ### callbacks ###
@@ -50,7 +50,7 @@ class InstallPage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
-        if self.global_state.demo_mode:
+        if global_state.demo_mode:
             return True
 
         self.spinner.start()
@@ -59,5 +59,5 @@ class InstallPage(Gtk.Box, Page):
         self.spinner.stop()
 
         # in demo mode no script disables installation running flag
-        if self.global_state.demo_mode:
-            self.global_state.installation_running = False
+        if global_state.demo_mode:
+            global_state.installation_running = False

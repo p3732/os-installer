@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .page import Page
-from .software_provider import SoftwareProvider
-from .widgets import SoftwareRow
-
 from gi.repository import Gtk
+
+from .global_state import global_state
+from .page import Page
+from .software_provider import get_software_suggestions
+from .widgets import SoftwareRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/software.ui')
@@ -16,19 +17,15 @@ class SoftwarePage(Gtk.Overlay, Page):
 
     continue_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, **kwargs):
         Gtk.Overlay.__init__(self, **kwargs)
-
-        self.global_state = global_state
-
-        self.software_provider = SoftwareProvider(global_state)
 
         # signals
         self.continue_button.connect('clicked', self._continue)
         self.software_list.connect('row-activated', self._on_software_row_activated)
 
     def _setup_software(self):
-        suggestions = self.software_provider.get_suggestions()
+        suggestions = get_software_suggestions()
         for package in suggestions:
             row = SoftwareRow(package)
             self.software_list.add(row)
@@ -36,7 +33,7 @@ class SoftwarePage(Gtk.Overlay, Page):
     ### callbacks ###
 
     def _continue(self, button):
-        self.global_state.advance()
+        global_state.advance()
 
     def _on_software_row_activated(self, list_box, row):
         new_state = not row.is_activated()
@@ -52,4 +49,4 @@ class SoftwarePage(Gtk.Overlay, Page):
         for row in self.software_list:
             if row.is_activated():
                 to_install.append(row.package_name)
-        self.global_state.set_config('additional_software', to_install)
+        global_state.set_config('additional_software', to_install)

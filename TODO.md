@@ -1,5 +1,5 @@
 high prio:
-* show password field by default (autologin -> pessword protection)
+* swap "autologin" to "Protect with Password" and make password field insensitive
 
 * make bottom gradients bigger in some place for better scrollability discoverability
 
@@ -7,10 +7,10 @@ high prio:
     * pass settings via ENV variables
     * handle failing installation
 
-* use python global for global state
-
 mid prio:
 
+* fix row being selected kbd layout->same language
+* start preparation immediately if no internet is required
 * correctly store timezone and formats in config
 * handle potentially needed legacy boot partition for MBR
 * correctly expand terminal output window

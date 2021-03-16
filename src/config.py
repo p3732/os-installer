@@ -18,7 +18,7 @@ def _get_fallback_config():
 
 ### public methods ###
 
-def get_config():
+def init_config():
     config = _get_fallback_config()
     try:
         with open(DEFAULT_CONFIG_PATH, 'r') as file:

@@ -1,11 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .internet_provider import InternetProvider
-from .page import Page
+from threading import Lock
 
 from gi.repository import Gtk
 
-import threading
+from .global_state import global_state
+from .installation_scripting import installation_scripting
+from .internet_provider import internet_provider
+from .page import Page
+from .system_calls import open_wifi_settings, start_system_timesync
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
@@ -15,45 +18,41 @@ class InternetPage(Gtk.Box, Page):
 
     settings_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    can_proceed_automatically = False
+    connected = False
+    connected_lock = Lock()
+
+    def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        self.global_state = global_state
-
-        self.connected_lock = threading.Lock()
-        self.connected = False
-        self.can_proceed_automatically = False
-
-        # start checking of connection
-        callback = self._on_connected
-        self.internet_provider = InternetProvider(global_state, callback)
 
         # signals
         self.settings_button.connect('clicked', self._on_clicked_settings_button)
 
+    def _set_connected(self):
+        self.image_name = 'network-wireless-symbolic'
+        start_system_timesync()
+        installation_scripting.start_preparation()
+
     ### callbacks ###
 
     def _on_clicked_settings_button(self, button):
-        self.global_state.open_wifi_settings()
+        open_wifi_settings()
 
     def _on_connected(self):
-        notify_global_state = False
-
         with self.connected_lock:
-            self.connected = True
-            self.image_name = 'network-wireless-symbolic'
-            if self.can_proceed_automatically:
-                notify_global_state = True
-            self.global_state.apply_connected()
+            self._set_connected()
 
         # do not hold lock, could cause deadlock with simultaneous load()
-        if notify_global_state:
-            self.global_state.advance(self.__gtype_name__)
+        global_state.advance(self.__gtype_name__)
 
     ### public methods ###
 
     def load_once(self):
         with self.connected_lock:
-            self.can_proceed_automatically = True
-            if self.connected or self.global_state.demo_mode:
+            # setup callback on connected
+            if internet_provider.is_connected_now_or_later(self._on_connected):
+                # already connected
+                self._set_connected()
+                return True
+            if global_state.demo_mode:
                 return True

@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import GnomeDesktop
-
 from threading import Lock
 import os
+
+from gi.repository import GnomeDesktop
+
+from .global_state import global_state
+from .thread_manager import thread_manager
+
 
 # generated via language_codes_to_locales.py
 language_to_default_locale = {
@@ -53,15 +57,9 @@ class LanguageInfo:
 
 
 class LanguageProvider:
-    def __init__(self, global_state):
-        self.config_suggested_languages = global_state.get_config('suggested_languages')
-
-        self.languages_loaded = False
-        self.languages_loading_lock = Lock()
-
-        # load all languages from existing translations
-        localedir = global_state.get_config('localedir')
-        self.languages = global_state.get_future_from(self._get_languages, localedir=localedir)
+    config_suggested_languages = global_state.get_config('suggested_languages')
+    languages_loaded = False
+    languages_loading_lock = Lock()
 
     def _assert_languages_loaded(self):
         with self.languages_loading_lock:
@@ -130,8 +128,9 @@ class LanguageProvider:
         self._assert_languages_loaded()
         return self.additional_languages
 
-    def get_all_languages(self, locale):
+    def get_all_languages(self):
         self._assert_languages_loaded()
+        locale = global_state.get_config('locale')
         return self._get_all_languages(locale)
 
     def get_suggested_languages(self):
@@ -141,3 +140,12 @@ class LanguageProvider:
     def has_additional_languages(self):
         self._assert_languages_loaded()
         return len(self.additional_languages) > 0
+
+    def prepare(self):
+        # load all languages from existing translations
+        localedir = global_state.get_config('localedir')
+        print('localedir is ', localedir)
+        self.languages = thread_manager.get_future_from(self._get_languages, localedir=localedir)
+
+
+language_provider = LanguageProvider()

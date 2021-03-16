@@ -1,9 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .locale_provider import LocaleProvider
-from .page import Page
-from .widgets import ProgressRow, empty_list
 from gi.repository import GLib, Gtk, GWeather
+
+from .global_state import global_state
+from .installation_scripting import installation_scripting
+from .locale_provider import get_current_formats, get_formats, get_timezone
+from .page import Page
+from .system_calls import set_system_timezone
+from .widgets import ProgressRow, empty_list
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
@@ -30,13 +34,8 @@ class LocalePage(Gtk.Box, Page):
     subzones_list = Gtk.Template.Child()
     continents_list_loaded = False
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        self.global_state = global_state
-
-        # provider
-        self.locale_provider = LocaleProvider(global_state)
 
         # signals
         self.overview_list.connect('row-activated', self._on_overview_row_activated)
@@ -66,7 +65,7 @@ class LocalePage(Gtk.Box, Page):
     def _load_formats_list(self):
         if not self.formats_list_loaded:
             self.formats_list_loaded = True
-            for name, locale in self.locale_provider.get_formats():
+            for name, locale in get_formats():
                 self.formats_list.add(ProgressRow(name, locale))
 
         self.text_stack.set_visible_child_name('formats')
@@ -82,7 +81,7 @@ class LocalePage(Gtk.Box, Page):
         self.list_stack.set_visible_child_name('timezone_subzones')
 
     def _set_timezone(self, timezone):
-        self.global_state.apply_timezone(timezone)
+        set_system_timezone(timezone)
 
         self.timezone_label.set_label(timezone)
         self._show_overview()
@@ -95,11 +94,11 @@ class LocalePage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_clicked_confirm_button(self, button):
-        self.global_state.apply_configuration_confirmed()
-        self.global_state.advance_without_return()
+        installation_scripting.start_configuration()
+        global_state.advance_without_return()
 
     def _on_formats_row_activated(self, list_box, row):
-        self.global_state.set_config('formats', row.info)
+        global_state.set_config('formats', row.info)
 
         self.formats_label.set_label(row.get_label())
         self._show_overview()
@@ -128,9 +127,9 @@ class LocalePage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
-        name, _ = self.locale_provider.get_current_formats()
+        name, _ = get_current_formats()
         self.formats_label.set_label(name)
-        timezone = self.locale_provider.get_timezone()
+        timezone = get_timezone()
         self.timezone_label.set_label(timezone)
 
     def navigate_backward(self):

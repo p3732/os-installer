@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .page import Page
-
 from gi.repository import Gtk
+
+from .global_state import global_state
+from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/user.ui')
@@ -17,10 +18,8 @@ class UserPage(Gtk.Box, Page):
 
     continue_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        self.global_state = global_state
 
         # signals
         self.continue_button.connect('clicked', self._continue)
@@ -38,7 +37,7 @@ class UserPage(Gtk.Box, Page):
     # callbacks ###stack_manager
 
     def _continue(self, button):
-        self.global_state.advance()
+        global_state.advance()
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'automatic_login':
@@ -55,5 +54,5 @@ class UserPage(Gtk.Box, Page):
     def unload(self):
         password = self.password_field.get_text()
         user_name = self.user_name_field.get_text()
-        self.global_state.set_config('password', password)
-        self.global_state.set_config('user_name', user_name)
+        global_state.set_config('password', password)
+        global_state.set_config('user_name', user_name)

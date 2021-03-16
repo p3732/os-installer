@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import gi
+import sys
 
+import gi
 # set versions for all used submodules
 gi.require_version('Gdk', '3.0')           # noqa: E402
 gi.require_version('Gio', '2.0')           # noqa: E402
@@ -14,17 +15,17 @@ gi.require_version('UDisks', '2.0')        # noqa: E402
 gi.require_version('Vte', '2.91')          # noqa: E402
 from gi.repository import Gdk, Gio, GLib, Gtk, Handy
 
-import sys
-
-# local
-from .global_state import GlobalState
+# local, import order is important
+from .global_state import global_state
 from .window import OsInstallerWindow
 
 APP_ID = 'com.github.p3732.OS-Installer'
 
 
 class Application(Gtk.Application):
-    def __init__(self, version, localedir):
+    window = None
+
+    def __init__(self, version):
         super().__init__(application_id=APP_ID,
                          flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
@@ -34,11 +35,6 @@ class Application(Gtk.Application):
         # Add --hidden command line option
         self.add_main_option('demo-mode', b'd', GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Run in demo mode, don't alter the system", None)
-
-        # App window
-        self.window = None
-
-        self.global_state = GlobalState(localedir)
 
     def _load_css(self):
         css_provider = Gtk.CssProvider()
@@ -88,26 +84,25 @@ class Application(Gtk.Application):
 
     def do_activate(self):
         # create window if not existing
-        self.window = self.props.active_window
-        if self.window:
-            self.window.present()
+        window = self.props.active_window
+        if window:
+            window.present()
         else:
-            self.window = OsInstallerWindow(self.global_state, self.quit, application=self)
+            self.window = OsInstallerWindow(self.quit, application=self)
             self.window.present()
-            self.global_state.window = self.window
-
-            # load initial page
-            self.window.advance()
 
             # Grab window delete-event
             self.window.connect('delete-event', self._on_quit)
+
+            # load initial page
+            self.window.advance()
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()
         options = options.end().unpack()
 
         if 'demo-mode' in options:
-            self.global_state.demo_mode = True
+            global_state.demo_mode = True
 
         self.activate()
         return 0
@@ -134,7 +129,7 @@ class Application(Gtk.Application):
         self.window.show_about_dialog()
 
     def _on_quit(self, action, param=None):
-        if self.global_state.installation_running:
+        if global_state.installation_running:
             # show confirm dialog
             self.window.show_confirm_quit_dialog()
             # return True to avoid further processing of event
@@ -144,5 +139,6 @@ class Application(Gtk.Application):
 
 
 def main(version, localedir):
-    app = Application(version, localedir)
+    global_state.set_config('localedir', localedir)
+    app = Application(version)
     return app.run(sys.argv)

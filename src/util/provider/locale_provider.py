@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import GnomeDesktop
 import locale as Locale
+
+from gi.repository import GnomeDesktop
+
+from .global_state import global_state
 
 locales = {
     'as_IN.UTF-8', 'pt_BR.UTF-8', 'am_ET.UTF-8', 'os_RU.UTF-8', 'ta_LK.UTF-8', 'ka_GE.UTF-8', 'ar_DZ.UTF-8',
@@ -43,43 +46,40 @@ locales = {
     'aa_DJ.UTF-8', 'so_SO.UTF-8'}
 
 
-class LocaleProvider:
-    def __init__(self, global_state):
-        self.global_state = global_state
+### public methods ###
+def get_timezone():
+    timezone = GnomeDesktop.WallClock().get_timezone()
+    return timezone.get_identifier()
 
-    ### public methods ###
 
-    def get_timezone(self):
-        timezone = GnomeDesktop.WallClock().get_timezone()
-        return timezone.get_identifier()
+def get_current_formats():
+    formats = global_state.get_config('formats')
+    if not formats:
+        formats = global_state.get_config('locale')
+        global_state.set_config('formats', formats)
+    name = GnomeDesktop.get_country_from_locale(formats)
+    if not name:
+        # solely to prevent crashes, e.g. for Esperanto
+        # TODO add to translatation
+        name = 'Undefined'
+    return (name, formats)
 
-    def get_current_formats(self):
-        formats = self.global_state.get_config('formats')
-        if not formats:
-            formats = self.global_state.get_config('locale')
-            self.global_state.set_config('formats', formats)
-        name = GnomeDesktop.get_country_from_locale(formats)
-        if not name:
-            # solely to prevent crashes, e.g. for Esperanto
-            # TODO add to translatation
-            name = 'Undefined'
-        return (name, formats)
 
-    def get_formats(self):
-        formats = []
-        # separate name set to prevent duplicates in list
-        # see gnome-desktop issue https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/3610
-        names = set()
-        translation_locale = self.global_state.get_config('locale')
+def get_formats():
+    formats = []
+    # separate name set to prevent duplicates in list
+    # see gnome-desktop issue https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/3610
+    names = set()
+    translation_locale = global_state.get_config('locale')
 
-        for locale in locales:
-            name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
-            if name and not name in names:
-                names.add(name)
-                formats.append((name, locale))
+    for locale in locales:
+        name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
+        if name and not name in names:
+            names.add(name)
+            formats.append((name, locale))
 
-        # return sorted (considers umlauts and such)
-        return sorted(
-            formats,
-            key=lambda t: Locale.strxfrm(t[0])
-        )
+    # return sorted (considers umlauts and such)
+    return sorted(
+        formats,
+        key=lambda t: Locale.strxfrm(t[0])
+    )

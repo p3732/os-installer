@@ -1,5 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from threading import Lock
+
+from gi.repository import Gtk, Handy
+
+from .global_state import global_state
+
 from .confirm import ConfirmPage
 from .disk import DiskPage
 from .done import DonePage
@@ -15,11 +21,6 @@ from .user import UserPage
 
 from .confirm_quit_popup import ConfirmQuitPopup
 from .failed_installation_popup import FailedInstallationPopup
-
-from gi.repository import Gtk, Handy
-
-import threading
-import sys
 
 
 class NavigationState:
@@ -44,26 +45,29 @@ class OsInstallerWindow(Handy.ApplicationWindow):
     previous_stack = Gtk.Template.Child()
 
     current_page = None
-    navigation_lock = threading.Lock()
+    navigation_lock = Lock()
     navigation_state = NavigationState()
     pages = []
 
-    def __init__(self, global_state, quit_callback, **kwargs):
+    def __init__(self, quit_callback, **kwargs):
         super().__init__(**kwargs)
 
         self.quit_callback = quit_callback
-        self.global_state = global_state
+
+        # set advancing functions in global state
+        global_state.advance = self.advance
+        global_state.advance_without_return = self.advance_without_return
 
         # determine available pages
-        self._determine_available_pages(global_state.get_config)
+        self._determine_available_pages()
 
         # initialize language page
         self._initialize_page(self.available_pages[0])
 
-    def _determine_available_pages(self, get_config):
-        offer_internet_connection = get_config('internet_connection_required')
-        offer_disk_encryption = get_config('offer_disk_encryption')
-        additional_software = get_config('additional_software')
+    def _determine_available_pages(self):
+        offer_internet_connection = global_state.get_config('internet_connection_required')
+        offer_disk_encryption = global_state.get_config('offer_disk_encryption')
+        additional_software = global_state.get_config('additional_software')
         offer_additional_software = additional_software and len(additional_software) > 0
 
         self.available_pages = [
@@ -87,7 +91,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
     def _initialize_page(self, page_to_initialize):
         if not page_to_initialize == None:
-            page = page_to_initialize(self.global_state)
+            page = page_to_initialize()
             self.main_stack.add_named(page, page.get_name())
             self.pages.append(page)
 
@@ -177,9 +181,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
                 self._load_page(self.navigation_state.current + 1)
 
     def show_about_dialog(self):
-        builder = Gtk.Builder.new_from_resource(
-            '/com/github/p3732/os-installer/about_dialog.ui'
-        )
+        builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/about_dialog.ui')
         about_dialog = builder.get_object('about_dialog')
         self._show_dialog(about_dialog)
 

@@ -1,11 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .disk_provider import DiskProvider
-from .page import Page
-from .widgets import DeviceRow, NoPartitionsRow, empty_list
+from threading import Lock
 
 from gi.repository import Gtk
-import threading
+
+from .disk_provider import disk_provider
+from .global_state import global_state
+from .page import Page
+from .system_calls import has_efi_vars, open_disks
+from .widgets import DeviceRow, NoPartitionsRow, empty_list
 
 GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
@@ -30,19 +33,13 @@ class DiskPage(Gtk.Overlay, Page):
     settings_button = Gtk.Template.Child()
     refresh_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    current_disk = None
+    lock = Lock()
+
+    def __init__(self, **kwargs):
         Gtk.Overlay.__init__(self, **kwargs)
 
-        self.global_state = global_state
-        minimum_disk_size = global_state.get_config('minimum_disk_size')
-        self.minimum_disk_size = minimum_disk_size * GIGABYTE_FACTOR
-
-        self.current_disk = None
-
-        self.lock = threading.Lock()
-
-        # provider
-        self.disk_provider = DiskProvider()
+        self.minimum_disk_size = global_state.get_config('minimum_disk_size') * GIGABYTE_FACTOR
 
         # signals
         self.disk_list.connect('row-activated', self._on_disk_row_activated)
@@ -53,14 +50,14 @@ class DiskPage(Gtk.Overlay, Page):
         self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
         # start gl checking
-        self.uses_uefi = global_state.has_efi_vars()
+        self.uses_uefi = has_efi_vars()
 
     def _setup_disk_list(self):
         # clear list
         empty_list(self.disk_list)
 
         # fill list
-        disks = self.disk_provider.get_disks()
+        disks = disk_provider.get_disks()
         for disk_info in disks:
             too_small = disk_info.size < self.minimum_disk_size
             row = DeviceRow('disk', disk_info, too_small)
@@ -68,7 +65,6 @@ class DiskPage(Gtk.Overlay, Page):
 
         # show
         self.list_stack.set_visible_child_name('disks')
-        self.text_stack.set_visible_child_name('disks')
 
     def _setup_partition_list(self, disk_info):
         if self.current_disk == disk_info:
@@ -78,8 +74,7 @@ class DiskPage(Gtk.Overlay, Page):
         empty_list(self.partition_list)
 
         # efi vars
-        uses_uefi = self.uses_uefi.result()
-        disk_uefi_okay = not uses_uefi or disk_info.efi_partition
+        disk_uefi_okay = not self.uses_uefi or disk_info.efi_partition
 
         # set disk info
         self.disk_label.set_label(disk_info.name)
@@ -99,15 +94,15 @@ class DiskPage(Gtk.Overlay, Page):
         self.list_stack.set_visible_child_name('partitions')
 
     def _store_device_info(self, info):
-        self.global_state.set_config('disk_name', info.name)
-        self.global_state.set_config('disk_device_path', info.device_path)
-        self.global_state.set_config('disk_is_partition', info.is_partition)
-        self.global_state.set_config('disk_efi_partition', info.efi_partition)
+        global_state.set_config('disk_name', info.name)
+        global_state.set_config('disk_device_path', info.device_path)
+        global_state.set_config('disk_is_partition', info.is_partition)
+        global_state.set_config('disk_efi_partition', info.efi_partition)
 
     ### callbacks ###
 
     def _on_clicked_disks_button(self, button):
-        self.global_state.open_disks()
+        open_disks()
 
     def _on_clicked_reload_button(self, button):
         self.load()
@@ -122,12 +117,12 @@ class DiskPage(Gtk.Overlay, Page):
     def _on_partition_row_activated(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(row.info)
-        self.global_state.advance()
+        global_state.advance()
 
     def _use_whole_disk(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(self.current_disk)
-        self.global_state.advance()
+        global_state.advance()
 
     ### public methods ###
 

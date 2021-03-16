@@ -1,8 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .page import Page
-
 from gi.repository import Gtk
+
+from .global_state import global_state
+from .installation_scripting import installation_scripting
+from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
@@ -13,10 +15,8 @@ class ConfirmPage(Gtk.Box, Page):
     disk_label = Gtk.Template.Child()
     confirm_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        self.global_state = global_state
 
         # signals
         self.confirm_button.connect("clicked", self._on_clicked_confirm)
@@ -24,12 +24,12 @@ class ConfirmPage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_clicked_confirm(self, button):
-        self.global_state.apply_installation_confirmed()
-        self.global_state.advance_without_return()
+        installation_scripting.start_installation()
+        global_state.advance_without_return()
 
     ### public methods ###
 
     def load(self):
         # set label
-        name = self.global_state.get_config('disk_name')
+        name = global_state.get_config('disk_name')
         self.disk_label.set_label(name)

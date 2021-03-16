@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .page import Page
-
 from gi.repository import Gtk
+
+from .global_state import global_state
+from .page import Page
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/encrypt.ui')
@@ -18,10 +19,8 @@ class EncryptPage(Gtk.Box, Page):
 
     continue_button = Gtk.Template.Child()
 
-    def __init__(self, global_state, **kwargs):
+    def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        self.global_state = global_state
 
         # signals
         self.continue_button.connect('clicked', self._continue)
@@ -36,7 +35,7 @@ class EncryptPage(Gtk.Box, Page):
     ### callbacks ###
 
     def _continue(self, button):
-        self.global_state.advance()
+        global_state.advance()
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'encryption':
@@ -59,5 +58,5 @@ class EncryptPage(Gtk.Box, Page):
     def unload(self):
         use_encryption = self.switch.get_state()
         pin = self.pin_field.get_text()
-        self.global_state.set_config('use_encryption', use_encryption)
-        self.global_state.set_config('encryption_pin', pin)
+        global_state.set_config('use_encryption', use_encryption)
+        global_state.set_config('encryption_pin', pin)
