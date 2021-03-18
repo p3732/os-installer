@@ -11,7 +11,8 @@ from .thread_manager import thread_manager
 
 
 def _exec(args):
-    subprocess.run(args)
+    if not global_state.demo_mode:
+        subprocess.run(args)
 
 
 ### public methods ###
@@ -30,17 +31,16 @@ def open_wifi_settings():
 
 
 def reboot_system():
-    if not global_state.demo_mode:
-        _exec(['reboot'])
+    _exec(['reboot'])
 
 
 def set_system_keyboard_layout(keyboard_layout, short_hand):
     global_state.set_config('keyboard_layout', keyboard_layout)
     global_state.set_config('keyboard_layout_short_hand', short_hand)
-    if not global_state.demo_mode:
-        # set system input
-        _exec(['gsettings set org.gnome.desktop.input-sources sources',
-               "[('xkb','{}')]".format(short_hand)])
+
+    # set system input
+    _exec(['gsettings', 'set', 'org.gnome.desktop.input-sources sources',
+           "[('xkb','{}')]".format(short_hand)])
 
 
 def set_system_language(language_info):
@@ -58,15 +58,13 @@ def set_system_language(language_info):
         # fallback
         Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
-    if not global_state.demo_mode:
-        # set system locale
-        _exec(['localectl', 'set-locale', locale])
+    # set system locale
+    _exec(['localectl', 'set-locale', locale])
 
 
 def set_system_timezone(timezone):
     global_state.set_config('timezone', timezone)
-    if not global_state.demo_mode:
-        _exec(['timedatectl', 'set-timezone', timezone])
+    _exec(['timedatectl', 'set-timezone', timezone])
 
 
 def start_system_timesync():
