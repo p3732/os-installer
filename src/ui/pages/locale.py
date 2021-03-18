@@ -98,7 +98,6 @@ class LocalePage(Gtk.Box, Page):
         global_state.advance_without_return(self.__gtype_name__)
 
     def _on_formats_row_activated(self, list_box, row):
-        global_state.set_config('formats', row.info)
         set_system_formats(row.info)
 
         self.formats_label.set_label(row.get_label())
@@ -128,10 +127,13 @@ class LocalePage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
-        name, _ = get_current_formats()
+        name, locale = get_current_formats()
         self.formats_label.set_label(name)
+        global_state.set_config('formats', locale)
+
         timezone = get_timezone()
         self.timezone_label.set_label(timezone)
+        global_state.set_config('timezone', timezone)
 
     def navigate_backward(self):
         current_list = self.list_stack.get_visible_child()
