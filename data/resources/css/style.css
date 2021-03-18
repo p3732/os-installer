@@ -18,3 +18,9 @@
   background-image: linear-gradient(to top, @theme_bg_color, alpha(@theme_bg_color, 0) 100%);
 }
 
+.terminal {
+  background-color: #000;
+  border-radius: 6px;
+  -gtk-outline-radius: 6px;
+  padding: 6px 12px;
+}
