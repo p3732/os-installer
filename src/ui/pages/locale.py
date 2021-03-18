@@ -112,17 +112,17 @@ class LocalePage(Gtk.Box, Page):
 
     def _on_timezone_row_activated(self, list_box, row):
         list_box.select_row(row)
-        chosen = row.info
-        timezone = chosen.get_timezone_str()
+        location = row.info
+        timezone = location.get_timezone_str()
         if timezone:
             self._set_timezone(timezone)
         elif list_box == self.subzones_list:
             print('Subzone', subzone, 'does not have any timezone attached to it! Falling back to UTC.')
             self._set_timezone('UTC')
         elif list_box == self.continents_list:
-            self._load_countries_list(chosen)
+            self._load_countries_list(location)
         elif list_box == self.countries_list:
-            self._load_subzones_list(chosen)
+            self._load_subzones_list(location)
 
     ### public methods ###
 
