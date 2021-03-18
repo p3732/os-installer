@@ -20,10 +20,10 @@ class GlobalState:
     def set_config(self, setting, value):
         self.config[setting] = value
 
-    def advance(self, name=None):
+    def advance(self, name):
         print('Advance called before window initalization done!')
 
-    def advance_without_return(self):
+    def advance_without_return(self, name):
         print('Advance called before window initalization done!')
 
 

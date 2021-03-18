@@ -56,7 +56,7 @@ class LanguagePage(Gtk.Overlay, Page):
 
         # set language
         set_system_language(row.info)
-        global_state.advance()
+        global_state.advance(self.__gtype_name__)
 
     ### public methods ###
 

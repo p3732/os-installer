@@ -95,7 +95,7 @@ class LocalePage(Gtk.Box, Page):
 
     def _on_clicked_confirm_button(self, button):
         installation_scripting.start_configuration()
-        global_state.advance_without_return()
+        global_state.advance_without_return(self.__gtype_name__)
 
     def _on_formats_row_activated(self, list_box, row):
         global_state.set_config('formats', row.info)

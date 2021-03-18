@@ -33,7 +33,7 @@ class SoftwarePage(Gtk.Box, Page):
     ### callbacks ###
 
     def _continue(self, button):
-        global_state.advance()
+        global_state.advance(self.__gtype_name__)
 
     def _on_software_row_activated(self, list_box, row):
         new_state = not row.is_activated()

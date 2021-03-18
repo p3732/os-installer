@@ -54,6 +54,8 @@ class InstallPage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
+        installation_scripting.install_window_name = self.__gtype_name__
+
         if global_state.demo_mode:
             return True
 

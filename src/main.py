@@ -95,7 +95,7 @@ class Application(Gtk.Application):
             self.window.connect('delete-event', self._on_quit)
 
             # load initial page
-            self.window.advance()
+            self.window.advance(None)
 
     def do_command_line(self, command_line):
         options = command_line.get_options_dict()

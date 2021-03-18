@@ -22,6 +22,9 @@ class InstallationScripting():
     installation_done = False
     configuration_ready = False
 
+    # set by respective window
+    install_window_name = None
+
     def __init__(self):
         # setup terminal
         self.terminal.set_input_enabled(False)
@@ -70,7 +73,7 @@ class InstallationScripting():
         # TODO handle return value
         print('Configuration done.')
         global_state.installation_running = False
-        global_state.advance()
+        global_state.advance(self.install_window_name)
 
     ### public methods ###
 

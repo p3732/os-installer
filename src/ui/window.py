@@ -151,20 +151,21 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
     ### public methods ###
 
-    def advance(self, name=None):
+    def advance(self, name):
         with self.navigation_lock:
             if not name or name == self.current_page.get_name():
                 self._load_page(self.navigation_state.current + 1)
 
-    def advance_without_return(self):
+    def advance_without_return(self, name):
         with self.navigation_lock:
-            previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
-            self.navigation_state.earliest = self.navigation_state.current + 1
+            if not name or name == self.current_page.get_name():
+                previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
+                self.navigation_state.earliest = self.navigation_state.current + 1
 
-            self._load_page(self.navigation_state.current + 1)
+                self._load_page(self.navigation_state.current + 1)
 
-            for page in previous_pages:
-                page.destroy()
+                for page in previous_pages:
+                    page.destroy()
 
     def navigate_backward(self):
         with self.navigation_lock:
