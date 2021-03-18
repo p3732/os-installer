@@ -19,8 +19,6 @@ class InstallPage(Gtk.Box, Page):
     stack = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
 
-    vte_created = False
-
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
@@ -30,22 +28,11 @@ class InstallPage(Gtk.Box, Page):
         # signals
         self.terminal_button.connect('toggled', self._on_toggled_terminal_button)
 
-    def _setup_vte(self):
-        vte = installation_scripting.terminal
-        vte.set_hexpand(True)
-        vte.set_vexpand(True)
-
-        self.terminal_box.add(vte)
-        self.terminal_box.show_all()
-
     ### callbacks ###
 
     def _on_toggled_terminal_button(self, toggle_button):
         if self.stack.get_visible_child_name() == 'spinner':
             self.spinner.stop()
-            if not self.vte_created:
-                self._setup_vte()
-                self.vte_created = True
             self.stack.set_visible_child_name('terminal')
         else:
             self.spinner.start()
@@ -55,6 +42,13 @@ class InstallPage(Gtk.Box, Page):
 
     def load_once(self):
         installation_scripting.install_window_name = self.__gtype_name__
+
+        # setup VTE
+        vte = installation_scripting.terminal
+        vte.set_hexpand(True)
+        vte.set_vexpand(True)
+        self.terminal_box.add(vte)
+        self.terminal_box.show_all()
 
         if global_state.demo_mode:
             return True
