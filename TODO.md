@@ -9,6 +9,7 @@ mid prio:
 * fix row being selected kbd layout->same language
 * start preparation immediately if no internet is required
 * handle potentially needed legacy boot partition for MBR
+* set defaults for pages that can be disabled
 
 low prio:
 

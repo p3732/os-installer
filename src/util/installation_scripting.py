@@ -5,6 +5,7 @@ import time
 
 from gi.repository import Gio, GLib, GObject, Vte
 
+from .config import check_configuration_config, check_install_config
 from .global_state import global_state
 
 
@@ -25,33 +26,53 @@ class InstallationScripting():
     # set by respective window
     install_window_name = None
 
+    pty_flags = Vte.PtyFlags.DEFAULT
+    spawn_flags = GLib.SpawnFlags.DEFAULT
+    cancel = Gio.Cancellable()
+
     def __init__(self):
         # setup terminal
         self.terminal.set_input_enabled(False)
         self.terminal.set_scroll_on_output(True)
 
-    def _start_script(self, name, callback):
-        # TODO set environment variables from config
-        pty_flags = Vte.PtyFlags.DEFAULT
-        spawn_flags = GLib.SpawnFlags.DEFAULT
-        cancel = Gio.Cancellable()
+    def _get_configuration_env(self):
+        return ['OSI_USER_NAME="{}"'.format(global_state.get_config('user_name')),
+                'OSI_USER_AUTOLOGIN={}'.format(1 if global_state.get_config('user_autologin') else 0),
+                'OSI_USER_PASSWORD="{}"'.format(global_state.get_config('user_password')),
+                'OSI_FORMATS="{}"'.format(global_state.get_config('formats')),
+                'OSI_TIMEZONE="{}"'.format(global_state.get_config('timezone')),
+                'OSI_ADDITIONAL_SOFTWARE="{}"'.format(global_state.get_config('additional_software'))]
+
+    def _get_install_env(self):
+        return ['OSI_LOCALE="{}"'.format(global_state.get_config('locale')),
+                'OSI_DEVICE_PATH="{}"'.format(global_state.get_config('disk_device_path')),
+                'OSI_DEVICE_IS_PARTITION={}'.format(1 if global_state.get_config('disk_is_partition') else 0),
+                'OSI_DEVICE_EFI_PARTITION="{}"'.format(global_state.get_config('disk_efi_partition')),
+                'OSI_USE_ENCRYPTION={}'.format(1 if global_state.get_config('use_encryption') else 0),
+                'OSI_ENCRYPTION_PIN="{}"'.format(global_state.get_config('encryption_pin'))]
+
+    def _start_script(self, name, envs, callback):
         self.terminal.spawn_async(
-            pty_flags, '/', ['sh', '/etc/os-installer/scripts/{}.sh'.format(name)],
-            None, spawn_flags, None, None, -1, cancel, callback, None)
+            self.pty_flags, '/', ['sh', '/etc/os-installer/scripts/{}.sh'.format(name)],
+            envs, self.spawn_flags, None, None, -1, self.cancel, callback, None)
 
     def _start_preparation(self):
-        print('Starting preparation...')
-        self._start_script('prepare', self._preparation_step_done)
+        envs = None
+        self._start_script('prepare', envs, self._preparation_step_done)
 
     def _start_installation(self):
         if self.preparation_done and self.installation_ready:
             print('Starting installation...')
-            self._start_script('install', self._installation_step_done)
+            check_install_config(global_state.config)
+            envs = self._get_install_env() + [None]
+            self._start_script('install', envs, self._installation_step_done)
 
     def _start_configuration(self):
         if self.installation_done and self.configuration_ready:
             print('Starting configuration...')
-            self._start_script('configure', self._configuration_step_done)
+            check_configuration_config(global_state.config)
+            envs = self._get_install_env() + self._get_configuration_env() + [None]
+            self._start_script('configure', envs, self._configuration_step_done)
 
     ### callbacks ###
 
