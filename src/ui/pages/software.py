@@ -9,7 +9,7 @@ from .widgets import SoftwareRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/software.ui')
-class SoftwarePage(Gtk.Overlay, Page):
+class SoftwarePage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'system-software-install-symbolic'
 
@@ -18,7 +18,7 @@ class SoftwarePage(Gtk.Overlay, Page):
     continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
-        Gtk.Overlay.__init__(self, **kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         # signals
         self.continue_button.connect('clicked', self._continue)
