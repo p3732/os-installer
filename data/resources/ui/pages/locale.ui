@@ -90,13 +90,13 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">18</property>
-                    <property name="margin-bottom">18</property>
                     <property name="vhomogeneous">False</property>
                     <property name="transition-type">crossfade</property>
                     <child>
                       <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-bottom">18</property>
                         <property name="orientation">vertical</property>
                         <property name="spacing">12</property>
                         <child>
@@ -292,6 +292,7 @@
                       <object class="GtkListBox" id="continents_list">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-bottom">70</property>
                         <property name="selection-mode">none</property>
                         <style>
                           <class name="content"/>
@@ -306,6 +307,7 @@
                       <object class="GtkListBox" id="countries_list">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-bottom">70</property>
                         <property name="selection-mode">none</property>
                         <style>
                           <class name="content"/>
@@ -320,6 +322,7 @@
                       <object class="GtkListBox" id="subzones_list">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-bottom">70</property>
                         <property name="selection-mode">none</property>
                         <style>
                           <class name="content"/>
@@ -334,6 +337,7 @@
                       <object class="GtkListBox" id="formats_list">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="margin-bottom">70</property>
                         <style>
                           <class name="content"/>
                         </style>
@@ -354,7 +358,7 @@
         </child>
         <child type="overlay">
           <object class="GtkBox">
-            <property name="height-request">18</property>
+            <property name="height-request">64</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="valign">end</property>

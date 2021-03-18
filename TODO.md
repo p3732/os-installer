@@ -1,7 +1,4 @@
 high prio:
-* swap "autologin" to "Protect with Password" and make password field insensitive
-
-* make bottom gradients bigger in some place for better scrollability discoverability
 
 * installer scripting
     * pass settings via ENV variables
