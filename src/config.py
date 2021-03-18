@@ -17,7 +17,6 @@ def _get_fallback_config():
 
 
 ### public methods ###
-
 def init_config():
     config = _get_fallback_config()
     try:
@@ -34,14 +33,15 @@ def check_install_config(config):
     return ('locale' in config and
             'disk_device_path' in config and
             'disk_is_partition' in config and
+            'disk_efi_partition' in config and
             'use_encryption' in config and
             'encryption_pin' in config)
 
 
-def check_post_install_config(config):
+def check_configuration_config(config):
     return ('user_name' in config and
+            'user_autologin' in config and
             'user_password' in config and
-            'locale' in config and
             'formats' in config and
             'timezone' in config and
             'additional_software' in config)
