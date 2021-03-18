@@ -5,8 +5,8 @@
 # The script gets called with the environment variables from the install script
 # (see install.sh) and these additional variables:
 # OSI_USER_NAME          : User's name. Not ASCII-fied
-# OSI_USER_AUTOLOGIN     : Whether to autologin the user. If set, no password is given
-# OSI_USER_PASSWORD      : User's password. Not given if autologin is set
+# OSI_USER_AUTOLOGIN     : Whether to autologin the user
+# OSI_USER_PASSWORD      : User's password. Can be empty if autologin is set.
 # OSI_FORMATS            : Locale of formats to be used
 # OSI_TIMEZONE           : Timezone to be used
 # OSI_ADDITIONAL_SOFTWARE: Space-separated list of additional packages to install
