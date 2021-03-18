@@ -13,7 +13,7 @@
         <property name="width-request">64</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
+        <property name="receives-default">False</property>
         <property name="tooltip-text" translatable="yes" comments="Hover information on toggle button that shows terminal output during installation.">Show Terminal Output</property>
         <property name="halign">center</property>
         <child>

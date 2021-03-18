@@ -152,7 +152,6 @@
                             <property name="height-request">-1</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="can-default">True</property>
                             <property name="receives-default">False</property>
                             <property name="action-name">app.next-page</property>
                             <child>
@@ -211,7 +210,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="focus-on-click">False</property>
-                        <property name="receives-default">True</property>
+                        <property name="receives-default">False</property>
                         <property name="halign">center</property>
                         <property name="valign">start</property>
                         <property name="popover">popover</property>

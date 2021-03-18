@@ -33,7 +33,7 @@
         <child>
           <object class="GtkListBoxRow">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            <property name="can-focus">False</property>
             <property name="activatable">False</property>
             <property name="selectable">False</property>
             <child>
@@ -63,6 +63,7 @@
                   <object class="GtkEntry" id="user_name_field">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="has-focus">True</property>
                     <property name="width-chars">10</property>
                     <property name="max-width-chars">24</property>
                     <property name="placeholder-text" translatable="yes" comments="Placeholder in user name entry field">Enter a Name</property>
@@ -82,7 +83,7 @@
           <object class="GtkListBoxRow">
             <property name="name">automatic_login</property>
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            <property name="can-focus">False</property>
             <property name="selectable">False</property>
             <child>
               <object class="GtkBox">
@@ -128,7 +129,7 @@
         <child>
           <object class="GtkListBoxRow">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
+            <property name="can-focus">False</property>
             <property name="activatable">False</property>
             <property name="selectable">False</property>
             <child>
@@ -192,6 +193,7 @@
         <property name="visible">True</property>
         <property name="sensitive">False</property>
         <property name="can-focus">True</property>
+        <property name="can-default">True</property>
         <property name="receives-default">True</property>
         <property name="halign">center</property>
         <property name="use-underline">True</property>
