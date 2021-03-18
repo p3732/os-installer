@@ -6,7 +6,7 @@ from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .locale_provider import get_current_formats, get_formats, get_timezone
 from .page import Page
-from .system_calls import set_system_timezone
+from .system_calls import set_system_formats, set_system_timezone
 from .widgets import ProgressRow, empty_list
 
 
@@ -99,6 +99,7 @@ class LocalePage(Gtk.Box, Page):
 
     def _on_formats_row_activated(self, list_box, row):
         global_state.set_config('formats', row.info)
+        set_system_formats(row.info)
 
         self.formats_label.set_label(row.get_label())
         self._show_overview()

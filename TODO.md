@@ -8,7 +8,6 @@ mid prio:
 
 * fix row being selected kbd layout->same language
 * start preparation immediately if no internet is required
-* correctly store timezone and formats in config
 * handle potentially needed legacy boot partition for MBR
 * correctly expand terminal output window
 
