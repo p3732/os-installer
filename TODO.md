@@ -9,7 +9,6 @@ mid prio:
 * fix row being selected kbd layout->same language
 * start preparation immediately if no internet is required
 * handle potentially needed legacy boot partition for MBR
-* correctly expand terminal output window
 
 low prio:
 
