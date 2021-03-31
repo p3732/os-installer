@@ -3,16 +3,22 @@
 ''' All calls to other programs are encapsulated here. '''
 
 import os
+from subprocess import Popen
 import subprocess
 import locale as Locale
 
 from .global_state import global_state
-from .thread_manager import thread_manager
 
 
 def _exec(args):
     if not global_state.demo_mode:
         subprocess.run(args)
+
+
+def _run_program(args):
+    env = os.environ.copy()
+    env["LANG"] = global_state.get_config('locale')
+    Popen(args, env=env)
 
 
 ### public methods ###
@@ -21,13 +27,11 @@ def has_efi_vars():
 
 
 def open_disks():
-    # TODO use correct language setting
-    thread_manager.start_standalone_thread(subprocess.run, True, ['gnome-disks'])
+    _run_program(['gnome-disks'])
 
 
 def open_wifi_settings():
-    # TODO use correct language setting
-    thread_manager.start_standalone_thread(subprocess.run, True, ['gnome-control-center', 'wifi'])
+    _run_program(['gnome-control-center', 'wifi'])
 
 
 def reboot_system():
