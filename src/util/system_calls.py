@@ -43,7 +43,7 @@ def set_system_keyboard_layout(keyboard_layout, short_hand):
     global_state.set_config('keyboard_layout_short_hand', short_hand)
 
     # set system input
-    _exec(['gsettings', 'set', 'org.gnome.desktop.input-sources sources',
+    _exec(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
            "[('xkb','{}')]".format(short_hand)])
 
 
