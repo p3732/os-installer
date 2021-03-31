@@ -41,7 +41,7 @@ class InstallPage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
-        installation_scripting.install_window_name = self.__gtype_name__
+        installation_scripting.install_page_name = self.__gtype_name__
 
         # setup VTE
         vte = installation_scripting.terminal
@@ -57,7 +57,3 @@ class InstallPage(Gtk.Box, Page):
 
     def unload(self):
         self.spinner.stop()
-
-        # in demo mode no script disables installation running flag
-        if global_state.demo_mode:
-            global_state.installation_running = False

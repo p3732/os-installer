@@ -24,7 +24,7 @@ class InstallationScripting():
     configuration_ready = False
 
     # set by respective window
-    install_window_name = None
+    install_page_name = None
 
     pty_flags = Vte.PtyFlags.DEFAULT
     spawn_flags = GLib.SpawnFlags.DEFAULT
@@ -94,7 +94,7 @@ class InstallationScripting():
         # TODO handle return value
         print('Configuration done.')
         global_state.installation_running = False
-        global_state.advance(self.install_window_name)
+        global_state.advance_without_return(self.install_page_name)
 
     ### public methods ###
 
