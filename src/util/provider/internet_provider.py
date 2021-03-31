@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import time
-from threading import Lock
+from threading import Lock, Thread
 from urllib.request import urlopen
 
 from .global_state import global_state
-from .thread_manager import thread_manager
 
 
 def check_connection(url):
@@ -28,22 +27,26 @@ class InternetProvider():
 
         # start internet connection checking
         self._start_connection_checker()
-        thread_manager.start_standalone_thread(self._poll, True)
+        self.thread = Thread(target=self._poll, daemon=True)
+        self.thread.start()
 
     def _start_connection_checker(self):
-        self.connection_checker = thread_manager.get_future_from(check_connection, url=self.url)
+        self.connection_checker = global_state.thread_pool.submit(check_connection, url=self.url)
 
     def _poll(self):
-        while not self.connected:
+        connected = False
+        while not connected:
             if not self.connection_checker.done():
                 time.sleep(0.5)  # wait 500ms
             else:
-                self.connected = self.connection_checker.result()
+                connected = self.connection_checker.result()
 
-                if not self.connected:
+                if not connected:
                     # restart checker
                     self._start_connection_checker()
+
         with self.callback_lock:
+            self.connected = connected
             if not self.callback is None:
                 self.callback()
 

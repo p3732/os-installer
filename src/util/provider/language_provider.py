@@ -6,7 +6,6 @@ import os
 from gi.repository import GnomeDesktop
 
 from .global_state import global_state
-from .thread_manager import thread_manager
 
 
 # generated via language_codes_to_locales.py
@@ -144,7 +143,7 @@ class LanguageProvider:
     def prepare(self):
         # load all languages from existing translations
         localedir = global_state.get_config('localedir')
-        self.languages = thread_manager.get_future_from(self._get_languages, localedir=localedir)
+        self.languages = global_state.thread_pool.submit(self._get_languages, localedir=localedir)
 
 
 language_provider = LanguageProvider()

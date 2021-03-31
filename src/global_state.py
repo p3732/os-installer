@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from concurrent.futures import ThreadPoolExecutor
 from .config import init_config
 
 
@@ -7,6 +8,8 @@ class GlobalState:
     config = init_config()
     demo_mode = False
     installation_running = False
+
+    thread_pool = ThreadPoolExecutor()  # for futures
 
     def __init__(self):
         self.set_config('disk_name', 'Test Dummy')

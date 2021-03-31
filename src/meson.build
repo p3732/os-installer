@@ -41,7 +41,6 @@ os_installer_sources = [
   'ui/window.py',
   'util/installation_scripting.py',
   'util/system_calls.py',
-  'util/thread_manager.py',
   'util/provider/disk_provider.py',
   'util/provider/internet_provider.py',
   'util/provider/keyboard_layout_provider.py',
