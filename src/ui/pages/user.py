@@ -52,7 +52,6 @@ class UserPage(Gtk.Box, Page):
     ### public methods ###
 
     def unload(self):
-        password = self.password_field.get_text()
-        user_name = self.user_name_field.get_text()
-        global_state.set_config('password', password)
-        global_state.set_config('user_name', user_name)
+        global_state.set_config('user_name', self.user_name_field.get_text())
+        global_state.set_config('user_password', self.password_field.get_text())
+        global_state.set_config('user_autologin', self.autologin_switch.get_state())
