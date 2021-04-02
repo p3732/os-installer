@@ -8,7 +8,7 @@ EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
 
 class DeviceInfo:
     device_path: str
-    efi_partition: str
+    efi_partition: str = ''
     is_partition: bool = True
     name: str
     prefixed: bool = False
@@ -47,7 +47,7 @@ class DiskProvider:
 
     def _get_partitions(self, partition_table, disk_info):
         partitions = []
-        efi_partition = None
+        efi_partition = ''
         for partition_name in partition_table.props.partitions:
             partition_object = self.udisks_client.get_object(partition_name)
             if partition_object:
