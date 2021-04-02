@@ -56,7 +56,6 @@ class LanguageInfo:
 
 
 class LanguageProvider:
-    config_suggested_languages = global_state.get_config('suggested_languages')
     languages_loaded = False
     languages_loading_lock = Lock()
 
@@ -113,7 +112,7 @@ class LanguageProvider:
             language_info = self._get_language_info(language_code)
             if not language_info:
                 continue
-            if language_code in self.config_suggested_languages:
+            if language_code in global_state.get_config('suggested_languages'):
                 suggested_languages.append(language_info)
             else:
                 additional_languages.append(language_info)
