@@ -205,20 +205,19 @@
                     <property name="valign">start</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkMenuButton">
+                      <object class="GtkButton">
                         <property name="width-request">32</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="focus-on-click">False</property>
-                        <property name="receives-default">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">start</property>
-                        <property name="popover">popover</property>
+                        <property name="receives-default">True</property>
+                        <property name="action-name">app.about</property>
+                        <property name="relief">none</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="icon-name">open-menu-symbolic</property>
+                            <property name="icon-name">help-about-symbolic</property>
                           </object>
                         </child>
                         <style>
@@ -229,6 +228,17 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -254,7 +264,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -302,29 +312,4 @@
       </object>
     </child>
   </template>
-  <object class="GtkPopover" id="popover">
-    <property name="can-focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="border-width">6</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="action-name">app.about</property>
-            <property name="text" translatable="yes" comments="Menu entry to show About dialog for application">_About OS-Installer</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
 </interface>
