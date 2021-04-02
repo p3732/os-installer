@@ -34,6 +34,8 @@ class InstallationScripting():
         # setup terminal
         self.terminal.set_input_enabled(False)
         self.terminal.set_scroll_on_output(True)
+        self.terminal.set_hexpand(True)
+        self.terminal.set_vexpand(True)
 
     def _get_configuration_env(self):
         return ['OSI_USER_NAME="{}"'.format(global_state.get_config('user_name')),

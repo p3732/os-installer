@@ -18,13 +18,13 @@
     <!-- about dialog is parsed before compilation, resulting in different path -->
     <file preprocess="xml-stripblanks">about_dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/confirm_quit_popup.ui</file>
-    <file preprocess="xml-stripblanks">ui/failed_installation_popup.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
 
     <file preprocess="xml-stripblanks">ui/pages/confirm.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/disk.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/done.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/encrypt.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/failed.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/install.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/internet.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/keyboard_layout.ui</file>

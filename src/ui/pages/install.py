@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-import threading
-
 from gi.repository import Gtk
 
 from .global_state import global_state
@@ -43,11 +41,8 @@ class InstallPage(Gtk.Box, Page):
     def load_once(self):
         installation_scripting.install_page_name = self.__gtype_name__
 
-        # setup VTE
-        vte = installation_scripting.terminal
-        vte.set_hexpand(True)
-        vte.set_vexpand(True)
-        self.terminal_box.add(vte)
+        # setup terminal
+        self.terminal_box.add(installation_scripting.terminal)
         self.terminal_box.show_all()
 
         if global_state.demo_mode:

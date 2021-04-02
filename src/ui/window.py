@@ -10,6 +10,7 @@ from .confirm import ConfirmPage
 from .disk import DiskPage
 from .done import DonePage
 from .encrypt import EncryptPage
+from .failed import FailedPage
 from .install import InstallPage
 from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
@@ -20,7 +21,6 @@ from .software import SoftwarePage
 from .user import UserPage
 
 from .confirm_quit_popup import ConfirmQuitPopup
-from .failed_installation_popup import FailedInstallationPopup
 
 
 class NavigationState:
@@ -57,6 +57,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         # set advancing functions in global state
         global_state.advance = self.advance
         global_state.advance_without_return = self.advance_without_return
+        global_state.installation_failed = self.show_failed_page
 
         # determine available pages
         self._determine_available_pages()
@@ -86,7 +87,9 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             InstallPage,
             # post-installation
             DonePage,
-            RestartPage
+            RestartPage,
+            # failed installation, keep at end
+            FailedPage
         ]
 
     def _initialize_page(self, page_to_initialize):
@@ -190,6 +193,8 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         popup = ConfirmQuitPopup(self.quit_callback)
         self._show_dialog(popup)
 
-    def show_failed_installation_dialog(self, error_text):
-        popup = FailedInstallationPopup(self.quit_callback, error_text)
-        self._show_dialog(popup)
+    def show_failed_page(self, error_text):
+        with self.navigation_lock:
+            failed_page_position = len(self.available_pages)-1
+            self.navigation_state.earliest = failed_page_position
+            self._load_page(failed_page_position)

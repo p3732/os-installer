@@ -4,13 +4,13 @@ data/com.github.p3732.OS-Installer.gschema.xml
 
 data/resources/ui/about_dialog.ui.in
 data/resources/ui/confirm_quit_popup.ui
-data/resources/ui/failed_installation_popup.ui
 data/resources/ui/main_window.ui
 
 data/resources/ui/pages/confirm.ui
 data/resources/ui/pages/disk.ui
 data/resources/ui/pages/done.ui
 data/resources/ui/pages/encrypt.ui
+data/resources/ui/pages/failed.ui
 data/resources/ui/pages/install.ui
 data/resources/ui/pages/internet.ui
 data/resources/ui/pages/keyboard_layout.ui
