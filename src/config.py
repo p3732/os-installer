@@ -16,6 +16,12 @@ def _get_fallback_config():
     }
 
 
+def _set_defaults_for_optional_pages(config):
+    config['use_encryption'] = 'en_US.utf-8'
+    config['chosen_additional_software'] = ''
+    return config
+
+
 ### public methods ###
 def init_config():
     config = _get_fallback_config()
@@ -26,7 +32,7 @@ def init_config():
                 config[config_property] = config_from_file[config_property]
     except:
         print('No config provided, using fallback config.')
-    return config
+    return _set_defaults_for_optional_pages(config)
 
 
 def check_install_config(config):
