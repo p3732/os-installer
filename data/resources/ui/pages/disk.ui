@@ -2,235 +2,14 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <template class="DiskPage" parent="GtkOverlay">
+  <template class="DiskPage" parent="GtkBox">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
+    <property name="orientation">vertical</property>
     <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkScrolledWindow">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="margin-top">28</property>
-            <property name="hscrollbar-policy">external</property>
-            <property name="vscrollbar-policy">external</property>
-            <property name="propagate-natural-width">True</property>
-            <property name="propagate-natural-height">True</property>
-            <child>
-              <object class="GtkViewport">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="vscroll-policy">natural</property>
-                <property name="shadow-type">none</property>
-                <child>
-                  <object class="GtkStack" id="list_stack">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="margin-top">18</property>
-                    <property name="margin-bottom">70</property>
-                    <property name="vhomogeneous">False</property>
-                    <property name="transition-type">slide-left-right</property>
-                    <child>
-                      <object class="GtkListBox" id="disk_list">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="receives-default">True</property>
-                        <property name="valign">start</property>
-                        <style>
-                          <class name="content"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="name">disks</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkListBox" id="whole_disk_list">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="selection-mode">none</property>
-                            <child>
-                              <object class="GtkListBoxRow">
-                                <property name="name">back_row</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="selectable">False</property>
-                                <child>
-                                  <object class="GtkBox">
-                                    <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="margin-start">12</property>
-                                    <property name="margin-end">12</property>
-                                    <property name="margin-top">6</property>
-                                    <property name="margin-bottom">6</property>
-                                    <property name="spacing">12</property>
-                                    <child>
-                                      <object class="GtkLabel" id="disk_size">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="width-chars">5</property>
-                                        <property name="max-width-chars">7</property>
-                                        <property name="xalign">1</property>
-                                        <attributes>
-                                          <attribute name="weight" value="light"/>
-                                        </attributes>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="label" translatable="yes" comments="Label to go back to overview of all disks">Use Whole Disk</property>
-                                        <property name="wrap">True</property>
-                                        <attributes>
-                                          <attribute name="weight" value="normal"/>
-                                        </attributes>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkImage">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="icon-name">go-next-symbolic</property>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="pack-type">end</property>
-                                        <property name="position">2</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="disk_device_path">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <property name="width-chars">5</property>
-                                        <property name="max-width-chars">7</property>
-                                        <property name="xalign">1</property>
-                                        <attributes>
-                                          <attribute name="weight" value="light"/>
-                                        </attributes>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="pack-type">end</property>
-                                        <property name="position">3</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="content"/>
-                            </style>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkListBox" id="partition_list">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="valign">start</property>
-                            <style>
-                              <class name="content"/>
-                            </style>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="name">partitions</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="index">-1</property>
-      </packing>
-    </child>
-    <child type="overlay">
-      <object class="GtkBox">
-        <property name="height-request">64</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="valign">end</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <placeholder/>
-        </child>
-        <style>
-          <class name="bottom-gradient"/>
-        </style>
-      </object>
-      <packing>
-        <property name="pass-through">True</property>
-      </packing>
-    </child>
-    <child type="overlay">
-      <object class="GtkBox">
-        <property name="height-request">16</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="valign">start</property>
-        <property name="margin-top">24</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <placeholder/>
-        </child>
-        <style>
-          <class name="top-gradient"/>
-        </style>
-      </object>
-      <packing>
-        <property name="pass-through">True</property>
-        <property name="index">1</property>
-      </packing>
-    </child>
-    <child type="overlay">
       <object class="GtkStack" id="text_stack">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="valign">start</property>
         <property name="transition-type">slide-left-right</property>
         <child>
           <object class="GtkBox">
@@ -303,26 +82,258 @@
         </child>
       </object>
       <packing>
-        <property name="index">2</property>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
       </packing>
     </child>
-    <child type="overlay">
-      <object class="GtkButton" id="settings_button">
-        <property name="label" translatable="yes" comments="Button label to open disk management tool. Underscore can not be for same as for 'Reload'">_Manage Disks</property>
+    <child>
+      <object class="GtkOverlay">
         <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">False</property>
-        <property name="halign">center</property>
-        <property name="valign">end</property>
-        <property name="margin-bottom">18</property>
-        <property name="use-underline">True</property>
-        <style>
-          <class name="circular"/>
-          <class name="big-button"/>
-        </style>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="hscrollbar-policy">external</property>
+                <property name="vscrollbar-policy">external</property>
+                <property name="propagate-natural-width">True</property>
+                <property name="propagate-natural-height">True</property>
+                <child>
+                  <object class="GtkViewport">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="vscroll-policy">natural</property>
+                    <property name="shadow-type">none</property>
+                    <child>
+                      <object class="GtkStack" id="list_stack">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">70</property>
+                        <property name="vhomogeneous">False</property>
+                        <property name="transition-type">slide-left-right</property>
+                        <child>
+                          <object class="GtkListBox" id="disk_list">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="receives-default">True</property>
+                            <property name="valign">start</property>
+                            <style>
+                              <class name="content"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="name">disks</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">12</property>
+                            <child>
+                              <object class="GtkListBox" id="whole_disk_list">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="selection-mode">none</property>
+                                <child>
+                                  <object class="GtkListBoxRow">
+                                    <property name="name">back_row</property>
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="selectable">False</property>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <property name="margin-start">12</property>
+                                        <property name="margin-end">12</property>
+                                        <property name="margin-top">6</property>
+                                        <property name="margin-bottom">6</property>
+                                        <property name="spacing">12</property>
+                                        <child>
+                                          <object class="GtkLabel" id="disk_size">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="width-chars">5</property>
+                                            <property name="max-width-chars">7</property>
+                                            <property name="xalign">1</property>
+                                            <attributes>
+                                              <attribute name="weight" value="light"/>
+                                            </attributes>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">0</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="label" translatable="yes" comments="Label to go back to overview of all disks">Use Whole Disk</property>
+                                            <property name="wrap">True</property>
+                                            <attributes>
+                                              <attribute name="weight" value="normal"/>
+                                            </attributes>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="position">1</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkImage">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="icon-name">go-next-symbolic</property>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="disk_device_path">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="width-chars">5</property>
+                                            <property name="max-width-chars">7</property>
+                                            <property name="xalign">1</property>
+                                            <attributes>
+                                              <attribute name="weight" value="light"/>
+                                            </attributes>
+                                          </object>
+                                          <packing>
+                                            <property name="expand">False</property>
+                                            <property name="fill">True</property>
+                                            <property name="pack-type">end</property>
+                                            <property name="position">3</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="content"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkListBox" id="partition_list">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="valign">start</property>
+                                <style>
+                                  <class name="content"/>
+                                </style>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="name">partitions</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="index">-1</property>
+          </packing>
+        </child>
+        <child type="overlay">
+          <object class="GtkBox">
+            <property name="height-request">64</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="valign">end</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <placeholder/>
+            </child>
+            <style>
+              <class name="bottom-gradient"/>
+            </style>
+          </object>
+          <packing>
+            <property name="pass-through">True</property>
+          </packing>
+        </child>
+        <child type="overlay">
+          <object class="GtkBox">
+            <property name="height-request">16</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="valign">start</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <placeholder/>
+            </child>
+            <style>
+              <class name="top-gradient"/>
+            </style>
+          </object>
+          <packing>
+            <property name="pass-through">True</property>
+            <property name="index">1</property>
+          </packing>
+        </child>
+        <child type="overlay">
+          <object class="GtkButton" id="settings_button">
+            <property name="label" translatable="yes" comments="Button label to open disk management tool. Underscore can not be for same as for 'Reload'">_Manage Disks</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">False</property>
+            <property name="halign">center</property>
+            <property name="valign">end</property>
+            <property name="margin-bottom">18</property>
+            <property name="use-underline">True</property>
+            <style>
+              <class name="circular"/>
+              <class name="big-button"/>
+            </style>
+          </object>
+          <packing>
+            <property name="index">3</property>
+          </packing>
+        </child>
       </object>
       <packing>
-        <property name="index">3</property>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </template>

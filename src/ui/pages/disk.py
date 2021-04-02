@@ -14,7 +14,7 @@ GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
-class DiskPage(Gtk.Overlay, Page):
+class DiskPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'drive-harddisk-system-symbolic'
 
@@ -37,7 +37,7 @@ class DiskPage(Gtk.Overlay, Page):
     lock = Lock()
 
     def __init__(self, **kwargs):
-        Gtk.Overlay.__init__(self, **kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         self.minimum_disk_size = global_state.get_config('minimum_disk_size') * GIGABYTE_FACTOR
 
