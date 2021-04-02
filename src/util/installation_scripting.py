@@ -45,6 +45,7 @@ class InstallationScripting():
             script_name = steps[self.current_step]
             print('Starting step "{}"...'.format(script_name))
             envs = create_envs(global_state.config, self.current_step >= 2, self.current_step == 3)
+            global_state.installation_running = self.current_step >= 2
 
             # check config
             if envs == None:
@@ -72,6 +73,8 @@ class InstallationScripting():
 
             if not status == 0 and not global_state.demo_mode:
                 global_state.installation_failed()
+            elif self.current_step == 3 and global_state.demo_mode:
+                global_state.advance(self.install_page_name)
             elif self.current_step == 3:
                 global_state.advance_without_return(self.install_page_name)
             else:
