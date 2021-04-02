@@ -20,6 +20,8 @@ class InstallPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
+        installation_scripting.install_page_name = self.__gtype_name__
+
         # UI element states
         self.stack.set_visible_child_name('spinner')
 
@@ -38,17 +40,12 @@ class InstallPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load_once(self):
-        installation_scripting.install_page_name = self.__gtype_name__
-
+    def load(self):
         # setup terminal
         self.terminal_box.add(installation_scripting.terminal)
         self.terminal_box.show_all()
-
-        if global_state.demo_mode:
-            return True
-
         self.spinner.start()
 
     def unload(self):
+        self.terminal_box.remove(installation_scripting.terminal)
         self.spinner.stop()
