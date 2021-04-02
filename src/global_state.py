@@ -29,7 +29,7 @@ class GlobalState:
     def advance_without_return(self, name):
         print('Advance called before window initalization done!')
 
-    def installation_failed(self, error_text):
+    def installation_failed(self):
         print('Installation failed before window initalization done!')
 
 

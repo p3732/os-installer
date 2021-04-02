@@ -192,7 +192,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
         popup = ConfirmQuitPopup(self.quit_callback)
         self._show_dialog(popup)
 
-    def show_failed_page(self, error_text):
+    def show_failed_page(self):
         with self.navigation_lock:
             failed_page_position = len(self.available_pages)-1
             self.navigation_state.earliest = failed_page_position

@@ -24,7 +24,7 @@ class ConfirmPage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_clicked_confirm(self, button):
-        installation_scripting.start_installation()
+        installation_scripting.start_next_step()
         global_state.advance_without_return(self.__gtype_name__)
 
     ### public methods ###

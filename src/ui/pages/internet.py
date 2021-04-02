@@ -5,7 +5,6 @@ from threading import Lock
 from gi.repository import Gtk
 
 from .global_state import global_state
-from .installation_scripting import installation_scripting
 from .internet_provider import internet_provider
 from .page import Page
 from .system_calls import open_wifi_settings, start_system_timesync
@@ -31,7 +30,6 @@ class InternetPage(Gtk.Box, Page):
     def _set_connected(self):
         self.image_name = 'network-wireless-symbolic'
         start_system_timesync()
-        installation_scripting.start_preparation()
 
     ### callbacks ###
 

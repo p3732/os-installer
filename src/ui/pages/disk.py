@@ -6,6 +6,7 @@ from gi.repository import Gtk
 
 from .disk_provider import disk_provider
 from .global_state import global_state
+from .installation_scripting import installation_scripting
 from .page import Page
 from .system_calls import has_efi_vars, open_disks
 from .widgets import DeviceRow, NoPartitionsRow, empty_list
@@ -124,12 +125,12 @@ class DiskPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load(self):
-        if not self.lock.acquire(blocking=False):
-            return
-        self.can_navigate_backward = False
-        self._setup_disk_list()
-        self.lock.release()
+    def load_once(self):
+        # start prepare script
+        installation_scripting.start_next_step()
+
+        with self.lock:
+            self._setup_disk_list()
 
     def navigate_backward(self):
         self.can_navigate_backward = False

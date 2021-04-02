@@ -5,8 +5,11 @@ import time
 
 from gi.repository import Gio, GLib, GObject, Vte
 
-from .config import check_configuration_config, check_install_config
+from .config import create_envs
 from .global_state import global_state
+
+
+steps = [None, 'prepare', 'install', 'configure']
 
 
 class InstallationScripting():
@@ -16,19 +19,17 @@ class InstallationScripting():
     * Installation. Installs an OS onto a disk.
     * Configuration. Configures an OS according to user's choices.
     '''
+
     terminal = Vte.Terminal()
-    lock = Lock()
-    preparation_done = False
-    installation_ready = False
-    installation_done = False
-    configuration_ready = False
-
-    # set by respective window
-    install_page_name = None
-
-    pty_flags = Vte.PtyFlags.DEFAULT
-    spawn_flags = GLib.SpawnFlags.DEFAULT
     cancel = Gio.Cancellable()
+
+    lock = Lock()
+    current_step = 0
+    step_ready = 0
+    script_running = False
+
+    # set by installation page
+    install_page_name = None
 
     def __init__(self):
         # setup terminal
@@ -36,86 +37,52 @@ class InstallationScripting():
         self.terminal.set_scroll_on_output(True)
         self.terminal.set_hexpand(True)
         self.terminal.set_vexpand(True)
+        self.terminal.connect('child-exited', self._on_child_exited)
 
-    def _get_configuration_env(self):
-        return ['OSI_USER_NAME="{}"'.format(global_state.get_config('user_name')),
-                'OSI_USER_AUTOLOGIN={}'.format(1 if global_state.get_config('user_autologin') else 0),
-                'OSI_USER_PASSWORD="{}"'.format(global_state.get_config('user_password')),
-                'OSI_FORMATS="{}"'.format(global_state.get_config('formats')),
-                'OSI_TIMEZONE="{}"'.format(global_state.get_config('timezone')),
-                'OSI_ADDITIONAL_SOFTWARE="{}"'.format(global_state.get_config('additional_software'))]
+    def _start_next_script(self):
+        if self.current_step < self.step_ready and not self.script_running:
+            self.current_step += 1
+            script_name = steps[self.current_step]
+            print('Starting step "{}"...'.format(script_name))
+            envs = create_envs(global_state.config, self.current_step >= 2, self.current_step == 3)
 
-    def _get_install_env(self):
-        return ['OSI_LOCALE="{}"'.format(global_state.get_config('locale')),
-                'OSI_DEVICE_PATH="{}"'.format(global_state.get_config('disk_device_path')),
-                'OSI_DEVICE_IS_PARTITION={}'.format(1 if global_state.get_config('disk_is_partition') else 0),
-                'OSI_DEVICE_EFI_PARTITION="{}"'.format(global_state.get_config('disk_efi_partition')),
-                'OSI_USE_ENCRYPTION={}'.format(1 if global_state.get_config('use_encryption') else 0),
-                'OSI_ENCRYPTION_PIN="{}"'.format(global_state.get_config('encryption_pin'))]
+            # check config
+            if envs == None:
+                print('Not all config options set for "{}". Please report this bug.'.format(script_name))
+                print('############################')
+                print(global_state.config)
+                print('############################')
+                global_state.installation_failed()
+                return
 
-    def _start_script(self, name, envs, callback):
-        self.terminal.spawn_async(
-            self.pty_flags, '/', ['sh', '/etc/os-installer/scripts/{}.sh'.format(name)],
-            envs, self.spawn_flags, None, None, -1, self.cancel, callback, None)
-
-    def _start_preparation(self):
-        envs = None
-        self._start_script('prepare', envs, self._preparation_step_done)
-
-    def _start_installation(self):
-        if self.preparation_done and self.installation_ready:
-            print('Starting installation...')
-            check_install_config(global_state.config)
-            envs = self._get_install_env() + [None]
-            self._start_script('install', envs, self._installation_step_done)
-
-    def _start_configuration(self):
-        if self.installation_done and self.configuration_ready:
-            print('Starting configuration...')
-            check_configuration_config(global_state.config)
-            envs = self._get_install_env() + self._get_configuration_env() + [None]
-            self._start_script('configure', envs, self._configuration_step_done)
+            # start script
+            self.script_running, _ = self.terminal.spawn_sync(
+                Vte.PtyFlags.DEFAULT, '/', ['sh', '/etc/os-installer/scripts/{}.sh'.format(script_name)],
+                envs, GLib.SpawnFlags.DEFAULT, None, None, self.cancel)
+            if not self.script_running:
+                print('Could not start {} script! Ignoring.'.format(script_name))
 
     ### callbacks ###
 
-    def _preparation_step_done(self, terminal, column, row, data):
-        # TODO handle return value
+    def _on_child_exited(self, terminal, status):
         with self.lock:
-            print('Installation preparation done.')
-            self.preparation_done = True
-            self._start_installation()
+            self.script_running = False
+            script_name = steps[self.current_step]
+            print('Finished step "{}".'.format(script_name))
 
-    def _installation_step_done(self, terminal, column, row, data):
-        # TODO handle return value
-        with self.lock:
-            print('Installation done.')
-            self.installation_done = True
-            self._start_configuration()
-
-    def _configuration_step_done(self, terminal, column, row, data):
-        # TODO handle return value
-        print('Configuration done.')
-        global_state.installation_running = False
-        global_state.advance_without_return(self.install_page_name)
+            if not status == 0 and not global_state.demo_mode:
+                global_state.installation_failed()
+            elif self.current_step == 3:
+                global_state.advance_without_return(self.install_page_name)
+            else:
+                self._start_next_script()
 
     ### public methods ###
 
-    def start_preparation(self):
-        ''' First step. Runs as soon as internet is connected or directly if internet is not required. '''
+    def start_next_step(self):
         with self.lock:
-            self._start_preparation()
-
-    def start_installation(self):
-        ''' Second step. Runs when user selected disk and prepartion is done. '''
-        with self.lock:
-            self.installation_ready = True
-            self._start_installation()
-
-    def start_configuration(self):
-        ''' Third step. Runs when both, user configuration input and installation, are done. '''
-        with self.lock:
-            self.configuration_ready = True
-            self._start_configuration()
+            self.step_ready += 1
+            self._start_next_script()
 
 
 installation_scripting = InstallationScripting()

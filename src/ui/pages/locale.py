@@ -94,7 +94,7 @@ class LocalePage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_clicked_confirm_button(self, button):
-        installation_scripting.start_configuration()
+        installation_scripting.start_next_step()
         global_state.advance_without_return(self.__gtype_name__)
 
     def _on_formats_row_activated(self, list_box, row):

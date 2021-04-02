@@ -5,6 +5,24 @@ import yaml
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 
+def _install_variables_set(config):
+    return ('locale' in config and
+            'disk_device_path' in config and
+            'disk_is_partition' in config and
+            'disk_efi_partition' in config and
+            'use_encryption' in config and
+            'encryption_pin' in config)
+
+
+def _configure_variables_set(config):
+    return ('user_name' in config and
+            'user_autologin' in config and
+            'user_password' in config and
+            'formats' in config and
+            'timezone' in config and
+            'chosen_additional_software' in config)
+
+
 def _get_fallback_config():
     return {
         'internet_connection_required': True,
@@ -35,19 +53,25 @@ def init_config():
     return _set_defaults_for_optional_pages(config)
 
 
-def check_install_config(config):
-    return ('locale' in config and
-            'disk_device_path' in config and
-            'disk_is_partition' in config and
-            'disk_efi_partition' in config and
-            'use_encryption' in config and
-            'encryption_pin' in config)
-
-
-def check_configuration_config(config):
-    return ('user_name' in config and
-            'user_autologin' in config and
-            'user_password' in config and
-            'formats' in config and
-            'timezone' in config and
-            'chosen_additional_software' in config)
+def create_envs(config, with_install_envs=False, with_configure_envs=False):
+    if (with_install_envs and not _install_variables_set(config) or
+            with_configure_envs and not _configure_variables_set(config)):
+        return None
+    envs = []
+    if with_install_envs:
+        envs += [
+            'OSI_LOCALE="' + config['locale'] + '"',
+            'OSI_DEVICE_PATH="' + config['disk_device_path'] + '"',
+            'OSI_DEVICE_IS_PARTITION=' + str(1 if config['disk_is_partition'] else 0),
+            'OSI_DEVICE_EFI_PARTITION="' + config['disk_efi_partition'] + '"',
+            'OSI_USE_ENCRYPTION=' + str(1 if config['use_encryption'] else 0),
+            'OSI_ENCRYPTION_PIN="' + config['encryption_pin'] + '"']
+    if with_configure_envs:
+        envs += [
+            'OSI_USER_NAME="' + config['user_name'] + '"',
+            'OSI_USER_AUTOLOGIN=' + str(1 if config['user_autologin'] else 0),
+            'OSI_USER_PASSWORD="' + config['user_password'] + '"',
+            'OSI_FORMATS="' + config['formats'] + '"',
+            'OSI_TIMEZONE="' + config['timezone'] + '"',
+            'OSI_ADDITIONAL_SOFTWARE="' + config['chosen_additional_software'] + '"']
+    return envs + [None]
