@@ -51,9 +51,9 @@ echo ''
 # Pretending to do something
 echo 'Pretending to do something'
 
-for i in {1..20}
+for i in {1..5}
 do
-    sleep 0.1
+    sleep 1
     echo -n '.'
 done
 

@@ -38,7 +38,7 @@ echo 'Pretending to do something'
 
 for i in {1..20}
 do
-    sleep 0.1
+    sleep 1
     echo -n '.'
 done
 
