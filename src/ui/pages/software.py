@@ -45,8 +45,9 @@ class SoftwarePage(Gtk.Box, Page):
         self._setup_software()
 
     def unload(self):
-        to_install = []
+        to_install = ''
         for row in self.software_list:
             if row.is_activated():
-                to_install.append(row.package_name)
-        global_state.set_config('additional_software', to_install)
+                to_install += ' ' + row.package_name
+
+        global_state.set_config('chosen_additional_software', to_install.strip())

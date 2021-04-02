@@ -68,8 +68,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
     def _determine_available_pages(self):
         offer_internet_connection = global_state.get_config('internet_connection_required')
         offer_disk_encryption = global_state.get_config('offer_disk_encryption')
-        additional_software = global_state.get_config('additional_software')
-        offer_additional_software = additional_software and len(additional_software) > 0
+        offer_additional_software = len(global_state.get_config('additional_software')) > 0
 
         self.available_pages = [
             # pre-installation section

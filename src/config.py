@@ -44,4 +44,4 @@ def check_configuration_config(config):
             'user_password' in config and
             'formats' in config and
             'timezone' in config and
-            'additional_software' in config)
+            'chosen_additional_software' in config)
