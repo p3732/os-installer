@@ -5,7 +5,6 @@ import time
 
 from gi.repository import Gio, GLib, GObject, Vte
 
-from .config import create_envs
 from .global_state import global_state
 
 
@@ -44,7 +43,7 @@ class InstallationScripting():
             self.current_step += 1
             script_name = steps[self.current_step]
             print('Starting step "{}"...'.format(script_name))
-            envs = create_envs(global_state.config, self.current_step >= 2, self.current_step == 3)
+            envs = global_state.create_envs(self.current_step >= 2, self.current_step == 3)
             global_state.installation_running = self.current_step >= 2
 
             # check config

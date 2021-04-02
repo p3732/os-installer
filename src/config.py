@@ -37,7 +37,7 @@ def _get_fallback_config():
 def _set_defaults_for_optional_pages(config):
     config['use_encryption'] = 'en_US.utf-8'
     config['chosen_additional_software'] = ''
-    return config
+    config['disk_name'] = 'Test Dummy'  # for testing
 
 
 ### public methods ###
@@ -50,10 +50,11 @@ def init_config():
                 config[config_property] = config_from_file[config_property]
     except:
         print('No config provided, using fallback config.')
-    return _set_defaults_for_optional_pages(config)
+    _set_defaults_for_optional_pages(config)
+    return config
 
 
-def create_envs(config, with_install_envs=False, with_configure_envs=False):
+def create_envs(config, with_install_envs, with_configure_envs):
     if (with_install_envs and not _install_variables_set(config) or
             with_configure_envs and not _configure_variables_set(config)):
         return None

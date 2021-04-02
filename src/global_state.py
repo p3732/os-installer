@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from concurrent.futures import ThreadPoolExecutor
-from .config import init_config
+from .config import create_envs, init_config
 
 
 class GlobalState:
@@ -31,6 +31,9 @@ class GlobalState:
 
     def installation_failed(self):
         print('Installation failed before window initalization done!')
+
+    def create_envs(self, with_install_envs=False, with_configure_envs=False):
+        return create_envs(self.config, with_configure_envs, with_install_envs)
 
 
 global_state = GlobalState()
