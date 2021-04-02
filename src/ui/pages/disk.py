@@ -67,8 +67,6 @@ class DiskPage(Gtk.Overlay, Page):
         self.list_stack.set_visible_child_name('disks')
 
     def _setup_partition_list(self, disk_info):
-        if self.current_disk == disk_info:
-            return
         self.current_disk = disk_info
 
         empty_list(self.partition_list)
