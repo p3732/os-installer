@@ -33,7 +33,7 @@ class GlobalState:
         print('Installation failed before window initalization done!')
 
     def create_envs(self, with_install_envs=False, with_configure_envs=False):
-        return create_envs(self.config, with_configure_envs, with_install_envs)
+        return create_envs(self.config, with_install_envs, with_configure_envs)
 
 
 global_state = GlobalState()
