@@ -194,6 +194,8 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
     def show_failed_page(self):
         with self.navigation_lock:
+            global_state.installation_running = False
+
             failed_page_position = len(self.available_pages)-1
             self.navigation_state.earliest = failed_page_position
             self._load_page(failed_page_position)
