@@ -1,20 +1,17 @@
-# THIS IS STILL UNDER DEVELOPMENT
-It can not yet be used to actually install anything.
-
 # OS Installer
 A simple operating system installer, intended to be used with live install systems.
 
 Provides bootstrapping through language, keyboard, internet connection and disk selection.
 Allows defining of optional additional software to be installed.
 
-# Testing
-To try out OS-Installer, without making any changes to your system, run it in debug mode:
-
+# Build and Install
 ```
 meson build
 sudo ninja -C build install
-os-installer -d
 ```
+
+# Test
+To try OS-Installer, without making any changes to your system, run it in debug mode with `os-installer -d`
 
 # Translating
 ## Simple Way
