@@ -69,11 +69,11 @@ def set_system_language(language_info):
 def set_system_formats(locale):
     global_state.set_config('formats', locale)
 
-    _exec(['localectl', 'set-locale', 'LC_NUMERIC', locale])
-    _exec(['localectl', 'set-locale', 'LC_TIME', locale])
-    _exec(['localectl', 'set-locale', 'LC_MONETARY', locale])
-    _exec(['localectl', 'set-locale', 'LC_PAPER', locale])
-    _exec(['localectl', 'set-locale', 'LC_MEASUREMENT', locale])
+    _exec(['localectl', 'set-locale', 'LC_NUMERIC={}'.format(locale)])
+    _exec(['localectl', 'set-locale', 'LC_TIME={}'.format(locale)])
+    _exec(['localectl', 'set-locale', 'LC_MONETARY={}'.format(locale)])
+    _exec(['localectl', 'set-locale', 'LC_PAPER={}'.format(locale)])
+    _exec(['localectl', 'set-locale', 'LC_MEASUREMENT={}'.format(locale)])
 
 
 def set_system_timezone(timezone):
