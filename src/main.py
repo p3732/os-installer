@@ -32,9 +32,11 @@ class Application(Gtk.Application):
         # Connect app shutdown signal
         self.connect('shutdown', self._on_quit)
 
-        # Add --hidden command line option
+        # Additional command line options
         self.add_main_option('demo-mode', b'd', GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE, "Run in demo mode, don't alter the system", None)
+
+        global_state.set_config('version', version)
 
     def _load_css(self):
         css_provider = Gtk.CssProvider()

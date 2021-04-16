@@ -32,6 +32,7 @@ def _get_fallback_config():
         'offer_disk_encryption': True,
         'additional_software': {},
 
+        'version': -1,
         'distribution_name': None
     }
 
