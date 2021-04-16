@@ -70,24 +70,17 @@ def set_system_language(language_info):
         # fallback
         Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
-    # set system locale
-    _exec(['localectl', 'set-locale', locale])
-
 
 def set_system_formats(locale):
     global_state.set_config('formats', locale)
-
-    _exec(['localectl', 'set-locale', 'LC_NUMERIC={}'.format(locale)])
-    _exec(['localectl', 'set-locale', 'LC_TIME={}'.format(locale)])
-    _exec(['localectl', 'set-locale', 'LC_MONETARY={}'.format(locale)])
-    _exec(['localectl', 'set-locale', 'LC_PAPER={}'.format(locale)])
-    _exec(['localectl', 'set-locale', 'LC_MEASUREMENT={}'.format(locale)])
+    exec_(['gsettings', 'set', 'org.gnome.system.locale', 'region', "'{}'".format(locale)])
 
 
 def set_system_timezone(timezone):
     global_state.set_config('timezone', timezone)
-    _exec(['timedatectl', 'set-timezone', timezone])
+    # TODO find correct way to set timezone without user authentication
+    # _exec(['timedatectl', 'set-timezone', timezone])
 
 
 def start_system_timesync():
-    _exec(['timedatectl', 'set-ntp', 'true'])
+    _exec(['gsettings', 'set', 'org.gnome.desktop.datetime', 'automatic-timezone', 'true'])
