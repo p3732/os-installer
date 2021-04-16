@@ -30,6 +30,14 @@ def open_disks():
     _run_program(['gnome-disks'])
 
 
+def open_internet_search():
+    distribution_name = global_state.get_config('distribution_name')
+    name_snippet = '"' + distribution_name + '" ' if distribution_name else ''
+    search_text = '{}"failed installation" "os-installer version {}"'.format(
+        name_snippet, global_state.get_config('version'))
+    _run_program(['epiphany', '--search', search_text])
+
+
 def open_wifi_settings():
     _run_program(['gnome-control-center', 'wifi'])
 
