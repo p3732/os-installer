@@ -30,7 +30,9 @@ def _get_fallback_config():
         'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
-        'additional_software': {}
+        'additional_software': {},
+
+        'distribution_name': None
     }
 
 

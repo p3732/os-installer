@@ -4,6 +4,10 @@
 # Place your config under /etc/os-installer/config.yaml for it to be used.
 # If a value is not defined, it's default will be used.
 
+# Name of the distribution.
+# Default: None
+distribution_name: 'Debuntorch'
+
 # Whether the installation needs an internet connection.
 # Default: yes
 internet_connection_required: yes
