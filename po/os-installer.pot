@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-12 13:40+0100\n"
+"POT-Creation-Date: 2021-04-16 01:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,26 +45,6 @@ msgstr ""
 msgid "_Stop Installation"
 msgstr ""
 
-#. Shown as simple informative text
-#: data/resources/ui/failed_installation_popup.ui
-msgid "The installation failed."
-msgstr ""
-
-#. Shown on button underneath an error text. Underscore can not be the same as for 'Meh'
-#: data/resources/ui/failed_installation_popup.ui
-msgid "_Copy Error Text"
-msgstr ""
-
-#. Shown as confirmation if installation fails. Expression of minor discontent. Underscore can not be the same as for 'Copy Error Text'.
-#: data/resources/ui/failed_installation_popup.ui
-msgid "_Meh."
-msgstr ""
-
-#. Menu entry to show About dialog for application
-#: data/resources/ui/main_window.ui
-msgid "_About OS-Installer"
-msgstr ""
-
 #. Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.ui
 msgid "This will delete all data on"
@@ -76,14 +56,14 @@ msgstr ""
 msgid "_Confirm"
 msgstr ""
 
-#. Label to go back to overview of all disks
-#: data/resources/ui/pages/disk.ui
-msgid "Use Whole Disk"
-msgstr ""
-
 #. Explanation for disk selection page.
 #: data/resources/ui/pages/disk.ui
 msgid "Select Drive for Installation"
+msgstr ""
+
+#. Label to go back to overview of all disks
+#: data/resources/ui/pages/disk.ui
+msgid "Use Whole Disk"
 msgstr ""
 
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
@@ -132,6 +112,16 @@ msgstr ""
 #: data/resources/ui/pages/keyboard_layout.ui
 #: data/resources/ui/pages/software.ui data/resources/ui/pages/user.ui
 msgid "_Continue"
+msgstr ""
+
+#. Shown as simple informative text
+#: data/resources/ui/pages/failed.ui
+msgid "The installation failed"
+msgstr ""
+
+#. Shown if installation fails.
+#: data/resources/ui/pages/failed.ui
+msgid "Search for Help on the Internet"
 msgstr ""
 
 #. Hover information on toggle button that shows terminal output during installation.

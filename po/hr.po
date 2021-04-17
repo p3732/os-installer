@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-12 13:40+0100\n"
+"POT-Creation-Date: 2021-04-16 01:56+0200\n"
 "PO-Revision-Date: 2021-03-12 13:45+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
@@ -50,26 +50,6 @@ msgstr "_Nastavi instalaciju"
 msgid "_Stop Installation"
 msgstr "_Prekini instalaciju"
 
-#. Shown as simple informative text
-#: data/resources/ui/failed_installation_popup.ui
-msgid "The installation failed."
-msgstr "Instalacija nije upijela."
-
-#. Shown on button underneath an error text. Underscore can not be the same as for 'Meh'
-#: data/resources/ui/failed_installation_popup.ui
-msgid "_Copy Error Text"
-msgstr "_Kopiraj tekst pogreške"
-
-#. Shown as confirmation if installation fails. Expression of minor discontent. Underscore can not be the same as for 'Copy Error Text'.
-#: data/resources/ui/failed_installation_popup.ui
-msgid "_Meh."
-msgstr "_Ugh."
-
-#. Menu entry to show About dialog for application
-#: data/resources/ui/main_window.ui
-msgid "_About OS-Installer"
-msgstr "_Više o OS-Instaleru"
-
 #. Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.ui
 msgid "This will delete all data on"
@@ -81,15 +61,15 @@ msgstr "Ovo će obrisati sve podatke na"
 msgid "_Confirm"
 msgstr "_Potvrdi"
 
-#. Label to go back to overview of all disks
-#: data/resources/ui/pages/disk.ui
-msgid "Use Whole Disk"
-msgstr "Koristi cijeli disk"
-
 #. Explanation for disk selection page.
 #: data/resources/ui/pages/disk.ui
 msgid "Select Drive for Installation"
 msgstr "Izaberite disk za instalaciju"
+
+#. Label to go back to overview of all disks
+#: data/resources/ui/pages/disk.ui
+msgid "Use Whole Disk"
+msgstr "Koristi cijeli disk"
 
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
 #: data/resources/ui/pages/disk.ui
@@ -139,6 +119,16 @@ msgstr ""
 #: data/resources/ui/pages/software.ui data/resources/ui/pages/user.ui
 msgid "_Continue"
 msgstr "_Nastavi"
+
+#. Shown as simple informative text
+#: data/resources/ui/pages/failed.ui
+msgid "The installation failed"
+msgstr "Instalacija nije upijela"
+
+#. Shown if installation fails.
+#: data/resources/ui/pages/failed.ui
+msgid "Search for Help on the Internet"
+msgstr "Potraži pomoć na Internetu"
 
 #. Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/install.ui
@@ -278,18 +268,3 @@ msgstr ""
 #: data/resources/ui/widgets/no_partitions_row.ui
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS particija za pokretanje"
-
-#~ msgid "Select Locale for Formats"
-#~ msgstr "Odaberite Locale za formate"
-
-#~ msgid "_Reload"
-#~ msgstr "_Ponovno učitaj"
-
-#~ msgid "Use Different Disk"
-#~ msgstr "Izaberi drugi disk"
-
-#~ msgid "All data on"
-#~ msgstr "Svi podaci na"
-
-#~ msgid "will be deleted"
-#~ msgstr "bit će obrisani"

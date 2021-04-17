@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-12 13:40+0100\n"
+"POT-Creation-Date: 2021-04-16 01:56+0200\n"
 "PO-Revision-Date: 2021-03-12 13:46+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
@@ -49,26 +49,6 @@ msgstr "Installation _Fortfahren"
 msgid "_Stop Installation"
 msgstr "Installation _Abbrechen"
 
-#. Shown as simple informative text
-#: data/resources/ui/failed_installation_popup.ui
-msgid "The installation failed."
-msgstr "Die Installation schlug fehl."
-
-#. Shown on button underneath an error text. Underscore can not be the same as for 'Meh'
-#: data/resources/ui/failed_installation_popup.ui
-msgid "_Copy Error Text"
-msgstr "Fehlertext _Kopieren"
-
-#. Shown as confirmation if installation fails. Expression of minor discontent. Underscore can not be the same as for 'Copy Error Text'.
-#: data/resources/ui/failed_installation_popup.ui
-msgid "_Meh."
-msgstr "_Hrmpf."
-
-#. Menu entry to show About dialog for application
-#: data/resources/ui/main_window.ui
-msgid "_About OS-Installer"
-msgstr "_Über OS-Installer"
-
 #. Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.ui
 msgid "This will delete all data on"
@@ -80,15 +60,15 @@ msgstr "Hiermit werden alle Dateien gelöscht von"
 msgid "_Confirm"
 msgstr "_Bestätigen"
 
-#. Label to go back to overview of all disks
-#: data/resources/ui/pages/disk.ui
-msgid "Use Whole Disk"
-msgstr "Nutze gesamtes Laufwerk"
-
 #. Explanation for disk selection page.
 #: data/resources/ui/pages/disk.ui
 msgid "Select Drive for Installation"
 msgstr "Wähle ein Laufwerk zur Installation"
+
+#. Label to go back to overview of all disks
+#: data/resources/ui/pages/disk.ui
+msgid "Use Whole Disk"
+msgstr "Nutze gesamtes Laufwerk"
 
 #. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
 #: data/resources/ui/pages/disk.ui
@@ -139,6 +119,16 @@ msgstr ""
 #: data/resources/ui/pages/software.ui data/resources/ui/pages/user.ui
 msgid "_Continue"
 msgstr "_Weiter"
+
+#. Shown as simple informative text
+#: data/resources/ui/pages/failed.ui
+msgid "The installation failed"
+msgstr "Die Installation schlug fehl"
+
+#. Shown if installation fails.
+#: data/resources/ui/pages/failed.ui
+msgid "Search for Help on the Internet"
+msgstr "Suche im Internet nach Hilfe"
 
 #. Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/install.ui
@@ -278,15 +268,3 @@ msgstr ""
 #: data/resources/ui/widgets/no_partitions_row.ui
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS Boot-Partition"
-
-#~ msgid "Select Locale for Formats"
-#~ msgstr "Wähle Lokalisierung für Formate"
-
-#~ msgid "_Reload"
-#~ msgstr "_Neuladen"
-
-#~ msgid "Use Different Disk"
-#~ msgstr "Wähle ein anderes Laufwerk"
-
-#~ msgid "Showing Layouts for"
-#~ msgstr "Tastaturbelelgungen für"
