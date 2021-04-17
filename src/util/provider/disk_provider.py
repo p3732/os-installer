@@ -23,10 +23,8 @@ class DeviceWithTableInfo(DeviceInfo):
     def __init__(self):
         self.is_partition = False
 
-
 class DiskProvider:
-    def __init__(self):
-        self.udisks_client = None
+    udisks_client = UDisks.Client.new_sync()
 
     def _get_one_partition(self, partition, block):
         # partition info
@@ -109,9 +107,6 @@ class DiskProvider:
     ### public methods ###
 
     def get_disks(self):
-        if not self.udisks_client:
-            self.udisks_client = UDisks.Client.new_sync()
-
         # get current disks information via udisks
         return self._get_available_disks()
 
