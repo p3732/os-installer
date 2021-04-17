@@ -72,10 +72,13 @@ class InstallationScripting():
 
             if not status == 0 and not global_state.demo_mode:
                 global_state.installation_failed()
-            elif self.current_step == 3 and global_state.demo_mode:
-                global_state.advance(self.install_page_name)
             elif self.current_step == 3:
-                global_state.advance_without_return(self.install_page_name)
+                global_state.installation_running = False
+                if global_state.demo_mode:
+                    # allow returning in demo
+                    global_state.advance(self.install_page_name)
+                else:
+                    global_state.advance_without_return(self.install_page_name)
             else:
                 self._start_next_script()
 
