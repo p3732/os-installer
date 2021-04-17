@@ -22,7 +22,7 @@ def _run_program(args):
 
 
 ### public methods ###
-def has_efi_vars():
+def is_booted_with_uefi():
     return os.path.isdir("/sys/firmware/efi/efivars")
 
 

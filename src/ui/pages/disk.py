@@ -8,7 +8,7 @@ from .disk_provider import disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .page import Page
-from .system_calls import has_efi_vars, open_disks
+from .system_calls import is_booted_with_uefi, open_disks
 from .widgets import DeviceRow, NoPartitionsRow, empty_list
 
 GIGABYTE_FACTOR = 1024 * 1024 * 1024
@@ -50,9 +50,6 @@ class DiskPage(Gtk.Box, Page):
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
         self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
-        # start gl checking
-        self.uses_uefi = has_efi_vars()
-
     def _setup_disk_list(self):
         # clear list
         empty_list(self.disk_list)
@@ -72,15 +69,13 @@ class DiskPage(Gtk.Box, Page):
 
         empty_list(self.partition_list)
 
-        # efi vars
-        disk_uefi_okay = not self.uses_uefi or disk_info.efi_partition
-
         # set disk info
         self.disk_label.set_label(disk_info.name)
         self.disk_device_path.set_label(disk_info.device_path)
         self.disk_size.set_label(disk_info.size_text)
 
         # fill partition list
+        disk_uefi_okay = not is_booted_with_uefi() or disk_info.efi_partition
         if disk_uefi_okay:
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
