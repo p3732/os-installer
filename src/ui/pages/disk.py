@@ -62,7 +62,7 @@ class DiskPage(Gtk.Box, Page):
         disks = disk_provider.get_disks()
         for disk_info in disks:
             too_small = disk_info.size < self.minimum_disk_size
-            row = DeviceRow('disk', disk_info, too_small)
+            row = DeviceRow(disk_info, too_small)
             self.disk_list.add(row)
 
         # show
@@ -80,10 +80,10 @@ class DiskPage(Gtk.Box, Page):
 
         # fill partition list
         disk_uefi_okay = not is_booted_with_uefi() or disk_info.efi_partition
-        if disk_uefi_okay:
+        if disk_uefi_okay and len(disk_info.partitions) > 0:
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
-                row = DeviceRow('partition', partition_info, too_small)
+                row = DeviceRow(partition_info, too_small)
                 self.partition_list.add(row)
         else:
             self.partition_list.add(NoPartitionsRow())
@@ -94,8 +94,8 @@ class DiskPage(Gtk.Box, Page):
     def _store_device_info(self, info):
         global_state.set_config('disk_name', info.name)
         global_state.set_config('disk_device_path', info.device_path)
-        global_state.set_config('disk_is_partition', info.is_partition)
-        global_state.set_config('disk_efi_partition', info.efi_partition)
+        global_state.set_config('disk_is_partition', not type(info) == type(self.current_disk))
+        global_state.set_config('disk_efi_partition', self.current_disk.efi_partition)
 
     ### callbacks ###
 

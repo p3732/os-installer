@@ -23,18 +23,19 @@ class DeviceRow(Gtk.ListBoxRow):
     arrow_stack = Gtk.Template.Child()
     device_path = Gtk.Template.Child()
 
-    def __init__(self, row_type, info, too_small, **kwargs):
+    def __init__(self, info, too_small, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info
         self.size.set_label(info.size_text)
         self.device_path.set_label(info.device_path)
 
-        self.name_stack.set_visible_child_name(row_type)
-        if 'disk' == row_type:
+        if hasattr(info, 'partitions'):
+            self.name_stack.set_visible_child_name('disk')
             if info.name:
                 self.disk_name.set_label(info.name)
-        elif 'partition' == row_type:
+        else:
+            self.name_stack.set_visible_child_name('partition')
             if not info.prefixed:
                 info.name = self.partition_name.get_label() + ' ' + info.name
                 info.prefixed = True
