@@ -50,6 +50,10 @@ class DiskPage(Gtk.Box, Page):
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
         self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
+    def _set_stacks(self, state):
+        self.list_stack.set_visible_child_name(state)
+        self.text_stack.set_visible_child_name(state)
+
     def _setup_disk_list(self):
         # clear list
         empty_list(self.disk_list)
@@ -62,7 +66,7 @@ class DiskPage(Gtk.Box, Page):
             self.disk_list.add(row)
 
         # show
-        self.list_stack.set_visible_child_name('disks')
+        self._set_stacks('disks')
 
     def _setup_partition_list(self, disk_info):
         self.current_disk = disk_info
@@ -85,7 +89,7 @@ class DiskPage(Gtk.Box, Page):
             self.partition_list.add(NoPartitionsRow())
 
         # show
-        self.list_stack.set_visible_child_name('partitions')
+        self._set_stacks('partitions')
 
     def _store_device_info(self, info):
         global_state.set_config('disk_name', info.name)
@@ -131,6 +135,6 @@ class DiskPage(Gtk.Box, Page):
         self.can_navigate_backward = False
         if not self.lock.acquire(blocking=False):
             return
-        self.list_stack.set_visible_child_name('disks')
-        self.text_stack.set_visible_child_name('disks')
+
+        self._set_stacks('disks')
         self.lock.release()
