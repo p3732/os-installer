@@ -7,134 +7,30 @@
     <property name="can-focus">True</property>
     <property name="selectable">False</property>
     <child>
-      <object class="GtkBox">
+      <!-- n-columns=3 n-rows=2 -->
+      <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="margin-start">12</property>
         <property name="margin-end">12</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <property name="spacing">12</property>
+        <property name="row-spacing">2</property>
+        <property name="column-spacing">12</property>
         <child>
-          <object class="GtkLabel" id="size">
+          <object class="GtkStack" id="arrow_stack">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="valign">start</property>
-            <property name="width-chars">5</property>
-            <property name="max-width-chars">7</property>
-            <property name="xalign">1</property>
-            <attributes>
-              <attribute name="weight" value="light"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">6</property>
+            <property name="halign">end</property>
+            <property name="hhomogeneous">False</property>
+            <property name="vhomogeneous">False</property>
             <child>
-              <object class="GtkBox">
+              <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <child>
-                  <object class="GtkStack" id="name_stack">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hhomogeneous">False</property>
-                    <child>
-                      <object class="GtkLabel" id="disk_name">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes" comments="Shown if no name can be determined for a disk.">Unknow Disk</property>
-                        <property name="use-markup">True</property>
-                        <property name="wrap">True</property>
-                        <property name="ellipsize">end</property>
-                        <property name="xalign">0</property>
-                      </object>
-                      <packing>
-                        <property name="name">disk</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="valign">start</property>
-                        <child>
-                          <object class="GtkLabel" id="static_label">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="margin-end">4</property>
-                            <property name="label" translatable="yes" comments="Followed by 'Partition' and a partiton name or number.">Use</property>
-                            <property name="use-markup">True</property>
-                            <property name="xalign">0</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="partition_name">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes" comments="Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.">Partition</property>
-                            <property name="use-markup">True</property>
-                            <property name="ellipsize">end</property>
-                            <property name="width-chars">8</property>
-                            <property name="xalign">0</property>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="name">partition</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="device_path">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="valign">start</property>
-                    <property name="ellipsize">start</property>
-                    <property name="xalign">1</property>
-                    <attributes>
-                      <attribute name="weight" value="light"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
+                <property name="halign">end</property>
+                <property name="icon-name">go-next-symbolic</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkLabel" id="too_small_label">
@@ -142,40 +38,10 @@
                 <property name="halign">start</property>
                 <property name="label" translatable="yes" comments="Shown for partitions that are not big enough to be installed on">Not enough space for installation</property>
                 <property name="wrap">True</property>
-                <property name="xalign">0</property>
+                <property name="xalign">1</property>
                 <attributes>
                   <attribute name="weight" value="light"/>
                 </attributes>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkStack" id="arrow_stack">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="valign">start</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="icon-name">go-next-symbolic</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
               </object>
               <packing>
                 <property name="name">too_small</property>
@@ -184,10 +50,110 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">2</property>
+            <property name="left-attach">2</property>
+            <property name="top-attach">0</property>
+            <property name="height">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStack" id="name_stack">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="hhomogeneous">False</property>
+            <child>
+              <object class="GtkLabel" id="disk_name">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes" comments="Shown if no name can be determined for a disk.">Unknow Disk</property>
+                <property name="use-markup">True</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">end</property>
+                <property name="xalign">0</property>
+              </object>
+              <packing>
+                <property name="name">disk</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="valign">end</property>
+                <property name="spacing">4</property>
+                <child>
+                  <object class="GtkLabel" id="static_label">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes" comments="Followed by 'Partition' and a partiton name or number.">Use</property>
+                    <property name="use-markup">True</property>
+                    <property name="xalign">0</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="partition_name">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes" comments="Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.">Partition</property>
+                    <property name="use-markup">True</property>
+                    <property name="ellipsize">end</property>
+                    <property name="width-chars">8</property>
+                    <property name="xalign">0</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">partition</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="device_path">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="valign">start</property>
+            <property name="ellipsize">start</property>
+            <property name="xalign">0</property>
+            <attributes>
+              <attribute name="weight" value="light"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left-attach">1</property>
+            <property name="top-attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="size">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="width-chars">5</property>
+            <property name="max-width-chars">7</property>
+            <property name="xalign">1</property>
+            <attributes>
+              <attribute name="weight" value="light"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left-attach">0</property>
+            <property name="top-attach">0</property>
+            <property name="height">2</property>
           </packing>
         </child>
       </object>

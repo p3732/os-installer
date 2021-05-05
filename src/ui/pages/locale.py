@@ -15,6 +15,7 @@ class LocalePage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'globe-symbolic'
 
+    overview_stack = Gtk.Template.Child()
     text_stack = Gtk.Template.Child()
     list_stack = Gtk.Template.Child()
 
@@ -51,6 +52,7 @@ class LocalePage(Gtk.Box, Page):
                 if not continent.get_timezone():  # skip dummy locations
                     self.continents_list.add(ProgressRow(continent.get_name(), continent))
 
+        self.overview_stack.set_visible_child_name('list')
         self.list_stack.set_visible_child_name('timezone_continents')
         self.text_stack.set_visible_child_name('timezone')
 
@@ -68,6 +70,7 @@ class LocalePage(Gtk.Box, Page):
             for name, locale in get_formats():
                 self.formats_list.add(ProgressRow(name, locale))
 
+        self.overview_stack.set_visible_child_name('list')
         self.text_stack.set_visible_child_name('formats')
         self.list_stack.set_visible_child_name('formats')
 
@@ -87,8 +90,7 @@ class LocalePage(Gtk.Box, Page):
         self._show_overview()
 
     def _show_overview(self):
-        self.text_stack.set_visible_child_name('overview')
-        self.list_stack.set_visible_child_name('overview')
+        self.overview_stack.set_visible_child_name('overview')
         self.can_navigate_backward = False
 
     ### callbacks ###

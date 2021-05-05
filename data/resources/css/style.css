@@ -10,12 +10,27 @@
   padding: 6px 12px;
 }
 
+/*
 .top-gradient {
   background-image: linear-gradient(to bottom, @theme_bg_color, alpha(@theme_bg_color, 0) 100%);
 }
 
 .bottom-gradient {
   background-image: linear-gradient(to top, @theme_bg_color, alpha(@theme_bg_color, 0) 100%);
+}
+*/
+
+.scrollable-box {
+  /*background-color: @content_view_bg;*/
+  border: 1px;
+  border-color: @unfocused_borders;
+  border-radius: 12px;
+  border-style: solid;
+}
+
+.overlay-indicator {
+  border-radius: 12px;
+  margin:6px 0px;
 }
 
 .terminal {
