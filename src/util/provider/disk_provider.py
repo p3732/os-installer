@@ -102,7 +102,7 @@ class DiskProvider:
                 partition_table = udisks_object.get_partition_table()
                 if block:
                     drive = self.udisks_client.get_drive_for_block(block)
-                    if drive:
+                    if drive and drive.props.size > 0 and not drive.props.optical:
                         disk_info = self._get_disk_info(block, drive, partition_table)
                         disks.append(disk_info)
 

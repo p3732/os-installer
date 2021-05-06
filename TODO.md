@@ -1,5 +1,4 @@
 high prio:
-* ignore CD drives
 
 mid prio:
 
@@ -12,7 +11,7 @@ low prio:
 
 * more config options
     * fixed language
-    * skip settings handle by gnome-initial-setup
+    * skip settings handled by gnome-initial-setup
       * user
       * locale + timezone
     * allow specifying additional size needed by extra packages
