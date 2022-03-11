@@ -15,8 +15,6 @@
     <file preprocess="xml-stripblanks">icon/user-symbolic.svg</file>
 
     <!-- UI Files -->
-    <!-- about dialog is parsed before compilation, resulting in different path -->
-    <file preprocess="xml-stripblanks">about_dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/confirm_quit_popup.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
 

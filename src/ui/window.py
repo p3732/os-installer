@@ -183,11 +183,6 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             elif self.navigation_state.is_not_furthest():
                 self._load_page(self.navigation_state.current + 1)
 
-    def show_about_dialog(self):
-        builder = Gtk.Builder.new_from_resource('/com/github/p3732/os-installer/about_dialog.ui')
-        about_dialog = builder.get_object('about_dialog')
-        self._show_dialog(about_dialog)
-
     def show_confirm_quit_dialog(self):
         popup = ConfirmQuitPopup(self.quit_callback)
         self._show_dialog(popup)

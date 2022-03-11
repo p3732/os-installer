@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 01:56+0200\n"
+"POT-Creation-Date: 2022-03-11 03:12+0100\n"
 "PO-Revision-Date: 2021-03-12 13:46+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
@@ -23,10 +23,8 @@ msgstr ""
 msgid "OS-Installer"
 msgstr "Systeminstallation"
 
-#. Simple description in the about dialog
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
-#: data/resources/ui/about_dialog.ui.in
 msgid "Install an Operating System"
 msgstr "Installiere ein Betriebssystem"
 

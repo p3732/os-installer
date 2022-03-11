@@ -58,10 +58,6 @@ class Application(Gtk.Application):
                 'accels': ['<Alt>Left']
             },
             {
-                'name': 'about',
-                'func': self._on_about
-            },
-            {
                 'name': 'quit',
                 'func': self._on_quit,
                 'accels': ['<Ctl>q']
@@ -126,9 +122,6 @@ class Application(Gtk.Application):
 
     def _on_previous_page(self, action, param):
         self.window.navigate_backward()
-
-    def _on_about(self, a, b):
-        self.window.show_about_dialog()
 
     def _on_quit(self, action, param=None):
         if global_state.installation_running:
