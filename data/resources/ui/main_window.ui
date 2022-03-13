@@ -74,27 +74,13 @@
                     <property name="valign">start</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkStack" id="previous_stack">
+                      <object class="GtkRevealer" id="previous_revealer">
                         <property name="visible">1</property>
                         <property name="can-focus">0</property>
                         <property name="transition-type">crossfade</property>
                         <child>
-                          <object class="GtkBox">
-                            <property name="visible">1</property>
-                            <property name="can-focus">0</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="name">disabled</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkButton">
                             <property name="width-request">32</property>
-                            <property name="height-request">-1</property>
                             <property name="visible">1</property>
                             <property name="can-focus">1</property>
                             <property name="focus-on-click">0</property>
@@ -112,40 +98,17 @@
                               <class name="flat"/>
                             </style>
                           </object>
-                          <packing>
-                            <property name="name">enabled</property>
-                          </packing>
                         </child>
                       </object>
-                      <packing>
-                        <property name="expand">1</property>
-                        <property name="fill">1</property>
-                        <property name="position">0</property>
-                      </packing>
                     </child>
                     <child>
-                      <object class="GtkStack" id="next_stack">
+                      <object class="GtkRevealer" id="next_revealer">
                         <property name="visible">1</property>
                         <property name="can-focus">0</property>
                         <property name="transition-type">crossfade</property>
                         <child>
-                          <object class="GtkBox">
-                            <property name="visible">1</property>
-                            <property name="sensitive">0</property>
-                            <property name="can-focus">0</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="name">disabled</property>
-                          </packing>
-                        </child>
-                        <child>
                           <object class="GtkButton">
                             <property name="width-request">32</property>
-                            <property name="height-request">-1</property>
                             <property name="visible">1</property>
                             <property name="can-focus">1</property>
                             <property name="receives-default">0</property>
@@ -162,22 +125,6 @@
                               <class name="flat"/>
                             </style>
                           </object>
-                          <packing>
-                            <property name="name">enabled</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinner" id="spinner">
-                            <property name="width-request">32</property>
-                            <property name="height-request">32</property>
-                            <property name="visible">1</property>
-                            <property name="can-focus">0</property>
-                          </object>
-                          <packing>
-                            <property name="name">waiting</property>
-                            <property name="position">2</property>
-                          </packing>
                         </child>
                       </object>
                       <packing>

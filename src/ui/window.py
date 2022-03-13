@@ -41,8 +41,8 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
     image_stack = Gtk.Template.Child()
     main_stack = Gtk.Template.Child()
-    next_stack = Gtk.Template.Child()
-    previous_stack = Gtk.Template.Child()
+    next_revealer = Gtk.Template.Child()
+    previous_revealer = Gtk.Template.Child()
 
     current_page = None
     navigation_lock = Lock()
@@ -145,11 +145,11 @@ class OsInstallerWindow(Handy.ApplicationWindow):
     def _update_navigation_buttons(self):
         # backward
         show_backward = self.current_page.can_navigate_backward or self.navigation_state.is_not_earliest()
-        self.previous_stack.set_visible_child_name('enabled' if show_backward else 'disabled')
+        self.previous_revealer.set_reveal_child(show_backward)
 
         # forward
         show_forward = self.current_page.can_navigate_forward or self.navigation_state.is_not_furthest()
-        self.next_stack.set_visible_child_name('enabled' if show_forward else 'disabled')
+        self.next_revealer.set_reveal_child(show_forward)
 
     ### public methods ###
 
