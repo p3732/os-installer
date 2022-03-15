@@ -1,15 +1,3 @@
-.large-button {
-  border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
-  padding: 6px 32px;
-}
-
-.big-button {
-  border-radius: 9999px;
-  -gtk-outline-radius: 9999px;
-  padding: 6px 12px;
-}
-
 /*
 .top-gradient {
   background-image: linear-gradient(to bottom, @theme_bg_color, alpha(@theme_bg_color, 0) 100%);
@@ -20,22 +8,32 @@
 }
 */
 
+scrolledwindow.scrollbar > scrollbar > range > trough {
+  background: 0;
+}
+
+scrollable-box>trough {
+  background: 0;
+  margin-right:0px;
+  margin-left:0px;
+}
+
 .scrollable-box {
   /*background-color: @content_view_bg;*/
   border: 1px;
-  border-color: @unfocused_borders;
+  border-color: @borders;
   border-radius: 12px;
   border-style: solid;
 }
 
-.overlay-indicator {
-  border-radius: 12px;
-  margin:6px 0px;
-}
-
-.terminal {
+.terminal-box {
   background-color: #000;
   border-radius: 6px;
-  -gtk-outline-radius: 6px;
   padding: 6px 12px;
+}
+
+/* flat style does not seem to work, this is a fallback */
+headerbar {
+  background: none;
+  box-shadow:none;
 }

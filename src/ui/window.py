@@ -2,7 +2,7 @@
 
 from threading import Lock
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 from .global_state import global_state
 
@@ -36,7 +36,7 @@ class NavigationState:
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/main_window.ui')
-class OsInstallerWindow(Handy.ApplicationWindow):
+class OsInstallerWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'OsInstallerWindow'
 
     image_stack = Gtk.Template.Child()
@@ -99,9 +99,11 @@ class OsInstallerWindow(Handy.ApplicationWindow):
 
     def _initialize_pages_translated(self):
         # delete pages that are not the language page
-        for child in self.main_stack.get_children():
-            if not child is self.current_page:
-                child.destroy()
+        # TODO Fix, current error:
+        #   TypeError: argument child: Expected Gtk.Widget, but got gi.repository.Gtk.StackPage
+        #for page in self.main_stack.get_pages():
+        #    if not page is self.current_page:
+        #        #self.main_stack.remove(page)
         self.pages = [self.current_page]
 
         for unintialized_page in self.available_pages[1:]:
@@ -130,7 +132,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             # set icon
             name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
             new_image = self.image_stack.get_child_by_name(name)
-            new_image.set_from_icon_name(self.current_page.image_name, 0)
+            new_image.set_from_icon_name(self.current_page.image_name)
             self.image_stack.set_visible_child_name(name)
 
             self._update_navigation_buttons()
@@ -138,7 +140,6 @@ class OsInstallerWindow(Handy.ApplicationWindow):
             self._load_page(self.navigation_state.current + 1)
 
     def _show_dialog(self, dialog):
-        dialog.show_all()
         dialog.set_transient_for(self)
         dialog.set_modal(True)
 
@@ -167,7 +168,7 @@ class OsInstallerWindow(Handy.ApplicationWindow):
                 self._load_page(self.navigation_state.current + 1)
 
                 for page in previous_pages:
-                    page.destroy()
+                    del page
 
     def navigate_backward(self):
         with self.navigation_lock:

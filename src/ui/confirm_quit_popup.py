@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/confirm_quit_popup.ui')
-class ConfirmQuitPopup(Handy.Window):
+class ConfirmQuitPopup(Adw.Window):
     __gtype_name__ = 'ConfirmQuitPopup'
 
     stop_button = Gtk.Template.Child()

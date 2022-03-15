@@ -1,411 +1,279 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk" version="4.0"/>
   <template class="LocalePage" parent="GtkBox">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkStack" id="overview_stack">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="vhomogeneous">False</property>
+        <property name="vhomogeneous">0</property>
         <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-bottom">18</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">12</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="valign">start</property>
-                <property name="label" translatable="yes" comments="Above list of continents and countries">Adapt to Location</property>
-                <property name="justify">center</property>
-                <property name="wrap">True</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkListBox" id="overview_list">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="selection-mode">none</property>
+          <object class="GtkStackPage">
+            <property name="name">overview</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="margin-bottom">18</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="name">timezone</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="selectable">False</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-left">12</property>
-                        <property name="margin-right">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="spacing">12</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes" comments="Presented next to the current Timezone.">Timezone</property>
-                            <property name="wrap">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="icon-name">emblem-system-symbolic</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="pack-type">end</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="timezone_label">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="wrap">True</property>
-                            <property name="ellipsize">end</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="pack-type">end</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                  <object class="GtkLabel">
+                    <property name="valign">start</property>
+                    <property name="label" translatable="1" comments="Above list of continents and countries">Adapt to Location</property>
+                    <property name="justify">center</property>
+                    <property name="wrap">1</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"></attribute>
+                    </attributes>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="name">formats</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="selectable">False</property>
+                  <object class="GtkListBox" id="overview_list">
+                    <property name="selection-mode">none</property>
                     <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="margin-left">12</property>
-                        <property name="margin-right">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-top">12</property>
-                        <property name="margin-bottom">12</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
-                        <child>
+                      <object class="GtkListBoxRow">
+                        <property name="name">timezone</property>
+                        <property name="focusable">1</property>
+                        <property name="selectable">0</property>
+                        <property name="child">
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
+                            <property name="margin-start">12</property>
+                            <property name="margin-end">12</property>
+                            <property name="margin-top">12</property>
+                            <property name="margin-bottom">12</property>
                             <property name="spacing">12</property>
                             <child>
                               <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label" translatable="yes" comments="Presented next to the current Formats.">Formats</property>
-                                <property name="wrap">True</property>
+                                <property name="label" translatable="1" comments="Presented next to the current Timezone.">Timezone</property>
+                                <property name="wrap">1</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="timezone_label">
+                                <property name="ellipsize">end</property>
+                                <property name="hexpand">1</property>
+                                <property name="wrap">1</property>
+                                <property name="xalign">1</property>
+                              </object>
                             </child>
                             <child>
                               <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="icon-name">emblem-system-symbolic</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">2</property>
-                              </packing>
+                            </child>
+                          </object>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkListBoxRow">
+                        <property name="name">formats</property>
+                        <property name="focusable">1</property>
+                        <property name="selectable">0</property>
+                        <property name="child">
+                          <object class="GtkBox">
+                            <property name="margin-start">12</property>
+                            <property name="margin-end">12</property>
+                            <property name="margin-top">12</property>
+                            <property name="margin-bottom">12</property>
+                            <property name="orientation">vertical</property>
+                            <property name="spacing">6</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="spacing">12</property>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label" translatable="1" comments="Presented next to the current Formats.">Formats</property>
+                                    <property name="wrap">1</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="formats_label">
+                                    <property name="ellipsize">end</property>
+                                    <property name="hexpand">1</property>
+                                    <property name="wrap">1</property>
+                                    <property name="xalign">1</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">emblem-system-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="formats_label">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="wrap">True</property>
-                                <property name="ellipsize">end</property>
+                              <object class="GtkLabel">
+                                <property name="label" translatable="1" comments="Description of what is covered by formats.">Defines the default format used for dates, times, numbers, etc.</property>
+                                <property name="wrap">1</property>
+                                <property name="max-width-chars">60</property>
+                                <property name="xalign">0</property>
+                                <attributes>
+                                  <attribute name="weight" value="light"></attribute>
+                                </attributes>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">3</property>
-                              </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
+                        </property>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="confirm_button">
+                    <property name="label" translatable="1" comments="On button.">_Confirm</property>
+                    <property name="focusable">1</property>
+                    <property name="receives-default">1</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="use-underline">1</property>
+                    <style>
+                      <class name="suggested-action"/>
+                      <class name="pill"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStackPage">
+            <property name="name">list</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="margin-bottom">18</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkStack" id="text_stack">
+                    <property name="valign">start</property>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">timezone</property>
+                        <property name="child">
                           <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="label" translatable="yes" comments="Description of what is covered by formats.">Defines the default format used for dates, times, numbers, etc.</property>
-                            <property name="wrap">True</property>
-                            <property name="max-width-chars">60</property>
-                            <property name="xalign">0</property>
+                            <property name="valign">start</property>
+                            <property name="label" translatable="1" comments="Above list of continents and countries">Select Location</property>
+                            <property name="justify">center</property>
+                            <property name="wrap">1</property>
                             <attributes>
-                              <attribute name="weight" value="light"/>
+                              <attribute name="weight" value="bold"></attribute>
                             </attributes>
                           </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
+                        </property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkStackPage">
+                        <property name="name">formats</property>
+                        <property name="child">
+                          <object class="GtkLabel">
+                            <property name="valign">start</property>
+                            <property name="label" translatable="1" comments="Above list of format locales">Select Region</property>
+                            <property name="justify">center</property>
+                            <property name="wrap">1</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"></attribute>
+                            </attributes>
+                          </object>
+                        </property>
                       </object>
                     </child>
                   </object>
                 </child>
-                <style>
-                  <class name="content"/>
-                </style>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="confirm_button">
-                <property name="label" translatable="yes" comments="On button.">_Confirm</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <style>
-                  <class name="suggested-action"/>
-                  <class name="large-button"/>
-                </style>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="name">overview</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-bottom">18</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">12</property>
-            <child>
-              <object class="GtkStack" id="text_stack">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="valign">start</property>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="valign">start</property>
-                    <property name="label" translatable="yes" comments="Above list of continents and countries">Select Location</property>
-                    <property name="justify">center</property>
-                    <property name="wrap">True</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="name">timezone</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="valign">start</property>
-                    <property name="label" translatable="yes" comments="Above list of format locales">Select Region</property>
-                    <property name="justify">center</property>
-                    <property name="wrap">True</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="name">formats</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="vexpand">True</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="margin-start">6</property>
-                    <property name="margin-end">6</property>
-                    <property name="hscrollbar-policy">external</property>
-                    <property name="propagate-natural-width">True</property>
-                    <property name="propagate-natural-height">True</property>
+                  <object class="GtkBox">
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkViewport">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="vscroll-policy">natural</property>
-                        <property name="shadow-type">none</property>
-                        <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="vexpand">1</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="hscrollbar-policy">external</property>
+                        <property name="propagate-natural-width">1</property>
+                        <property name="propagate-natural-height">1</property>
+                        <property name="child">
                           <object class="GtkStack" id="list_stack">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="margin-start">18</property>
                             <property name="margin-end">18</property>
                             <property name="margin-top">6</property>
                             <property name="margin-bottom">6</property>
-                            <property name="vhomogeneous">False</property>
+                            <property name="vhomogeneous">0</property>
                             <property name="transition-type">crossfade</property>
                             <child>
-                              <object class="GtkListBox" id="continents_list">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="selection-mode">none</property>
-                                <style>
-                                  <class name="content"/>
-                                </style>
-                              </object>
-                              <packing>
+                              <object class="GtkStackPage">
                                 <property name="name">timezone_continents</property>
-                              </packing>
+                                <property name="child">
+                                  <object class="GtkListBox" id="continents_list">
+                                    <property name="valign">start</property>
+                                    <style>
+                                      <class name="boxed-list"/>
+                                    </style>
+                                  </object>
+                                </property>
+                              </object>
                             </child>
                             <child>
-                              <object class="GtkListBox" id="countries_list">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="selection-mode">none</property>
-                                <style>
-                                  <class name="content"/>
-                                </style>
-                              </object>
-                              <packing>
+                              <object class="GtkStackPage">
                                 <property name="name">timezone_countries</property>
-                                <property name="position">1</property>
-                              </packing>
+                                <property name="child">
+                                  <object class="GtkListBox" id="countries_list">
+                                    <property name="valign">start</property>
+                                    <style>
+                                      <class name="boxed-list"/>
+                                    </style>
+                                  </object>
+                                </property>
+                              </object>
                             </child>
                             <child>
-                              <object class="GtkListBox" id="subzones_list">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="selection-mode">none</property>
-                                <style>
-                                  <class name="content"/>
-                                </style>
-                              </object>
-                              <packing>
+                              <object class="GtkStackPage">
                                 <property name="name">timezone_subzones</property>
-                                <property name="position">2</property>
-                              </packing>
+                                <property name="child">
+                                  <object class="GtkListBox" id="subzones_list">
+                                    <property name="valign">start</property>
+                                    <style>
+                                      <class name="boxed-list"/>
+                                    </style>
+                                  </object>
+                                </property>
+                              </object>
                             </child>
                             <child>
-                              <object class="GtkListBox" id="formats_list">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <style>
-                                  <class name="content"/>
-                                </style>
-                              </object>
-                              <packing>
+                              <object class="GtkStackPage">
                                 <property name="name">formats</property>
-                                <property name="position">3</property>
-                              </packing>
+                                <property name="child">
+                                  <object class="GtkListBox" id="formats_list">
+                                    <property name="valign">start</property>
+                                    <style>
+                                      <class name="boxed-list"/>
+                                    </style>
+                                  </object>
+                                </property>
+                              </object>
                             </child>
                           </object>
-                        </child>
+                        </property>
+                        <style>
+                          <class name="scrollbar"/>
+                        </style>
                       </object>
                     </child>
                     <style>
-                      <class name="scrollbar"/>
+                      <class name="scrollable-box"/>
                     </style>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
-                <style>
-                  <class name="scrollable-box"/>
-                </style>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
+            </property>
           </object>
-          <packing>
-            <property name="name">list</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
   </template>
 </interface>

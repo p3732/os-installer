@@ -24,14 +24,14 @@ for language_code in language_codes:
     if len(locales) > 0:
         language_code_to_locale[language_code] = locales[0]
         for locale in locales:
-            locale_set.add(locale)
+            locale_set.append(locale)
     else:
         long_language_code = language_code + '_' + language_code.upper()
         locales = langtable.list_locales(languageId=long_language_code)
         if len(locales) > 0:
             language_code_to_locale[language_code] = locales[0]
             for locale in locales:
-                locale_set.add(locale)
+                locale_set.append(locale)
         else:
             if GnomeDesktop.language_has_translations(language_code):
                 print("Can't convert country code '{}' to locale".format(language_code))

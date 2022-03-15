@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-11 03:12+0100\n"
+"POT-Creation-Date: 2022-03-22 00:39+0100\n"
 "PO-Revision-Date: 2021-03-12 13:46+0100\n"
 "Last-Translator: p3732 <650-p3732@users.noreply.gitlab.gnome.org>\n"
 "Language-Team: German <->\n"
@@ -28,241 +28,153 @@ msgstr "Systeminstallation"
 msgid "Install an Operating System"
 msgstr "Installiere ein Betriebssystem"
 
-#. Shown if user wants to close window with running installation
-#: data/resources/ui/confirm_quit_popup.ui
-msgid ""
-"Stopping a running installation will leave the disk in an undefined state "
-"that might potentially be harmful"
+#: data/resources/ui/pages/keyboard_layout.ui
+msgid "Compatible with all operating systems."
 msgstr ""
-"Eine laufende Installation abzubrechen wird das Laufwerk in einem "
-"undefinierten Zustand hinterlassen und kann potentiell schädlich sein"
 
-#. Underscore can not be the same as for 'Stop Installation'.
-#: data/resources/ui/confirm_quit_popup.ui
-msgid "_Continue Installation"
-msgstr "Installation _Fortfahren"
+#~ msgid ""
+#~ "Stopping a running installation will leave the disk in an undefined state "
+#~ "that might potentially be harmful"
+#~ msgstr ""
+#~ "Eine laufende Installation abzubrechen wird das Laufwerk in einem "
+#~ "undefinierten Zustand hinterlassen und kann potentiell schädlich sein"
 
-#. Underscore can not be the same as for 'Continue Installation'.
-#: data/resources/ui/confirm_quit_popup.ui
-msgid "_Stop Installation"
-msgstr "Installation _Abbrechen"
+#~ msgid "_Continue Installation"
+#~ msgstr "Installation _Fortfahren"
 
-#. Followed by a disk or partition name
-#: data/resources/ui/pages/confirm.ui
-msgid "This will delete all data on"
-msgstr "Hiermit werden alle Dateien gelöscht von"
+#~ msgid "_Stop Installation"
+#~ msgstr "Installation _Abbrechen"
 
-#. Button label to confirm disk deletion
-#. On button.
-#: data/resources/ui/pages/confirm.ui data/resources/ui/pages/locale.ui
-msgid "_Confirm"
-msgstr "_Bestätigen"
+#~ msgid "This will delete all data on"
+#~ msgstr "Hiermit werden alle Dateien gelöscht von"
 
-#. Explanation for disk selection page.
-#: data/resources/ui/pages/disk.ui
-msgid "Select Drive for Installation"
-msgstr "Wähle ein Laufwerk zur Installation"
+#~ msgid "_Confirm"
+#~ msgstr "_Bestätigen"
 
-#. Label to go back to overview of all disks
-#: data/resources/ui/pages/disk.ui
-msgid "Use Whole Disk"
-msgstr "Nutze gesamtes Laufwerk"
+#~ msgid "Select Drive for Installation"
+#~ msgstr "Wähle ein Laufwerk zur Installation"
 
-#. Button label to open disk management tool. Underscore can not be for same as for 'Reload'
-#: data/resources/ui/pages/disk.ui
-msgid "_Manage Disks"
-msgstr "_Laufwerke verwalten"
+#~ msgid "Use Whole Disk"
+#~ msgstr "Nutze gesamtes Laufwerk"
 
-#. Informative label after successful installation
-#: data/resources/ui/pages/done.ui
-msgid "Installation complete"
-msgstr "Installation vollständig"
+#~ msgid "_Manage Disks"
+#~ msgstr "_Laufwerke verwalten"
 
-#. Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
-#: data/resources/ui/pages/done.ui
-msgid "_Restart System"
-msgstr "System _Neustarten"
+#~ msgid "Installation complete"
+#~ msgstr "Installation vollständig"
 
-#. Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
-#: data/resources/ui/pages/done.ui
-msgid "Restart _Later"
-msgstr "_Später Neustarten"
+#~ msgid "_Restart System"
+#~ msgstr "System _Neustarten"
 
-#. Used with option to enable disk encryption
-#: data/resources/ui/pages/encrypt.ui
-msgid "Encrypt Installation"
-msgstr "Installation verschlüsseln"
+#~ msgid "Restart _Later"
+#~ msgstr "_Später Neustarten"
 
-#. Description of entry field for pin/password used for disk encryption
-#: data/resources/ui/pages/encrypt.ui
-msgid "Encryption PIN"
-msgstr "Verschlüsselungs-PIN"
+#~ msgid "Encrypt Installation"
+#~ msgstr "Installation verschlüsseln"
 
-#. Placeholder for disk encryption pin/password field
-#: data/resources/ui/pages/encrypt.ui
-msgid "PIN"
-msgstr "PIN"
+#~ msgid "Encryption PIN"
+#~ msgstr "Verschlüsselungs-PIN"
 
-#. Warning label for disk encryption
-#: data/resources/ui/pages/encrypt.ui
-msgid ""
-"Memorize this PIN well. Without it you will not be able to access your files."
-msgstr ""
-"Präge dir diesen PIN gut ein. Ohne ihn wirst du nicht auf deine Dateien "
-"zugreifen können."
+#~ msgid "PIN"
+#~ msgstr "PIN"
 
-#. On button.
-#: data/resources/ui/pages/encrypt.ui
-#: data/resources/ui/pages/keyboard_layout.ui
-#: data/resources/ui/pages/software.ui data/resources/ui/pages/user.ui
-msgid "_Continue"
-msgstr "_Weiter"
+#~ msgid ""
+#~ "Memorize this PIN well. Without it you will not be able to access your "
+#~ "files."
+#~ msgstr ""
+#~ "Präge dir diesen PIN gut ein. Ohne ihn wirst du nicht auf deine Dateien "
+#~ "zugreifen können."
 
-#. Shown as simple informative text
-#: data/resources/ui/pages/failed.ui
-msgid "The installation failed"
-msgstr "Die Installation schlug fehl"
+#~ msgid "_Continue"
+#~ msgstr "_Weiter"
 
-#. Shown if installation fails.
-#: data/resources/ui/pages/failed.ui
-msgid "Search for Help on the Internet"
-msgstr "Suche im Internet nach Hilfe"
+#~ msgid "The installation failed"
+#~ msgstr "Die Installation schlug fehl"
 
-#. Hover information on toggle button that shows terminal output during installation.
-#: data/resources/ui/pages/install.ui
-msgid "Show Terminal Output"
-msgstr "Terminal-Ausgabe anzeigen"
+#~ msgid "Search for Help on the Internet"
+#~ msgstr "Suche im Internet nach Hilfe"
 
-#. Simple label used during Installation
-#: data/resources/ui/pages/install.ui
-msgid "Installing"
-msgstr "Installation läuft"
+#~ msgid "Show Terminal Output"
+#~ msgstr "Terminal-Ausgabe anzeigen"
 
-#. On button for opening wifi settings.
-#: data/resources/ui/pages/internet.ui
-msgid "_Setup Internet Connection"
-msgstr "_Internetverbindung einrichten"
+#~ msgid "Installing"
+#~ msgstr "Installation läuft"
 
-#. Explanation for keyboard layout selection page.
-#: data/resources/ui/pages/keyboard_layout.ui
-msgid "Select Keyboard Layout"
-msgstr "Wähle eine Tastaturbelegung"
+#~ msgid "_Setup Internet Connection"
+#~ msgstr "_Internetverbindung einrichten"
 
-#. Followed by a language name.
-#: data/resources/ui/pages/keyboard_layout.ui
-msgid "Showing Keyboard Layouts for"
-msgstr "Zeige Tastaturbelegung für"
+#~ msgid "Select Keyboard Layout"
+#~ msgstr "Wähle eine Tastaturbelegung"
 
-#. Used as placeholder in a entry field to try out a keyboard layout
-#: data/resources/ui/pages/keyboard_layout.ui
-msgid "Test the Keyboard Layout Here"
-msgstr "Teste die Tastaturbelegung hier"
+#~ msgid "Showing Keyboard Layouts for"
+#~ msgstr "Zeige Tastaturbelegung für"
 
-#. Above list of continents and countries
-#: data/resources/ui/pages/locale.ui
-msgid "Select Location"
-msgstr "Wähle einen Standort"
+#~ msgid "Test the Keyboard Layout Here"
+#~ msgstr "Teste die Tastaturbelegung hier"
 
-#. Above list of format locales
-#: data/resources/ui/pages/locale.ui
-msgid "Select Region"
-msgstr "Wähle eine Region"
+#~ msgid "Select Location"
+#~ msgstr "Wähle einen Standort"
 
-#. Presented next to the current Timezone.
-#: data/resources/ui/pages/locale.ui
-msgid "Timezone"
-msgstr "Zeitzone"
+#~ msgid "Select Region"
+#~ msgstr "Wähle eine Region"
 
-#. Presented next to the current Formats.
-#: data/resources/ui/pages/locale.ui
-msgid "Formats"
-msgstr "Formate"
+#~ msgid "Timezone"
+#~ msgstr "Zeitzone"
 
-#. Description of what is covered by formats.
-#: data/resources/ui/pages/locale.ui
-msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Bestimmt die Standardformatierung von Datum, Uhrzeit, Zahlen, etc."
+#~ msgid "Formats"
+#~ msgstr "Formate"
 
-#. Shown when restarting system after installation.
-#: data/resources/ui/pages/restart.ui
-msgid "Restarting"
-msgstr "Neustarten"
+#~ msgid "Defines the default format used for dates, times, numbers, etc."
+#~ msgstr "Bestimmt die Standardformatierung von Datum, Uhrzeit, Zahlen, etc."
 
-#. Informative label above a list of software that can be selected for installation
-#: data/resources/ui/pages/software.ui
-msgid "Select Additional Software to Install"
-msgstr "Wähle zusätzliche Programme zur Installation aus"
+#~ msgid "Restarting"
+#~ msgstr "Neustarten"
 
-#. Explanation for disk selection page.
-#: data/resources/ui/pages/user.ui
-msgid "Enter Account Information"
-msgstr "Gebe Informationen für Benutzerkonto ein"
+#~ msgid "Select Additional Software to Install"
+#~ msgstr "Wähle zusätzliche Programme zur Installation aus"
 
-#. Used with entry field for User's name
-#: data/resources/ui/pages/user.ui
-msgid "Name"
-msgstr "Name"
+#~ msgid "Enter Account Information"
+#~ msgstr "Gebe Informationen für Benutzerkonto ein"
 
-#. Placeholder in user name entry field
-#: data/resources/ui/pages/user.ui
-msgid "Enter a Name"
-msgstr "Gebe einen Namen ein"
+#~ msgid "Name"
+#~ msgstr "Name"
 
-#. Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.ui
-msgid "Automatic Login"
-msgstr "Automatisch Anmelden"
+#~ msgid "Enter a Name"
+#~ msgstr "Gebe einen Namen ein"
 
-#. Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.ui
-msgid "Password"
-msgstr "Passwort"
+#~ msgid "Automatic Login"
+#~ msgstr "Automatisch Anmelden"
 
-#. Placeholder in password entry field
-#: data/resources/ui/pages/user.ui
-msgid "Enter a Password"
-msgstr "Gebe ein Passwort ein"
+#~ msgid "Password"
+#~ msgstr "Passwort"
 
-#. Shown if no name can be determined for a disk.
-#: data/resources/ui/widgets/device_row.ui
-msgid "Unknow Disk"
-msgstr "Unbekanntes Laufwerk"
+#~ msgid "Enter a Password"
+#~ msgstr "Gebe ein Passwort ein"
 
-#. Followed by 'Partition' and a partiton name or number.
-#: data/resources/ui/widgets/device_row.ui
-msgid "Use"
-msgstr "Nutze"
+#~ msgid "Unknow Disk"
+#~ msgstr "Unbekanntes Laufwerk"
 
-#. Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.
-#: data/resources/ui/widgets/device_row.ui
-msgid "Partition"
-msgstr "Partition"
+#~ msgid "Use"
+#~ msgstr "Nutze"
 
-#. Shown for partitions that are not big enough to be installed on
-#: data/resources/ui/widgets/device_row.ui
-msgid "Not enough space for installation"
-msgstr "Nicht groß genug für Installation"
+#~ msgid "Partition"
+#~ msgstr "Partition"
 
-#. Shown if a disk is currently not compatible with the way a system was booted.
-#: data/resources/ui/widgets/no_partitions_row.ui
-msgid "Selecting a partition is not possible."
-msgstr "Auswählen einer Partition nicht möglich"
+#~ msgid "Not enough space for installation"
+#~ msgstr "Nicht groß genug für Installation"
 
-#. Followed by a list of requirements
-#: data/resources/ui/widgets/no_partitions_row.ui
-msgid "The disk requires:"
-msgstr "Das Laufwerk benötigt:"
+#~ msgid "Selecting a partition is not possible."
+#~ msgstr "Auswählen einer Partition nicht möglich"
 
-#. Technical terms, the abbreviations should not be translated.
-#: data/resources/ui/widgets/no_partitions_row.ui
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT Partitionierung\n"
-"  • EFI Partition"
+#~ msgid "The disk requires:"
+#~ msgstr "Das Laufwerk benötigt:"
 
-#. Technical terms, the abbreviations should not be translated
-#: data/resources/ui/widgets/no_partitions_row.ui
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS Boot-Partition"
+#~ msgid ""
+#~ "  • GPT partitioning\n"
+#~ "  • EFI partition"
+#~ msgstr ""
+#~ "  • GPT Partitionierung\n"
+#~ "  • EFI Partition"
+
+#~ msgid "  • BIOS boot partition"
+#~ msgstr "  • BIOS Boot-Partition"

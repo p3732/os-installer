@@ -1,147 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
   <template class="KeyboardLayoutPage" parent="GtkBox">
-    <property name="visible">1</property>
-    <property name="can-focus">0</property>
     <property name="orientation">vertical</property>
     <property name="spacing">12</property>
     <child>
       <object class="GtkLabel">
-        <property name="visible">1</property>
-        <property name="can-focus">0</property>
-        <property name="label" translatable="yes" comments="Explanation for keyboard layout selection page.">Select Keyboard Layout</property>
+        <property name="label" translatable="1" comments="Explanation for keyboard layout selection page.">Select Keyboard Layout</property>
         <property name="justify">center</property>
         <property name="wrap">1</property>
         <attributes>
-          <attribute name="weight" value="bold"/>
+          <attribute name="weight" value="bold"></attribute>
         </attributes>
       </object>
     </child>
     <child>
-      <object class="GtkListBox" id="change_language_list">
-        <property name="visible">1</property>
-        <property name="can-focus">0</property>
+      <object class="GtkEntry">
+        <property name="focusable">1</property>
         <property name="valign">start</property>
-        <property name="hexpand">1</property>
-        <property name="selection-mode">none</property>
-        <child>
-          <object class="GtkListBoxRow">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
-            <child>
-              <object class="GtkBox">
-                <property name="visible">1</property>
-                <property name="can-focus">0</property>
-                <property name="margin-left">12</property>
-                <property name="margin-right">12</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
-                <property name="margin-top">6</property>
-                <property name="margin-bottom">6</property>
-                <property name="spacing">12</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">1</property>
-                    <property name="can-focus">0</property>
-                    <property name="label" translatable="yes" comments="Followed by a language name.">Showing Keyboard Layouts for</property>
-                    <property name="wrap">1</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">1</property>
-                    <property name="can-focus">0</property>
-                    <property name="icon-name">emblem-system-symbolic</property>
-                  </object>
-                  <packing>
-                    <property name="pack-type">end</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="language_label">
-                    <property name="visible">1</property>
-                    <property name="can-focus">0</property>
-                    <property name="hexpand">1</property>
-                    <property name="wrap">1</property>
-                    <property name="xalign">1</property>
-                  </object>
-                  <packing>
-                    <property name="pack-type">end</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-        <style>
-          <class name="content"/>
-        </style>
+        <property name="activates-default">1</property>
+        <property name="truncate-multiline">1</property>
+        <property name="primary-icon-activatable">0</property>
+        <property name="primary-icon-sensitive">0</property>
+        <property name="placeholder-text" translatable="1" comments="Used as placeholder in a entry field to try out a keyboard layout">Test the Keyboard Layout Here</property>
       </object>
     </child>
     <child>
       <object class="GtkBox">
-        <property name="visible">1</property>
-        <property name="can-focus">0</property>
         <property name="hexpand">1</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkScrolledWindow">
-            <property name="visible">1</property>
-            <property name="can-focus">1</property>
+            <property name="focusable">1</property>
             <property name="hexpand">1</property>
-            <property name="margin-start">6</property>
-            <property name="margin-end">6</property>
+            <property name="vexpand">1</property>
+            <property name="margin-start">0</property>
+            <property name="margin-end">0</property>
             <property name="hscrollbar-policy">external</property>
             <property name="propagate-natural-width">1</property>
             <property name="propagate-natural-height">1</property>
-            <child>
-              <object class="GtkViewport">
-                <property name="visible">1</property>
-                <property name="can-focus">0</property>
-                <property name="vscroll-policy">natural</property>
-                <property name="shadow-type">none</property>
+            <property name="child">
+              <object class="GtkStack" id="stack">
+                <property name="margin-start">24</property>
+                <property name="margin-end">24</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">12</property>
+                <property name="vhomogeneous">0</property>
+                <property name="transition-type">crossfade</property>
                 <child>
-                  <object class="GtkStack" id="stack">
-                    <property name="visible">1</property>
-                    <property name="can-focus">0</property>
-                    <property name="margin-start">18</property>
-                    <property name="margin-end">18</property>
-                    <property name="margin-top">6</property>
-                    <property name="margin-bottom">6</property>
-                    <property name="vhomogeneous">0</property>
-                    <property name="transition-type">crossfade</property>
-                    <child>
-                      <object class="GtkListBox" id="layout_list">
-                        <property name="visible">1</property>
-                        <property name="can-focus">0</property>
-                        <property name="receives-default">1</property>
-                        <style>
-                          <class name="content"/>
-                        </style>
+                  <object class="GtkStackPage">
+                    <property name="name">layouts</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="valign">start</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">12</property>
+                        <child>
+                          <object class="GtkListBox" id="change_language_list">
+                            <property name="valign">start</property>
+                            <property name="hexpand">1</property>
+                            <property name="selection-mode">none</property>
+                            <child>
+                              <object class="GtkListBoxRow">
+                                <property name="focusable">1</property>
+                                <property name="child">
+                                  <object class="GtkBox">
+                                    <property name="margin-start">12</property>
+                                    <property name="margin-end">12</property>
+                                    <property name="margin-top">6</property>
+                                    <property name="margin-bottom">6</property>
+                                    <property name="spacing">12</property>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="label" translatable="1" comments="Followed by a language name.">Keyboard Language</property>
+                                        <property name="wrap">1</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="language_label">
+                                        <property name="hexpand">1</property>
+                                        <property name="wrap">1</property>
+                                        <property name="xalign">1</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="icon-name">emblem-system-symbolic</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="boxed-list"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkListBox" id="layout_list">
+                            <style>
+                              <class name="boxed-list"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
-                      <packing>
-                        <property name="name">layouts</property>
-                      </packing>
-                    </child>
-                    <child>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">languages</property>
+                    <property name="child">
                       <object class="GtkListBox" id="language_list">
-                        <property name="visible">1</property>
-                        <property name="can-focus">0</property>
-                        <property name="receives-default">1</property>
+                        <property name="valign">start</property>
                         <style>
-                          <class name="content"/>
+                          <class name="boxed-list"/>
                         </style>
                       </object>
-                      <packing>
-                        <property name="name">languages</property>
-                      </packing>
-                    </child>
+                    </property>
                   </object>
                 </child>
               </object>
-            </child>
+            </property>
             <style>
               <class name="scrollbar"/>
             </style>
@@ -153,23 +135,10 @@
       </object>
     </child>
     <child>
-      <object class="GtkEntry">
-        <property name="visible">1</property>
-        <property name="can-focus">1</property>
-        <property name="valign">start</property>
-        <property name="activates-default">1</property>
-        <property name="truncate-multiline">1</property>
-        <property name="primary-icon-activatable">0</property>
-        <property name="primary-icon-sensitive">0</property>
-        <property name="placeholder-text" translatable="yes" comments="Used as placeholder in a entry field to try out a keyboard layout">Test the Keyboard Layout Here</property>
-      </object>
-    </child>
-    <child>
       <object class="GtkButton" id="continue_button">
-        <property name="label" translatable="yes" comments="On button.">_Continue</property>
-        <property name="visible">1</property>
+        <property name="label" translatable="1" comments="On button.">_Continue</property>
         <property name="sensitive">0</property>
-        <property name="can-focus">1</property>
+        <property name="focusable">1</property>
         <property name="receives-default">1</property>
         <property name="halign">center</property>
         <property name="valign">end</property>
@@ -177,12 +146,9 @@
         <property name="use-underline">1</property>
         <style>
           <class name="suggested-action"/>
-          <class name="large-button"/>
+          <class name="pill"/>
         </style>
       </object>
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
     </child>
   </template>
 </interface>

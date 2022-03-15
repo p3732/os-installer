@@ -27,5 +27,5 @@ class FailedPage(Gtk.Box, Page):
     ### public methods ###
 
     def load_once(self):
-        self.terminal_box.add(installation_scripting.terminal)
-        self.terminal_box.show_all()
+        self.terminal_box.append(installation_scripting.terminal)
+        #self.terminal_box.show_all()

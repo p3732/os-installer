@@ -42,8 +42,7 @@ class InstallPage(Gtk.Box, Page):
 
     def load(self):
         # setup terminal
-        self.terminal_box.add(installation_scripting.terminal)
-        self.terminal_box.show_all()
+        self.terminal_box.append(installation_scripting.terminal)
         self.spinner.start()
 
     def unload(self):

@@ -1,45 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk" version="4.0"/>
   <template class="UserPage" parent="GtkBox">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <property name="margin-bottom">18</property>
     <property name="orientation">vertical</property>
     <property name="spacing">12</property>
     <child>
       <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes" comments="Explanation for disk selection page.">Enter Account Information</property>
+        <property name="label" translatable="1" comments="Explanation for disk selection page.">Enter Account Information</property>
         <property name="justify">center</property>
-        <property name="wrap">True</property>
+        <property name="wrap">1</property>
         <attributes>
-          <attribute name="weight" value="bold"/>
+          <attribute name="weight" value="bold"></attribute>
         </attributes>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkListBox" id="default_list">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="selection-mode">none</property>
         <child>
           <object class="GtkListBoxRow">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="activatable">False</property>
-            <property name="selectable">False</property>
-            <child>
+            <property name="activatable">0</property>
+            <property name="selectable">0</property>
+            <property name="child">
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="margin-start">12</property>
                 <property name="margin-end">12</property>
                 <property name="margin-top">6</property>
@@ -47,95 +31,59 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes" comments="Used with entry field for User's name">Name</property>
-                    <property name="wrap">True</property>
+                    <property name="hexpand">1</property>
+                    <property name="label" translatable="1" comments="Used with entry field for User&apos;s name">Name</property>
+                    <property name="wrap">1</property>
                     <property name="xalign">0</property>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkEntry" id="user_name_field">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="has-focus">True</property>
+                    <property name="focusable">1</property>
                     <property name="width-chars">10</property>
                     <property name="max-width-chars">24</property>
-                    <property name="placeholder-text" translatable="yes" comments="Placeholder in user name entry field">Enter a Name</property>
+                    <property name="placeholder-text" translatable="1" comments="Placeholder in user name entry field">Enter a Name</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
         <child>
           <object class="GtkListBoxRow">
             <property name="name">automatic_login</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="selectable">False</property>
-            <child>
+            <property name="selectable">0</property>
+            <property name="child">
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="margin-start">12</property>
                 <property name="margin-end">12</property>
                 <property name="margin-top">6</property>
                 <property name="margin-bottom">6</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkSwitch" id="autologin_switch">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="valign">center</property>
-                    <property name="active">True</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes" comments="Used with option to enable automatic login of user upon booting">Automatic Login</property>
-                    <property name="wrap">True</property>
+                    <property name="label" translatable="1" comments="Used with option to enable automatic login of user upon booting">Automatic Login</property>
+                    <property name="wrap">1</property>
                     <property name="xalign">0</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSwitch" id="autologin_switch">
+                    <property name="focusable">1</property>
+                    <property name="valign">center</property>
+                    <property name="active">1</property>
+                  </object>
                 </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
         <child>
           <object class="GtkListBoxRow">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="activatable">False</property>
-            <property name="selectable">False</property>
-            <child>
+            <property name="activatable">0</property>
+            <property name="selectable">0</property>
+            <property name="child">
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="margin-start">12</property>
                 <property name="margin-end">12</property>
                 <property name="margin-top">6</property>
@@ -143,70 +91,45 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label" translatable="yes" comments="Used with entry field for setting a password for new user">Password</property>
-                    <property name="wrap">True</property>
+                    <property name="hexpand">1</property>
+                    <property name="label" translatable="1" comments="Used with entry field for setting a password for new user">Password</property>
+                    <property name="wrap">1</property>
                     <property name="xalign">0</property>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkEntry" id="password_field">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="visibility">False</property>
+                    <property name="focusable">1</property>
+                    <property name="visibility">0</property>
                     <property name="invisible-char">●</property>
                     <property name="width-chars">10</property>
                     <property name="max-width-chars">24</property>
-                    <property name="placeholder-text" translatable="yes" comments="Placeholder in password entry field">Enter a Password</property>
+                    <property name="placeholder-text" translatable="1" comments="Placeholder in password entry field">Enter a Password</property>
                     <property name="input-purpose">password</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
         <style>
-          <class name="content"/>
+          <class name="boxed-list"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
     </child>
     <child>
       <object class="GtkButton" id="continue_button">
-        <property name="label" translatable="yes" comments="On button.">_Continue</property>
-        <property name="visible">True</property>
-        <property name="sensitive">False</property>
-        <property name="can-focus">True</property>
-        <property name="can-default">True</property>
-        <property name="receives-default">True</property>
+        <property name="label" translatable="1" comments="On button.">_Continue</property>
+        <property name="sensitive">0</property>
+        <property name="focusable">1</property>
+        <property name="receives-default">1</property>
         <property name="halign">center</property>
-        <property name="use-underline">True</property>
+        <property name="use-underline">1</property>
         <style>
           <class name="suggested-action"/>
-          <class name="large-button"/>
+          <class name="pill"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">4</property>
-      </packing>
     </child>
   </template>
 </interface>

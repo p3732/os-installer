@@ -39,7 +39,7 @@ class EncryptPage(Gtk.Box, Page):
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'encryption':
-            self.switch.do_activate(self.switch)
+            self.switch.activate()
 
     def _on_switch_flipped(self, switch, state):
         self.revealer.set_reveal_child(state)

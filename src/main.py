@@ -4,16 +4,16 @@ import sys
 
 import gi
 # set versions for all used submodules
-gi.require_version('Gdk', '3.0')           # noqa: E402
+gi.require_version('Gdk', '4.0')           # noqa: E402
 gi.require_version('Gio', '2.0')           # noqa: E402
 gi.require_version('GLib', '2.0')          # noqa: E402
-gi.require_version('GnomeDesktop', '3.0')  # noqa: E402
-gi.require_version('Gtk', '3.0')           # noqa: E402
-gi.require_version('GWeather', '3.0')      # noqa: E402
-gi.require_version('Handy', '1')           # noqa: E402
+gi.require_version('Gtk', '4.0')           # noqa: E402
+gi.require_version('GnomeDesktop', '4.0')  # noqa: E402
+gi.require_version('GWeather', '4.0')      # noqa: E402
+gi.require_version('Adw', '1')             # noqa: E402
 gi.require_version('UDisks', '2.0')        # noqa: E402
-gi.require_version('Vte', '2.91')          # noqa: E402
-from gi.repository import Gdk, Gio, GLib, Gtk, Handy
+gi.require_version('Vte-4', '2.91')        # noqa: E402
+from gi.repository import Gtk, Gdk, Gio, GLib, Adw
 
 # local, import order is important
 from .global_state import global_state
@@ -22,7 +22,7 @@ from .window import OsInstallerWindow
 APP_ID = 'com.github.p3732.OS-Installer'
 
 
-class Application(Gtk.Application):
+class Application(Adw.Application):
     window = None
 
     def __init__(self, version):
@@ -37,13 +37,6 @@ class Application(Gtk.Application):
                              GLib.OptionArg.NONE, "Run in demo mode, don't alter the system", None)
 
         global_state.set_config('version', version)
-
-    def _load_css(self):
-        css_provider = Gtk.CssProvider()
-        css_provider.load_from_resource('/com/github/p3732/os-installer/css/style.css')
-        screen = Gdk.Screen.get_default()
-        style_context = Gtk.StyleContext()
-        style_context.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
     def _setup_actions(self):
         actions = [
@@ -74,9 +67,14 @@ class Application(Gtk.Application):
                 self.set_accels_for_action('app.' + a['name'], a['accels'])
 
     def _setup_icons(self):
-        icon_theme = Gtk.IconTheme.get_default()
+        print(self.window)
+        icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
         icon_theme.add_resource_path('/com/github/p3732/os-installer/')
         icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
+
+        #icon_theme = Gtk.IconTheme.get_default()
+        #icon_theme.add_resource_path('/com/github/p3732/os-installer/')
+        #icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
 
     ### parent functions ###
 
@@ -87,10 +85,8 @@ class Application(Gtk.Application):
             window.present()
         else:
             self.window = OsInstallerWindow(self.quit, application=self)
+            self._setup_icons()
             self.window.present()
-
-            # Grab window delete-event
-            self.window.connect('delete-event', self._on_quit)
 
             # load initial page
             self.window.advance(None)
@@ -107,13 +103,9 @@ class Application(Gtk.Application):
 
     def do_startup(self):
         # Startup application
-        Gtk.Application.do_startup(self)
-        self._load_css()
+        self.set_resource_base_path('/com/github/p3732/os-installer')
+        Adw.Application.do_startup(self)
         self._setup_actions()
-        self._setup_icons()
-
-        # Init Handy
-        Handy.init()
 
     ### callbacks ###
 

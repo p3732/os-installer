@@ -28,7 +28,7 @@ class SoftwarePage(Gtk.Box, Page):
         suggestions = get_software_suggestions()
         for package in suggestions:
             row = SoftwareRow(package)
-            self.software_list.add(row)
+            self.software_list.append(row)
 
     ### callbacks ###
 

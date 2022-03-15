@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk" version="4.0"/>
   <template class="EncryptPage" parent="GtkBox">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <property name="margin-bottom">18</property>
     <property name="orientation">vertical</property>
     <property name="spacing">12</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkListBox" id="default_list">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="selection-mode">none</property>
             <child>
               <object class="GtkListBoxRow">
                 <property name="name">encryption</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="selectable">False</property>
-                <child>
+                <property name="focusable">1</property>
+                <property name="selectable">0</property>
+                <property name="child">
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="margin-start">12</property>
                     <property name="margin-end">12</property>
                     <property name="margin-top">6</property>
@@ -35,67 +25,42 @@
                     <property name="spacing">12</property>
                     <child>
                       <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes" comments="Used with option to enable disk encryption">Encrypt Installation</property>
-                        <property name="wrap">True</property>
+                        <property name="label" translatable="1" comments="Used with option to enable disk encryption">Encrypt Installation</property>
+                        <property name="wrap">1</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkSwitch" id="switch">
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
+                        <property name="focusable">1</property>
+                        <property name="receives-default">1</property>
                         <property name="valign">center</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
             <style>
-              <class name="content"/>
+              <class name="boxed-list"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkRevealer" id="revealer">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
+            <property name="vexpand">1</property>
             <property name="valign">start</property>
             <property name="transition-duration">200</property>
-            <child>
+            <property name="child">
               <object class="GtkListBox">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
                 <property name="margin-top">12</property>
                 <property name="selection-mode">none</property>
                 <child>
                   <object class="GtkListBoxRow">
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="activatable">False</property>
-                    <property name="selectable">False</property>
-                    <child>
+                    <property name="focusable">1</property>
+                    <property name="activatable">0</property>
+                    <property name="selectable">0</property>
+                    <property name="child">
                       <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
                         <property name="margin-start">12</property>
                         <property name="margin-end">12</property>
                         <property name="margin-top">6</property>
@@ -104,128 +69,71 @@
                         <property name="spacing">12</property>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="spacing">12</property>
                             <child>
                               <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label" translatable="yes" comments="Description of entry field for pin/password used for disk encryption">Encryption PIN</property>
-                                <property name="wrap">True</property>
+                                <property name="hexpand">1</property>
+                                <property name="label" translatable="1" comments="Description of entry field for pin/password used for disk encryption">Encryption PIN</property>
+                                <property name="wrap">1</property>
                                 <property name="xalign">0</property>
                               </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                             <child>
                               <object class="GtkEntry" id="pin_field">
-                                <property name="visible">True</property>
-                                <property name="can-focus">True</property>
-                                <property name="activates-default">True</property>
+                                <property name="hexpand">1</property>
+                                <property name="activates-default">1</property>
                                 <property name="width-chars">10</property>
                                 <property name="max-width-chars">16</property>
-                                <property name="truncate-multiline">True</property>
-                                <property name="placeholder-text" translatable="yes" comments="Placeholder for disk encryption pin/password field">PIN</property>
+                                <property name="truncate-multiline">1</property>
+                                <property name="placeholder-text" translatable="1" comments="Placeholder for disk encryption pin/password field">PIN</property>
                                 <property name="input-purpose">pin</property>
                               </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                                <property name="pack-type">end</property>
-                                <property name="position">1</property>
-                              </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
                         </child>
                         <child>
                           <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
                             <property name="spacing">12</property>
                             <child>
                               <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
                                 <property name="icon-name">dialog-warning-symbolic</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                             <child>
                               <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="label" translatable="yes" comments="Warning label for disk encryption">Memorize this PIN well. Without it you will not be able to access your files.</property>
-                                <property name="wrap">True</property>
+                                <property name="hexpand">1</property>
+                                <property name="label" translatable="1" comments="Warning label for disk encryption">Memorize this PIN well. Without it you will not be able to access your files.</property>
+                                <property name="wrap">1</property>
                               </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
                         </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
                 <style>
-                  <class name="content"/>
+                  <class name="boxed-list"/>
                 </style>
               </object>
-            </child>
+            </property>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkButton" id="continue_button">
-        <property name="label" translatable="yes" comments="On button.">_Continue</property>
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="receives-default">True</property>
+        <property name="label" translatable="1" comments="On button.">_Continue</property>
+        <property name="focusable">1</property>
+        <property name="receives-default">1</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="use-underline">True</property>
+        <property name="use-underline">1</property>
         <style>
           <class name="suggested-action"/>
-          <class name="large-button"/>
+          <class name="pill"/>
         </style>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </template>
 </interface>

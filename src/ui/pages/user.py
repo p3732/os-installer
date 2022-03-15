@@ -41,7 +41,7 @@ class UserPage(Gtk.Box, Page):
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'automatic_login':
-            self.autologin_switch.do_activate(self.autologin_switch)
+            self.autologin_switch.activate()
 
     def _on_autologin_switch_flipped(self, autologin_switch, state):
         self._set_continue_button(state)

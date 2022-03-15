@@ -10,6 +10,20 @@ from .system_calls import set_system_formats, set_system_timezone
 from .widgets import ProgressRow, empty_list
 
 
+def get_location_children(location):
+    # this code is super ugly because libgweather decided to simplify their API into unusability
+    continents = [location.next_child(None)]
+    while continent := location.next_child(continents[-1]):
+        continents.append(continent)
+    #continents = [location.next_child(None)]
+    #while True:
+    #    continent = location.next_child(continents[-1])
+    #    if not continent:
+    #        break
+    #    continents.append(continent)
+
+    return continents
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
 class LocalePage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
@@ -48,9 +62,11 @@ class LocalePage(Gtk.Box, Page):
     def _load_continents_list(self):
         if not self.continents_list_loaded:
             self.continents_list_loaded = True
-            for continent in GWeather.Location.get_world().get_children():
+            current_location = None
+
+            for continent in get_location_children(GWeather.Location.get_world()):
                 if not continent.get_timezone():  # skip dummy locations
-                    self.continents_list.add(ProgressRow(continent.get_name(), continent))
+                    self.continents_list.append(ProgressRow(continent.get_name(), continent))
 
         self.overview_stack.set_visible_child_name('list')
         self.list_stack.set_visible_child_name('timezone_continents')
@@ -59,8 +75,8 @@ class LocalePage(Gtk.Box, Page):
     def _load_countries_list(self, continent):
         empty_list(self.countries_list)
 
-        for country in continent.get_children():
-            self.countries_list.add(ProgressRow(country.get_name(), country))
+        for country in get_location_children(continent):
+            self.countries_list.append(ProgressRow(country.get_name(), country))
 
         self.list_stack.set_visible_child_name('timezone_countries')
 
@@ -68,7 +84,7 @@ class LocalePage(Gtk.Box, Page):
         if not self.formats_list_loaded:
             self.formats_list_loaded = True
             for name, locale in get_formats():
-                self.formats_list.add(ProgressRow(name, locale))
+                self.formats_list.append(ProgressRow(name, locale))
 
         self.overview_stack.set_visible_child_name('list')
         self.text_stack.set_visible_child_name('formats')
@@ -77,9 +93,9 @@ class LocalePage(Gtk.Box, Page):
     def _load_subzones_list(self, country):
         empty_list(self.subzones_list)
 
-        for subzone in country.get_children():
+        for subzone in get_location_children(country):
             if subzone.get_timezone():
-                self.subzones_list.add(ProgressRow(subzone.get_name(), subzone))
+                self.subzones_list.append(ProgressRow(subzone.get_name(), subzone))
 
         self.list_stack.set_visible_child_name('timezone_subzones')
 

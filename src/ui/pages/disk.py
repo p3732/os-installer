@@ -63,7 +63,7 @@ class DiskPage(Gtk.Box, Page):
         for disk_info in disks:
             too_small = disk_info.size < self.minimum_disk_size
             row = DeviceRow(disk_info, too_small)
-            self.disk_list.add(row)
+            self.disk_list.append(row)
 
         # show
         self._set_stacks('disks')
@@ -84,9 +84,10 @@ class DiskPage(Gtk.Box, Page):
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
                 row = DeviceRow(partition_info, too_small)
-                self.partition_list.add(row)
+                self.partition_list.append(row)
         else:
-            self.partition_list.add(NoPartitionsRow())
+            self.partition_list.set_sensitive(False)
+            self.partition_list.append(NoPartitionsRow())
 
         # show
         self._set_stacks('partitions')

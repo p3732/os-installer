@@ -6,7 +6,7 @@
     <file preprocess="xml-stripblanks" alias="OS-Installer-symbolic.svg">../app_icon/com.github.p3732.OS-Installer-symbolic.svg</file>
 
     <!-- CSS -->
-    <file>css/style.css</file>
+    <file>style.css</file>
 
     <!-- Icons -->
     <file preprocess="xml-stripblanks">icon/globe-symbolic.svg</file>

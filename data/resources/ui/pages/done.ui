@@ -1,76 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
+  <requires lib="gtk" version="4.0"/>
   <template class="DonePage" parent="GtkBox">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="halign">center</property>
         <property name="margin-bottom">18</property>
         <property name="orientation">vertical</property>
         <property name="spacing">12</property>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="label" translatable="yes" comments="Informative label after successful installation">Installation complete</property>
+            <property name="label" translatable="1" comments="Informative label after successful installation">Installation complete</property>
             <attributes>
-              <attribute name="weight" value="bold"/>
+              <attribute name="weight" value="bold"></attribute>
             </attributes>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="restart_button">
-            <property name="label" translatable="yes" comments="Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.">_Restart System</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="use-underline">True</property>
+            <property name="label" translatable="1" comments="Button label to restart system directly after successful installation. Underscore can not be for same letter as &apos;Restart Later&apos;.">_Restart System</property>
+            <property name="focusable">1</property>
+            <property name="receives-default">1</property>
+            <property name="use-underline">1</property>
             <style>
               <class name="suggested-action"/>
-              <class name="large-button"/>
+              <class name="pill"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton">
-            <property name="label" translatable="yes" comments="Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.">Restart _Later</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
+            <property name="label" translatable="1" comments="Button label to delay restart after successful installation. Underscore can not be for same letter as &apos;Restart System&apos;.">Restart _Later</property>
+            <property name="focusable">1</property>
+            <property name="receives-default">1</property>
             <property name="action-name">app.quit</property>
-            <property name="use-underline">True</property>
+            <property name="use-underline">1</property>
             <style>
-              <class name="big-button"/>
+              <class name="pill"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
   </template>
 </interface>

@@ -32,7 +32,7 @@ class LanguagePage(Gtk.Overlay, Page):
     def _setup_list(self):
         # language rows
         for language_info in language_provider.get_suggested_languages():
-            self.language_list.add(LanguageRow(language_info))
+            self.language_list.append(LanguageRow(language_info))
 
         # show all button
         present_show_all = language_provider.has_additional_languages()
@@ -40,7 +40,7 @@ class LanguagePage(Gtk.Overlay, Page):
 
     def _show_all(self):
         for language_info in language_provider.get_additional_languages():
-            self.language_list.add(LanguageRow(language_info))
+            self.language_list.append(LanguageRow(language_info))
 
     ### callbacks ###
 

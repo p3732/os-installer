@@ -42,7 +42,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
         for language_info in all_languages:
             row = LanguageRow(language_info)
-            self.language_list.add(row)
+            self.language_list.append(row)
 
     def _load_layout_list(self, language, short_hand):
         self.stack.set_visible_child_name('layouts')
@@ -60,7 +60,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         assert len(layouts) > 0, 'Language {} has no keyboard layouts! Please report this.'.format(language)
         for keyboard_layout, name in layouts:
             row = SelectionRow(name, keyboard_layout)
-            self.layout_list.add(row)
+            self.layout_list.append(row)
 
     def _unselect_current_row(self):
         if self.current_row:
