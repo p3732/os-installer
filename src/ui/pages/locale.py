@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import GLib, Gtk, GWeather
+from gi.repository import Gio, Gtk, GWeather
 
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .locale_provider import get_current_formats, get_formats, get_timezone
 from .page import Page
 from .system_calls import set_system_formats, set_system_timezone
-from .widgets import ProgressRow, empty_list
+from .widgets import ProgressRow
 
 
 def get_location_children(location):
@@ -46,7 +46,9 @@ class LocalePage(Gtk.Box, Page):
     # locale
     continents_list = Gtk.Template.Child()
     countries_list = Gtk.Template.Child()
+    countries_list_model = Gio.ListStore()
     subzones_list = Gtk.Template.Child()
+    subzones_list_model = Gio.ListStore()
     continents_list_loaded = False
 
     def __init__(self, **kwargs):
@@ -58,6 +60,8 @@ class LocalePage(Gtk.Box, Page):
         self.formats_list.connect('row-activated', self._on_formats_row_activated)
         for timezone_list in [self.continents_list, self.countries_list, self.subzones_list]:
             timezone_list.connect('row-activated', self._on_timezone_row_activated)
+        self.countries_list.bind_model(self.countries_list_model, lambda x: x)
+        self.subzones_list.bind_model(self.subzones_list_model, lambda x: x)
 
     def _load_continents_list(self):
         if not self.continents_list_loaded:
@@ -73,10 +77,13 @@ class LocalePage(Gtk.Box, Page):
         self.text_stack.set_visible_child_name('timezone')
 
     def _load_countries_list(self, continent):
-        empty_list(self.countries_list)
-
+        # take me home
+        country_rows = []
         for country in get_location_children(continent):
-            self.countries_list.append(ProgressRow(country.get_name(), country))
+            country_rows.append(ProgressRow(country.get_name(), country))
+
+        n_items = self.countries_list_model.get_n_items()
+        self.countries_list_model.splice(0, n_items, country_rows)
 
         self.list_stack.set_visible_child_name('timezone_countries')
 
@@ -91,11 +98,13 @@ class LocalePage(Gtk.Box, Page):
         self.list_stack.set_visible_child_name('formats')
 
     def _load_subzones_list(self, country):
-        empty_list(self.subzones_list)
-
+        subzone_rows = []
         for subzone in get_location_children(country):
             if subzone.get_timezone():
-                self.subzones_list.append(ProgressRow(subzone.get_name(), subzone))
+                subzone_rows.append(ProgressRow(subzone.get_name(), subzone))
+
+        n_items = self.subzones_list_model.get_n_items()
+        self.subzones_list_model.splice(0, n_items, subzone_rows)
 
         self.list_stack.set_visible_child_name('timezone_subzones')
 

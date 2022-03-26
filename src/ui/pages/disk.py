@@ -2,14 +2,14 @@
 
 from threading import Lock
 
-from gi.repository import Gtk
+from gi.repository import Gio, Gtk
 
 from .disk_provider import disk_provider
 from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .page import Page
 from .system_calls import is_booted_with_uefi, open_disks
-from .widgets import DeviceRow, NoPartitionsRow, empty_list
+from .widgets import DeviceRow, NoPartitionsRow
 
 GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
@@ -23,6 +23,7 @@ class DiskPage(Gtk.Box, Page):
     text_stack = Gtk.Template.Child()
 
     disk_list = Gtk.Template.Child()
+    disk_list_model = Gio.ListStore()
 
     whole_disk_list = Gtk.Template.Child()
     disk_size = Gtk.Template.Child()
@@ -30,6 +31,7 @@ class DiskPage(Gtk.Box, Page):
     disk_device_path = Gtk.Template.Child()
 
     partition_list = Gtk.Template.Child()
+    partition_list_model = Gio.ListStore()
 
     settings_button = Gtk.Template.Child()
     refresh_button = Gtk.Template.Child()
@@ -47,6 +49,10 @@ class DiskPage(Gtk.Box, Page):
         self.partition_list.connect('row-activated', self._on_partition_row_activated)
         self.whole_disk_list.connect('row-activated', self._use_whole_disk)
 
+        # models
+        self.disk_list.bind_model(self.disk_list_model, lambda x: x)
+        self.partition_list.bind_model(self.partition_list_model, lambda x: x)
+
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
         self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
@@ -55,15 +61,14 @@ class DiskPage(Gtk.Box, Page):
         self.text_stack.set_visible_child_name(state)
 
     def _setup_disk_list(self):
-        # clear list
-        empty_list(self.disk_list)
-
         # fill list
-        disks = disk_provider.get_disks()
-        for disk_info in disks:
+        disk_rows = []
+        for disk_info in disk_provider.get_disks():
             too_small = disk_info.size < self.minimum_disk_size
-            row = DeviceRow(disk_info, too_small)
-            self.disk_list.append(row)
+            disk_rows.append(DeviceRow(disk_info, too_small))
+
+        n_items = self.disk_list_model.get_n_items()
+        self.disk_list_model.splice(0, n_items, disk_rows)
 
         # show
         self._set_stacks('disks')
@@ -71,23 +76,26 @@ class DiskPage(Gtk.Box, Page):
     def _setup_partition_list(self, disk_info):
         self.current_disk = disk_info
 
-        empty_list(self.partition_list)
-
         # set disk info
         self.disk_label.set_label(disk_info.name)
         self.disk_device_path.set_label(disk_info.device_path)
         self.disk_size.set_label(disk_info.size_text)
 
         # fill partition list
+        partition_rows = []
         disk_uefi_okay = not is_booted_with_uefi() or disk_info.efi_partition
         if disk_uefi_okay and len(disk_info.partitions) > 0:
+            self.partition_list.set_sensitive(True)
+
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
-                row = DeviceRow(partition_info, too_small)
-                self.partition_list.append(row)
+                partition_rows.append(DeviceRow(partition_info, too_small))
         else:
             self.partition_list.set_sensitive(False)
-            self.partition_list.append(NoPartitionsRow())
+            partition_rows = [NoPartitionsRow()]
+
+        n_items = self.partition_list_model.get_n_items()
+        self.partition_list_model.splice(0, n_items, partition_rows)
 
         # show
         self._set_stacks('partitions')

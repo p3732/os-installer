@@ -3,11 +3,6 @@
 from gi.repository import Gtk
 
 
-def empty_list(list_box):
-    for row in list_box:
-        del row
-
-
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
 class DeviceRow(Gtk.ListBoxRow):
     __gtype_name__ = 'DeviceRow'
