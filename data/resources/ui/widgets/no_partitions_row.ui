@@ -2,16 +2,16 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="NoPartitionsRow" parent="GtkListBoxRow">
-    <property name="name">no_efi</property>
+    <property name="activatable">0</property>
     <property name="focusable">1</property>
     <property name="selectable">0</property>
     <property name="child">
       <object class="GtkBox">
-        <property name="margin-start">6</property>
-        <property name="margin-end">6</property>
+        <property name="margin-start">12</property>
+        <property name="margin-end">12</property>
         <property name="margin-top">6</property>
         <property name="margin-bottom">6</property>
-        <property name="spacing">6</property>
+        <property name="spacing">12</property>
         <child>
           <object class="GtkImage">
             <property name="icon-name">dialog-information-symbolic</property>

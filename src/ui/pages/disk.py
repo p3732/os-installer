@@ -85,13 +85,10 @@ class DiskPage(Gtk.Box, Page):
         partition_rows = []
         disk_uefi_okay = not is_booted_with_uefi() or disk_info.efi_partition
         if disk_uefi_okay and len(disk_info.partitions) > 0:
-            self.partition_list.set_sensitive(True)
-
             for partition_info in disk_info.partitions:
                 too_small = partition_info.size < self.minimum_disk_size
                 partition_rows.append(DeviceRow(partition_info, too_small))
         else:
-            self.partition_list.set_sensitive(False)
             partition_rows = [NoPartitionsRow()]
 
         n_items = self.partition_list_model.get_n_items()
