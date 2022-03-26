@@ -1,0 +1,103 @@
+using Gtk 4.0;
+
+template OsInstallerWindow : .AdwApplicationWindow {
+  width-request: "360";
+  height-request: "480";
+  default-width: "420";
+  default-height: "560";
+  destroy => _on_quit();
+
+  Box {
+    orientation: vertical;
+
+    .AdwHeaderBar {
+      show-start-title-buttons: "0";
+      show-end-title-buttons: "0";
+
+      [start]
+      Box {
+        valign: start;
+
+        WindowControls {
+          side: start;
+        }
+
+        Revealer previous_revealer {
+          transition-type: crossfade;
+          margin-end: 6;
+          child: 
+          Button {
+            action-name: "app.previous-page";
+            focusable: true;
+            focus-on-click: false;
+            icon-name: "go-previous-symbolic";
+          }
+
+          ;
+        }
+
+        Revealer next_revealer {
+          transition-type: crossfade;
+          child: 
+          Button {
+            action-name: "app.next-page";
+            focusable: true;
+            focus-on-click: false;
+            icon-name: "go-next-symbolic";
+          }
+
+          ;
+        }
+      }
+
+      [title]
+      Stack image_stack {
+        margin-bottom: 12;
+        margin-top: 12;
+        transition-type: crossfade;
+
+        StackPage {
+          name: "1";
+          child: 
+          Image {
+            pixel-size: 128;
+          }
+
+          ;
+        }
+
+        StackPage {
+          name: "2";
+          child: 
+          Image {
+            pixel-size: 128;
+          }
+
+          ;
+        }
+      }
+
+      [end]
+      WindowControls {
+        valign: start;
+        side: end;
+      }
+
+      styles [
+        "flat",
+      ]
+    }
+
+    .AdwClamp {
+      vexpand: "1";
+      margin-start: "6";
+      margin-end: "6";
+      maximum-size: "400";
+      tightening-threshold: "320";
+
+      Stack main_stack {
+        transition-type: slide_left_right;
+      }
+    }
+  }
+}

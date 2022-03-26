@@ -1,0 +1,144 @@
+using Gtk 4.0;
+
+template UserPage : Box {
+  margin-bottom: 18;
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    /* Translators: Explanation for disk selection page. */
+
+    label: _("Enter Account Information");
+    justify: center;
+    wrap: true;
+
+    styles [
+      "title-2",
+    ]
+  }
+
+  ListBox default_list {
+    selection-mode: none;
+
+    ListBoxRow {
+      activatable: false;
+      selectable: false;
+      child: 
+      Box {
+        margin-start: 12;
+        margin-end: 12;
+        margin-top: 6;
+        margin-bottom: 6;
+        spacing: 12;
+
+        Label {
+          hexpand: true;
+
+          /* Translators: Used with entry field for User's name */
+
+          label: _("Name");
+          wrap: true;
+          xalign: 0;
+        }
+
+        Entry user_name_field {
+          focusable: true;
+          width-chars: 10;
+          max-width-chars: 24;
+
+          /* Translators: Placeholder in user name entry field */
+
+          placeholder-text: _("Enter a Name");
+        }
+      }
+
+      ;
+    }
+
+    ListBoxRow {
+      name: "automatic_login";
+      selectable: false;
+      child: 
+      Box {
+        margin-start: 12;
+        margin-end: 12;
+        margin-top: 6;
+        margin-bottom: 6;
+        spacing: 12;
+
+        Label {
+          /* Translators: Used with option to enable automatic login of user upon booting */
+
+          label: _("Automatic Login");
+          wrap: true;
+          xalign: 0;
+        }
+
+        Switch autologin_switch {
+          focusable: true;
+          valign: center;
+          active: true;
+        }
+      }
+
+      ;
+    }
+
+    ListBoxRow {
+      activatable: false;
+      selectable: false;
+      child: 
+      Box {
+        margin-start: 12;
+        margin-end: 12;
+        margin-top: 6;
+        margin-bottom: 6;
+        spacing: 12;
+
+        Label {
+          hexpand: true;
+
+          /* Translators: Used with entry field for setting a password for new user */
+
+          label: _("Password");
+          wrap: true;
+          xalign: 0;
+        }
+
+        Entry password_field {
+          focusable: true;
+          visibility: false;
+          width-chars: 10;
+          max-width-chars: 24;
+
+          /* Translators: Placeholder in password entry field */
+
+          placeholder-text: _("Enter a Password");
+          input-purpose: password;
+        }
+      }
+
+      ;
+    }
+
+    styles [
+      "boxed-list",
+    ]
+  }
+
+  Button continue_button {
+    /* Translators: On button. */
+
+    label: _("_Continue");
+    sensitive: false;
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    use-underline: true;
+
+    styles [
+      "suggested-action",
+      "pill",
+    ]
+  }
+}

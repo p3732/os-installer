@@ -1,0 +1,220 @@
+using Gtk 4.0;
+
+template DiskPage : Box {
+  orientation: vertical;
+
+  Stack text_stack {
+    transition-type: slide_left_right;
+
+    StackPage {
+      name: "disks";
+      child: 
+      CenterBox {
+        [center]
+        Label {
+          halign: center;
+
+          /* Translators: Explanation for disk selection page. */
+
+          label: _("Select Drive for Installation");
+          justify: center;
+          wrap: true;
+
+          styles [
+            "title-2",
+          ]
+        }
+
+        [end]
+        Button refresh_button {
+          halign: end;
+          width-request: 32;
+          focusable: true;
+          halign: end;
+          valign: center;
+
+          Image {
+            icon-name: "view-refresh-symbolic";
+          }
+
+          styles [
+            "circular",
+            "flat",
+          ]
+        }
+      }
+
+      ;
+    }
+
+    StackPage {
+      name: "partitions";
+      child: 
+      Label disk_label {
+        justify: center;
+        wrap: true;
+
+        styles [
+          "title-2",
+        ]
+      }
+
+      ;
+    }
+  }
+
+  Box {
+    vexpand: true;
+    orientation: vertical;
+
+    ScrolledWindow {
+      vexpand: true;
+      focusable: true;
+      margin-start: 6;
+      margin-end: 6;
+      hscrollbar-policy: external;
+      propagate-natural-width: true;
+      propagate-natural-height: true;
+      child: 
+      Viewport {
+        vscroll-policy: natural;
+        child: 
+        Stack list_stack {
+          margin-start: 18;
+          margin-end: 18;
+          margin-top: 6;
+          margin-bottom: 6;
+          vhomogeneous: false;
+          transition-type: slide_left_right;
+
+          StackPage {
+            name: "disks";
+            child: 
+            ListBox disk_list {
+              receives-default: true;
+              valign: start;
+
+              styles [
+                "boxed-list",
+              ]
+            }
+
+            ;
+          }
+
+          StackPage {
+            name: "partitions";
+            child: 
+            Box {
+              orientation: vertical;
+              spacing: 12;
+
+              ListBox whole_disk_list {
+                selection-mode: none;
+
+                ListBoxRow {
+                  name: "back_row";
+                  focusable: true;
+                  selectable: false;
+                  child: 
+                  Box {
+                    margin-start: 12;
+                    margin-end: 12;
+                    margin-top: 6;
+                    margin-bottom: 6;
+                    spacing: 12;
+
+                    Label disk_size {
+                      width-chars: 5;
+                      max-width-chars: 7;
+                      xalign: 1;
+
+                      styles [
+                        "dim-label",
+                      ]
+                    }
+
+                    Box {
+                      hexpand: true;
+                      orientation: vertical;
+                      spacing: 2;
+
+                      Label {
+                        valign: end;
+
+                        /* Translators: Label to go back to overview of all disks */
+
+                        label: _("Use Whole Disk");
+                        wrap: true;
+                        xalign: 0;
+                      }
+
+                      Label disk_device_path {
+                        valign: start;
+                        width-chars: 5;
+                        max-width-chars: 7;
+                        xalign: 0;
+
+                        styles [
+                          "dim-label",
+                        ]
+                      }
+                    }
+
+                    Image {
+                      icon-name: "go-next-symbolic";
+                    }
+                  }
+
+                  ;
+                }
+
+                styles [
+                  "boxed-list",
+                ]
+              }
+
+              ListBox partition_list {
+                valign: start;
+
+                styles [
+                  "boxed-list",
+                ]
+              }
+            }
+
+            ;
+          }
+        }
+
+        ;
+      }
+
+      ;
+
+      styles [
+        "scrollbar",
+      ]
+    }
+
+    styles [
+      "scrollable-box",
+    ]
+  }
+
+  Button settings_button {
+    /* Translators: Button label to open disk management tool. Underscore can not be for same as for 'Reload' */
+
+    label: _("_Manage Disks");
+    focusable: true;
+    halign: center;
+    valign: end;
+    margin-top: 12;
+    margin-bottom: 18;
+    use-underline: true;
+
+    styles [
+      "pill",
+    ]
+  }
+}

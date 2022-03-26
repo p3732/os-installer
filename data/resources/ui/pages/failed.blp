@@ -1,0 +1,49 @@
+using Gtk 4.0;
+
+template FailedPage : Box {
+  margin-bottom: 18;
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    halign: center;
+    valign: center;
+
+    /* Translators: Shown as simple informative text */
+
+    label: _("The installation failed");
+    justify: center;
+    wrap: true;
+    max-width-chars: 50;
+
+    styles [
+      "title-2",
+    ]
+  }
+
+  Box terminal_box {
+    orientation: vertical;
+
+    styles [
+      "terminal-box",
+    ]
+  }
+
+  Button search_button {
+    focusable: true;
+    receives-default: true;
+    halign: center;
+
+    Label {
+      /* Translators: Shown if installation fails. */
+
+      label: _("Search for Help on the Internet");
+      use-markup: true;
+      wrap: true;
+    }
+
+    styles [
+      "pill",
+    ]
+  }
+}

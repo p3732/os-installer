@@ -1,0 +1,71 @@
+using Gtk 4.0;
+
+template InstallPage : Box {
+  margin-bottom: 18;
+  orientation: vertical;
+  spacing: 12;
+
+  Box {
+    vexpand: true;
+    orientation: vertical;
+    spacing: 12;
+
+    Label {
+      /* Translators: Simple label used during Installation */
+
+      label: _("Installing");
+
+      styles [
+        "title-2",
+      ]
+    }
+
+    Stack stack {
+      vexpand: true;
+      transition-type: crossfade;
+
+      StackPage {
+        name: "spinner";
+        child: 
+        Spinner spinner {
+          halign: center;
+          height-request: 64;
+          width-request: 64;
+        }
+
+        ;
+      }
+
+      StackPage {
+        name: "terminal";
+        child: 
+        Box terminal_box {
+          orientation: vertical;
+
+          styles [
+            "terminal-box",
+          ]
+        }
+
+        ;
+      }
+    }
+  }
+
+  ToggleButton terminal_button {
+    focusable: true;
+
+    /* Translators: Hover information on toggle button that shows terminal output during installation. */
+
+    tooltip-text: _("Show Terminal Output");
+    halign: center;
+
+    Image {
+      icon-name: "utilities-terminal-symbolic";
+    }
+
+    styles [
+      "pill",
+    ]
+  }
+}

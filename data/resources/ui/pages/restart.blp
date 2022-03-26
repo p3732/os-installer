@@ -1,0 +1,34 @@
+using Gtk 4.0;
+
+template RestartPage : Box {
+  margin-bottom: 18;
+  orientation: vertical;
+  spacing: 18;
+
+  Box {
+    vexpand: true;
+    halign: center;
+    valign: start;
+    orientation: vertical;
+
+    Label {
+      vexpand: true;
+
+      /* Translators: Shown when restarting system after installation. */
+
+      label: _("Restarting");
+
+      styles [
+        "title-2",
+      ]
+    }
+
+    Spinner spinner {
+      vexpand: true;
+      margin-top: 18;
+      width-request: 64;
+      height-request: 64;
+      spinning: false;
+    }
+  }
+}

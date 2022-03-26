@@ -1,0 +1,289 @@
+using Gtk 4.0;
+
+template LocalePage : Box {
+  orientation: vertical;
+
+  Stack overview_stack {
+    vhomogeneous: false;
+
+    StackPage {
+      name: "overview";
+      child: 
+      Box {
+        margin-bottom: 18;
+        orientation: vertical;
+        spacing: 12;
+
+        Label {
+          valign: start;
+
+          /* Translators: Above list of continents and countries */
+
+          label: _("Adapt to Location");
+          justify: center;
+          wrap: true;
+
+          styles [
+            "title-2",
+          ]
+        }
+
+        ListBox overview_list {
+          selection-mode: none;
+
+          ListBoxRow {
+            name: "timezone";
+            focusable: true;
+            selectable: false;
+            child: 
+            Box {
+              margin-start: 12;
+              margin-end: 12;
+              margin-top: 12;
+              margin-bottom: 12;
+              spacing: 12;
+
+              Label {
+                /* Translators: Presented next to the current Timezone. */
+
+                label: _("Timezone");
+                wrap: true;
+              }
+
+              Label timezone_label {
+                ellipsize: end;
+                hexpand: true;
+                wrap: true;
+                xalign: 1;
+              }
+
+              Image {
+                icon-name: "emblem-system-symbolic";
+              }
+            }
+
+            ;
+          }
+
+          ListBoxRow {
+            name: "formats";
+            focusable: true;
+            selectable: false;
+            child: 
+            Box {
+              margin-start: 12;
+              margin-end: 12;
+              margin-top: 12;
+              margin-bottom: 12;
+              orientation: vertical;
+              spacing: 6;
+
+              Box {
+                spacing: 12;
+
+                Label {
+                  /* Translators: Presented next to the current Formats. */
+
+                  label: _("Formats");
+                  wrap: true;
+                }
+
+                Label formats_label {
+                  ellipsize: end;
+                  hexpand: true;
+                  wrap: true;
+                  xalign: 1;
+                }
+
+                Image {
+                  icon-name: "emblem-system-symbolic";
+                }
+              }
+
+              Label {
+                /* Translators: Description of what is covered by formats. */
+
+                label: _("Defines the default format used for dates, times, numbers, etc.");
+                wrap: true;
+                max-width-chars: 60;
+                xalign: 0;
+
+                styles [
+                  "dim-label",
+                ]
+              }
+            }
+
+            ;
+          }
+
+          styles [
+            "boxed-list",
+          ]
+        }
+
+        Button confirm_button {
+          /* Translators: On button. */
+
+          label: _("_Confirm");
+          focusable: true;
+          receives-default: true;
+          halign: center;
+          valign: center;
+          use-underline: true;
+
+          styles [
+            "suggested-action",
+            "pill",
+          ]
+        }
+      }
+
+      ;
+    }
+
+    StackPage {
+      name: "list";
+      child: 
+      Box {
+        margin-bottom: 18;
+        orientation: vertical;
+        spacing: 12;
+
+        Stack text_stack {
+          valign: start;
+
+          StackPage {
+            name: "timezone";
+            child: 
+            Label {
+              valign: start;
+
+              /* Translators: Above list of continents and countries */
+
+              label: _("Select Location");
+              justify: center;
+              wrap: true;
+
+              styles [
+                "title-2",
+              ]
+            }
+
+            ;
+          }
+
+          StackPage {
+            name: "formats";
+            child: 
+            Label {
+              valign: start;
+
+              /* Translators: Above list of format locales */
+
+              label: _("Select Region");
+              justify: center;
+              wrap: true;
+
+              styles [
+                "title-2",
+              ]
+            }
+
+            ;
+          }
+        }
+
+        Box {
+          orientation: vertical;
+
+          ScrolledWindow {
+            vexpand: true;
+            margin-start: 6;
+            margin-end: 6;
+            hscrollbar-policy: external;
+            propagate-natural-width: true;
+            propagate-natural-height: true;
+            child: 
+            Stack list_stack {
+              margin-start: 18;
+              margin-end: 18;
+              margin-top: 6;
+              margin-bottom: 6;
+              vhomogeneous: false;
+              transition-type: crossfade;
+
+              StackPage {
+                name: "timezone_continents";
+                child: 
+                ListBox continents_list {
+                  valign: start;
+
+                  styles [
+                    "boxed-list",
+                  ]
+                }
+
+                ;
+              }
+
+              StackPage {
+                name: "timezone_countries";
+                child: 
+                ListBox countries_list {
+                  valign: start;
+
+                  styles [
+                    "boxed-list",
+                  ]
+                }
+
+                ;
+              }
+
+              StackPage {
+                name: "timezone_subzones";
+                child: 
+                ListBox subzones_list {
+                  valign: start;
+
+                  styles [
+                    "boxed-list",
+                  ]
+                }
+
+                ;
+              }
+
+              StackPage {
+                name: "formats";
+                child: 
+                ListBox formats_list {
+                  valign: start;
+
+                  styles [
+                    "boxed-list",
+                  ]
+                }
+
+                ;
+              }
+            }
+
+            ;
+
+            styles [
+              "scrollbar",
+            ]
+          }
+
+          styles [
+            "scrollable-box",
+          ]
+        }
+      }
+
+      ;
+    }
+  }
+}

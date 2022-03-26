@@ -1,0 +1,28 @@
+using Gtk 4.0;
+
+template LanguageRow : ListBoxRow {
+  focusable: true;
+  selectable: false;
+  child: 
+  Box {
+    margin-start: 12;
+    margin-end: 12;
+    margin-top: 6;
+    margin-bottom: 6;
+    spacing: 18;
+
+    [center]
+    Label label {
+      hexpand: true;
+      wrap: true;
+      ellipsize: end;
+      lines: 2;
+    }
+
+    Image {
+      icon-name: "go-next-symbolic";
+    }
+  }
+
+  ;
+}

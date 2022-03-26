@@ -1,0 +1,143 @@
+using Gtk 4.0;
+
+template DeviceRow : ListBoxRow {
+  focusable: true;
+  selectable: false;
+  child: 
+  Grid {
+    margin-start: 12;
+    margin-end: 12;
+    margin-top: 6;
+    margin-bottom: 6;
+    row-spacing: 2;
+    column-spacing: 12;
+
+    Stack arrow_stack {
+      halign: end;
+      hhomogeneous: false;
+      vhomogeneous: false;
+
+      Image {
+        halign: end;
+        icon-name: "go-next-symbolic";
+      }
+
+      StackPage {
+        name: "too_small";
+        child: 
+        Label too_small_label {
+          visible: false;
+          halign: start;
+
+          /* Translators: Shown for partitions that are not big enough to be installed on */
+
+          label: _("Not enough space for installation");
+          wrap: true;
+          xalign: 1;
+
+          styles [
+            "dim-label",
+          ]
+        }
+
+        ;
+      }
+
+      layout {
+        column: "2";
+        row: "0";
+        row-span: "2";
+      }
+    }
+
+    Stack name_stack {
+      hexpand: true;
+      hhomogeneous: false;
+
+      StackPage {
+        name: "disk";
+        child: 
+        Label disk_name {
+          /* Translators: Shown if no name can be determined for a disk. */
+
+          label: _("Unknow Disk");
+          use-markup: true;
+          wrap: true;
+          ellipsize: end;
+          xalign: 0;
+        }
+
+        ;
+      }
+
+      StackPage {
+        name: "partition";
+        child: 
+        Box {
+          valign: end;
+          spacing: 4;
+
+          Label static_label {
+            /* Translators: Followed by 'Partition' and a partiton name or number. */
+
+            label: _("Use");
+            use-markup: true;
+            xalign: 0;
+          }
+
+          Label partition_name {
+            hexpand: true;
+
+            /* Translators: Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name. */
+
+            label: _("Partition");
+            use-markup: true;
+            ellipsize: end;
+            width-chars: 8;
+            xalign: 0;
+          }
+        }
+
+        ;
+      }
+
+      layout {
+        column: "1";
+        row: "0";
+      }
+    }
+
+    Label device_path {
+      valign: start;
+      ellipsize: start;
+      xalign: 0;
+
+      styles [
+        "dim-label",
+      ]
+
+      layout {
+        column: "1";
+        row: "1";
+      }
+    }
+
+    Label size {
+      width-chars: 5;
+      max-width-chars: 7;
+      xalign: 1;
+
+      styles [
+        "dim-label",
+      ]
+
+      layout {
+        column: "0";
+        row: "0";
+        row-span: "2";
+      }
+    }
+  }
+
+  ;
+}

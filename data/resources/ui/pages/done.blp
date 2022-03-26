@@ -1,0 +1,50 @@
+using Gtk 4.0;
+
+template DonePage : Box {
+  orientation: vertical;
+
+  Box {
+    halign: center;
+    margin-bottom: 18;
+    orientation: vertical;
+    spacing: 12;
+
+    Label {
+      /* Translators: Informative label after successful installation */
+
+      label: _("Installation complete");
+
+      styles [
+        "title-2",
+      ]
+    }
+
+    Button restart_button {
+      /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */
+
+      label: _("_Restart System");
+      focusable: true;
+      receives-default: true;
+      use-underline: true;
+
+      styles [
+        "suggested-action",
+        "pill",
+      ]
+    }
+
+    Button {
+      /* Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'. */
+
+      label: _("Restart _Later");
+      focusable: true;
+      receives-default: true;
+      action-name: "app.quit";
+      use-underline: true;
+
+      styles [
+        "pill",
+      ]
+    }
+  }
+}

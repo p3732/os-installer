@@ -1,0 +1,29 @@
+using Gtk 4.0;
+
+template InternetPage : Box {
+  margin-bottom: 18;
+  orientation: vertical;
+  spacing: 18;
+
+  Button settings_button {
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    valign: center;
+    use-underline: true;
+
+    Label {
+      /* Translators: On button for opening wifi settings. */
+
+      label: _("_Setup Internet Connection");
+      use-underline: true;
+      justify: center;
+      wrap: true;
+    }
+
+    styles [
+      "suggested-action",
+      "pill",
+    ]
+  }
+}

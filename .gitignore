@@ -8,3 +8,4 @@ tmp/
 *~
 # temporary glade files
 \#*
+/subprojects/blueprint-compiler

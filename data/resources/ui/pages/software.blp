@@ -1,0 +1,80 @@
+using Gtk 4.0;
+
+template SoftwarePage : Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    valign: start;
+
+    /* Translators: Informative label above a list of software that can be selected for installation */
+
+    label: _("Select Additional Software to Install");
+    justify: center;
+    wrap: true;
+
+    styles [
+      "title-2",
+    ]
+  }
+
+  Button continue_button {
+    /* Translators: On button. */
+
+    label: _("_Continue");
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    valign: end;
+    margin-bottom: 18;
+    use-underline: true;
+
+    styles [
+      "suggested-action",
+      "pill",
+    ]
+  }
+
+  Box {
+    vexpand: true;
+    orientation: vertical;
+
+    ScrolledWindow {
+      vexpand: true;
+      focusable: true;
+      margin-start: 6;
+      margin-end: 6;
+      hscrollbar-policy: external;
+      propagate-natural-width: true;
+      propagate-natural-height: true;
+      child: 
+      Viewport {
+        vscroll-policy: natural;
+        child: 
+        ListBox software_list {
+          margin-start: 18;
+          margin-end: 18;
+          margin-top: 6;
+          margin-bottom: 6;
+          selection-mode: none;
+
+          styles [
+            "boxed-list",
+          ]
+        }
+
+        ;
+      }
+
+      ;
+
+      styles [
+        "scrollbar",
+      ]
+    }
+
+    styles [
+      "scrollable-box",
+    ]
+  }
+}
