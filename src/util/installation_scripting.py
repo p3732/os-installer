@@ -42,13 +42,13 @@ class InstallationScripting():
         if self.current_step < self.step_ready and not self.script_running:
             self.current_step += 1
             script_name = steps[self.current_step]
-            print('Starting step "{}"...'.format(script_name))
+            print(f'Starting step "{script_name}"...')
             envs = global_state.create_envs(self.current_step >= 2, self.current_step == 3)
             global_state.installation_running = self.current_step >= 2
 
             # check config
             if envs == None:
-                print('Not all config options set for "{}". Please report this bug.'.format(script_name))
+                print(f'Not all config options set for "{script_name}". Please report this bug.')
                 print('############################')
                 print(global_state.config)
                 print('############################')
@@ -57,10 +57,10 @@ class InstallationScripting():
 
             # start script
             self.script_running, _ = self.terminal.spawn_sync(
-                Vte.PtyFlags.DEFAULT, '/', ['sh', '/etc/os-installer/scripts/{}.sh'.format(script_name)],
+                Vte.PtyFlags.DEFAULT, '/', ['sh', f'/etc/os-installer/scripts/{script_name}.sh'],
                 envs, GLib.SpawnFlags.DEFAULT, None, None, self.cancel)
             if not self.script_running:
-                print('Could not start {} script! Ignoring.'.format(script_name))
+                print(f'Could not start {script_name} script! Ignoring.')
 
     ### callbacks ###
 
@@ -68,7 +68,7 @@ class InstallationScripting():
         with self.lock:
             self.script_running = False
             script_name = steps[self.current_step]
-            print('Finished step "{}".'.format(script_name))
+            print(f'Finished step "{script_name}".')
 
             if not status == 0 and not global_state.demo_mode:
                 global_state.installation_failed()

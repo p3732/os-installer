@@ -16,5 +16,5 @@ def get_software_suggestions():
                     'icon_path' in package):
                 suggestions.append(package)
             else:
-                print('Package {} not correctly configured!'.format(package))
+                print(f'Package {package} not correctly configured!')
     return suggestions

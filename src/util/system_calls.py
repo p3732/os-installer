@@ -32,9 +32,8 @@ def open_disks():
 
 def open_internet_search():
     distribution_name = global_state.get_config('distribution_name')
-    name_snippet = '"' + distribution_name + '" ' if distribution_name else ''
-    search_text = '{}"failed installation" "os-installer version {}"'.format(
-        name_snippet, global_state.get_config('version'))
+    name_snippet = f'"{distribution_name}" ' if distribution_name else ''
+    search_text = f'{name_snippet}"failed installation" "os-installer version {global_state.get_config("version")}"'
     _run_program(['epiphany', '--search', search_text])
 
 
@@ -52,7 +51,7 @@ def set_system_keyboard_layout(keyboard_layout, short_hand):
 
     # set system input
     _exec(['gsettings', 'set', 'org.gnome.desktop.input-sources', 'sources',
-           "[('xkb','{}')]".format(short_hand)])
+           f"[('xkb','{short_hand}')]"])
 
 
 def set_system_language(language_info):
@@ -64,9 +63,9 @@ def set_system_language(language_info):
     # set app language
     was_set = Locale.setlocale(Locale.LC_ALL, locale)
     if not was_set:
-        print('Could not set locale to {}, falling back to English.'.format(language_info.name))
+        print(f'Could not set locale to {language_info.name}, falling back to English.')
         print('Installation medium creators, check that you have correctly set up the locales',
-              'to support {}.'.format(language_info.name))
+              f'to support {language_info.name}.')
         # fallback
         Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
@@ -76,7 +75,7 @@ def set_system_language(language_info):
 
 def set_system_formats(locale):
     global_state.set_config('formats', locale)
-    _exec(['gsettings', 'set', 'org.gnome.system.locale', 'region', "'{}'".format(locale)])
+    _exec(['gsettings', 'set', 'org.gnome.system.locale', 'region', f"'{locale}'"])
 
 
 def set_system_timezone(timezone):
