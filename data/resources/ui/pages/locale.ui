@@ -20,9 +20,9 @@
                     <property name="label" translatable="1" comments="Above list of continents and countries">Adapt to Location</property>
                     <property name="justify">center</property>
                     <property name="wrap">1</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"></attribute>
-                    </attributes>
+                    <style>
+                      <class name="title-2"/>
+                    </style>
                   </object>
                 </child>
                 <child>
@@ -106,9 +106,9 @@
                                 <property name="wrap">1</property>
                                 <property name="max-width-chars">60</property>
                                 <property name="xalign">0</property>
-                                <attributes>
-                                  <attribute name="weight" value="light"></attribute>
-                                </attributes>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
                               </object>
                             </child>
                           </object>
@@ -161,9 +161,9 @@
                             <property name="label" translatable="1" comments="Above list of continents and countries">Select Location</property>
                             <property name="justify">center</property>
                             <property name="wrap">1</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"></attribute>
-                            </attributes>
+                            <style>
+                              <class name="title-2"/>
+                            </style>
                           </object>
                         </property>
                       </object>
@@ -177,9 +177,9 @@
                             <property name="label" translatable="1" comments="Above list of format locales">Select Region</property>
                             <property name="justify">center</property>
                             <property name="wrap">1</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"></attribute>
-                            </attributes>
+                            <style>
+                              <class name="title-2"/>
+                            </style>
                           </object>
                         </property>
                       </object>

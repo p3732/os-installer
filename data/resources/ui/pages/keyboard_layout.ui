@@ -10,9 +10,9 @@
         <property name="label" translatable="1" comments="Explanation for keyboard layout selection page.">Select Keyboard Layout</property>
         <property name="justify">center</property>
         <property name="wrap">1</property>
-        <attributes>
-          <attribute name="weight" value="bold"></attribute>
-        </attributes>
+        <style>
+          <class name="title-2"/>
+        </style>
       </object>
     </child>
     <child>

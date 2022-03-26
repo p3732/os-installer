@@ -29,9 +29,9 @@
                 <property name="valign">end</property>
                 <property name="ellipsize">end</property>
                 <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="weight" value="bold"></attribute>
-                </attributes>
+                <style>
+                  <class name="title-2"/>
+                </style>
               </object>
             </child>
             <child>

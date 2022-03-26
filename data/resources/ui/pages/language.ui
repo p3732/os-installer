@@ -65,9 +65,6 @@
         <property name="height-request">64</property>
         <property name="valign">end</property>
         <property name="orientation">vertical</property>
-        <child>
-          <placeholder/>
-        </child>
         <style>
           <class name="bottom-gradient"/>
         </style>

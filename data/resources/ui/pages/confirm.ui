@@ -15,18 +15,18 @@
           <object class="GtkLabel">
             <property name="label" translatable="1" comments="Followed by a disk or partition name">This will delete all data on</property>
             <property name="wrap">1</property>
-            <attributes>
-              <attribute name="weight" value="bold"></attribute>
-            </attributes>
+            <style>
+              <class name="title-2"/>
+            </style>
           </object>
         </child>
         <child>
           <object class="GtkLabel" id="disk_label">
             <property name="wrap">1</property>
             <property name="wrap-mode">word-char</property>
-            <attributes>
-              <attribute name="weight" value="bold"></attribute>
-            </attributes>
+            <style>
+              <class name="title-3"/>
+            </style>
           </object>
         </child>
       </object>

@@ -4,7 +4,6 @@
   <requires lib="libadwaita" version="1.0"/>
   <template class="ConfirmQuitPopup" parent="AdwWindow">
     <property name="destroy-with-parent">True</property>
-    <property name="type-hint">dialog</property>
     <property name="content">
       <object class="GtkWindowHandle">
         <child>
@@ -29,9 +28,9 @@
                 <property name="justify">center</property>
                 <property name="wrap">1</property>
                 <property name="max-width-chars">45</property>
-                <attributes>
-                  <attribute name="weight" value="bold"></attribute>
-                </attributes>
+                <style>
+                  <class name="title-2"/>
+                </style>
               </object>
             </child>
             <child>

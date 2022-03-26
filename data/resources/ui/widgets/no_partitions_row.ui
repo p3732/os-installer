@@ -33,9 +33,6 @@
                 <property name="label" translatable="1" comments="Followed by a list of requirements">The disk requires:</property>
                 <property name="wrap">1</property>
                 <property name="xalign">0</property>
-                <attributes>
-                  <attribute name="weight" value="light"></attribute>
-                </attributes>
               </object>
             </child>
             <child>
@@ -51,9 +48,6 @@
   • EFI partition</property>
                         <property name="wrap">1</property>
                         <property name="xalign">0</property>
-                        <attributes>
-                          <attribute name="weight" value="light"></attribute>
-                        </attributes>
                       </object>
                     </property>
                   </object>
@@ -66,9 +60,6 @@
                         <property name="label" translatable="1" comments="Technical terms, the abbreviations should not be translated">  • BIOS boot partition</property>
                         <property name="wrap">1</property>
                         <property name="xalign">0</property>
-                        <attributes>
-                          <attribute name="weight" value="light"></attribute>
-                        </attributes>
                       </object>
                     </property>
                   </object>
