@@ -20,9 +20,7 @@ template DiskPage : Box {
           justify: center;
           wrap: true;
 
-          styles [
-            "title-2",
-          ]
+          styles ["title-2"]
         }
 
         [end]
@@ -37,10 +35,7 @@ template DiskPage : Box {
             icon-name: "view-refresh-symbolic";
           }
 
-          styles [
-            "circular",
-            "flat",
-          ]
+          styles ["circular", "flat"]
         }
       }
 
@@ -54,9 +49,7 @@ template DiskPage : Box {
         justify: center;
         wrap: true;
 
-        styles [
-          "title-2",
-        ]
+        styles ["title-2"]
       }
 
       ;
@@ -94,9 +87,7 @@ template DiskPage : Box {
               receives-default: true;
               valign: start;
 
-              styles [
-                "boxed-list",
-              ]
+              styles ["boxed-list"]
             }
 
             ;
@@ -129,9 +120,7 @@ template DiskPage : Box {
                       max-width-chars: 7;
                       xalign: 1;
 
-                      styles [
-                        "dim-label",
-                      ]
+                      styles ["dim-label"]
                     }
 
                     Box {
@@ -155,9 +144,7 @@ template DiskPage : Box {
                         max-width-chars: 7;
                         xalign: 0;
 
-                        styles [
-                          "dim-label",
-                        ]
+                        styles ["dim-label"]
                       }
                     }
 
@@ -169,17 +156,13 @@ template DiskPage : Box {
                   ;
                 }
 
-                styles [
-                  "boxed-list",
-                ]
+                styles ["boxed-list"]
               }
 
               ListBox partition_list {
                 valign: start;
 
-                styles [
-                  "boxed-list",
-                ]
+                styles ["boxed-list"]
               }
             }
 
@@ -192,14 +175,10 @@ template DiskPage : Box {
 
       ;
 
-      styles [
-        "scrollbar",
-      ]
+      styles ["scrollbar"]
     }
 
-    styles [
-      "scrollable-box",
-    ]
+    styles ["scrollable-box"]
   }
 
   Button settings_button {
@@ -213,8 +192,6 @@ template DiskPage : Box {
     margin-bottom: 18;
     use-underline: true;
 
-    styles [
-      "pill",
-    ]
+    styles ["pill"]
   }
 }

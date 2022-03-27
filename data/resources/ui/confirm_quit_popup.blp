@@ -28,9 +28,7 @@ template ConfirmQuitPopup : .AdwWindow {
         wrap: true;
         max-width-chars: 45;
 
-        styles [
-          "title-2",
-        ]
+        styles ["title-2"]
       }
 
       Box {
@@ -45,10 +43,7 @@ template ConfirmQuitPopup : .AdwWindow {
           receives-default: true;
           use-underline: true;
 
-          styles [
-            "suggested-action",
-            "pill",
-          ]
+          styles ["suggested-action", "pill"]
         }
 
         Button stop_button {
@@ -59,10 +54,7 @@ template ConfirmQuitPopup : .AdwWindow {
           receives-default: true;
           use-underline: true;
 
-          styles [
-            "destructive-action",
-            "pill",
-          ]
+          styles ["destructive-action", "pill"]
         }
       }
     }

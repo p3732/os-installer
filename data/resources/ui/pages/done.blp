@@ -14,9 +14,7 @@ template DonePage : Box {
 
       label: _("Installation complete");
 
-      styles [
-        "title-2",
-      ]
+      styles ["title-2"]
     }
 
     Button restart_button {
@@ -27,10 +25,7 @@ template DonePage : Box {
       receives-default: true;
       use-underline: true;
 
-      styles [
-        "suggested-action",
-        "pill",
-      ]
+      styles ["suggested-action", "pill"]
     }
 
     Button {
@@ -42,9 +37,7 @@ template DonePage : Box {
       action-name: "app.quit";
       use-underline: true;
 
-      styles [
-        "pill",
-      ]
+      styles ["pill"]
     }
   }
 }
