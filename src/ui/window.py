@@ -94,7 +94,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _initialize_page(self, page_to_initialize):
         if not page_to_initialize == None:
             page = page_to_initialize()
-            self.main_stack.add_named(page, page.get_name())
+            page.set_margin_start(6)
+            page.set_margin_end(6)
+            
+            clamp = Adw.Clamp()
+            clamp.set_child(page)
+            clamp.set_tightening_threshold(320)
+            clamp.set_maximum_size(400)
+            self.main_stack.add_named(clamp, page.get_name())
             self.pages.append(page)
 
     def _initialize_pages_translated(self):

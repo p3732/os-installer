@@ -79,16 +79,8 @@ template OsInstallerWindow : .AdwApplicationWindow {
       styles ["flat"]
     }
 
-    .AdwClamp {
-      vexpand: "1";
-      margin-start: "6";
-      margin-end: "6";
-      maximum-size: "400";
-      tightening-threshold: "320";
-
-      Stack main_stack {
-        transition-type: slide_left_right;
-      }
+    Stack main_stack {
+      transition-type: slide_left_right;
     }
   }
 }
