@@ -15,19 +15,6 @@ template SoftwarePage : Box {
     styles ["title-2"]
   }
 
-  Button continue_button {
-    /* Translators: On button. */
-    label: _("_Continue");
-    focusable: true;
-    receives-default: true;
-    halign: center;
-    valign: end;
-    margin-bottom: 18;
-    use-underline: true;
-
-    styles ["suggested-action", "pill"]
-  }
-
   Box {
     vexpand: true;
     orientation: vertical;
@@ -59,5 +46,18 @@ template SoftwarePage : Box {
     }
 
     styles ["scrollable-box"]
+  }
+
+  Button continue_button {
+    /* Translators: On button. */
+    label: _("_Continue");
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    valign: end;
+    margin-bottom: 18;
+    use-underline: true;
+
+    styles ["suggested-action", "pill"]
   }
 }
