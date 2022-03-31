@@ -7,7 +7,6 @@ template UserPage : Box {
 
   Label {
     /* Translators: Explanation for disk selection page. */
-
     label: _("Enter Account Information");
     justify: center;
     wrap: true;
@@ -33,7 +32,6 @@ template UserPage : Box {
           hexpand: true;
 
           /* Translators: Used with entry field for User's name */
-
           label: _("Name");
           wrap: true;
           xalign: 0;
@@ -48,9 +46,7 @@ template UserPage : Box {
 
           placeholder-text: _("Enter a Name");
         }
-      }
-
-      ;
+      };
     }
 
     ListBoxRow {
@@ -66,7 +62,6 @@ template UserPage : Box {
 
         Label {
           /* Translators: Used with option to enable automatic login of user upon booting */
-
           label: _("Automatic Login");
           wrap: true;
           xalign: 0;
@@ -77,9 +72,7 @@ template UserPage : Box {
           valign: center;
           active: true;
         }
-      }
-
-      ;
+      };
     }
 
     ListBoxRow {
@@ -97,7 +90,6 @@ template UserPage : Box {
           hexpand: true;
 
           /* Translators: Used with entry field for setting a password for new user */
-
           label: _("Password");
           wrap: true;
           xalign: 0;
@@ -114,9 +106,7 @@ template UserPage : Box {
           placeholder-text: _("Enter a Password");
           input-purpose: password;
         }
-      }
-
-      ;
+      };
     }
 
     styles ["boxed-list"]
@@ -124,7 +114,6 @@ template UserPage : Box {
 
   Button continue_button {
     /* Translators: On button. */
-
     label: _("_Continue");
     sensitive: false;
     focusable: true;

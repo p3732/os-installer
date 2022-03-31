@@ -18,7 +18,6 @@ template LocalePage : Box {
           valign: start;
 
           /* Translators: Above list of continents and countries */
-
           label: _("Adapt to Location");
           justify: center;
           wrap: true;
@@ -43,7 +42,6 @@ template LocalePage : Box {
 
               Label {
                 /* Translators: Presented next to the current Timezone. */
-
                 label: _("Timezone");
                 wrap: true;
               }
@@ -58,9 +56,7 @@ template LocalePage : Box {
               Image {
                 icon-name: "emblem-system-symbolic";
               }
-            }
-
-            ;
+            };
           }
 
           ListBoxRow {
@@ -81,7 +77,6 @@ template LocalePage : Box {
 
                 Label {
                   /* Translators: Presented next to the current Formats. */
-
                   label: _("Formats");
                   wrap: true;
                 }
@@ -100,7 +95,6 @@ template LocalePage : Box {
 
               Label {
                 /* Translators: Description of what is covered by formats. */
-
                 label: _("Defines the default format used for dates, times, numbers, etc.");
                 wrap: true;
                 max-width-chars: 60;
@@ -108,9 +102,7 @@ template LocalePage : Box {
 
                 styles ["dim-label"]
               }
-            }
-
-            ;
+            };
           }
 
           styles ["boxed-list"]
@@ -118,7 +110,6 @@ template LocalePage : Box {
 
         Button confirm_button {
           /* Translators: On button. */
-
           label: _("_Confirm");
           focusable: true;
           receives-default: true;
@@ -128,9 +119,7 @@ template LocalePage : Box {
 
           styles ["suggested-action", "pill"]
         }
-      }
-
-      ;
+      };
     }
 
     StackPage {
@@ -151,15 +140,12 @@ template LocalePage : Box {
               valign: start;
 
               /* Translators: Above list of continents and countries */
-
               label: _("Select Location");
               justify: center;
               wrap: true;
 
               styles ["title-2"]
-            }
-
-            ;
+            };
           }
 
           StackPage {
@@ -169,15 +155,12 @@ template LocalePage : Box {
               valign: start;
 
               /* Translators: Above list of format locales */
-
               label: _("Select Region");
               justify: center;
               wrap: true;
 
               styles ["title-2"]
-            }
-
-            ;
+            };
           }
         }
 
@@ -207,9 +190,7 @@ template LocalePage : Box {
                   valign: start;
 
                   styles ["boxed-list"]
-                }
-
-                ;
+                };
               }
 
               StackPage {
@@ -219,9 +200,7 @@ template LocalePage : Box {
                   valign: start;
 
                   styles ["boxed-list"]
-                }
-
-                ;
+                };
               }
 
               StackPage {
@@ -231,9 +210,7 @@ template LocalePage : Box {
                   valign: start;
 
                   styles ["boxed-list"]
-                }
-
-                ;
+                };
               }
 
               StackPage {
@@ -243,22 +220,16 @@ template LocalePage : Box {
                   valign: start;
 
                   styles ["boxed-list"]
-                }
-
-                ;
+                };
               }
-            }
-
-            ;
+            };
 
             styles ["scrollbar"]
           }
 
           styles ["scrollable-box"]
         }
-      }
-
-      ;
+      };
     }
   }
 }

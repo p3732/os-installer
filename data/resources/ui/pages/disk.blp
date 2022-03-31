@@ -15,7 +15,6 @@ template DiskPage : Box {
           halign: center;
 
           /* Translators: Explanation for disk selection page. */
-
           label: _("Select Drive for Installation");
           justify: center;
           wrap: true;
@@ -37,9 +36,7 @@ template DiskPage : Box {
 
           styles ["circular", "flat"]
         }
-      }
-
-      ;
+      };
     }
 
     StackPage {
@@ -50,9 +47,7 @@ template DiskPage : Box {
         wrap: true;
 
         styles ["title-2"]
-      }
-
-      ;
+      };
     }
   }
 
@@ -88,9 +83,7 @@ template DiskPage : Box {
               valign: start;
 
               styles ["boxed-list"]
-            }
-
-            ;
+            };
           }
 
           StackPage {
@@ -132,7 +125,6 @@ template DiskPage : Box {
                         valign: end;
 
                         /* Translators: Label to go back to overview of all disks */
-
                         label: _("Use Whole Disk");
                         wrap: true;
                         xalign: 0;
@@ -151,9 +143,7 @@ template DiskPage : Box {
                     Image {
                       icon-name: "go-next-symbolic";
                     }
-                  }
-
-                  ;
+                  };
                 }
 
                 styles ["boxed-list"]
@@ -164,16 +154,10 @@ template DiskPage : Box {
 
                 styles ["boxed-list"]
               }
-            }
-
-            ;
+            };
           }
-        }
-
-        ;
-      }
-
-      ;
+        };
+      };
 
       styles ["scrollbar"]
     }
@@ -183,7 +167,6 @@ template DiskPage : Box {
 
   Button settings_button {
     /* Translators: Button label to open disk management tool. Underscore can not be for same as for 'Reload' */
-
     label: _("_Manage Disks");
     focusable: true;
     halign: center;

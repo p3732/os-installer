@@ -30,15 +30,12 @@ template DeviceRow : ListBoxRow {
           halign: start;
 
           /* Translators: Shown for partitions that are not big enough to be installed on */
-
           label: _("Not enough space for installation");
           wrap: true;
           xalign: 1;
 
           styles ["dim-label"]
-        }
-
-        ;
+        };
       }
 
       layout {
@@ -57,15 +54,12 @@ template DeviceRow : ListBoxRow {
         child: 
         Label disk_name {
           /* Translators: Shown if no name can be determined for a disk. */
-
           label: _("Unknow Disk");
           use-markup: true;
           wrap: true;
           ellipsize: end;
           xalign: 0;
-        }
-
-        ;
+        };
       }
 
       StackPage {
@@ -77,7 +71,6 @@ template DeviceRow : ListBoxRow {
 
           Label static_label {
             /* Translators: Followed by 'Partition' and a partiton name or number. */
-
             label: _("Use");
             use-markup: true;
             xalign: 0;
@@ -87,16 +80,13 @@ template DeviceRow : ListBoxRow {
             hexpand: true;
 
             /* Translators: Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name. */
-
             label: _("Partition");
             use-markup: true;
             ellipsize: end;
             width-chars: 8;
             xalign: 0;
           }
-        }
-
-        ;
+        };
       }
 
       layout {
@@ -131,7 +121,5 @@ template DeviceRow : ListBoxRow {
         row-span: "2";
       }
     }
-  }
-
-  ;
+  };
 }

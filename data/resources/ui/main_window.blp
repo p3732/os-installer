@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template OsInstallerWindow : .AdwApplicationWindow {
   width-request: "360";
@@ -31,9 +32,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
             focusable: true;
             focus-on-click: false;
             icon-name: "go-previous-symbolic";
-          }
-
-          ;
+          };
         }
 
         Revealer next_revealer {
@@ -44,9 +43,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
             focusable: true;
             focus-on-click: false;
             icon-name: "go-next-symbolic";
-          }
-
-          ;
+          };
         }
       }
 
@@ -61,9 +58,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
           child: 
           Image {
             pixel-size: 128;
-          }
-
-          ;
+          };
         }
 
         StackPage {
@@ -71,9 +66,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
           child: 
           Image {
             pixel-size: 128;
-          }
-
-          ;
+          };
         }
       }
 

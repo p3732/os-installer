@@ -25,7 +25,6 @@ template EncryptPage : Box {
 
           Label {
             /* Translators: Used with option to enable disk encryption */
-
             label: _("Encrypt Installation");
             wrap: true;
           }
@@ -35,9 +34,7 @@ template EncryptPage : Box {
             receives-default: true;
             valign: center;
           }
-        }
-
-        ;
+        };
       }
 
       styles ["boxed-list"]
@@ -72,7 +69,6 @@ template EncryptPage : Box {
                 hexpand: true;
 
                 /* Translators: Description of entry field for pin/password used for disk encryption */
-
                 label: _("Encryption PIN");
                 wrap: true;
                 xalign: 0;
@@ -103,26 +99,20 @@ template EncryptPage : Box {
                 hexpand: true;
 
                 /* Translators: Warning label for disk encryption */
-
                 label: _("Memorize this PIN well. Without it you will not be able to access your files.");
                 wrap: true;
               }
             }
-          }
-
-          ;
+          };
         }
 
         styles ["boxed-list"]
-      }
-
-      ;
+      };
     }
   }
 
   Button continue_button {
     /* Translators: On button. */
-
     label: _("_Continue");
     focusable: true;
     receives-default: true;

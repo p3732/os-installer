@@ -22,7 +22,6 @@ template NoPartitionsRow : ListBoxRow {
 
       Label {
         /* Translators: Shown if a disk is currently not compatible with the way a system was booted. */
-
         label: _("Selecting a partition is not possible.");
         wrap: true;
         xalign: 0;
@@ -30,7 +29,6 @@ template NoPartitionsRow : ListBoxRow {
 
       Label {
         /* Translators: Followed by a list of requirements */
-
         label: _("The disk requires:");
         wrap: true;
         xalign: 0;
@@ -45,13 +43,10 @@ template NoPartitionsRow : ListBoxRow {
           child: 
           Label {
             /* Translators: Technical terms, the abbreviations should not be translated. */
-
             label: _("  • GPT partitioning\n  • EFI partition");
             wrap: true;
             xalign: 0;
-          }
-
-          ;
+          };
         }
 
         StackPage {
@@ -59,17 +54,12 @@ template NoPartitionsRow : ListBoxRow {
           child: 
           Label {
             /* Translators: Technical terms, the abbreviations should not be translated */
-
             label: _("  • BIOS boot partition");
             wrap: true;
             xalign: 0;
-          }
-
-          ;
+          };
         }
       }
     }
-  }
-
-  ;
+  };
 }

@@ -8,7 +8,6 @@ template SoftwarePage : Box {
     valign: start;
 
     /* Translators: Informative label above a list of software that can be selected for installation */
-
     label: _("Select Additional Software to Install");
     justify: center;
     wrap: true;
@@ -18,7 +17,6 @@ template SoftwarePage : Box {
 
   Button continue_button {
     /* Translators: On button. */
-
     label: _("_Continue");
     focusable: true;
     receives-default: true;
@@ -54,12 +52,8 @@ template SoftwarePage : Box {
           selection-mode: none;
 
           styles ["boxed-list"]
-        }
-
-        ;
-      }
-
-      ;
+        };
+      };
 
       styles ["scrollbar"]
     }

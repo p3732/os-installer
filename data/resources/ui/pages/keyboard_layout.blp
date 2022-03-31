@@ -6,7 +6,6 @@ template KeyboardLayoutPage : Box {
 
   Label {
     /* Translators: Explanation for keyboard layout selection page. */
-
     label: _("Select Keyboard Layout");
     justify: center;
     wrap: true;
@@ -74,7 +73,6 @@ template KeyboardLayoutPage : Box {
 
                   Label {
                     /* Translators: Followed by a language name. */
-
                     label: _("Keyboard Language");
                     wrap: true;
                   }
@@ -88,9 +86,7 @@ template KeyboardLayoutPage : Box {
                   Image {
                     icon-name: "emblem-system-symbolic";
                   }
-                }
-
-                ;
+                };
               }
 
               styles ["boxed-list"]
@@ -99,9 +95,7 @@ template KeyboardLayoutPage : Box {
             ListBox layout_list {
               styles ["boxed-list"]
             }
-          }
-
-          ;
+          };
         }
 
         StackPage {
@@ -111,13 +105,9 @@ template KeyboardLayoutPage : Box {
             valign: start;
 
             styles ["boxed-list"]
-          }
-
-          ;
+          };
         }
-      }
-
-      ;
+      };
 
       styles ["scrollbar"]
     }
@@ -127,7 +117,6 @@ template KeyboardLayoutPage : Box {
 
   Button continue_button {
     /* Translators: On button. */
-
     label: _("_Continue");
     sensitive: false;
     focusable: true;

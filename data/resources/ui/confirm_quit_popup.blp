@@ -1,8 +1,9 @@
 using Gtk 4.0;
+using Adw 1;
 
 template ConfirmQuitPopup : .AdwWindow {
   destroy-with-parent: "True";
-  content: 
+  content:
   WindowHandle {
     Box {
       margin-start: 12;
@@ -22,7 +23,6 @@ template ConfirmQuitPopup : .AdwWindow {
         valign: center;
 
         /* Translators: Shown if user wants to close window with running installation */
-
         label: _("Stopping a running installation will leave the disk in an undefined state that might potentially be harmful");
         justify: center;
         wrap: true;
@@ -37,7 +37,6 @@ template ConfirmQuitPopup : .AdwWindow {
 
         Button continue_button {
           /* Translators: Underscore can not be the same as for 'Stop Installation'. */
-
           label: _("_Continue Installation");
           focusable: true;
           receives-default: true;
@@ -48,17 +47,13 @@ template ConfirmQuitPopup : .AdwWindow {
 
         Button stop_button {
           /* Translators: Underscore can not be the same as for 'Continue Installation'. */
-
           label: _("_Stop Installation");
           focusable: true;
-          receives-default: true;
           use-underline: true;
 
           styles ["destructive-action", "pill"]
         }
       }
     }
-  }
-
-  ;
+  };
 }
