@@ -102,19 +102,20 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             clamp.set_tightening_threshold(320)
             clamp.set_maximum_size(400)
             self.main_stack.add_named(clamp, page.get_name())
-            self.pages.append(page)
+            self.pages.append(page.get_name())
 
     def _initialize_pages_translated(self):
         # delete pages that are not the language page
-        # TODO Fix, current error:
-        #   TypeError: argument child: Expected Gtk.Widget, but got gi.repository.Gtk.StackPage
-        #for page in self.main_stack.get_pages():
-        #    if not page is self.current_page:
-        #        #self.main_stack.remove(page)
-        self.pages = [self.current_page]
+        self._remove_pages(self.pages[1:])
+        self.pages = [self.current_page.get_name()]
 
         for unintialized_page in self.available_pages[1:]:
             self._initialize_page(unintialized_page)
+
+    def _remove_pages(self, pages):
+        for page in pages:
+            child = self.main_stack.get_child_by_name(page)
+            self.main_stack.remove(child)
 
     def _load_page(self, page_number):
         # special case language page
@@ -132,9 +133,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.navigation_state.furthest = max(self.navigation_state.furthest, page_number)
 
         # load page
-        self.current_page = self.pages[self.navigation_state.current]
+        current_page_name = self.pages[self.navigation_state.current]
+        clamp = self.main_stack.get_child_by_name(current_page_name)
+        self.current_page = clamp.get_child()
         if not self.current_page.load():
-            self.main_stack.set_visible_child_name(self.current_page.get_name())
+            self.main_stack.set_visible_child(clamp)
 
             # set icon
             name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
@@ -163,6 +166,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def advance(self, name):
         with self.navigation_lock:
+            # to prevent incorrect navigation, confirm that calling page is current page
             if not name or name == self.current_page.get_name():
                 self._load_page(self.navigation_state.current + 1)
 
