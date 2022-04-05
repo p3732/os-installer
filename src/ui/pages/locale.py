@@ -3,7 +3,7 @@
 from gi.repository import Gio, Gtk, GWeather
 
 from .global_state import global_state
-from .installation_scripting import installation_scripting
+from .installation_scripting import installation_scripting, Step
 from .locale_provider import get_current_formats, get_formats, get_timezone
 from .page import Page
 from .system_calls import set_system_formats, set_system_timezone
@@ -121,7 +121,7 @@ class LocalePage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_clicked_confirm_button(self, button):
-        installation_scripting.start_next_step()
+        installation_scripting.set_ok_to_start_step(Step.configure)
         global_state.advance_without_return(self.__gtype_name__)
 
     def _on_formats_row_activated(self, list_box, row):

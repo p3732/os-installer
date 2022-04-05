@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from enum import Enum
 from threading import Lock
 import time
 
@@ -8,7 +9,12 @@ from gi.repository import Gio, GLib, GObject, Vte
 from .global_state import global_state
 
 
-steps = [None, 'prepare', 'install', 'configure']
+class Step(Enum):
+    none = 0
+    prepare = 1
+    install = 2
+    configure = 3
+    done = 4
 
 
 class InstallationScripting():
@@ -23,8 +29,8 @@ class InstallationScripting():
     cancel = Gio.Cancellable()
 
     lock = Lock()
-    current_step = 0
-    step_ready = 0
+    current_step = Step.none
+    step_ready = Step.none
     script_running = False
 
     # set by installation page
@@ -39,16 +45,19 @@ class InstallationScripting():
         self.terminal.connect('child-exited', self._on_child_exited)
 
     def _start_next_script(self):
-        if self.current_step < self.step_ready and not self.script_running:
-            self.current_step += 1
-            script_name = steps[self.current_step]
-            print(f'Starting step "{script_name}"...')
-            envs = global_state.create_envs(self.current_step >= 2, self.current_step == 3)
-            global_state.installation_running = self.current_step >= 2
+        if self.current_step.value < self.step_ready.value and not self.script_running:
+            self.current_step = Step(self.current_step.value + 1)
+            print(f'Starting step "{self.current_step.name}"...')
+
+            is_installing = self.current_step is Step.install or self.current_step is Step.configure
+            is_configuring = self.current_step is Step.configure
+            envs = global_state.create_envs(is_installing, is_configuring)
+
+            global_state.installation_running = is_installing
 
             # check config
             if envs == None:
-                print(f'Not all config options set for "{script_name}". Please report this bug.')
+                print(f'Not all config options set for "{self.current_step.name}". Please report this bug.')
                 print('############################')
                 print(global_state.config)
                 print('############################')
@@ -67,12 +76,11 @@ class InstallationScripting():
     def _on_child_exited(self, terminal, status):
         with self.lock:
             self.script_running = False
-            script_name = steps[self.current_step]
-            print(f'Finished step "{script_name}".')
+            print(f'Finished step "{self.current_step.name}".')
 
             if not status == 0 and not global_state.demo_mode:
                 global_state.installation_failed()
-            elif self.current_step == 3:
+            elif self.current_step is Step.configure:
                 global_state.installation_running = False
                 if global_state.demo_mode:
                     # allow returning in demo
@@ -84,10 +92,11 @@ class InstallationScripting():
 
     ### public methods ###
 
-    def start_next_step(self):
+    def set_ok_to_start_step(self, step: Step):
         with self.lock:
-            self.step_ready += 1
-            self._start_next_script()
+            if self.step_ready.value < step.value:
+                self.step_ready = step
+                self._start_next_script()
 
 
 installation_scripting = InstallationScripting()

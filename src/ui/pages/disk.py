@@ -6,7 +6,7 @@ from gi.repository import Gio, Gtk
 
 from .disk_provider import disk_provider
 from .global_state import global_state
-from .installation_scripting import installation_scripting
+from .installation_scripting import installation_scripting, Step
 from .page import Page
 from .system_calls import is_booted_with_uefi, open_disks
 from .widgets import DeviceRow, NoPartitionsRow
@@ -132,7 +132,7 @@ class DiskPage(Gtk.Box, Page):
 
     def load_once(self):
         # start prepare script
-        installation_scripting.start_next_step()
+        installation_scripting.set_ok_to_start_step(Step.prepare)
 
         with self.lock:
             self._setup_disk_list()
