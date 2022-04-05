@@ -66,10 +66,10 @@ class InstallationScripting():
 
             # start script
             self.script_running, _ = self.terminal.spawn_sync(
-                Vte.PtyFlags.DEFAULT, '/', ['sh', f'/etc/os-installer/scripts/{script_name}.sh'],
+                Vte.PtyFlags.DEFAULT, '/', ['sh', f'/etc/os-installer/scripts/{self.current_step.name}.sh'],
                 envs, GLib.SpawnFlags.DEFAULT, None, None, self.cancel)
             if not self.script_running:
-                print(f'Could not start {script_name} script! Ignoring.')
+                print(f'Could not start {self.current_step.name} script! Ignoring.')
 
     ### callbacks ###
 
