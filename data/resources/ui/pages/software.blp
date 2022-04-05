@@ -27,19 +27,16 @@ template SoftwarePage : Box {
       hscrollbar-policy: external;
       propagate-natural-width: true;
       propagate-natural-height: true;
-      child: 
-      Viewport {
-        vscroll-policy: natural;
-        child: 
-        ListBox software_list {
-          margin-start: 18;
-          margin-end: 18;
-          margin-top: 6;
-          margin-bottom: 6;
-          selection-mode: none;
+      child:
+      ListBox software_list {
+        margin-start: 18;
+        margin-end: 18;
+        margin-top: 6;
+        margin-bottom: 6;
+        selection-mode: none;
+        valign: start;
 
-          styles ["boxed-list"]
-        };
+        styles ["boxed-list"]
       };
 
       styles ["scrollbar"]
