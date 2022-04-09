@@ -18,6 +18,7 @@ template SoftwareRow : ListBoxRow {
 
     Box {
       halign: center;
+      hexpand: true;
       valign: center;
       orientation: vertical;
       spacing: 6;
@@ -27,7 +28,7 @@ template SoftwareRow : ListBoxRow {
         ellipsize: end;
         xalign: 0;
 
-        styles ["title-2"]
+        styles ["title-3"]
       }
 
       Label description_label {
@@ -39,6 +40,7 @@ template SoftwareRow : ListBoxRow {
 
     Switch switch {
       focusable: true;
+      halign: end;
       valign: center;
     }
   };
