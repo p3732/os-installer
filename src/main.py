@@ -67,14 +67,8 @@ class Application(Adw.Application):
                 self.set_accels_for_action('app.' + a['name'], a['accels'])
 
     def _setup_icons(self):
-        print(self.window)
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
-        icon_theme.add_resource_path('/com/github/p3732/os-installer/')
         icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
-
-        #icon_theme = Gtk.IconTheme.get_default()
-        #icon_theme.add_resource_path('/com/github/p3732/os-installer/')
-        #icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
 
     ### parent functions ###
 
