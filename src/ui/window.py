@@ -19,6 +19,7 @@ from .locale import LocalePage
 from .restart import RestartPage
 from .software import SoftwarePage
 from .user import UserPage
+from .widgets import PageWrapper
 
 from .confirm_quit_popup import ConfirmQuitPopup
 
@@ -94,14 +95,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _initialize_page(self, page_to_initialize):
         if not page_to_initialize == None:
             page = page_to_initialize()
-            page.set_margin_start(6)
-            page.set_margin_end(6)
-            
-            clamp = Adw.Clamp()
-            clamp.set_child(page)
-            clamp.set_tightening_threshold(320)
-            clamp.set_maximum_size(400)
-            self.main_stack.add_named(clamp, page.get_name())
+            wrapper = PageWrapper(page)
+
+            self.main_stack.add_named(wrapper, page.get_name())
             self.pages.append(page.get_name())
 
     def _initialize_pages_translated(self):
@@ -134,10 +130,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # load page
         current_page_name = self.pages[self.navigation_state.current]
-        clamp = self.main_stack.get_child_by_name(current_page_name)
-        self.current_page = clamp.get_child()
+        wrapper = self.main_stack.get_child_by_name(current_page_name)
+        self.current_page = wrapper.get_page()
         if not self.current_page.load():
-            self.main_stack.set_visible_child(clamp)
+            self.main_stack.set_visible_child(wrapper)
 
             # set icon
             name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
