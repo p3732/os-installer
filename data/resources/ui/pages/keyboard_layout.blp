@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template KeyboardLayoutPage : Box {
   orientation: vertical;
@@ -26,93 +27,91 @@ template KeyboardLayoutPage : Box {
     placeholder-text: _("Test the Keyboard Layout Here");
   }
 
-  Box {
-    hexpand: true;
-    orientation: vertical;
+  Stack stack {
+    vhomogeneous: false;
+    transition-type: crossfade;
 
-    ScrolledWindow {
-      focusable: true;
-      hexpand: true;
-      vexpand: true;
-      margin-start: 0;
-      margin-end: 0;
-      hscrollbar-policy: external;
-      propagate-natural-width: true;
-      propagate-natural-height: true;
-      child: 
-      Stack stack {
-        margin-start: 24;
-        margin-end: 24;
-        margin-top: 12;
-        margin-bottom: 12;
-        vhomogeneous: false;
-        transition-type: crossfade;
+    StackPage {
+      name: "layouts";
+      child:
+      Box {
+        hexpand: true;
+        overflow: hidden;
+        valign: start;
+        orientation: vertical;
 
-        StackPage {
-          name: "layouts";
-          child: 
+        ScrolledWindow {
+          focusable: true;
+          hexpand: true;
+          vexpand: true;
+          hscrollbar-policy: external;
+          propagate-natural-width: true;
+          propagate-natural-height: true;
+          child:
+          ListBox layout_list {};
+        }
+
+        Separator {}
+
+        Button change_language_button {
           Box {
-            valign: start;
-            orientation: vertical;
+            margin-start: 12;
+            margin-end: 12;
+            margin-top: 12;
+            margin-bottom: 12;
             spacing: 12;
 
-            ListBox change_language_list {
-              valign: start;
+            Label {
+              /* Translators: Followed by a language name. */
+              label: _("Keyboard Language");
+              wrap: true;
+            }
+
+            Label language_label {
               hexpand: true;
-              selection-mode: none;
-
-              ListBoxRow {
-                focusable: true;
-                child: 
-                Box {
-                  margin-start: 12;
-                  margin-end: 12;
-                  margin-top: 6;
-                  margin-bottom: 6;
-                  spacing: 12;
-
-                  Label {
-                    /* Translators: Followed by a language name. */
-                    label: _("Keyboard Language");
-                    wrap: true;
-                  }
-
-                  Label language_label {
-                    hexpand: true;
-                    wrap: true;
-                    xalign: 1;
-                  }
-
-                  Image {
-                    icon-name: "emblem-system-symbolic";
-                  }
-                };
-              }
-
-              styles ["boxed-list"]
+              wrap: true;
+              xalign: 1;
             }
 
-            ListBox layout_list {
-              styles ["boxed-list"]
+            Image {
+              icon-name: "emblem-system-symbolic";
             }
-          };
+          }
+
+          styles ["flat"]
         }
 
-        StackPage {
-          name: "languages";
-          child: 
-          ListBox language_list {
-            valign: start;
-
-            styles ["boxed-list"]
-          };
-        }
+        styles ["card", "scrollable-container"]
       };
-
-      styles ["scrollbar"]
     }
 
-    styles ["scrollable-box"]
+    StackPage {
+      name: "languages";
+      child:
+      Box {
+        hexpand: true;
+        overflow: hidden;
+        valign: start;
+        orientation: vertical;
+
+        ScrolledWindow {
+          focusable: true;
+          hexpand: true;
+          vexpand: true;
+          margin-start: 0;
+          margin-end: 0;
+          hscrollbar-policy: external;
+          propagate-natural-width: true;
+          propagate-natural-height: true;
+          child:
+          ListBox language_list {
+            valign: start;
+          };
+        }
+
+        styles ["card", "scrollable-container"]
+      };
+    }
   }
 
   Button continue_button {

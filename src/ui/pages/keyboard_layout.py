@@ -14,7 +14,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'input-keyboard-symbolic'
 
-    change_language_list = Gtk.Template.Child()
+    change_language_button = Gtk.Template.Child()
     language_label = Gtk.Template.Child()
 
     stack = Gtk.Template.Child()
@@ -33,7 +33,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
         # signals
         self.continue_button.connect('clicked', self._continue)
-        self.change_language_list.connect('row-activated', self._show_language_selection)
+        self.change_language_button.connect('clicked', self._show_language_selection)
         self.language_list.connect('row-activated', self._on_language_row_activated)
         self.layout_list.connect('row-activated', self._on_layout_row_activated)
 
@@ -95,7 +95,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
         self.continue_button.set_sensitive(True)
 
-    def _show_language_selection(self, list_box, row):
+    def _show_language_selection(self, button):
         if not self.language_list_setup:
             self.language_list_setup = True
             self._setup_languages_list()
