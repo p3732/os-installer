@@ -47,6 +47,7 @@ headerbar {
 }
 
 .scrollable-container row {
+  background: @card_bg_color;
   border-top: 1px solid @borders;
   padding: 6px 3px;
 }
