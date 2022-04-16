@@ -41,7 +41,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.layout_list.bind_model(self.layout_list_model, lambda x: x)
 
     def _setup_languages_list(self):
-        all_languages = language_provider.get_all_languages()
+        all_languages = language_provider.get_all_languages_translated()
 
         for language_info in all_languages:
             row = LanguageRow(language_info)

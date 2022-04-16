@@ -62,16 +62,16 @@ class LanguageProvider:
     def _assert_languages_loaded(self):
         with self.languages_loading_lock:
             if not self.languages_loaded:
-                self.suggested_languages, self.additional_languages = self.languages.result()
+                self.suggested_languages, self.all_languages = self.languages.result()
                 self.languages = None
                 self.languages_loaded = True
 
     def _get_all_languages(self, locale):
-        all_languages = []
-        for language_info in self.suggested_languages + self.additional_languages:
+        translated = []
+        for language_info in self.all_languages:
             language_info.name = GnomeDesktop.get_language_from_code(language_info.language_code, locale)
-            all_languages.append(language_info)
-        return all_languages
+            translated.append(language_info)
+        return translated
 
     def _get_default_locale(self, language):
         if language in language_to_default_locale:
@@ -106,27 +106,29 @@ class LanguageProvider:
     def _get_languages(self, localedir):
         translations = self._get_existing_translations(localedir)
 
-        suggested_languages = []
-        additional_languages = []
+        all_languages = []
         for language_code in translations:
             language_info = self._get_language_info(language_code)
             if not language_info:
                 continue
-            if language_code in global_state.get_config('suggested_languages'):
-                suggested_languages.append(language_info)
-            else:
-                additional_languages.append(language_info)
+            all_languages.append(language_info)
+        all_languages.sort(key=lambda k: k.name)
 
-        return (sorted(suggested_languages, key=lambda k: k.name),
-                sorted(additional_languages, key=lambda k: k.name))
+        suggested_languages = []
+        suggested_codes = global_state.get_config('suggested_languages')
+        for language_info in all_languages:
+            if language_info.language_code in suggested_codes:
+                suggested_languages.append(language_info)
+
+        return (suggested_languages, all_languages)
 
     ### public methods ###
 
-    def get_additional_languages(self):
-        self._assert_languages_loaded()
-        return self.additional_languages
-
     def get_all_languages(self):
+        self._assert_languages_loaded()
+        return self.all_languages
+
+    def get_all_languages_translated(self):
         self._assert_languages_loaded()
         locale = global_state.get_config('locale')
         return self._get_all_languages(locale)
@@ -137,7 +139,7 @@ class LanguageProvider:
 
     def has_additional_languages(self):
         self._assert_languages_loaded()
-        return len(self.additional_languages) > 0
+        return len(self.suggested_languages) < len(self.all_languages)
 
     def prepare(self):
         # load all languages from existing translations

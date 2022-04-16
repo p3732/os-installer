@@ -1,69 +1,63 @@
 using Gtk 4.0;
 
-template LanguagePage : Overlay {
-  child:   Box {
-    orientation: vertical;
+template LanguagePage : Box {
+  Stack stack {
+    margin-bottom: 18;
+    vhomogeneous: false;
+    transition-type: crossfade;
 
-    ScrolledWindow {
-      focusable: true;
-      hscrollbar-policy: external;
-      vscrollbar-policy: external;
-      propagate-natural-width: true;
-      propagate-natural-height: true;
-      child: 
-      Viewport {
-        vscroll-policy: natural;
-        child: 
-        Box {
-          margin-top: 12;
-          margin-bottom: 70;
-          orientation: vertical;
-          spacing: 12;
+    StackPage {
+      name: "default";
+      child:
+      Box {
+        margin-top: 12;
+        margin-bottom: 70;
+        orientation: vertical;
+        spacing: 12;
 
-          ListBox language_list {
-            styles ["boxed-list"]
+        ListBox default_list {
+          styles ["boxed-list"]
+        }
+
+        Button show_all_button {
+          focusable: true;
+          receives-default: true;
+          halign: center;
+          valign: center;
+          margin-bottom: 18;
+
+          Image {
+            icon-name: "view-more-symbolic";
+            width-request: 32;
           }
 
-          Revealer show_all_revealer {
-            transition-type: slide_up;
-            child: 
-            Button show_all_button {
-              width-request: 32;
-              focusable: true;
-              receives-default: true;
-              halign: center;
-              valign: center;
-              margin-bottom: 18;
-
-              Image {
-                icon-name: "view-more-symbolic";
-              }
-
-              styles ["pill"]
-            };
-          }
-        };
+          styles ["pill"]
+        }
       };
     }
-  };
 
-  [overlay]
-  Box {
-    can-target: false;
-    height-request: 64;
-    valign: end;
-    orientation: vertical;
+    StackPage {
+      name: "all";
+      child:
+      Box {
+        hexpand: true;
+        overflow: hidden;
+        valign: start;
+        orientation: vertical;
 
-    styles ["bottom-gradient"]
-  }
+        ScrolledWindow {
+          focusable: true;
+          hexpand: true;
+          vexpand: true;
+          hscrollbar-policy: external;
+          propagate-natural-width: true;
+          propagate-natural-height: true;
+          child:
+          ListBox all_list {};
+        }
 
-  [overlay]
-  Box {
-    can-target: false;
-    height-request: 16;
-    valign: start;
-    orientation: vertical;
-
-    styles ["top-gradient"]
+        styles ["card", "scrollable-container"]
+      };
+    }
   }
 }
