@@ -54,115 +54,97 @@ template DiskPage : Box {
   Box {
     vexpand: true;
     orientation: vertical;
+    overflow: hidden;
 
     ScrolledWindow {
       vexpand: true;
       focusable: true;
-      margin-start: 6;
-      margin-end: 6;
       hscrollbar-policy: external;
       propagate-natural-width: true;
       propagate-natural-height: true;
       child: 
-      Viewport {
-        vscroll-policy: natural;
-        child: 
-        Stack list_stack {
-          margin-start: 18;
-          margin-end: 18;
-          margin-top: 6;
-          margin-bottom: 6;
-          vhomogeneous: false;
-          transition-type: slide_left_right;
+      Stack list_stack {
+        vhomogeneous: false;
+        transition-type: slide_left_right;
 
-          StackPage {
-            name: "disks";
-            child: 
-            ListBox disk_list {
-              receives-default: true;
-              valign: start;
+        StackPage {
+          name: "disks";
+          child: 
+          ListBox disk_list {
+            receives-default: true;
+            valign: start;
+          };
+        }
 
-              styles ["boxed-list"]
-            };
-          }
+        StackPage {
+          name: "partitions";
+          child: 
+          Box {
+            orientation: vertical;
 
-          StackPage {
-            name: "partitions";
-            child: 
-            Box {
-              orientation: vertical;
-              spacing: 12;
+            ListBox whole_disk_list {
+              selection-mode: none;
 
-              ListBox whole_disk_list {
-                selection-mode: none;
+              ListBoxRow {
+                name: "back_row";
+                focusable: true;
+                selectable: false;
+                child: 
+                Box {
+                  margin-start: 12;
+                  margin-end: 12;
+                  margin-top: 6;
+                  margin-bottom: 6;
+                  spacing: 12;
 
-                ListBoxRow {
-                  name: "back_row";
-                  focusable: true;
-                  selectable: false;
-                  child: 
+                  Label disk_size {
+                    width-chars: 5;
+                    max-width-chars: 7;
+                    xalign: 1;
+
+                    styles ["dim-label"]
+                  }
+
                   Box {
-                    margin-start: 12;
-                    margin-end: 12;
-                    margin-top: 6;
-                    margin-bottom: 6;
-                    spacing: 12;
+                    hexpand: true;
+                    orientation: vertical;
+                    spacing: 2;
 
-                    Label disk_size {
+                    Label {
+                      valign: end;
+
+                      /* Translators: Label to go back to overview of all disks */
+                      label: _("Use Whole Disk");
+                      wrap: true;
+                      xalign: 0;
+                    }
+
+                    Label disk_device_path {
+                      valign: start;
                       width-chars: 5;
                       max-width-chars: 7;
-                      xalign: 1;
+                      xalign: 0;
 
                       styles ["dim-label"]
                     }
+                  }
 
-                    Box {
-                      hexpand: true;
-                      orientation: vertical;
-                      spacing: 2;
-
-                      Label {
-                        valign: end;
-
-                        /* Translators: Label to go back to overview of all disks */
-                        label: _("Use Whole Disk");
-                        wrap: true;
-                        xalign: 0;
-                      }
-
-                      Label disk_device_path {
-                        valign: start;
-                        width-chars: 5;
-                        max-width-chars: 7;
-                        xalign: 0;
-
-                        styles ["dim-label"]
-                      }
-                    }
-
-                    Image {
-                      icon-name: "go-next-symbolic";
-                    }
-                  };
-                }
-
-                styles ["boxed-list"]
+                  Image {
+                    icon-name: "go-next-symbolic";
+                  }
+                };
               }
+            }
 
-              ListBox partition_list {
-                valign: start;
-
-                styles ["boxed-list"]
-              }
-            };
-          }
-        };
+            ListBox partition_list {
+              valign: start;
+            }
+          };
+        }
       };
-
-      styles ["scrollbar"]
     }
 
-    styles ["scrollable-box"]
+    styles ["card", "scrollable-container"]
   }
 
   Button settings_button {
