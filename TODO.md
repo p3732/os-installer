@@ -1,24 +1,37 @@
 high prio:
 
-* GTK 4 port
-* user name sanity check
-* empty keyboard layout list before adding new layouts
+* fix installation steps
 * empty countries list before adding new countries
+* fix deleting pages upon language change
+* disk: use disk name only with explanation context
+* icon colors in dark mode
+* in-list scrollable:
+  * timezone
+  * locale
+  * terminal?
+* user name sanity check
+* over/undershoot scrollable contained list
 
 mid prio:
 
+* round first/last element in scrollable contained list
+* enhance Wifi page with 'no connection found'
+* add bottom margin through wrapper
+* move signals to .blp files
 * show notification on finisehd or failed install
+* fix kbd clicking already selected language not possible
 * fix row being selected kbd layout->same language
-* handle potentially needed legacy boot partition for MBR boot + GPT
+* highlight current keyboard layout (also before selecting anything)
+* selecting same language in keyboard layout does not do anything
+* handle poten
+* installation icon brokentially needed legacy boot partition for MBR boot + GPT
 * script folder config option
-* highlight current keyboard layout
-* don't add "no partitions" row multiple times
-* figure out why flat headerbar style does not work
 
 low prio:
 
 * more config options
     * fixed language
+    * skipping presenting of default language
     * skip settings handled by gnome-initial-setup
       * user
       * locale + timezone
