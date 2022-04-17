@@ -5,6 +5,15 @@ template InternetPage : Box {
   orientation: vertical;
   spacing: 18;
 
+  Label {
+    /* Translators: Concise title for page. */
+    label: _("Internet Connection Check");
+    justify: center;
+    wrap: true;
+
+    styles ["title-2"]
+  }
+
   Button settings_button {
     focusable: true;
     receives-default: true;
