@@ -68,6 +68,7 @@ class Application(Adw.Application):
 
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
+        icon_theme.add_resource_path('/com/github/p3732/os-installer/')
         icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
 
     ### parent functions ###
