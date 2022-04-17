@@ -16,33 +16,23 @@ template SoftwarePage : Box {
   }
 
   Box {
-    vexpand: true;
+    overflow: hidden;
     orientation: vertical;
 
     ScrolledWindow {
-      vexpand: true;
       focusable: true;
-      margin-start: 6;
-      margin-end: 6;
+      hexpand: true;
+      vexpand: true;
       hscrollbar-policy: external;
       propagate-natural-width: true;
       propagate-natural-height: true;
       child:
       ListBox software_list {
-        margin-start: 18;
-        margin-end: 18;
-        margin-top: 6;
-        margin-bottom: 6;
-        selection-mode: none;
-        valign: start;
-
-        styles ["boxed-list"]
+        vexpand: true;
       };
-
-      styles ["scrollbar"]
     }
 
-    styles ["scrollable-box"]
+    styles ["card", "scrollable-container"]
   }
 
   Button continue_button {
