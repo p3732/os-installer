@@ -5,6 +5,15 @@ template EncryptPage : Box {
   orientation: vertical;
   spacing: 12;
 
+  Label {
+    /* Translators: Concise title for page. */
+    label: _("Disk Encryption");
+    justify: center;
+    wrap: true;
+
+    styles ["title-2"]
+  }
+
   Box {
     orientation: vertical;
 
@@ -13,7 +22,6 @@ template EncryptPage : Box {
 
       ListBoxRow {
         name: "encryption";
-        focusable: true;
         selectable: false;
         child: 
         Box {
@@ -25,14 +33,14 @@ template EncryptPage : Box {
 
           Label {
             /* Translators: Used with option to enable disk encryption */
-            label: _("Encrypt Installation");
+            label: _("Encrypt Files");
+            hexpand: true;
             wrap: true;
+            xalign: 0;
           }
 
           Switch switch {
             focusable: true;
-            receives-default: true;
-            valign: center;
           }
         };
       }
@@ -80,11 +88,10 @@ template EncryptPage : Box {
                 width-chars: 10;
                 max-width-chars: 16;
                 truncate-multiline: true;
+                input-purpose: pin;
 
                 /* Translators: Placeholder for disk encryption pin/password field */
-
                 placeholder-text: _("PIN");
-                input-purpose: pin;
               }
             }
 
@@ -93,6 +100,8 @@ template EncryptPage : Box {
 
               Image {
                 icon-name: "dialog-warning-symbolic";
+
+                styles ["dim-label"]
               }
 
               Label {
@@ -101,6 +110,8 @@ template EncryptPage : Box {
                 /* Translators: Warning label for disk encryption */
                 label: _("Memorize this PIN well. Without it you will not be able to access your files.");
                 wrap: true;
+
+                styles ["dim-label"]
               }
             }
           };
