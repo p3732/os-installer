@@ -4,41 +4,40 @@ template InstallPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  Box {
+  Label {
+    /* Translators: Simple label used during Installation */
+    label: _("Installing");
+
+    styles ["title-2"]
+  }
+
+  Stack stack {
     vexpand: true;
-    orientation: vertical;
-    spacing: 12;
+    transition-type: crossfade;
 
-    Label {
-      /* Translators: Simple label used during Installation */
-      label: _("Installing");
-
-      styles ["title-2"]
+    StackPage {
+      name: "spinner";
+      child: 
+      Spinner spinner {
+        halign: center;
+        height-request: 64;
+        width-request: 64;
+      };
     }
 
-    Stack stack {
-      vexpand: true;
-      transition-type: crossfade;
+    StackPage {
+      name: "terminal";
+      child: 
+      Box {
+        overflow: hidden;
 
-      StackPage {
-        name: "spinner";
-        child: 
-        Spinner spinner {
-          halign: center;
-          height-request: 64;
-          width-request: 64;
-        };
-      }
-
-      StackPage {
-        name: "terminal";
-        child: 
         Box terminal_box {
-          orientation: vertical;
+          margin-end: 12;
+          margin-start: 12;
+        }
 
-          styles ["terminal-box"]
-        };
-      }
+        styles ["card", "scrollable-container", "terminal-box"]
+      };
     }
   }
 
