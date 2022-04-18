@@ -28,8 +28,6 @@ scrollable-box>trough {
 
 .terminal-box {
   background-color: #000;
-  border-radius: 6px;
-  padding: 6px 12px;
 }
 
 /* flat style does not seem to work, this is a fallback */
