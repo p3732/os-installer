@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 01:14+0200\n"
+"POT-Creation-Date: 2022-04-18 07:50+0200\n"
 "PO-Revision-Date: 2022-04-18 01:15+0200\n"
 "Last-Translator: Peter Eisenmann <p3732@getgoogleoff.me>\n"
 "Language-Team: German <->\n"
@@ -169,7 +169,7 @@ msgstr "Teste die Tastaturbelegung hier"
 msgid "Keyboard Language"
 msgstr "Tastatursprache"
 
-#. Translators: Above list of continents and countries
+#. Translators: Concise title for page.
 #: data/resources/ui/pages/locale.blp
 msgid "Adapt to Location"
 msgstr "An Standort anpassen"
@@ -209,10 +209,10 @@ msgstr "Neustarten"
 msgid "Additional Software"
 msgstr "Zusätzliche Programme"
 
-#. Translators: Explanation for disk selection page.
+#. Translators: Concise title for page.
 #: data/resources/ui/pages/user.blp
-msgid "Enter Account Information"
-msgstr "Gebe Informationen für Benutzerkonto ein"
+msgid "User Account"
+msgstr "Benutzerkonto"
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
@@ -282,19 +282,3 @@ msgstr ""
 #: data/resources/ui/widgets/no_partitions_row.blp
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS Boot-Partition"
-
-#~ msgid "Select Keyboard Layout"
-#~ msgstr "Wähle eine Tastaturbelegung"
-
-#, fuzzy
-#~ msgid "Select Disk"
-#~ msgstr "Wähle eine Region"
-
-#~ msgid "Encrypt Installation"
-#~ msgstr "Installation verschlüsseln"
-
-#~ msgid "Select Drive for Installation"
-#~ msgstr "Wähle ein Laufwerk zur Installation"
-
-#~ msgid "Showing Keyboard Layouts for"
-#~ msgstr "Zeige Tastaturbelegung für"

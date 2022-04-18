@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 01:14+0200\n"
+"POT-Creation-Date: 2022-04-18 07:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Keyboard Language"
 msgstr ""
 
-#. Translators: Above list of continents and countries
+#. Translators: Concise title for page.
 #: data/resources/ui/pages/locale.blp
 msgid "Adapt to Location"
 msgstr ""
@@ -202,9 +202,9 @@ msgstr ""
 msgid "Additional Software"
 msgstr ""
 
-#. Translators: Explanation for disk selection page.
+#. Translators: Concise title for page.
 #: data/resources/ui/pages/user.blp
-msgid "Enter Account Information"
+msgid "User Account"
 msgstr ""
 
 #. Translators: Used with entry field for User's name
