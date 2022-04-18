@@ -130,9 +130,11 @@ class DiskPage(Gtk.Box, Page):
 
     ### public methods ###
 
-    def load_once(self):
-        # start prepare script
-        installation_scripting.set_ok_to_start_step(Step.prepare)
+    def load(self):
+        if not self.loaded:
+            self.loaded = True
+            # start prepare script
+            installation_scripting.set_ok_to_start_step(Step.prepare)
 
         with self.lock:
             self._setup_disk_list()
