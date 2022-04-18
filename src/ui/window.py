@@ -42,8 +42,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     image_stack = Gtk.Template.Child()
     main_stack = Gtk.Template.Child()
+
     next_revealer = Gtk.Template.Child()
     previous_revealer = Gtk.Template.Child()
+    reload_revealer = Gtk.Template.Child()
 
     current_page = None
     navigation_lock = Lock()
@@ -158,6 +160,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         show_forward = self.current_page.can_navigate_forward or self.navigation_state.is_not_furthest()
         self.next_revealer.set_reveal_child(show_forward)
 
+        # reload
+        self.reload_revealer.set_reveal_child(self.current_page.can_reload)
+
     ### public methods ###
 
     def advance(self, name):
@@ -190,6 +195,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self.current_page.navigate_forward()
             elif self.navigation_state.is_not_furthest():
                 self._load_page(self.navigation_state.current + 1)
+
+    def reload_page(self):
+        with self.navigation_lock:
+            self.current_page.load()
 
     def show_confirm_quit_dialog(self):
         popup = ConfirmQuitPopup(self.quit_callback)

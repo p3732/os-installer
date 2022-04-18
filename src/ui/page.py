@@ -2,6 +2,7 @@ class Page:
     image_name: str
     can_navigate_backward: bool = False
     can_navigate_forward: bool = False
+    can_reload: bool = False
 
     loaded: bool = False
 

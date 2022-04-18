@@ -71,9 +71,24 @@ template OsInstallerWindow : .AdwApplicationWindow {
       }
 
       [end]
-      WindowControls {
+      Box {
         valign: start;
-        side: end;
+        spacing: 6;
+
+        Revealer reload_revealer {
+          transition-type: crossfade;
+          child:
+          Button {
+            action-name: "app.reload-page";
+            focusable: true;
+            focus-on-click: false;
+            icon-name: "view-refresh-symbolic";
+          };
+        }
+
+        WindowControls {
+          side: end;
+        }
       }
 
       styles ["flat"]

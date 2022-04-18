@@ -51,6 +51,10 @@ class Application(Adw.Application):
                 'accels': ['<Alt>Left']
             },
             {
+                'name': 'reload-page',
+                'func': self._on_reload_page
+            },
+            {
                 'name': 'quit',
                 'func': self._on_quit,
                 'accels': ['<Ctl>q']
@@ -109,6 +113,9 @@ class Application(Adw.Application):
 
     def _on_previous_page(self, action, param):
         self.window.navigate_backward()
+
+    def _on_reload_page(self, action, param):
+        self.window.reload_page()
 
     def _on_quit(self, action, param=None):
         if global_state.installation_running:

@@ -18,6 +18,7 @@ GIGABYTE_FACTOR = 1024 * 1024 * 1024
 class DiskPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'drive-harddisk-system-symbolic'
+    can_reload = True
 
     list_stack = Gtk.Template.Child()
     text_stack = Gtk.Template.Child()
@@ -34,7 +35,6 @@ class DiskPage(Gtk.Box, Page):
     partition_list_model = Gio.ListStore()
 
     settings_button = Gtk.Template.Child()
-    refresh_button = Gtk.Template.Child()
 
     current_disk = None
     lock = Lock()
@@ -54,7 +54,6 @@ class DiskPage(Gtk.Box, Page):
         self.partition_list.bind_model(self.partition_list_model, lambda x: x)
 
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
-        self.refresh_button.connect('clicked', self._on_clicked_reload_button)
 
     def _set_stacks(self, state):
         self.list_stack.set_visible_child_name(state)
@@ -107,9 +106,6 @@ class DiskPage(Gtk.Box, Page):
 
     def _on_clicked_disks_button(self, button):
         open_disks()
-
-    def _on_clicked_reload_button(self, button):
-        self.load()
 
     def _on_disk_row_activated(self, list_box, row):
         if not self.lock.acquire(blocking=False):
