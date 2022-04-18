@@ -1,3 +1,5 @@
+@define-color shaded_card_bg_color shade(@card_bg_color, .95);
+
 scrolledwindow.scrollbar > scrollbar > range > trough {
   background: 0;
 }
@@ -13,7 +15,7 @@ headerbar {
 }
 
 .scrollable-container scrolledwindow {
-  background-color: shade(@card_bg_color, .95);
+  background-color: shade(@shaded_card_bg_color, .95);
 }
 
 .scrollable-container list {
@@ -28,4 +30,12 @@ headerbar {
 
 .scrollable-container row:first-child {
   border-top-width: 0px;
+}
+
+.scrollable-container > scrolledwindow undershoot.top {
+  border-radius: 0px 6px 6px 0px;
+  background: linear-gradient(to bottom, @shaded_card_bg_color 0px, alpha(@shaded_card_bg_color, 0) 18px);
+}
+.scrollable-container > scrolledwindow undershoot.bottom {
+  background: linear-gradient(to top, @shaded_card_bg_color 0px, alpha(@shaded_card_bg_color, 0) 18px);
 }
