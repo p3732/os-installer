@@ -5,10 +5,11 @@ template LocalePage : Box {
 
   Stack overview_stack {
     vhomogeneous: false;
+    transition-type: crossfade;
 
     StackPage {
       name: "overview";
-      child: 
+      child:
       Box {
         orientation: vertical;
         spacing: 12;
@@ -16,7 +17,7 @@ template LocalePage : Box {
         Label {
           valign: start;
 
-          /* Translators: Above list of continents and countries */
+          /* Translators: Concise title for page. */
           label: _("Adapt to Location");
           justify: center;
           wrap: true;
@@ -113,7 +114,6 @@ template LocalePage : Box {
           focusable: true;
           receives-default: true;
           halign: center;
-          valign: center;
           use-underline: true;
 
           styles ["suggested-action", "pill"]
@@ -123,7 +123,7 @@ template LocalePage : Box {
 
     StackPage {
       name: "list";
-      child: 
+      child:
       Box {
         orientation: vertical;
         spacing: 12;
@@ -133,7 +133,7 @@ template LocalePage : Box {
 
           StackPage {
             name: "timezone";
-            child: 
+            child:
             Label {
               valign: start;
 
@@ -148,7 +148,7 @@ template LocalePage : Box {
 
           StackPage {
             name: "formats";
-            child: 
+            child:
             Label {
               valign: start;
 
@@ -163,69 +163,39 @@ template LocalePage : Box {
         }
 
         Box {
-          orientation: vertical;
+          overflow: hidden;
 
           ScrolledWindow {
+            hexpand: true;
             vexpand: true;
-            margin-start: 6;
-            margin-end: 6;
-            hscrollbar-policy: external;
-            propagate-natural-width: true;
-            propagate-natural-height: true;
-            child: 
+            child:
             Stack list_stack {
-              margin-start: 18;
-              margin-end: 18;
-              margin-top: 6;
-              margin-bottom: 6;
               vhomogeneous: false;
               transition-type: crossfade;
 
               StackPage {
                 name: "timezone_continents";
-                child: 
-                ListBox continents_list {
-                  valign: start;
-
-                  styles ["boxed-list"]
-                };
+                child: ListBox continents_list {};
               }
 
               StackPage {
                 name: "timezone_countries";
-                child: 
-                ListBox countries_list {
-                  valign: start;
-
-                  styles ["boxed-list"]
-                };
+                child: ListBox countries_list {};
               }
 
               StackPage {
                 name: "timezone_subzones";
-                child: 
-                ListBox subzones_list {
-                  valign: start;
-
-                  styles ["boxed-list"]
-                };
+                child: ListBox subzones_list {};
               }
 
               StackPage {
                 name: "formats";
-                child: 
-                ListBox formats_list {
-                  valign: start;
-
-                  styles ["boxed-list"]
-                };
+                child: ListBox formats_list {};
               }
             };
-
-            styles ["scrollbar"]
           }
 
-          styles ["scrollable-box"]
+          styles ["card", "scrollable-container"]
         }
       };
     }
