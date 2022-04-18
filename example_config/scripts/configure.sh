@@ -30,8 +30,6 @@ then
 fi
 
 echo 'Configuration started.'
-
-echo 'Installation started.'
 echo ''
 echo 'Variables set to:'
 echo 'OSI_LOCALE               ' $OSI_LOCALE
