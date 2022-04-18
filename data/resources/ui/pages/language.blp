@@ -9,8 +9,7 @@ template LanguagePage : Box {
       name: "default";
       child:
       Box {
-        margin-top: 12;
-        margin-bottom: 70;
+        margin-top: 24; /* no label */
         orientation: vertical;
         spacing: 12;
 
@@ -20,9 +19,7 @@ template LanguagePage : Box {
 
         Button show_all_button {
           focusable: true;
-          receives-default: true;
           halign: center;
-          valign: center;
           margin-bottom: 18;
 
           Image {
@@ -39,20 +36,14 @@ template LanguagePage : Box {
       name: "all";
       child:
       Box {
-        hexpand: true;
         overflow: hidden;
-        valign: start;
-        orientation: vertical;
 
         ScrolledWindow {
-          focusable: true;
-          hexpand: true;
           vexpand: true;
-          hscrollbar-policy: external;
-          propagate-natural-width: true;
-          propagate-natural-height: true;
           child:
-          ListBox all_list {};
+          ListBox all_list {
+            hexpand: true;
+          };
         }
 
         styles ["card", "scrollable-container"]

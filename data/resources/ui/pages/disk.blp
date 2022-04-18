@@ -51,18 +51,13 @@ template DiskPage : Box {
   }
 
   Box {
-    vexpand: true;
-    orientation: vertical;
     overflow: hidden;
 
     ScrolledWindow {
       vexpand: true;
-      focusable: true;
-      hscrollbar-policy: external;
-      propagate-natural-width: true;
-      propagate-natural-height: true;
       child: 
       Stack list_stack {
+        hexpand: true;
         vhomogeneous: false;
         transition-type: slide_left_right;
 

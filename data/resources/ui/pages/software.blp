@@ -20,15 +20,10 @@ template SoftwarePage : Box {
     orientation: vertical;
 
     ScrolledWindow {
-      focusable: true;
-      hexpand: true;
       vexpand: true;
-      hscrollbar-policy: external;
-      propagate-natural-width: true;
-      propagate-natural-height: true;
       child:
       ListBox software_list {
-        vexpand: true;
+        hexpand: true;
       };
     }
 
@@ -39,9 +34,7 @@ template SoftwarePage : Box {
     /* Translators: On button. */
     label: _("_Continue");
     focusable: true;
-    receives-default: true;
     halign: center;
-    valign: end;
     use-underline: true;
 
     styles ["suggested-action", "pill"]
