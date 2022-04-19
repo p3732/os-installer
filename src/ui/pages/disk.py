@@ -108,11 +108,9 @@ class DiskPage(Gtk.Box, Page):
         open_disks()
 
     def _on_disk_row_activated(self, list_box, row):
-        if not self.lock.acquire(blocking=False):
-            return
-        self._setup_partition_list(row.info)
-        self.can_navigate_backward = True
-        self.lock.release()
+        with self.lock:
+            self._setup_partition_list(row.info)
+            self.can_navigate_backward = True
 
     def _on_partition_row_activated(self, list_box, row):
         list_box.select_row(row)
@@ -136,9 +134,6 @@ class DiskPage(Gtk.Box, Page):
             self._setup_disk_list()
 
     def navigate_backward(self):
-        self.can_navigate_backward = False
-        if not self.lock.acquire(blocking=False):
-            return
-
-        self._set_stacks('disks')
-        self.lock.release()
+        with self.lock:
+            self.can_navigate_backward = False
+            self._set_stacks('disks')
