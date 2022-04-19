@@ -21,7 +21,6 @@ class DiskPage(Gtk.Box, Page):
     can_reload = True
 
     list_stack = Gtk.Template.Child()
-    text_stack = Gtk.Template.Child()
 
     disk_list = Gtk.Template.Child()
     disk_list_model = Gio.ListStore()
@@ -55,10 +54,6 @@ class DiskPage(Gtk.Box, Page):
 
         self.settings_button.connect('clicked', self._on_clicked_disks_button)
 
-    def _set_stacks(self, state):
-        self.list_stack.set_visible_child_name(state)
-        self.text_stack.set_visible_child_name(state)
-
     def _setup_disk_list(self):
         # fill list
         disk_rows = []
@@ -70,7 +65,7 @@ class DiskPage(Gtk.Box, Page):
         self.disk_list_model.splice(0, n_items, disk_rows)
 
         # show
-        self._set_stacks('disks')
+        self.list_stack.set_visible_child_name('disks')
 
     def _setup_partition_list(self, disk_info):
         self.current_disk = disk_info
@@ -94,7 +89,7 @@ class DiskPage(Gtk.Box, Page):
         self.partition_list_model.splice(0, n_items, partition_rows)
 
         # show
-        self._set_stacks('partitions')
+        self.list_stack.set_visible_child_name('partitions')
 
     def _store_device_info(self, info):
         global_state.set_config('disk_name', info.name)
@@ -136,4 +131,4 @@ class DiskPage(Gtk.Box, Page):
     def navigate_backward(self):
         with self.lock:
             self.can_navigate_backward = False
-            self._set_stacks('disks')
+            self.list_stack.set_visible_child_name('disks')

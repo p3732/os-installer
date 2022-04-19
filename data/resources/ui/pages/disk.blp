@@ -2,33 +2,15 @@ using Gtk 4.0;
 
 template DiskPage : Box {
   orientation: vertical;
+  spacing: 12;
 
-  Stack text_stack {
-    transition-type: slide_left_right;
+  Label {
+    /* Translators: Concise title for page. */
+    label: _("Disk Selection");
+    justify: center;
+    wrap: true;
 
-    StackPage {
-      name: "disks";
-      child: 
-      Label {
-        /* Translators: Concise title for page. */
-        label: _("Disk Selection");
-        justify: center;
-        wrap: true;
-
-        styles ["title-2"]
-      };
-    }
-
-    StackPage {
-      name: "partitions";
-      child: 
-      Label disk_label {
-        justify: center;
-        wrap: true;
-
-        styles ["title-2"]
-      };
-    }
+    styles ["title-2"]
   }
 
   Box {
@@ -56,12 +38,22 @@ template DiskPage : Box {
           child: 
           Box {
             orientation: vertical;
+              
+            Label disk_label {
+              margin-start: 12;
+              margin-end: 12;
+              margin-top: 12;
+              margin-bottom: 12;
+              justify: center;
+              wrap: true;
+
+              styles ["title-4"]
+            }
 
             ListBox whole_disk_list {
               selection-mode: none;
 
               ListBoxRow {
-                name: "back_row";
                 focusable: true;
                 selectable: false;
                 child: 
@@ -128,7 +120,6 @@ template DiskPage : Box {
     focusable: true;
     halign: center;
     valign: end;
-    margin-top: 12;
     use-underline: true;
 
     styles ["pill"]
