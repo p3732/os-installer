@@ -22,4 +22,4 @@ class DonePage(Gtk.Box, Page):
     ### callbacks ###
 
     def _on_restart_button_clicked(self, button):
-        global_state.advance_without_return(self.__gtype_name__)
+        global_state.advance_without_return(self)

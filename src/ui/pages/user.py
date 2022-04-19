@@ -37,7 +37,7 @@ class UserPage(Gtk.Box, Page):
     # callbacks ###stack_manager
 
     def _continue(self, button):
-        global_state.advance(self.__gtype_name__)
+        global_state.advance(self)
 
     def _on_row_activated(self, list_box, row):
         if row.get_name() == 'automatic_login':

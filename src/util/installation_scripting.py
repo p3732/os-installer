@@ -84,9 +84,9 @@ class InstallationScripting():
                 global_state.installation_running = False
                 if global_state.demo_mode:
                     # allow returning in demo
-                    global_state.advance(self.install_page_name)
+                    global_state.advance(None)
                 else:
-                    global_state.advance_without_return(self.install_page_name)
+                    global_state.advance_without_return(None)
             else:
                 self._start_next_script()
 

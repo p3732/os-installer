@@ -58,7 +58,7 @@ class LanguagePage(Gtk.Box, Page):
 
         # set language
         set_system_language(row.info)
-        global_state.advance(self.__gtype_name__)
+        global_state.advance(self)
 
     ### public methods ###
 

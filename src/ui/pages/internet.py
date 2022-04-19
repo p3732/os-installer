@@ -41,7 +41,7 @@ class InternetPage(Gtk.Box, Page):
             self._set_connected()
 
         # do not hold lock, could cause deadlock with simultaneous load()
-        global_state.advance(self.__gtype_name__)
+        global_state.advance(self)
 
     ### public methods ###
 

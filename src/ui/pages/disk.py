@@ -115,12 +115,12 @@ class DiskPage(Gtk.Box, Page):
     def _on_partition_row_activated(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(row.info)
-        global_state.advance(self.__gtype_name__)
+        global_state.advance(self)
 
     def _use_whole_disk(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(self.current_disk)
-        global_state.advance(self.__gtype_name__)
+        global_state.advance(self)
 
     ### public methods ###
 

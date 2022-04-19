@@ -25,7 +25,7 @@ class ConfirmPage(Gtk.Box, Page):
 
     def _on_clicked_confirm(self, button):
         installation_scripting.set_ok_to_start_step(Step.install)
-        global_state.advance_without_return(self.__gtype_name__)
+        global_state.advance_without_return(self)
 
     ### public methods ###
 

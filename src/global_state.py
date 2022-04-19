@@ -23,14 +23,14 @@ class GlobalState:
     def set_config(self, setting, value):
         self.config[setting] = value
 
-    def advance(self, name):
-        print('Advance called before window initalization done!')
+    def advance(self, page):
+        print('Advance called before window initalization compeleted!')
 
-    def advance_without_return(self, name):
-        print('Advance called before window initalization done!')
+    def advance_without_return(self, page):
+        print('Advance called before window initalization compeleted!')
 
     def installation_failed(self):
-        print('Installation failed before window initalization done!')
+        print('Installation failed before window initalization compeleted!')
 
     def create_envs(self, with_install_envs=False, with_configure_envs=False):
         return create_envs(self.config, with_install_envs, with_configure_envs)

@@ -99,13 +99,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             page = page_to_initialize()
             wrapper = PageWrapper(page)
 
-            self.main_stack.add_named(wrapper, page.get_name())
-            self.pages.append(page.get_name())
+            page_id = page.id()
+            self.main_stack.add_named(wrapper, page_id)
+            self.pages.append(page_id)
 
     def _initialize_pages_translated(self):
         # delete pages that are not the language page
         self._remove_pages(self.pages[1:])
-        self.pages = [self.current_page.get_name()]
+        self.pages = [self.current_page.id()]
 
         for unintialized_page in self.available_pages[1:]:
             self._initialize_page(unintialized_page)
@@ -165,15 +166,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     ### public methods ###
 
-    def advance(self, name):
+    def advance(self, page):
         with self.navigation_lock:
             # to prevent incorrect navigation, confirm that calling page is current page
-            if not name or name == self.current_page.get_name():
+            if not page or page.id() == self.current_page.id():
                 self._load_page(self.navigation_state.current + 1)
 
-    def advance_without_return(self, name):
+    def advance_without_return(self, page):
         with self.navigation_lock:
-            if not name or name == self.current_page.get_name():
+            if not page or page.id() == self.current_page.id():
                 previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
                 self.navigation_state.earliest = self.navigation_state.current + 1
 

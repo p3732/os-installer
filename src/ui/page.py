@@ -6,8 +6,8 @@ class Page:
 
     loaded: bool = False
 
-    def get_name(self):
-        return type(self).__qualname__
+    def id(self):
+        return self.__gtype_name__
 
     ### dummy stubs ###
 

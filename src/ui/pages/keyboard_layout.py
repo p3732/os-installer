@@ -73,7 +73,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     ### callbacks ###
 
     def _continue(self, button):
-        global_state.advance(self.__gtype_name__)
+        global_state.advance(self)
 
     def _on_language_row_activated(self, list_box, row):
         self._unselect_current_row()
