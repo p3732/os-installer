@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 class Page:
     image_name: str
     can_navigate_backward: bool = False
