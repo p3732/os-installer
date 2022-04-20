@@ -17,10 +17,15 @@ template FailedPage : Box {
     styles ["title-2"]
   }
 
-  Box terminal_box {
-    orientation: vertical;
+  Box {
+    overflow: hidden;
 
-    styles ["terminal-box"]
+    Box terminal_box {
+      margin-end: 12;
+      margin-start: 12;
+    }
+
+    styles ["card", "scrollable-container", "terminal-box"]
   }
 
   Button search_button {
