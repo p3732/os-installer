@@ -14,22 +14,12 @@ headerbar {
   box-shadow:none;
 }
 
-.scrollable-container scrolledwindow {
-  background-color: shade(@shaded_card_bg_color, .95);
-}
-
-.scrollable-container list {
-  background: none;
-}
-
 .scrollable-container row {
-  background: @card_bg_color;
   border-top: 1px solid @borders;
-  padding: 6px 3px;
 }
 
 .scrollable-container row:first-child {
-  border-top-width: 0px;
+  border-top: 0px;
 }
 
 .scrollable-container > scrolledwindow undershoot.top {
