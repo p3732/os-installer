@@ -28,3 +28,13 @@ headerbar {
 .scrollable-container > scrolledwindow undershoot.bottom {
   background: linear-gradient(to top, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 18px);
 }
+
+.rounded-first row:first-child {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.rounded-last row:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
