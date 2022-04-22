@@ -12,7 +12,7 @@ gi.require_version('GnomeDesktop', '4.0')  # noqa: E402
 gi.require_version('GWeather', '4.0')      # noqa: E402
 gi.require_version('Adw', '1')             # noqa: E402
 gi.require_version('UDisks', '2.0')        # noqa: E402
-gi.require_version('Vte-4', '2.91')        # noqa: E402
+gi.require_version('Vte', '3.91')          # noqa: E402
 from gi.repository import Gtk, Gdk, Gio, GLib, Adw
 
 # local, import order is important
