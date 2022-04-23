@@ -1,26 +1,12 @@
 using Gtk 4.0;
+using Adw 1;
 
-template LanguageRow : ListBoxRow {
+template LanguageRow : .AdwActionRow {
+  activatable: true;
   focusable: true;
   selectable: false;
-  child: 
-  Box {
-    margin-start: 12;
-    margin-end: 12;
-    margin-top: 6;
-    margin-bottom: 6;
-    spacing: 18;
 
-    [center]
-    Label label {
-      hexpand: true;
-      wrap: true;
-      ellipsize: end;
-      lines: 2;
-    }
-
-    Image {
-      icon-name: "go-next-symbolic";
-    }
-  };
+  Image {
+    icon-name: "go-next-symbolic";
+  }
 }

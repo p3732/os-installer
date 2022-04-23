@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
@@ -49,16 +49,14 @@ class DeviceRow(Gtk.ListBoxRow):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/language_row.ui')
-class LanguageRow(Gtk.ListBoxRow):
+class LanguageRow(Adw.ActionRow):
     __gtype_name__ = 'LanguageRow'
-
-    label = Gtk.Template.Child()
 
     def __init__(self, info, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info
-        self.label.set_label(info.name)
+        self.set_title(info.name)
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/no_partitions_row.ui')
