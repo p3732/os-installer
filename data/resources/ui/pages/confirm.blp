@@ -1,6 +1,7 @@
 using Gtk 4.0;
 
 template ConfirmPage : Box {
+  name: _("Confirmation");
   orientation: vertical;
   spacing: 18;
 
@@ -15,14 +16,14 @@ template ConfirmPage : Box {
       label: _("This will delete all data on");
       wrap: true;
 
-      styles ["title-2"]
+      styles ["title-4"]
     }
 
     Label disk_label {
       wrap: true;
       wrap-mode: word_char;
 
-      styles ["title-3"]
+      styles ["title-4"]
     }
   }
 

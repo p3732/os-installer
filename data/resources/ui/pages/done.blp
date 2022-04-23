@@ -1,19 +1,13 @@
 using Gtk 4.0;
 
 template DonePage : Box {
+  name: _("Installation complete");
   orientation: vertical;
 
   Box {
     halign: center;
     orientation: vertical;
     spacing: 12;
-
-    Label {
-      /* Translators: Informative label after successful installation */
-      label: _("Installation complete");
-
-      styles ["title-2"]
-    }
 
     Button restart_button {
       /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */

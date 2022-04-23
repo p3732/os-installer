@@ -1,6 +1,7 @@
 using Gtk 4.0;
 
 template LocalePage : Box {
+  name: _("Adapt to Location");
   orientation: vertical;
 
   Stack overview_stack {
@@ -13,17 +14,6 @@ template LocalePage : Box {
       Box {
         orientation: vertical;
         spacing: 12;
-
-        Label {
-          valign: start;
-
-          /* Translators: Concise title for page. */
-          label: _("Adapt to Location");
-          justify: center;
-          wrap: true;
-
-          styles ["title-2"]
-        }
 
         ListBox overview_list {
           selection-mode: none;
@@ -142,7 +132,7 @@ template LocalePage : Box {
               justify: center;
               wrap: true;
 
-              styles ["title-2"]
+              styles ["title-4"]
             };
           }
 
@@ -157,7 +147,7 @@ template LocalePage : Box {
               justify: center;
               wrap: true;
 
-              styles ["title-2"]
+              styles ["title-4"]
             };
           }
         }

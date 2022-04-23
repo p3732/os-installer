@@ -1,17 +1,9 @@
 using Gtk 4.0;
 
 template EncryptPage : Box {
+  name: _("Disk Encryption");
   orientation: vertical;
   spacing: 12;
-
-  Label {
-    /* Translators: Concise title for page. */
-    label: _("Disk Encryption");
-    justify: center;
-    wrap: true;
-
-    styles ["title-2"]
-  }
 
   Box {
     orientation: vertical;

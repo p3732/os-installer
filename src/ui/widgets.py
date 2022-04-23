@@ -72,19 +72,17 @@ class NoPartitionsRow(Gtk.ListBoxRow):
 class PageWrapper(Gtk.Box):
     __gtype_name__ = 'PageWrapper'
 
-    clamp = Gtk.Template.Child()
+    title = Gtk.Template.Child()
+    content = Gtk.Template.Child()
 
     def __init__(self, page, **kwargs):
         super().__init__(**kwargs)
 
-        page.set_hexpand(True)
-        page.set_margin_start(6)
-        page.set_margin_end(6)
-
-        self.clamp.set_child(page)
+        self.title.set_label(page.get_name())
+        self.content.set_child(page)
 
     def get_page(self):
-        return self.clamp.get_child()
+        return self.content.get_child()
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
 class ProgressRow(Gtk.ListBoxRow):

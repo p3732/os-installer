@@ -2,9 +2,26 @@ using Gtk 4.0;
 using Adw 1;
 
 template PageWrapper : Box {
-  Adw.Clamp clamp {
+  Adw.Clamp {
     maximum-size: 400;
-    tightening-threshold: 320;
-    margin-bottom: 12;
+    tightening-threshold: 400;
+    child:
+    Box {
+      orientation: vertical;
+      spacing: 12;
+
+      WindowHandle {
+        Label title {
+          justify: center;
+          wrap: true;
+
+          styles ["title-2"]
+        }
+      }
+      Adw.Bin content {
+        hexpand: true;
+      }
+      styles ["clamped"]
+    };
   }
 }

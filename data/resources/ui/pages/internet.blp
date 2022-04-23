@@ -1,17 +1,9 @@
 using Gtk 4.0;
 
 template InternetPage : Box {
+  name: _("Internet Connection Check");
   orientation: vertical;
   spacing: 18;
-
-  Label {
-    /* Translators: Concise title for page. */
-    label: _("Internet Connection Check");
-    justify: center;
-    wrap: true;
-
-    styles ["title-2"]
-  }
 
   Button settings_button {
     focusable: true;
