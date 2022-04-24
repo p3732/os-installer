@@ -1,47 +1,21 @@
 using Gtk 4.0;
+using Adw 1;
 
-template SoftwareRow : ListBoxRow {
+template SoftwareRow : Adw.ActionRow {
+  activatable: true;
   focusable: true;
-  child: 
-  Box {
-    margin-start: 12;
-    margin-end: 12;
-    margin-top: 6;
-    margin-bottom: 6;
-    spacing: 12;
 
-    Image icon {
-      width-request: 32;
-      height-request: 32;
-      valign: center;
-    }
+  [prefix]
+  Image icon {
+    width-request: 32;
+    height-request: 32;
+    valign: center;
+  }
 
-    Box {
-      halign: center;
-      hexpand: true;
-      valign: center;
-      orientation: vertical;
-      spacing: 6;
-
-      Label name_label {
-        valign: end;
-        ellipsize: end;
-        xalign: 0;
-
-        styles ["title-3"]
-      }
-
-      Label description_label {
-        valign: center;
-        wrap: true;
-        xalign: 0;
-      }
-    }
-
-    Switch switch {
-      focusable: true;
-      halign: end;
-      valign: center;
-    }
-  };
+  [suffix]
+  Switch switch {
+    focusable: false;
+    halign: end;
+    valign: center;
+  }
 }

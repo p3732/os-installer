@@ -120,18 +120,16 @@ class SelectionRow(Adw.ActionRow):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_row.ui')
-class SoftwareRow(Gtk.ListBoxRow):
+class SoftwareRow(Adw.ActionRow):
     __gtype_name__ = 'SoftwareRow'
 
     icon = Gtk.Template.Child()
-    name_label = Gtk.Template.Child()
-    description_label = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
     def __init__(self, package, **kwargs):
         super().__init__(**kwargs)
-        self.name_label.set_label(package['name'])
-        self.description_label.set_label(package['description'])
+        self.set_title(package['name'])
+        self.set_subtitle(package['description'])
         self.icon.set_from_file(package['icon_path'])
         self.switch.set_state(package['default'])
 
