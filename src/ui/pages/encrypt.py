@@ -14,7 +14,7 @@ class EncryptPage(Gtk.Box, Page):
     default_list = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    revealer = Gtk.Template.Child()
+    pin_row = Gtk.Template.Child()
     pin_field = Gtk.Template.Child()
 
     continue_button = Gtk.Template.Child()
@@ -42,7 +42,7 @@ class EncryptPage(Gtk.Box, Page):
             self.switch.activate()
 
     def _on_switch_flipped(self, switch, state):
-        self.revealer.set_reveal_child(state)
+        self.pin_row.set_sensitive(state)
 
         needs_pin = state
         has_pin = len(self.pin_field.get_text()) > 0

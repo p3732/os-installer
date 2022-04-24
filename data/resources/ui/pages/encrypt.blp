@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template EncryptPage : Box {
   name: _("Disk Encryption");
@@ -11,105 +12,43 @@ template EncryptPage : Box {
     ListBox default_list {
       selection-mode: none;
 
-      ListBoxRow {
+      Adw.ActionRow {
+        activatable: true;
         name: "encryption";
+        /* Translators: Used with option to enable disk encryption */
+        title: _("Encrypt Files");
+
+        Switch switch {
+          focusable: false;
+          halign: center;
+          valign: center;
+        }
+      }
+      Adw.ActionRow pin_row {
+        focusable: false;
         selectable: false;
-        child: 
-        Box {
-          margin-start: 12;
-          margin-end: 12;
-          margin-top: 6;
-          margin-bottom: 6;
-          spacing: 12;
+        sensitive: false;
+        /* Translators: Description of entry field for pin/password used for disk encryption */
+        title: _("Encryption PIN");
+        /* Translators: Hint for disk encryption */
+        subtitle: _("Memorize this PIN well. Without it you will not be able to access your files.");
 
-          Label {
-            /* Translators: Used with option to enable disk encryption */
-            label: _("Encrypt Files");
-            hexpand: true;
-            wrap: true;
-            xalign: 0;
-          }
+        Entry pin_field {
+          halign: center;
+          valign: center;
+          hexpand: true;
+          activates-default: true;
+          width-chars: 10;
+          max-width-chars: 16;
+          truncate-multiline: true;
+          input-purpose: pin;
 
-          Switch switch {
-            focusable: true;
-          }
-        };
+          /* Translators: Placeholder for disk encryption pin/password field */
+          placeholder-text: _("PIN");
+        }
       }
 
       styles ["boxed-list"]
-    }
-
-    Revealer revealer {
-      vexpand: true;
-      valign: start;
-      transition-duration: 200;
-      child: 
-      ListBox {
-        margin-top: 12;
-        selection-mode: none;
-
-        ListBoxRow {
-          focusable: true;
-          activatable: false;
-          selectable: false;
-          child: 
-          Box {
-            margin-start: 12;
-            margin-end: 12;
-            margin-top: 6;
-            margin-bottom: 6;
-            orientation: vertical;
-            spacing: 12;
-
-            Box {
-              spacing: 12;
-
-              Label {
-                hexpand: true;
-
-                /* Translators: Description of entry field for pin/password used for disk encryption */
-                label: _("Encryption PIN");
-                wrap: true;
-                xalign: 0;
-              }
-
-              Entry pin_field {
-                hexpand: true;
-                activates-default: true;
-                width-chars: 10;
-                max-width-chars: 16;
-                truncate-multiline: true;
-                input-purpose: pin;
-
-                /* Translators: Placeholder for disk encryption pin/password field */
-                placeholder-text: _("PIN");
-              }
-            }
-
-            Box {
-              spacing: 12;
-
-              Image {
-                icon-name: "dialog-warning-symbolic";
-
-                styles ["dim-label"]
-              }
-
-              Label {
-                hexpand: true;
-
-                /* Translators: Warning label for disk encryption */
-                label: _("Memorize this PIN well. Without it you will not be able to access your files.");
-                wrap: true;
-
-                styles ["dim-label"]
-              }
-            }
-          };
-        }
-
-        styles ["boxed-list"]
-      };
     }
   }
 
