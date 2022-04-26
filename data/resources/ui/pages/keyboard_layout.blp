@@ -29,18 +29,23 @@ template KeyboardLayoutPage : Box {
       Box {
         overflow: hidden;
         orientation: vertical;
+        styles ["card", "scrollable-container"]
 
         ScrolledWindow {
+          hexpand: true;
           vexpand: true;
           child:
           ListBox layout_list {
-            hexpand: true;
+            valign: start;
+            styles ["boxed-list", "angular-last"]
           };
         }
 
         Separator {}
 
         Button change_language_button {
+          styles ["flat"]
+
           Box {
             margin-start: 12;
             margin-end: 12;
@@ -64,11 +69,7 @@ template KeyboardLayoutPage : Box {
               icon-name: "emblem-system-symbolic";
             }
           }
-
-          styles ["flat"]
         }
-
-        styles ["card", "scrollable-container"]
       };
     }
 
@@ -76,17 +77,22 @@ template KeyboardLayoutPage : Box {
       name: "languages";
       child:
       Box {
-        overflow: hidden;
+        vexpand: true;
+        Box {
+          overflow: hidden;
+          valign: start;
+          styles ["card", "scrollable-container"]
 
-        ScrolledWindow {
-          vexpand: true;
-          child:
-          ListBox language_list {
-            hexpand: true;
-          };
+          ScrolledWindow {
+            propagate-natural-height: true;
+            valign: start;
+            child:
+            ListBox language_list {
+              hexpand: true;
+              styles ["boxed-list"]
+            };
+          }
         }
-
-        styles ["card", "scrollable-container"]
       };
     }
   }
@@ -100,7 +106,6 @@ template KeyboardLayoutPage : Box {
     halign: center;
     valign: end;
     use-underline: true;
-
     styles ["suggested-action", "pill"]
   }
 }

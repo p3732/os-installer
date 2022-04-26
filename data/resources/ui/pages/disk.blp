@@ -4,106 +4,110 @@ template DiskPage : Box {
   name: _("Disk Selection");
   orientation: vertical;
   spacing: 12;
+  vexpand:true;
 
   Box {
-    overflow: hidden;
+    vexpand:true;
 
-    ScrolledWindow {
-      vexpand: true;
-      child: 
-      Stack list_stack {
-        hexpand: true;
-        vhomogeneous: false;
-        transition-type: slide_left_right;
+    Box {
+      overflow: hidden;
+      valign: start;
+      styles ["card", "scrollable-container"]
 
-        StackPage {
-          name: "disks";
-          child: 
-          ListBox disk_list {
-            receives-default: true;
-            valign: start;
-          };
-        }
+      ScrolledWindow {
+        propagate-natural-height: true;
+        child:
+        Stack list_stack {
+          hexpand: true;
+          vhomogeneous: false;
+          transition-type: crossfade;
 
-        StackPage {
-          name: "partitions";
-          child: 
-          Box {
-            orientation: vertical;
-              
-            Label disk_label {
-              margin-start: 12;
-              margin-end: 12;
-              margin-top: 12;
-              margin-bottom: 12;
-              justify: center;
-              wrap: true;
+          StackPage {
+            name: "disks";
+            child:
+            ListBox disk_list {
+              receives-default: true;
+              valign: start;
+              styles ["boxed-list"]
+            };
+          }
 
-              styles ["title-4"]
-            }
+          StackPage {
+            name: "partitions";
+            child:
+            Box {
+              orientation: vertical;
+                
+              Label disk_label {
+                margin-start: 12;
+                margin-end: 12;
+                margin-top: 12;
+                margin-bottom: 12;
+                justify: center;
+                wrap: true;
+                styles ["title-4"]
+              }
 
-            ListBox whole_disk_list {
-              selection-mode: none;
+              ListBox whole_disk_list {
+                selection-mode: none;
+                styles ["boxed-list", "angular-last"]
 
-              ListBoxRow {
-                focusable: true;
-                selectable: false;
-                child: 
-                Box {
-                  margin-start: 12;
-                  margin-end: 12;
-                  margin-top: 6;
-                  margin-bottom: 6;
-                  spacing: 12;
-
-                  Label disk_size {
-                    width-chars: 5;
-                    max-width-chars: 7;
-                    xalign: 1;
-
-                    styles ["dim-label"]
-                  }
-
+                ListBoxRow {
+                  focusable: true;
+                  selectable: false;
+                  child:
                   Box {
-                    hexpand: true;
-                    orientation: vertical;
-                    spacing: 2;
+                    margin-start: 12;
+                    margin-end: 12;
+                    margin-top: 6;
+                    margin-bottom: 6;
+                    spacing: 12;
 
-                    Label {
-                      valign: end;
-
-                      /* Translators: Label to use whole disk rather than a single partition. */
-                      label: _("Use Whole Disk");
-                      wrap: true;
-                      xalign: 0;
-                    }
-
-                    Label disk_device_path {
-                      valign: start;
+                    Label disk_size {
                       width-chars: 5;
                       max-width-chars: 7;
-                      xalign: 0;
-
+                      xalign: 1;
                       styles ["dim-label"]
                     }
-                  }
 
-                  Image {
-                    icon-name: "go-next-symbolic";
-                  }
-                };
+                    Box {
+                      hexpand: true;
+                      orientation: vertical;
+                      spacing: 2;
+
+                      Label {
+                        valign: end;
+                        /* Translators: Label to use whole disk rather than a single partition. */
+                        label: _("Use Whole Disk");
+                        wrap: true;
+                        xalign: 0;
+                      }
+
+                      Label disk_device_path {
+                        valign: start;
+                        width-chars: 5;
+                        max-width-chars: 7;
+                        xalign: 0;
+                        styles ["dim-label"]
+                      }
+                    }
+
+                    Image {
+                      icon-name: "go-next-symbolic";
+                    }
+                  };
+                }
               }
-            }
 
-            ListBox partition_list {
-              valign: start;
-            }
-          };
-        }
-      };
+              ListBox partition_list {
+                valign: start;
+                styles ["boxed-list", "angular-first"]
+              }
+            };
+          }
+        };
+      }
     }
-
-    styles ["card", "scrollable-container"]
   }
 
   Button settings_button {
@@ -113,7 +117,6 @@ template DiskPage : Box {
     halign: center;
     valign: end;
     use-underline: true;
-
     styles ["pill"]
   }
 }

@@ -8,17 +8,18 @@ template SoftwarePage : Box {
   Box {
     overflow: hidden;
     orientation: vertical;
+    styles ["card", "scrollable-container"]
 
     ScrolledWindow {
       propagate-natural-height: true;
-      valign: start;
+      vexpand: true;
       child:
       ListBox software_list {
         hexpand: true;
+        selection-mode: none;
+        styles ["boxed-list"]
       };
     }
-
-    styles ["card", "scrollable-container"]
   }
 
   Button continue_button {

@@ -14,6 +14,30 @@ headerbar {
   box-shadow:none;
 }
 
+/* Indicate that container can be scrolled by setting an undershoot. TODO find a way to animate transition. */
+.scrollable-container > scrolledwindow undershoot.top {
+  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
+}
+.scrollable-container > scrolledwindow undershoot.bottom {
+  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
+}
+
+/* Make first/last row and list box borders angular. Used where a
+ * list box does not fill up a complete scrollable-container. */
+.angular-first row:first-child,
+.boxed-list.angular-first
+{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.angular-last row:last-child,
+.boxed-list.angular-last
+{
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* No margin around content and no roundedness when window is small. */
 .clamped:not(.small) {
   margin: 0px 12px 12px;
   transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -22,38 +46,11 @@ headerbar {
   margin: 0px 0px 12px;
   transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
-.scrollable-container row {
-  border-top: 1px solid @borders;
-}
-
-.scrollable-container row:first-child {
-  border-top: 0px;
-}
-
-.scrollable-container > scrolledwindow undershoot.top {
-  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
-}
-.scrollable-container > scrolledwindow undershoot.bottom {
-  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
-}
-
-.rounded-first row:first-child {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.rounded-last row:last-child {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
 .small .scrollable-container,
 .small row,
 .small .boxed-list,
-.small .boxed-list row,
-.small .rounded-first,
-.small .rounded-last
+.small .boxed-list row
 {
   border-radius: 0px;
+  transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

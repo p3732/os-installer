@@ -17,6 +17,7 @@ template LocalePage : Box {
 
         ListBox overview_list {
           selection-mode: none;
+          styles ["boxed-list"]
 
           ListBoxRow {
             name: "timezone";
@@ -94,8 +95,6 @@ template LocalePage : Box {
               }
             };
           }
-
-          styles ["boxed-list"]
         }
 
         Button confirm_button {
@@ -126,7 +125,6 @@ template LocalePage : Box {
             child:
             Label {
               valign: start;
-
               /* Translators: Above list of continents and countries */
               label: _("Select Location");
               justify: center;
@@ -141,7 +139,6 @@ template LocalePage : Box {
             child:
             Label {
               valign: start;
-
               /* Translators: Above list of format locales */
               label: _("Select Region");
               justify: center;
@@ -154,6 +151,7 @@ template LocalePage : Box {
 
         Box {
           overflow: hidden;
+          styles ["card", "scrollable-container"]
 
           ScrolledWindow {
             hexpand: true;
@@ -165,27 +163,37 @@ template LocalePage : Box {
 
               StackPage {
                 name: "timezone_continents";
-                child: ListBox continents_list {};
+                child:
+                ListBox continents_list {
+                  styles ["boxed-list"]
+                };
               }
 
               StackPage {
                 name: "timezone_countries";
-                child: ListBox countries_list {};
+                child:
+                ListBox countries_list {
+                  styles ["boxed-list"]
+                };
               }
 
               StackPage {
                 name: "timezone_subzones";
-                child: ListBox subzones_list {};
+                child:
+                ListBox subzones_list {
+                  styles ["boxed-list"]
+                };
               }
 
               StackPage {
                 name: "formats";
-                child: ListBox formats_list {};
+                child:
+                ListBox formats_list {
+                  styles ["boxed-list"]
+                };
               }
             };
           }
-
-          styles ["card", "scrollable-container"]
         }
       };
     }

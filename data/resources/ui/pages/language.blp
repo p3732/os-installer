@@ -31,13 +31,12 @@ template LanguagePage : Box {
         Button show_all_button {
           focusable: true;
           halign: center;
+          styles ["pill"]
 
           Image {
             icon-name: "view-more-symbolic";
             width-request: 32;
           }
-
-          styles ["pill"]
         }
       };
     }
@@ -47,16 +46,16 @@ template LanguagePage : Box {
       child:
       Box {
         overflow: hidden;
+        styles ["card", "scrollable-container"]
 
         ScrolledWindow {
-          vexpand: true;
+          propagate-natural-height: true;
           child:
           ListBox all_list {
             hexpand: true;
+            styles ["boxed-list"]
           };
         }
-
-        styles ["card", "scrollable-container"]
       };
     }
   }
