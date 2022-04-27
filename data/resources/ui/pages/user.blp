@@ -29,13 +29,13 @@ template UserPage : Box {
 
     Adw.ActionRow {
       name: "automatic_login";
-      focusable: false;
+      activatable: true;
+      focusable: true;
       selectable: false;
       /* Translators: Used with option to enable automatic login of user upon booting */
       title: _("Automatic Login");
 
       Switch autologin_switch {
-        focusable: true;
         valign: center;
         active: true;
       }
