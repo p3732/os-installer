@@ -24,9 +24,6 @@ def get_layouts_for(language_short_hand, language):
         name = xkb_info.get_layout_info(layout).display_name
         named_layouts.append(KeyboardInfo(name, layout))
 
-    return named_layouts
-    # TODO sorting
-
     # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
     return sorted(named_layouts, key=lambda o:
                   (not o.name.startswith(language),
