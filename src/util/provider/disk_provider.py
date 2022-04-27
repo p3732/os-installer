@@ -9,16 +9,16 @@ EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
 class DeviceInfo(GObject.GObject):
     __gtype_name__ = __qualname__
 
-    name: str
+    name: str = None
     size: int
     size_text: str
     device_path: str
-    prefixed: bool = False
 
     def __init__(self, name, size, device_path):
         super().__init__()
 
-        self.name = name.strip()
+        if name:
+            self.name = name.strip()
         self.size = size
         self.size_text = disk_provider._size_to_str(size)
         self.device_path = device_path
@@ -43,8 +43,6 @@ class DiskProvider:
             name=block.props.id_label,
             size=block.props.size,
             device_path=block.props.device)
-        if partition_info.name == '':
-            partition_info.name = str(partition.props.number)
 
         # check if EFI System Partiton
         is_efi_partition = (partition.props.flags == EFI_PARTITON_FLAGS
