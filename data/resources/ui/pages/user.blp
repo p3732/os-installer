@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template UserPage : Box {
   name: _("User Account");
@@ -9,93 +10,53 @@ template UserPage : Box {
     selection-mode: none;
     styles ["boxed-list"]
 
-    ListBoxRow {
+    Adw.ActionRow {
       activatable: false;
       focusable: false;
       selectable: false;
-      child:
-      Box {
-        margin-start: 12;
-        margin-end: 12;
-        margin-top: 6;
-        margin-bottom: 6;
-        spacing: 12;
 
-        Label {
-          hexpand: true;
-          /* Translators: Used with entry field for User's name */
-          label: _("Name");
-          wrap: true;
-          xalign: 0;
-        }
-
-        Entry user_name_field {
-          focusable: true;
-          width-chars: 10;
-          max-width-chars: 24;
-          /* Translators: Placeholder in user name entry field */
-          placeholder-text: _("Enter a Name");
-        }
-      };
+      /* Translators: Used with entry field for User's name */
+      title: _("Name");
+      
+      Entry user_name_field {
+        valign: center;
+        width-chars: 10;
+        max-width-chars: 24;
+        /* Translators: Placeholder in user name entry field */
+        placeholder-text: _("Enter a Name");
+      }
     }
 
-    ListBoxRow {
+    Adw.ActionRow {
       name: "automatic_login";
       focusable: false;
       selectable: false;
-      child:
-      Box {
-        margin-start: 12;
-        margin-end: 12;
-        margin-top: 6;
-        margin-bottom: 6;
-        spacing: 12;
+      /* Translators: Used with option to enable automatic login of user upon booting */
+      title: _("Automatic Login");
 
-        Label {
-          /* Translators: Used with option to enable automatic login of user upon booting */
-          label: _("Automatic Login");
-          wrap: true;
-          xalign: 0;
-        }
-
-        Switch autologin_switch {
-          focusable: true;
-          valign: center;
-          active: true;
-        }
-      };
+      Switch autologin_switch {
+        focusable: true;
+        valign: center;
+        active: true;
+      }
     }
 
-    ListBoxRow {
+    Adw.ActionRow {
       activatable: false;
       focusable: false;
       selectable: false;
-      child:
-      Box {
-        margin-start: 12;
-        margin-end: 12;
-        margin-top: 6;
-        margin-bottom: 6;
-        spacing: 12;
+      /* Translators: Used with entry field for setting a password for new user */
+      title: _("Password");
 
-        Label {
-          hexpand: true;
-          /* Translators: Used with entry field for setting a password for new user */
-          label: _("Password");
-          wrap: true;
-          xalign: 0;
-        }
-
-        Entry password_field {
-          focusable: true;
-          visibility: false;
-          width-chars: 10;
-          max-width-chars: 24;
-          /* Translators: Placeholder in password entry field */
-          placeholder-text: _("Enter a Password");
-          input-purpose: password;
-        }
-      };
+      Entry password_field {
+        valign: center;
+        visibility: false;
+        width-chars: 10;
+        max-width-chars: 24;
+        /* Translators: Placeholder in password entry field */
+        placeholder-text: _("Enter a Password");
+        input-purpose: password;
+      }
     }
   }
 
