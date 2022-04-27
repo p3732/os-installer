@@ -13,6 +13,7 @@ class ConfirmPage(Gtk.Box, Page):
     image_name = 'question-round-symbolic'
 
     disk_label = Gtk.Template.Child()
+    device_path = Gtk.Template.Child()
     confirm_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -32,4 +33,6 @@ class ConfirmPage(Gtk.Box, Page):
     def load(self):
         # set label
         name = global_state.get_config('disk_name')
-        self.disk_label.set_label(name)
+        if name:
+            self.disk_label.set_label(name)
+        self.device_path.set_label(global_state.get_config('disk_device_path'))

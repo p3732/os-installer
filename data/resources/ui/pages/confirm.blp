@@ -19,11 +19,21 @@ template ConfirmPage : Box {
       styles ["title-4"]
     }
 
-    Label disk_label {
-      wrap: true;
-      wrap-mode: word_char;
+    Box {
+      halign: center;
+      orientation: vertical;
 
-      styles ["title-4"]
+      Label disk_label {
+        label: _("Unnamed Partition");
+        wrap: true;
+        wrap-mode: word_char;
+        styles ["title-4"]
+      }
+
+      Label device_path {
+        wrap: true;
+        wrap-mode: word_char;
+      }
     }
   }
 
