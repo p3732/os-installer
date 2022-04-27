@@ -9,10 +9,10 @@
     <file>style.css</file>
 
     <!-- Icons -->
-    <file preprocess="xml-stripblanks">icon/globe-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/question-round-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/language-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/user-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/question-round-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/user-symbolic.svg</file>
 
     <!-- UI Files -->
     <file preprocess="xml-stripblanks">ui/confirm_quit_popup.ui</file>
