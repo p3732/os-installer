@@ -118,8 +118,11 @@ class DiskProvider:
         smol_disk = Disk("Dummy", 10000, "/dev/null", ([smol_partition], None))
 
         efi_partition = DeviceInfo("EFI", 200000000, "/dev/sda_efi")
+        unnamed_partition_1 = DeviceInfo(None, 20000000000, "/dev/sda_unnamed")
+        unnamed_partition_2 = DeviceInfo(None, 20000000000, "/dev/sda_unnamed2")
+        unnamed_partition_3 = DeviceInfo(None, 20000000000, "/dev/sda_unnamed3")
         partytion = DeviceInfo("PARTYtion", 20000000000, "/dev/sda_party")
-        disk = Disk("Totally real device", 50000000000, "/dev/sda", ([efi_partition, partytion], "EFI"))
+        disk = Disk("Totally real device", 80000000000, "/dev/sda", ([efi_partition, partytion, unnamed_partition_1, unnamed_partition_2, unnamed_partition_3], "EFI"))
 
         unformated_big_disk = Disk("VERY BIG DISK", 10000000000000000, "/dev/sdb_very_big")
 
