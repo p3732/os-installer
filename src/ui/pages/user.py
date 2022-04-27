@@ -29,12 +29,12 @@ class UserPage(Gtk.Box, Page):
         self.password_field.connect("changed", self._on_entry_changed)
 
     def _set_continue_button(self, autologin):
-        has_user_name = not self.user_name_field.get_text() == ''
+        has_user_name = not self.user_name_field.get_text().strip() == ''
         has_password = not self.password_field.get_text() == ''
         can_continue = has_user_name and (autologin or has_password)
         self.continue_button.set_sensitive(can_continue)
 
-    # callbacks ###stack_manager
+    ### callbacks ###
 
     def _continue(self, button):
         global_state.advance(self)
@@ -52,6 +52,6 @@ class UserPage(Gtk.Box, Page):
     ### public methods ###
 
     def unload(self):
-        global_state.set_config('user_name', self.user_name_field.get_text())
+        global_state.set_config('user_name', self.user_name_field.get_text().strip())
         global_state.set_config('user_password', self.password_field.get_text())
         global_state.set_config('user_autologin', self.autologin_switch.get_state())
