@@ -1,8 +1,8 @@
 using Gtk 4.0;
 using Adw 1;
 
-template ConfirmQuitPopup : .AdwWindow {
-  destroy-with-parent: "True";
+template ConfirmQuitPopup : Adw.Window {
+  destroy-with-parent: true;
   content:
   WindowHandle {
     Box {
