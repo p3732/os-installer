@@ -12,48 +12,26 @@ def reset_model(model, new_values):
     model.splice(0, n_prev_items, new_values)
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/device_row.ui')
-class DeviceRow(Gtk.ListBoxRow):
+class DeviceRow(Adw.ActionRow):
     __gtype_name__ = 'DeviceRow'
 
-    name_stack = Gtk.Template.Child()
-    static_label = Gtk.Template.Child()
-    partition_name = Gtk.Template.Child()
-    disk_name = Gtk.Template.Child()
-
-    too_small_label = Gtk.Template.Child()
-
+    stack = Gtk.Template.Child()
     size = Gtk.Template.Child()
-    arrow_stack = Gtk.Template.Child()
-    device_path = Gtk.Template.Child()
 
     def __init__(self, info, too_small, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info
         self.size.set_label(info.size_text)
-        self.device_path.set_label(info.device_path)
+        if info.name:
+            self.set_title(info.name)
 
-        if hasattr(info, 'partitions'):
-            self.name_stack.set_visible_child_name('disk')
-            if info.name:
-                self.disk_name.set_label(info.name)
-        else:
-            self.name_stack.set_visible_child_name('partition')
-            if not info.prefixed:
-                info.name = self.partition_name.get_label() + ' ' + info.name
-                info.prefixed = True
-            self.partition_name.set_label(info.name)
+        self.set_subtitle(info.device_path)
 
         if too_small:
             self.set_activatable(False)
-            self.too_small_label.set_visible(True)
-            self.arrow_stack.set_visible_child_name('too_small')
-            self.static_label.set_visible(False)
-            self._make_light_weight(self.disk_name)
-            self._make_light_weight(self.partition_name)
-
-    def _make_light_weight(self, label):
-        label.set_label('<span font_weight="light">' + label.get_label() + '</span>')
+            self.set_sensitive(False)
+            self.stack.set_visible_child_name('too_small')
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/language_row.ui')
