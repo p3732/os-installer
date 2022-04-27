@@ -40,13 +40,9 @@ template DiskPage : Box {
               orientation: vertical;
                 
               Label disk_label {
-                margin-start: 12;
-                margin-end: 12;
-                margin-top: 12;
-                margin-bottom: 12;
                 justify: center;
                 wrap: true;
-                styles ["title-4"]
+                styles ["title-4", "marginalized"]
               }
 
               Separator {}
@@ -84,13 +80,9 @@ template DiskPage : Box {
                 Label {
                   /*Translators: Heading of list of partitions*/
                   label: _("Partitions");
-                  margin-start: 12;
-                  margin-end: 12;
-                  margin-top: 12;
-                  margin-bottom: 12;
                   justify: center;
                   wrap: true;
-                  styles ["heading"]
+                  styles ["heading", "marginalized"]
                 }
 
                 Separator {}

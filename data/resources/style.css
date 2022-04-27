@@ -10,6 +10,12 @@ headerbar {
   box-shadow:none;
 }
 
+/* Default margin in all directions. */
+.marginalized
+{
+  margin: 12px;
+}
+
 /* Indicate that container can be scrolled by setting an undershoot. TODO find a way to animate transition. */
 .scrollable-container > scrolledwindow undershoot.top {
   background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
