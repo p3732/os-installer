@@ -72,9 +72,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _determine_available_pages(self):
         offer_internet_connection = global_state.get_config('internet_connection_required')
         offer_disk_encryption = global_state.get_config('offer_disk_encryption')
-        offer_additional_software = len(global_state.get_config('additional_software')) > 0
+        additional_software_config = global_state.get_config('additional_software')
+        offer_additional_software = len(additional_software_config) > 0 if additional_software_config else False
 
-        self.available_pages = [
+        available_pages = [
             # pre-installation section
             LanguagePage,
             KeyboardLayoutPage,
@@ -94,6 +95,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # failed installation, keep at end
             FailedPage
         ]
+        # filter out nonexistent pages
+        self.available_pages = [page for page in available_pages if page]
 
     def _initialize_page(self, page_to_initialize):
         page = page_to_initialize()
