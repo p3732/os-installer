@@ -27,14 +27,13 @@ class UserPage(Gtk.Box, Page):
 
     ### callbacks ###
 
+    @Gtk.Template.Callback('autologin_row_clicked')
+    def _autologin_row_clicked(self, row):
+        self.autologin_switch.activate()
+
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
-
-    @Gtk.Template.Callback('row_activated')
-    def _row_activated(self, list_box, row):
-        if row.get_name() == 'automatic_login':
-            self.autologin_switch.activate()
 
     @Gtk.Template.Callback('autologin_switch_flipped')
     def _autologin_switch_flipped(self, autologin_switch, state):

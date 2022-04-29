@@ -8,7 +8,6 @@ template UserPage : Box {
 
   ListBox {
     selection-mode: none;
-    row-activated => row_activated();
     styles ["boxed-list"]
 
     Adw.ActionRow {
@@ -30,15 +29,15 @@ template UserPage : Box {
     }
 
     Adw.ActionRow {
-      name: "automatic_login";
       activatable: true;
-      focusable: true;
       selectable: false;
       /* Translators: Used with option to enable automatic login of user upon booting */
       title: _("Automatic Login");
+      activated => autologin_row_clicked();
 
       Switch autologin_switch {
         valign: center;
+        focusable: false;
         active: true;
         state-set => autologin_switch_flipped();
       }
