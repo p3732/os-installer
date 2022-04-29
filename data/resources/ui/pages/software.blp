@@ -7,12 +7,10 @@ template SoftwarePage : Box {
 
   Box {
     overflow: hidden;
-    orientation: vertical;
     styles ["card", "scrollable-container"]
 
     ScrolledWindow {
       propagate-natural-height: true;
-      vexpand: true;
       child:
       ListBox software_list {
         hexpand: true;
