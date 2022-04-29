@@ -27,6 +27,7 @@ template EncryptPage : Box {
         }
       }
       Adw.ActionRow pin_row {
+        activatable: true;
         focusable: false;
         selectable: false;
         sensitive: false;
@@ -34,6 +35,7 @@ template EncryptPage : Box {
         title: _("Encryption PIN");
         /* Translators: Hint for disk encryption */
         subtitle: _("Memorize this PIN well. Without it you will not be able to access your files.");
+        activated => focus_pin();
 
         Entry pin_field {
           halign: center;

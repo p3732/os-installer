@@ -37,6 +37,10 @@ class EncryptPage(Gtk.Box, Page):
         self._set_continue_button(
             needs_pin=state, pin=self.pin_field.get_text())
 
+    @Gtk.Template.Callback('focus_pin')
+    def _focus_pin(self, row):
+        self.pin_field.grab_focus_without_selecting()
+
     @Gtk.Template.Callback('pin_changed')
     def _pin_changed(self, editable):
         self._set_continue_button(
