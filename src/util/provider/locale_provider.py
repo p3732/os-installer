@@ -2,7 +2,7 @@
 
 import locale as Locale
 
-from gi.repository import GnomeDesktop
+from gi.repository import GnomeDesktop, GObject
 
 from .global_state import global_state
 
@@ -46,6 +46,18 @@ locales = {
     'aa_DJ.UTF-8', 'so_SO.UTF-8'}
 
 
+class Format(GObject.GObject):
+    __gtype_name__ = __qualname__
+    name: str
+    locale: str
+
+    def __init__(self, name, locale):
+        super().__init__()
+
+        self.name = name
+        self.locale = locale
+
+
 ### public methods ###
 def get_timezone():
     timezone = GnomeDesktop.WallClock().get_timezone()
@@ -76,10 +88,10 @@ def get_formats():
         name = GnomeDesktop.get_country_from_locale(locale, translation_locale)
         if name and not name in names:
             names.add(name)
-            formats.append((name, locale))
+            formats.append(Format(name, locale))
 
     # return sorted (considers umlauts and such)
     return sorted(
         formats,
-        key=lambda t: Locale.strxfrm(t[0])
+        key=lambda t: Locale.strxfrm(t.name)
     )

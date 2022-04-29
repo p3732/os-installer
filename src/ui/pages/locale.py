@@ -7,15 +7,19 @@ from .installation_scripting import installation_scripting, Step
 from .locale_provider import get_current_formats, get_formats, get_timezone
 from .page import Page
 from .system_calls import set_system_formats, set_system_timezone
-from .widgets import ProgressRow
+from .widgets import reset_model, ProgressRow
 
 
 def get_location_children(location):
     # this code is un-pythonesque because libgweather decided to simplify their API too much
-    continents = [location.next_child(None)]
-    while continent := location.next_child(continents[-1]):
-        continents.append(continent)
-    return continents
+    children = [location.next_child(None)]
+    while child := location.next_child(children[-1]):
+        children.append(child)
+    return children
+
+def create_location_row(location):
+    return ProgressRow(location.get_name(), location)
+
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
 class LocalePage(Gtk.Box, Page):
@@ -33,63 +37,64 @@ class LocalePage(Gtk.Box, Page):
     # formats
     formats_list = Gtk.Template.Child()
     formats_list_loaded = False
+    formats_list_model = Gio.ListStore()
 
     # locale
     continents_list = Gtk.Template.Child()
     countries_list = Gtk.Template.Child()
-    countries_list_model = Gio.ListStore()
     subzones_list = Gtk.Template.Child()
+
+    continents_list_model = Gio.ListStore()
+    countries_list_model = Gio.ListStore()
     subzones_list_model = Gio.ListStore()
+
     continents_list_loaded = False
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        self.countries_list.bind_model(self.countries_list_model, lambda x: x)
-        self.subzones_list.bind_model(self.subzones_list_model, lambda x: x)
+        self.formats_list.bind_model(
+            self.formats_list_model, lambda f: ProgressRow(f.name, f.locale))
+        self.countries_list.bind_model(self.countries_list_model, create_location_row)
+        self.continents_list.bind_model(self.continents_list_model, create_location_row)
+        self.subzones_list.bind_model(self.subzones_list_model, create_location_row)
 
     def _load_continents_list(self):
         if not self.continents_list_loaded:
             self.continents_list_loaded = True
-            current_location = None
 
+            continents = []
             for continent in get_location_children(GWeather.Location.get_world()):
                 if not continent.get_timezone():  # skip dummy locations
-                    self.continents_list.append(ProgressRow(continent.get_name(), continent))
+                    continents.append(continent)            
+            reset_model(self.continents_list_model, continents)
 
         self.overview_stack.set_visible_child_name('list')
         self.list_stack.set_visible_child_name('timezone_continents')
         self.text_stack.set_visible_child_name('timezone')
 
     def _load_countries_list(self, continent):
-        # take me home
-        country_rows = []
-        for country in get_location_children(continent):
-            country_rows.append(ProgressRow(country.get_name(), country))
-
-        n_items = self.countries_list_model.get_n_items()
-        self.countries_list_model.splice(0, n_items, country_rows)
+        countries = get_location_children(continent)
+        reset_model(self.countries_list_model, countries)
 
         self.list_stack.set_visible_child_name('timezone_countries')
 
     def _load_formats_list(self):
         if not self.formats_list_loaded:
             self.formats_list_loaded = True
-            for name, locale in get_formats():
-                self.formats_list.append(ProgressRow(name, locale))
+            formats = get_formats()
+            reset_model(self.formats_list_model, formats)
 
         self.overview_stack.set_visible_child_name('list')
         self.text_stack.set_visible_child_name('formats')
         self.list_stack.set_visible_child_name('formats')
 
     def _load_subzones_list(self, country):
-        subzone_rows = []
+        subzones = []
         for subzone in get_location_children(country):
             if subzone.get_timezone():
-                subzone_rows.append(ProgressRow(subzone.get_name(), subzone))
-
-        n_items = self.subzones_list_model.get_n_items()
-        self.subzones_list_model.splice(0, n_items, subzone_rows)
+                subzones.append(subzone)
+        reset_model(self.subzones_list_model, subzones)
 
         self.list_stack.set_visible_child_name('timezone_subzones')
 
