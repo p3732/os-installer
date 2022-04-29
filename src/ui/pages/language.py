@@ -58,9 +58,6 @@ class LanguagePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        list_box.select_row(row)
-
-        # set language
         set_system_language(row.info)
         global_state.advance(self)
 

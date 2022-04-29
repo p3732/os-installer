@@ -76,7 +76,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self._unselect_current_row()
         self.current_row = row
         row.set_activated(True)
-        self.layout_list.select_row(row)
 
         # use selected keyboard layout
         keyboard_layout = row.get_label()

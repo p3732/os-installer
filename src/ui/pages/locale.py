@@ -127,7 +127,6 @@ class LocalePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('timezone_selected')
     def _timezone_selected(self, list_box, row):
-        list_box.select_row(row)
         location = row.info
         timezone = location.get_timezone_str()
         if timezone:

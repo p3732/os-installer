@@ -101,13 +101,11 @@ class DiskPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('use_partition')
     def _use_partition(self, list_box, row):
-        list_box.select_row(row)
         self._store_device_info(row.info)
         global_state.advance(self)
 
     @Gtk.Template.Callback('use_whole_disk')
     def _use_whole_disk(self, list_box, row):
-        list_box.select_row(row)
         self._store_device_info(self.current_disk)
         global_state.advance(self)
 
