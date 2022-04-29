@@ -11,14 +11,13 @@ template EncryptPage : Box {
 
     ListBox {
       selection-mode: none;
-      row-activated => row_activated();
       styles ["boxed-list"]
 
       Adw.ActionRow {
         activatable: true;
-        name: "encryption";
         /* Translators: Used with option to enable disk encryption */
         title: _("Encrypt Files");
+        activated => encryption_row_clicked();
 
         Switch switch {
           focusable: false;

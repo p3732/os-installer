@@ -27,14 +27,9 @@ class EncryptPage(Gtk.Box, Page):
 
     ### callbacks ###
 
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        global_state.advance(self)
-
-    @Gtk.Template.Callback('row_activated')
-    def _row_activated(self, list_box, row):
-        if row.get_name() == 'encryption':
-            self.switch.activate()
+    @Gtk.Template.Callback('encryption_row_clicked')
+    def _encryption_row_clicked(self, row):
+        self.switch.activate()
 
     @Gtk.Template.Callback('switch_flipped')
     def _switch_flipped(self, switch, state):
@@ -46,6 +41,10 @@ class EncryptPage(Gtk.Box, Page):
     def _pin_changed(self, editable):
         self._set_continue_button(
             needs_pin=self.switch.get_state(), pin=editable.get_text())
+
+    @Gtk.Template.Callback('continue')
+    def _continue(self, button):
+        global_state.advance(self)
 
     ### public methods ###
 
