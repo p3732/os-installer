@@ -11,13 +11,13 @@ template UserPage : Box {
     styles ["boxed-list"]
 
     Adw.ActionRow {
-      activatable: false;
+      activatable: true;
       focusable: false;
       selectable: false;
-
       /* Translators: Used with entry field for User's name */
       title: _("Name");
-      
+      activated => focus_user_name();
+
       Entry user_name_field {
         valign: center;
         width-chars: 10;
@@ -44,11 +44,12 @@ template UserPage : Box {
     }
 
     Adw.ActionRow {
-      activatable: false;
+      activatable: true;
       focusable: false;
       selectable: false;
       /* Translators: Used with entry field for setting a password for new user */
       title: _("Password");
+      activated => focus_password();
 
       Entry password_field {
         valign: center;

@@ -27,21 +27,29 @@ class UserPage(Gtk.Box, Page):
 
     ### callbacks ###
 
+    @Gtk.Template.Callback('focus_user_name')
+    def _focus_user_name(self, row):
+        self.user_name_field.grab_focus_without_selecting()
+
     @Gtk.Template.Callback('autologin_row_clicked')
     def _autologin_row_clicked(self, row):
         self.autologin_switch.activate()
-
-    @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        global_state.advance(self)
 
     @Gtk.Template.Callback('autologin_switch_flipped')
     def _autologin_switch_flipped(self, autologin_switch, state):
         self._set_continue_button(state)
 
+    @Gtk.Template.Callback('focus_password')
+    def _focus_password(self, row):
+        self.password_field.grab_focus_without_selecting()
+
     @Gtk.Template.Callback('entry_changed')
     def _entry_changed(self, editable):
         self._set_continue_button(self.autologin_switch.get_state())
+
+    @Gtk.Template.Callback('continue')
+    def _continue(self, button):
+        global_state.advance(self)
 
     ### public methods ###
 
