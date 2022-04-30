@@ -19,5 +19,4 @@ data/resources/ui/pages/software.blp
 data/resources/ui/pages/user.blp
 
 data/resources/ui/widgets/device_row.blp
-data/resources/ui/widgets/no_partitions_row.blp
 

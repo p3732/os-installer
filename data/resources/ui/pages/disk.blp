@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template DiskPage : Box {
   name: _("Disk Selection");
@@ -48,60 +49,102 @@ template DiskPage : Box {
                 styles ["title-4"]
               }
 
+              Separator {}
+
               ListBox whole_disk_list {
                 selection-mode: none;
-                styles ["boxed-list", "angular-last"]
 
-                ListBoxRow {
+                Adw.ActionRow whole_disk_row {
+                  activatable: true;
                   focusable: true;
                   selectable: false;
-                  child:
-                  Box {
-                    margin-start: 12;
-                    margin-end: 12;
-                    margin-top: 6;
-                    margin-bottom: 6;
-                    spacing: 12;
+                  /* Translators: Label to use whole disk rather than a single partition. */
+                  title: _("Use Whole Disk");
 
-                    Label disk_size {
-                      width-chars: 5;
-                      max-width-chars: 7;
-                      xalign: 1;
-                      styles ["dim-label"]
-                    }
+                  [prefix]
+                  Label disk_size {
+                    width-chars: 5;
+                    max-width-chars: 7;
+                    xalign: 1;
+                    styles ["dim-label"]
+                  }
 
-                    Box {
-                      hexpand: true;
-                      orientation: vertical;
-                      spacing: 2;
-
-                      Label {
-                        valign: end;
-                        /* Translators: Label to use whole disk rather than a single partition. */
-                        label: _("Use Whole Disk");
-                        wrap: true;
-                        xalign: 0;
-                      }
-
-                      Label disk_device_path {
-                        valign: start;
-                        width-chars: 5;
-                        max-width-chars: 7;
-                        xalign: 0;
-                        styles ["dim-label"]
-                      }
-                    }
-
-                    Image {
-                      icon-name: "go-next-symbolic";
-                    }
-                  };
+                  Image {
+                    icon-name: "go-next-symbolic";
+                  }
                 }
               }
 
+              Separator {}
+
               ListBox partition_list {
+                visible: true;
                 valign: start;
                 styles ["boxed-list", "angular-first"]
+              }
+
+              Box missing_things_info {
+                visible: bind partition_list.visible inverted bidirectional;
+                margin-start: 18;
+                margin-end: 18;
+                margin-top: 6;
+                margin-bottom: 6;
+                spacing: 18;
+
+                Image {
+                  icon-name: "dialog-information-symbolic";
+                  styles ["dim-label"]
+                }
+
+                Box {
+                  hexpand: true;
+                  orientation: vertical;
+
+                  Label {
+                    /* Translators: Shown if a disk is currently not compatible with the way a system was booted. */
+                    label: _("Selecting a partition is not possible.");
+                    wrap: true;
+                    xalign: 0;
+                    styles ["dim-label"]
+                  }
+
+                  Label {
+                    /* Translators: Followed by a list of requirements */
+                    label: _("The disk requires:");
+                    wrap: true;
+                    xalign: 0;
+                    styles ["dim-label"]
+                  }
+
+                  Stack {
+                    hhomogeneous: false;
+                    vhomogeneous: false;
+
+                    StackPage {
+                      name: "efi";
+                      child:
+                      Label {
+                        /* Translators: Technical terms, the abbreviations should not be translated. */
+                        label: _("  • GPT partitioning\n  • EFI partition");
+                        wrap: true;
+                        xalign: 0;
+                        styles ["dim-label"]
+                      };
+                    }
+
+                    StackPage {
+                      name: "bios";
+                      child:
+                      Label {
+                        /* Translators: Technical terms, the abbreviations should not be translated */
+                        label: _("  • BIOS boot partition");
+                        wrap: true;
+                        xalign: 0;
+                        styles ["dim-label"]
+                      };
+                    }
+                  }
+                }
               }
             };
           }

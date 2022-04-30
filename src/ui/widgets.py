@@ -67,13 +67,6 @@ class LanguageRow(Adw.ActionRow):
         self.set_title(info.name)
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/no_partitions_row.ui')
-class NoPartitionsRow(Gtk.ListBoxRow):
-    __gtype_name__ = 'NoPartitionsRow'
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
 class PageWrapper(Gtk.Box):
     __gtype_name__ = 'PageWrapper'

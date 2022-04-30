@@ -6,12 +6,17 @@ EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
 EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
 
 
-class DeviceInfo:
+class DeviceInfo(GObject.GObject):
+    __gtype_name__ = __qualname__
+
     device_path: str
     name: str
     prefixed: bool = False
     size: int
     size_text: str
+
+    def __init__(self):
+        super().__init__()
 
 
 class Disk(DeviceInfo):
