@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-18 07:50+0200\n"
+"POT-Creation-Date: 2022-04-30 03:03+0200\n"
 "PO-Revision-Date: 2022-04-18 01:15+0200\n"
 "Last-Translator: Peter Eisenmann <p3732@getgoogleoff.me>\n"
 "Language-Team: German <->\n"
@@ -48,10 +48,19 @@ msgstr "Installation _Fortfahren"
 msgid "_Stop Installation"
 msgstr "Installation _Abbrechen"
 
+#: data/resources/ui/pages/confirm.blp
+msgid "Confirmation"
+msgstr "Bestätigung"
+
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
 msgstr "Hiermit werden alle Dateien gelöscht von"
+
+#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
+#: data/resources/ui/pages/confirm.blp data/resources/ui/widgets/device_row.blp
+msgid "Unnamed Partition"
+msgstr "Namenlose Partition"
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
@@ -59,22 +68,49 @@ msgstr "Hiermit werden alle Dateien gelöscht von"
 msgid "_Confirm"
 msgstr "_Bestätigen"
 
-#. Translators: Concise title for page.
 #: data/resources/ui/pages/disk.blp
 msgid "Disk Selection"
 msgstr "Laufwerksauswahl"
 
-#. Translators: Label to go back to overview of all disks
+#. Translators: Label to use whole disk rather than a single partition.
 #: data/resources/ui/pages/disk.blp
 msgid "Use Whole Disk"
 msgstr "Nutze gesamtes Laufwerk"
+
+#. Translators: Heading of list of partitions
+#: data/resources/ui/pages/disk.blp
+msgid "Partitions"
+msgstr "Partitionen"
+
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+#: data/resources/ui/pages/disk.blp
+msgid "Selecting a partition is not possible."
+msgstr "Auswählen einer Partition nicht möglich"
+
+#. Translators: Followed by a list of requirements
+#: data/resources/ui/pages/disk.blp
+msgid "The disk requires:"
+msgstr "Das Laufwerk benötigt:"
+
+#. Translators: Technical terms, the abbreviations should not be translated.
+#: data/resources/ui/pages/disk.blp
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • GPT Partitionierung\n"
+"  • EFI Partition"
+
+#. Translators: Technical terms, the abbreviations should not be translated
+#: data/resources/ui/pages/disk.blp
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS Boot-Partition"
 
 #. Translators: Button label to open disk management tool. Underscore can not be for same as for 'Reload'
 #: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr "_Laufwerke verwalten"
 
-#. Translators: Informative label after successful installation
 #: data/resources/ui/pages/done.blp
 msgid "Installation complete"
 msgstr "Installation vollständig"
@@ -89,7 +125,6 @@ msgstr "System _Neustarten"
 msgid "Restart _Later"
 msgstr "_Später Neustarten"
 
-#. Translators: Concise title for page.
 #: data/resources/ui/pages/encrypt.blp
 msgid "Disk Encryption"
 msgstr "Laufwerksverschlüsselung"
@@ -104,18 +139,18 @@ msgstr "Dateien verschlüsseln"
 msgid "Encryption PIN"
 msgstr "Verschlüsselungs-PIN"
 
-#. Translators: Placeholder for disk encryption pin/password field
-#: data/resources/ui/pages/encrypt.blp
-msgid "PIN"
-msgstr "PIN"
-
-#. Translators: Warning label for disk encryption
+#. Translators: Hint for disk encryption
 #: data/resources/ui/pages/encrypt.blp
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 "Präge dir diesen PIN gut ein. Ohne ihn wirst du nicht auf deine Dateien "
 "zugreifen können."
+
+#. Translators: Placeholder for disk encryption pin/password field
+#: data/resources/ui/pages/encrypt.blp
+msgid "PIN"
+msgstr "PIN"
 
 #. Translators: On button.
 #: data/resources/ui/pages/encrypt.blp
@@ -124,7 +159,6 @@ msgstr ""
 msgid "_Continue"
 msgstr "_Weiter"
 
-#. Translators: Shown as simple informative text
 #: data/resources/ui/pages/failed.blp
 msgid "Installation Failed"
 msgstr "Installation fehlgeschlagen"
@@ -134,7 +168,6 @@ msgstr "Installation fehlgeschlagen"
 msgid "Search for Help on the Internet"
 msgstr "Suche im Internet nach Hilfe"
 
-#. Translators: Simple label used during Installation
 #: data/resources/ui/pages/install.blp
 msgid "Installing"
 msgstr "Installation läuft"
@@ -144,17 +177,19 @@ msgstr "Installation läuft"
 msgid "Show Terminal Output"
 msgstr "Terminal-Ausgabe anzeigen"
 
-#. Translators: Concise title for page.
 #: data/resources/ui/pages/internet.blp
 msgid "Internet Connection Check"
 msgstr "Test der Internetverbindung"
 
+#: data/resources/ui/pages/internet.blp
+msgid "No connection."
+msgstr "Keine Verbindung"
+
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
 msgid "_Setup Internet Connection"
-msgstr "_Internetverbindung einrichten"
+msgstr "_Internetverbindung herstellen"
 
-#. Translators: Concise title for page.
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Layout Selection"
 msgstr "Auswahl der Tastaturbelegung"
@@ -169,7 +204,6 @@ msgstr "Teste die Tastaturbelegung hier"
 msgid "Keyboard Language"
 msgstr "Tastatursprache"
 
-#. Translators: Concise title for page.
 #: data/resources/ui/pages/locale.blp
 msgid "Adapt to Location"
 msgstr "An Standort anpassen"
@@ -199,17 +233,14 @@ msgstr "Wähle einen Standort"
 msgid "Select Region"
 msgstr "Wähle eine Region"
 
-#. Translators: Shown when restarting system after installation.
 #: data/resources/ui/pages/restart.blp
 msgid "Restarting"
 msgstr "Neustarten"
 
-#. Translators: Informative label above a list of software that can be selected for installation
 #: data/resources/ui/pages/software.blp
 msgid "Additional Software"
 msgstr "Zusätzliche Programme"
 
-#. Translators: Concise title for page.
 #: data/resources/ui/pages/user.blp
 msgid "User Account"
 msgstr "Benutzerkonto"
@@ -243,42 +274,3 @@ msgstr "Gebe ein Passwort ein"
 #: data/resources/ui/widgets/device_row.blp
 msgid "Not enough space for installation"
 msgstr "Nicht groß genug für Installation"
-
-#. Translators: Shown if no name can be determined for a disk.
-#: data/resources/ui/widgets/device_row.blp
-msgid "Unknow Disk"
-msgstr "Unbekanntes Laufwerk"
-
-#. Translators: Followed by 'Partition' and a partiton name or number.
-#: data/resources/ui/widgets/device_row.blp
-msgid "Use"
-msgstr "Nutze"
-
-#. Translators: Label to pick one out of a list of partitions. Followed by a partition name or a number if the partition has no name.
-#: data/resources/ui/widgets/device_row.blp
-msgid "Partition"
-msgstr "Partition"
-
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#: data/resources/ui/widgets/no_partitions_row.blp
-msgid "Selecting a partition is not possible."
-msgstr "Auswählen einer Partition nicht möglich"
-
-#. Translators: Followed by a list of requirements
-#: data/resources/ui/widgets/no_partitions_row.blp
-msgid "The disk requires:"
-msgstr "Das Laufwerk benötigt:"
-
-#. Translators: Technical terms, the abbreviations should not be translated.
-#: data/resources/ui/widgets/no_partitions_row.blp
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • GPT Partitionierung\n"
-"  • EFI Partition"
-
-#. Translators: Technical terms, the abbreviations should not be translated
-#: data/resources/ui/widgets/no_partitions_row.blp
-msgid "  • BIOS boot partition"
-msgstr "  • BIOS Boot-Partition"
