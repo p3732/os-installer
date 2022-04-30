@@ -1,4 +1,5 @@
 using Gtk 4.0;
+using Adw 1;
 
 template LocalePage : Box {
   name: _("Adapt to Location");
@@ -19,23 +20,15 @@ template LocalePage : Box {
           selection-mode: none;
           styles ["boxed-list"]
 
-          ListBoxRow {
+          Adw.ActionRow {
             name: "timezone";
             focusable: true;
             selectable: false;
-            child: 
-            Box {
-              margin-start: 12;
-              margin-end: 12;
-              margin-top: 12;
-              margin-bottom: 12;
-              spacing: 12;
+            /* Translators: Presented next to the current Timezone. */
+            title: _("Timezone");
 
-              Label {
-                /* Translators: Presented next to the current Timezone. */
-                label: _("Timezone");
-                wrap: true;
-              }
+            Box {
+              spacing: 12;
 
               Label timezone_label {
                 ellipsize: end;
@@ -47,53 +40,32 @@ template LocalePage : Box {
               Image {
                 icon-name: "emblem-system-symbolic";
               }
-            };
+            }
           }
 
-          ListBoxRow {
+          Adw.ActionRow {
             name: "formats";
             focusable: true;
             selectable: false;
-            child: 
+            /* Translators: Presented next to the current Formats. */
+            title: _("Formats");
+            /* Translators: Description of what is covered by formats. */
+            subtitle: _("Defines the default format used for dates, times, numbers, etc.");
+
             Box {
-              margin-start: 12;
-              margin-end: 12;
-              margin-top: 12;
-              margin-bottom: 12;
-              orientation: vertical;
-              spacing: 6;
+              spacing: 12;
 
-              Box {
-                spacing: 12;
-
-                Label {
-                  /* Translators: Presented next to the current Formats. */
-                  label: _("Formats");
-                  wrap: true;
-                }
-
-                Label formats_label {
-                  ellipsize: end;
-                  hexpand: true;
-                  wrap: true;
-                  xalign: 1;
-                }
-
-                Image {
-                  icon-name: "emblem-system-symbolic";
-                }
-              }
-
-              Label {
-                /* Translators: Description of what is covered by formats. */
-                label: _("Defines the default format used for dates, times, numbers, etc.");
+              Label formats_label {
+                ellipsize: end;
+                hexpand: true;
                 wrap: true;
-                max-width-chars: 60;
-                xalign: 0;
-
-                styles ["dim-label"]
+                xalign: 1;
               }
-            };
+
+              Image {
+                icon-name: "emblem-system-symbolic";
+              }
+            }
           }
         }
 
