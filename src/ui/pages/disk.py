@@ -118,6 +118,9 @@ class DiskPage(Gtk.Box, Page):
         with self.lock:
             self._setup_disk_list()
 
+    def unload(self):
+        self.can_navigate_backward = False
+
     def navigate_backward(self):
         with self.lock:
             self.can_navigate_backward = False
