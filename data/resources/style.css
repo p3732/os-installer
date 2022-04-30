@@ -32,10 +32,10 @@ headerbar {
 }
 
 .scrollable-container > scrolledwindow undershoot.top {
-  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 18px);
+  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
 }
 .scrollable-container > scrolledwindow undershoot.bottom {
-  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 18px);
+  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
 }
 
 .rounded-first row:first-child {
