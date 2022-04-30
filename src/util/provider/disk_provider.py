@@ -9,36 +9,42 @@ EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
 class DeviceInfo(GObject.GObject):
     __gtype_name__ = __qualname__
 
-    device_path: str
     name: str
-    prefixed: bool = False
     size: int
     size_text: str
+    device_path: str
+    prefixed: bool = False
 
-    def __init__(self):
+    def __init__(self, name, size, device_path):
         super().__init__()
+
+        self.name = name.strip()
+        self.size = size
+        self.size_text = disk_provider._size_to_str(size)
+        self.device_path = device_path
 
 
 class Disk(DeviceInfo):
-    has_table: bool = False
-    is_msdos: bool = False
-    is_gpt: bool = False
     partitions: list = []
     efi_partition: str = ''
 
+    def __init__(self, name, size, device_path, partitions=None):
+        super().__init__(name, size, device_path)
+
+        if partitions:
+            self.partitions, self.efi_partition = partitions
 
 class DiskProvider:
     udisks_client = UDisks.Client.new_sync()
 
     def _get_one_partition(self, partition, block):
         # partition info
-        partition_info = DeviceInfo()
-        partition_info.name = block.props.id_label
+        partition_info = DeviceInfo(
+            name=block.props.id_label,
+            size=block.props.size,
+            device_path=block.props.device)
         if partition_info.name == '':
             partition_info.name = str(partition.props.number)
-        partition_info.size = block.props.size
-        partition_info.size_text = self._size_to_str(partition_info.size)
-        partition_info.device_path = block.props.device
 
         # check if EFI System Partiton
         is_efi_partition = (partition.props.flags == EFI_PARTITON_FLAGS
@@ -47,7 +53,10 @@ class DiskProvider:
         # add to disk info
         return (partition_info, is_efi_partition)
 
-    def _get_partitions(self, partition_table, disk_info):
+    def _get_partitions(self, partition_table):
+        if not partition_table:
+            return None
+
         partitions = []
         efi_partition = ''
         for partition_name in partition_table.props.partitions:
@@ -68,20 +77,13 @@ class DiskProvider:
 
     def _get_disk_info(self, block, drive, partition_table):
         # disk info
-        disk_info = Disk()
-        disk_info.name = (drive.props.vendor + ' ' + drive.props.model).strip()
-        disk_info.size = block.props.size
-        disk_info.size_text = self._size_to_str(disk_info.size)
-        disk_info.device_path = block.props.device
+        disk = Disk(
+            name=drive.props.vendor + ' ' + drive.props.model,
+            size=block.props.size,
+            device_path=block.props.device,
+            partitions=self._get_partitions(partition_table))
 
-        # partitions
-        if partition_table:
-            disk_info.has_table = True
-            disk_info.is_gpt = 'gpt' == partition_table.props.type
-            disk_info.is_msdos = 'msdos' == partition_table.props.type
-            disk_info.partitions, disk_info.efi_partition = self._get_partitions(partition_table, disk_info)
-
-        return disk_info
+        return disk
 
     def _size_to_str(self, size):
         return self.udisks_client.get_size_for_display(size, False, False)
