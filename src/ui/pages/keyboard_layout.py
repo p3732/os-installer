@@ -15,14 +15,14 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     image_name = 'input-keyboard-symbolic'
 
     change_language_button = Gtk.Template.Child()
+    continue_button = Gtk.Template.Child()
     language_label = Gtk.Template.Child()
-
-    stack = Gtk.Template.Child()
     language_list = Gtk.Template.Child()
     layout_list = Gtk.Template.Child()
-    layout_list_model = Gio.ListStore()
+    stack = Gtk.Template.Child()
 
-    continue_button = Gtk.Template.Child()
+    languages_model = Gio.ListStore()
+    layouts_model = Gio.ListStore()
 
     current_row = None
     language_list_setup = False
@@ -38,33 +38,29 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.layout_list.connect('row-activated', self._on_layout_row_activated)
 
         # models
-        self.layout_list.bind_model(self.layout_list_model, lambda x: x)
+        self.layout_list.bind_model(self.layouts_model, lambda o: SelectionRow(o.name, o.layout))
+        self.language_list.bind_model(self.languages_model, lambda o: LanguageRow(o.language_info))
 
     def _setup_languages_list(self):
-        all_languages = language_provider.get_all_languages_translated()
-
-        for language_info in all_languages:
-            row = LanguageRow(language_info)
-            self.language_list.append(row)
+        languages = language_provider.get_all_languages_translated()
+        n_prev_items = self.languages_model.get_n_items()
+        self.languages_model.splice(0, n_prev_items, languages)
 
     def _load_layout_list(self, language, short_hand):
         self.stack.set_visible_child_name('layouts')
 
         if self.loaded_language == short_hand:
             return
-        self.loaded_language = short_hand
 
+        self.loaded_language = short_hand
         self.language_label.set_label(language)
 
         # fill list with all keyboard layouts for given language
-        layout_rows = []
-        for keyboard_layout, name in get_layouts_for(short_hand, language):
-            layout_rows.append(SelectionRow(name, keyboard_layout))
+        layouts = get_layouts_for(short_hand, language)
+        assert len(layouts) > 0, f'Language {language} has no keyboard layouts! Please report this.'
 
-        assert len(layout_rows) > 0, f'Language {language} has no keyboard layouts! Please report this.'
-
-        n_items = self.layout_list_model.get_n_items()
-        self.layout_list_model.splice(0, n_items, layout_rows)
+        n_prev_items = self.layouts_model.get_n_items()
+        self.layouts_model.splice(0, n_prev_items, layouts)
 
     def _unselect_current_row(self):
         if self.current_row:

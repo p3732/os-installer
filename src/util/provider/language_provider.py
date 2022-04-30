@@ -3,7 +3,7 @@
 from threading import Lock
 import os
 
-from gi.repository import GnomeDesktop
+from gi.repository import GObject, GnomeDesktop
 
 from .global_state import global_state
 
@@ -70,7 +70,9 @@ class LanguageProvider:
         translated = []
         for language_info in self.all_languages:
             language_info.name = GnomeDesktop.get_language_from_code(language_info.language_code, locale)
-            translated.append(language_info)
+            o = GObject.GObject()
+            o.language_info = language_info
+            translated.append(o)
         return translated
 
     def _get_default_locale(self, language):
