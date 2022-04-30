@@ -7,7 +7,7 @@ from .keyboard_layout_provider import get_layouts_for
 from .language_provider import language_provider
 from .page import Page
 from .system_calls import set_system_keyboard_layout
-from .widgets import LanguageRow, SelectionRow
+from .widgets import reset_model, LanguageRow, SelectionRow
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
 class KeyboardLayoutPage(Gtk.Box, Page):
@@ -43,8 +43,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     def _setup_languages_list(self):
         languages = language_provider.get_all_languages_translated()
-        n_prev_items = self.languages_model.get_n_items()
-        self.languages_model.splice(0, n_prev_items, languages)
+        reset_model(self.languages_model, languages)
 
     def _load_layout_list(self, language, short_hand):
         self.stack.set_visible_child_name('layouts')
@@ -58,9 +57,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         # fill list with all keyboard layouts for given language
         layouts = get_layouts_for(short_hand, language)
         assert len(layouts) > 0, f'Language {language} has no keyboard layouts! Please report this.'
-
-        n_prev_items = self.layouts_model.get_n_items()
-        self.layouts_model.splice(0, n_prev_items, layouts)
+        reset_model(self.layouts_model, layouts)
 
     def _unselect_current_row(self):
         if self.current_row:
