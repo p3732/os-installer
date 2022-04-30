@@ -94,8 +94,12 @@ template OsInstallerWindow : .AdwApplicationWindow {
       styles ["flat"]
     }
 
-    Stack main_stack {
-      transition-type: slide_left_right;
+    WindowHandle {
+      vexpand: true;
+
+      Stack main_stack {
+        transition-type: slide_left_right;
+      }
     }
   }
 }
