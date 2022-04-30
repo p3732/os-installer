@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-30 03:03+0200\n"
+"POT-Creation-Date: 2022-04-30 19:10+0200\n"
 "PO-Revision-Date: 2022-04-18 01:15+0200\n"
 "Last-Translator: Peter Eisenmann <p3732@getgoogleoff.me>\n"
 "Language-Team: German <->\n"
@@ -187,8 +187,8 @@ msgstr "Keine Verbindung"
 
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
-msgid "_Setup Internet Connection"
-msgstr "_Internetverbindung herstellen"
+msgid "_Open Settings"
+msgstr "Öffne Einstellungen"
 
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Layout Selection"
