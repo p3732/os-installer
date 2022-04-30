@@ -27,10 +27,8 @@ class LocalePage(Gtk.Box, Page):
     list_stack = Gtk.Template.Child()
 
     # overview
-    overview_list = Gtk.Template.Child()
     formats_label = Gtk.Template.Child()
     timezone_label = Gtk.Template.Child()
-    confirm_button = Gtk.Template.Child()
 
     # formats
     formats_list = Gtk.Template.Child()
@@ -47,12 +45,6 @@ class LocalePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        # signals
-        self.overview_list.connect('row-activated', self._on_overview_row_activated)
-        self.confirm_button.connect('clicked', self._on_clicked_confirm_button)
-        self.formats_list.connect('row-activated', self._on_formats_row_activated)
-        for timezone_list in [self.continents_list, self.countries_list, self.subzones_list]:
-            timezone_list.connect('row-activated', self._on_timezone_row_activated)
         self.countries_list.bind_model(self.countries_list_model, lambda x: x)
         self.subzones_list.bind_model(self.subzones_list_model, lambda x: x)
 
@@ -113,24 +105,28 @@ class LocalePage(Gtk.Box, Page):
 
     ### callbacks ###
 
-    def _on_clicked_confirm_button(self, button):
+    @Gtk.Template.Callback('confirmed')
+    def _confirmed(self, button):
         installation_scripting.set_ok_to_start_step(Step.configure)
         global_state.advance_without_return(self)
 
-    def _on_formats_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('formats_selected')
+    def _formats_selected(self, list_box, row):
         set_system_formats(row.info)
 
         self.formats_label.set_label(row.get_label())
         self._show_overview()
 
-    def _on_overview_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('overview_row_activated')
+    def _overview_row_activated(self, list_box, row):
         if row.get_name() == 'timezone':
             self._load_continents_list()
         elif row.get_name() == 'formats':
             self._load_formats_list()
         self.can_navigate_backward = True
 
-    def _on_timezone_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('timezone_selected')
+    def _timezone_selected(self, list_box, row):
         list_box.select_row(row)
         location = row.info
         timezone = location.get_timezone_str()

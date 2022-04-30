@@ -16,8 +16,9 @@ template LocalePage : Box {
         orientation: vertical;
         spacing: 12;
 
-        ListBox overview_list {
+        ListBox {
           selection-mode: none;
+          row-activated => overview_row_activated();
           styles ["boxed-list"]
 
           Adw.ActionRow {
@@ -71,14 +72,14 @@ template LocalePage : Box {
           }
         }
 
-        Button confirm_button {
+        Button {
           /* Translators: On button. */
           label: _("_Confirm");
           focusable: true;
           receives-default: true;
           halign: center;
           use-underline: true;
-
+          clicked => confirmed();
           styles ["suggested-action", "pill"]
         }
       };
@@ -139,6 +140,7 @@ template LocalePage : Box {
                 name: "timezone_continents";
                 child:
                 ListBox continents_list {
+                  row-activated => timezone_selected();
                   styles ["boxed-list"]
                 };
               }
@@ -147,6 +149,7 @@ template LocalePage : Box {
                 name: "timezone_countries";
                 child:
                 ListBox countries_list {
+                  row-activated => timezone_selected();
                   styles ["boxed-list"]
                 };
               }
@@ -155,6 +158,7 @@ template LocalePage : Box {
                 name: "timezone_subzones";
                 child:
                 ListBox subzones_list {
+                  row-activated => timezone_selected();
                   styles ["boxed-list"]
                 };
               }
@@ -163,6 +167,7 @@ template LocalePage : Box {
                 name: "formats";
                 child:
                 ListBox formats_list {
+                  row-activated => formats_selected();
                   styles ["boxed-list"]
                 };
               }

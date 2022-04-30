@@ -12,11 +12,12 @@ template InternetPage : Box {
     styles ["title-4"]
   }
 
-  Button settings_button {
+  Button {
     receives-default: true;
     halign: center;
     valign: center;
     use-underline: true;
+    clicked => clicked_settings_button();
     styles ["suggested-action", "pill"]
 
     Label {

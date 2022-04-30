@@ -14,17 +14,14 @@ class ConfirmPage(Gtk.Box, Page):
 
     disk_label = Gtk.Template.Child()
     device_path = Gtk.Template.Child()
-    confirm_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        # signals
-        self.confirm_button.connect("clicked", self._on_clicked_confirm)
-
     ### callbacks ###
 
-    def _on_clicked_confirm(self, button):
+    @Gtk.Template.Callback('confirmed')
+    def _confirmed(self, button):
         installation_scripting.set_ok_to_start_step(Step.install)
         global_state.advance_without_return(self)
 

@@ -9,13 +9,13 @@ template DonePage : Box {
     orientation: vertical;
     spacing: 12;
 
-    Button restart_button {
+    Button {
       /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */
       label: _("_Restart System");
       focusable: true;
       receives-default: true;
       use-underline: true;
-
+      clicked => restart_button_clicked();
       styles ["suggested-action", "pill"]
     }
 

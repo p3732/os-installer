@@ -11,7 +11,6 @@ class EncryptPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'dialog-password-symbolic'
 
-    default_list = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
     pin_row = Gtk.Template.Child()
@@ -22,31 +21,29 @@ class EncryptPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        # signals
-        self.continue_button.connect('clicked', self._continue)
-        self.default_list.connect('row-activated', self._on_row_activated)
-        self.switch.connect("state-set", self._on_switch_flipped)
-        self.pin_field.connect("changed", self._on_pin_changed)
-
     def _set_continue_button(self, needs_pin, pin):
         can_continue = not needs_pin or len(pin) > 0
         self.continue_button.set_sensitive(can_continue)
 
     ### callbacks ###
 
+    @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
 
-    def _on_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('row_activated')
+    def _row_activated(self, list_box, row):
         if row.get_name() == 'encryption':
             self.switch.activate()
 
-    def _on_switch_flipped(self, switch, state):
+    @Gtk.Template.Callback('switch_flipped')
+    def _switch_flipped(self, switch, state):
         self.pin_row.set_sensitive(state)
         self._set_continue_button(
             needs_pin=state, pin=self.pin_field.get_text())
 
-    def _on_pin_changed(self, editable):
+    @Gtk.Template.Callback('pin_changed')
+    def _pin_changed(self, editable):
         self._set_continue_button(
             needs_pin=self.switch.get_state(), pin=editable.get_text())
 

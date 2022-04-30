@@ -34,11 +34,12 @@ template InstallPage : Box {
     }
   }
 
-  ToggleButton terminal_button {
+  ToggleButton {
     focusable: true;
     /* Translators: Hover information on toggle button that shows terminal output during installation. */
     tooltip-text: _("Show Terminal Output");
     halign: center;
+    clicked => terminal_button_toggled();
     styles ["pill"]
 
     Image {

@@ -13,7 +13,6 @@ class InstallPage(Gtk.Box, Page):
     image_name = 'OS-Installer-symbolic'
 
     terminal_box = Gtk.Template.Child()
-    terminal_button = Gtk.Template.Child()
     stack = Gtk.Template.Child()
     spinner = Gtk.Template.Child()
 
@@ -25,12 +24,10 @@ class InstallPage(Gtk.Box, Page):
         # UI element states
         self.stack.set_visible_child_name('spinner')
 
-        # signals
-        self.terminal_button.connect('toggled', self._on_toggled_terminal_button)
-
     ### callbacks ###
 
-    def _on_toggled_terminal_button(self, toggle_button):
+    @Gtk.Template.Callback('terminal_button_toggled')
+    def _terminal_button_toggled(self, toggle_button):
         if self.stack.get_visible_child_name() == 'spinner':
             self.spinner.stop()
             self.stack.set_visible_child_name('terminal')

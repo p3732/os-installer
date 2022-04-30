@@ -15,8 +15,6 @@ class InternetPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'network-wireless-disabled-symbolic'
 
-    settings_button = Gtk.Template.Child()
-
     can_proceed_automatically = False
     connected = False
     connected_lock = Lock()
@@ -24,16 +22,14 @@ class InternetPage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
 
-        # signals
-        self.settings_button.connect('clicked', self._on_clicked_settings_button)
-
     def _set_connected(self):
         self.image_name = 'network-wireless-symbolic'
         start_system_timesync()
 
     ### callbacks ###
 
-    def _on_clicked_settings_button(self, button):
+    @Gtk.Template.Callback('clicked_settings_button')
+    def _clicked_settings_button(self, button):
         open_wifi_settings()
 
     def _on_connected(self):

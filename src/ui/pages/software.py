@@ -15,14 +15,9 @@ class SoftwarePage(Gtk.Box, Page):
 
     software_list = Gtk.Template.Child()
 
-    continue_button = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        # signals
-        self.continue_button.connect('clicked', self._continue)
-        self.software_list.connect('row-activated', self._on_software_row_activated)
 
     def _setup_software(self):
         suggestions = get_software_suggestions()
@@ -32,10 +27,12 @@ class SoftwarePage(Gtk.Box, Page):
 
     ### callbacks ###
 
+    @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
 
-    def _on_software_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('software_row_activated')
+    def _software_row_activated(self, list_box, row):
         new_state = not row.is_activated()
         row.set_activated(new_state)
 

@@ -37,13 +37,15 @@ template KeyboardLayoutPage : Box {
           child:
           ListBox layout_list {
             valign: start;
+            row-activated => layout_row_activated();
             styles ["boxed-list", "angular-last"]
           };
         }
 
         Separator {}
 
-        Button change_language_button {
+        Button {
+          clicked => show_language_selection();
           styles ["flat"]
 
           Box {
@@ -86,6 +88,7 @@ template KeyboardLayoutPage : Box {
             child:
             ListBox language_list {
               hexpand: true;
+              row-activated => language_row_activated();
               styles ["boxed-list"]
             };
           }
@@ -103,6 +106,7 @@ template KeyboardLayoutPage : Box {
     halign: center;
     valign: end;
     use-underline: true;
+    clicked => continue();
     styles ["suggested-action", "pill"]
   }
 }

@@ -26,8 +26,6 @@ class DiskPage(Gtk.Box, Page):
     list_stack = Gtk.Template.Child()
     missing_things_info = Gtk.Template.Child()
     partition_list = Gtk.Template.Child()
-    settings_button = Gtk.Template.Child()
-    whole_disk_list = Gtk.Template.Child()
     whole_disk_row = Gtk.Template.Child()
 
     disk_list_model = Gio.ListStore()
@@ -41,16 +39,9 @@ class DiskPage(Gtk.Box, Page):
 
         self.minimum_disk_size = global_state.get_config('minimum_disk_size') * GIGABYTE_FACTOR
 
-        # signals
-        self.disk_list.connect('row-activated', self._on_disk_row_activated)
-        self.partition_list.connect('row-activated', self._on_partition_row_activated)
-        self.whole_disk_list.connect('row-activated', self._use_whole_disk)
-
         # models
         self.disk_list.bind_model(self.disk_list_model, self._create_device_row)
         self.partition_list.bind_model(self.partition_list_model, self._create_device_row)
-
-        self.settings_button.connect('clicked', self._on_clicked_disks_button)
 
     def _create_device_row(self, info):
         too_small = info.size < self.minimum_disk_size
@@ -90,19 +81,23 @@ class DiskPage(Gtk.Box, Page):
 
     ### callbacks ###
 
-    def _on_clicked_disks_button(self, button):
+    @Gtk.Template.Callback('clicked_disks_button')
+    def _clicked_disks_button(self, button):
         open_disks()
 
-    def _on_disk_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('disk_selected')
+    def _disk_selected(self, list_box, row):
         with self.lock:
             self._setup_partition_list(row.info)
             self.can_navigate_backward = True
 
-    def _on_partition_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('use_partition')
+    def _use_partition(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(row.info)
         global_state.advance(self)
 
+    @Gtk.Template.Callback('use_whole_disk')
     def _use_whole_disk(self, list_box, row):
         list_box.select_row(row)
         self._store_device_info(self.current_disk)

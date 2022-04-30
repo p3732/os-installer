@@ -30,11 +30,6 @@ class LanguagePage(Gtk.Box, Page):
 
         language_provider.prepare()
 
-        # signals
-        self.show_all_button.connect('clicked', self._on_show_all_button_clicked)
-        self.default_list.connect('row-activated', self._on_language_row_activated)
-        self.all_list.connect('row-activated', self._on_language_row_activated)
-
         # models
         self.default_list.bind_model(self.default_model, lambda o: LanguageRow(o))
         self.all_list.bind_model(self.all_model, lambda o: LanguageRow(o))
@@ -52,7 +47,8 @@ class LanguagePage(Gtk.Box, Page):
 
     ### callbacks ###
 
-    def _on_show_all_button_clicked(self, button):
+    @Gtk.Template.Callback('show_all_button_clicked')
+    def _show_all_button_clicked(self, button):
         if not self.all_shown:
             languages = language_provider.get_all_languages()
             reset_model(self.all_model, languages)
@@ -60,7 +56,8 @@ class LanguagePage(Gtk.Box, Page):
             self.stack.set_visible_child_name('all')
             self.all_shown = True
 
-    def _on_language_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('language_row_activated')
+    def _language_row_activated(self, list_box, row):
         list_box.select_row(row)
 
         # set language

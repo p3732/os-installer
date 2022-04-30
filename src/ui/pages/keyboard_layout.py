@@ -14,7 +14,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'input-keyboard-symbolic'
 
-    change_language_button = Gtk.Template.Child()
     continue_button = Gtk.Template.Child()
     language_label = Gtk.Template.Child()
     language_list = Gtk.Template.Child()
@@ -30,12 +29,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        # signals
-        self.continue_button.connect('clicked', self._continue)
-        self.change_language_button.connect('clicked', self._show_language_selection)
-        self.language_list.connect('row-activated', self._on_language_row_activated)
-        self.layout_list.connect('row-activated', self._on_layout_row_activated)
 
         # models
         self.layout_list.bind_model(self.layouts_model, lambda o: SelectionRow(o.name, o.layout))
@@ -65,10 +58,12 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     ### callbacks ###
 
+    @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
 
-    def _on_language_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('language_row_activated')
+    def _language_row_activated(self, list_box, row):
         self._unselect_current_row()
 
         # show layouts for language
@@ -76,7 +71,8 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self._load_layout_list(language_info.name, language_info.language_code)
         self.can_navigate_backward = False
 
-    def _on_layout_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('layout_row_activated')
+    def _layout_row_activated(self, list_box, row):
         self._unselect_current_row()
         self.current_row = row
         row.set_activated(True)
@@ -89,6 +85,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
         self.continue_button.set_sensitive(True)
 
+    @Gtk.Template.Callback('show_language_selection')
     def _show_language_selection(self, button):
         if not self.language_list_setup:
             self.language_list_setup = True

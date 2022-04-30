@@ -6,8 +6,9 @@ template UserPage : Box {
   orientation: vertical;
   spacing: 12;
 
-  ListBox default_list {
+  ListBox {
     selection-mode: none;
+    row-activated => row_activated();
     styles ["boxed-list"]
 
     Adw.ActionRow {
@@ -24,6 +25,7 @@ template UserPage : Box {
         max-width-chars: 24;
         /* Translators: Placeholder in user name entry field */
         placeholder-text: _("Enter a Name");
+        changed => entry_changed();
       }
     }
 
@@ -38,6 +40,7 @@ template UserPage : Box {
       Switch autologin_switch {
         valign: center;
         active: true;
+        state-set => autologin_switch_flipped();
       }
     }
 
@@ -56,6 +59,7 @@ template UserPage : Box {
         /* Translators: Placeholder in password entry field */
         placeholder-text: _("Enter a Password");
         input-purpose: password;
+        changed => entry_changed();
       }
     }
   }
@@ -68,7 +72,7 @@ template UserPage : Box {
     receives-default: true;
     halign: center;
     use-underline: true;
-
+    clicked => continue();
     styles ["suggested-action", "pill"]
   }
 }

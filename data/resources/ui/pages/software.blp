@@ -17,18 +17,19 @@ template SoftwarePage : Box {
       ListBox software_list {
         hexpand: true;
         selection-mode: none;
+        row-activated => software_row_activated();
         styles ["boxed-list"]
       };
     }
   }
 
-  Button continue_button {
+  Button {
     /* Translators: On button. */
     label: _("_Continue");
     focusable: true;
     halign: center;
     use-underline: true;
-
+    clicked => continue();
     styles ["suggested-action", "pill"]
   }
 }

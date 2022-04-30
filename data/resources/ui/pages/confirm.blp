@@ -37,14 +37,14 @@ template ConfirmPage : Box {
     }
   }
 
-  Button confirm_button {
+  Button {
     /* Translators: Button label to confirm disk deletion */
     label: _("_Confirm");
     focusable: true;
     receives-default: true;
     halign: center;
     use-underline: true;
-
+    clicked => confirmed();
     styles ["destructive-action", "pill"]
   }
 }

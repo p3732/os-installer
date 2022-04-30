@@ -29,6 +29,7 @@ template DiskPage : Box {
             ListBox disk_list {
               receives-default: true;
               valign: start;
+              row-activated => disk_selected();
               styles ["boxed-list"]
             };
           }
@@ -47,8 +48,9 @@ template DiskPage : Box {
 
               Separator {}
 
-              ListBox whole_disk_list {
+              ListBox {
                 selection-mode: none;
+                row-activated => use_whole_disk();
                 styles ["boxed-list", "angular-first", "angular-last"]
 
                 Adw.ActionRow whole_disk_row {
@@ -91,6 +93,7 @@ template DiskPage : Box {
                   selection-mode: none;
                   visible: true;
                   valign: start;
+                  row-activated => use_partition();
                   styles ["boxed-list", "angular-first"]
                 }
               }
@@ -165,13 +168,14 @@ template DiskPage : Box {
     }
   }
 
-  Button settings_button {
+  Button {
     /* Translators: Button label to open disk management tool. Underscore can not be for same as for 'Reload' */
     label: _("_Manage Disks");
     focusable: true;
     halign: center;
     valign: end;
     use-underline: true;
+    clicked => clicked_disks_button();
     styles ["pill"]
   }
 }

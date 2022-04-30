@@ -11,22 +11,13 @@ class UserPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'user-symbolic'
 
-    default_list = Gtk.Template.Child()
-    user_name_field = Gtk.Template.Child()
     autologin_switch = Gtk.Template.Child()
-    password_field = Gtk.Template.Child()
-
     continue_button = Gtk.Template.Child()
+    password_field = Gtk.Template.Child()
+    user_name_field = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-
-        # signals
-        self.continue_button.connect('clicked', self._continue)
-        self.default_list.connect('row-activated', self._on_row_activated)
-        self.autologin_switch.connect("state-set", self._on_autologin_switch_flipped)
-        self.user_name_field.connect("changed", self._on_entry_changed)
-        self.password_field.connect("changed", self._on_entry_changed)
 
     def _set_continue_button(self, autologin):
         has_user_name = not self.user_name_field.get_text().strip() == ''
@@ -36,17 +27,21 @@ class UserPage(Gtk.Box, Page):
 
     ### callbacks ###
 
+    @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
 
-    def _on_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('row_activated')
+    def _row_activated(self, list_box, row):
         if row.get_name() == 'automatic_login':
             self.autologin_switch.activate()
 
-    def _on_autologin_switch_flipped(self, autologin_switch, state):
+    @Gtk.Template.Callback('autologin_switch_flipped')
+    def _autologin_switch_flipped(self, autologin_switch, state):
         self._set_continue_button(state)
 
-    def _on_entry_changed(self, editable):
+    @Gtk.Template.Callback('entry_changed')
+    def _entry_changed(self, editable):
         self._set_continue_button(self.autologin_switch.get_state())
 
     ### public methods ###

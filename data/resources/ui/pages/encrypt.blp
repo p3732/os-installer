@@ -9,8 +9,9 @@ template EncryptPage : Box {
   Box {
     orientation: vertical;
 
-    ListBox default_list {
+    ListBox {
       selection-mode: none;
+      row-activated => row_activated();
       styles ["boxed-list"]
 
       Adw.ActionRow {
@@ -23,6 +24,7 @@ template EncryptPage : Box {
           focusable: false;
           halign: center;
           valign: center;
+          state-set => switch_flipped();
         }
       }
       Adw.ActionRow pin_row {
@@ -45,6 +47,7 @@ template EncryptPage : Box {
           input-purpose: pin;
           /* Translators: Placeholder for disk encryption pin/password field */
           placeholder-text: _("PIN");
+          changed => pin_changed();
         }
       }
     }
@@ -58,7 +61,7 @@ template EncryptPage : Box {
     halign: center;
     valign: center;
     use-underline: true;
-
+    clicked => continue();
     styles ["suggested-action", "pill"]
   }
 }

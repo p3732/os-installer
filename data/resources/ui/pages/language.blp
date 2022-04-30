@@ -23,6 +23,7 @@ template LanguagePage : Box {
             child:
             ListBox default_list {
               hexpand: true;
+              row-activated => language_row_activated();
               styles ["boxed-list"]
             };
           }
@@ -31,6 +32,7 @@ template LanguagePage : Box {
         Button show_all_button {
           focusable: true;
           halign: center;
+          clicked => show_all_button_clicked();
           styles ["pill"]
 
           Image {
@@ -53,6 +55,7 @@ template LanguagePage : Box {
           child:
           ListBox all_list {
             hexpand: true;
+            row-activated => language_row_activated();
             styles ["boxed-list"]
           };
         }
