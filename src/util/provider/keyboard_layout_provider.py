@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from email.policy import default
 from gi.repository import GObject
 from gi.repository.GnomeDesktop import XkbInfo
-
 
 # generated via language_codes_to_x_generator.py
 language_to_default_keyboard = {
@@ -50,9 +50,10 @@ def get_default_layout(language_code):
         return 'us'
 
 
-def get_layouts_for(language_short_hand, language):
+def get_layouts_for(language_code, language):
     xkb_info = XkbInfo()
-    layouts = xkb_info.get_layouts_for_language(language_short_hand)
+    layouts = xkb_info.get_layouts_for_language(language_code)
+    default_layout = get_default_layout(language_code)
 
     named_layouts = []
     for layout in layouts:
@@ -61,6 +62,7 @@ def get_layouts_for(language_short_hand, language):
 
     # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
     return sorted(named_layouts, key=lambda o:
-                  (not o.name.startswith(language),
-                   not o.layout.startswith(language_short_hand),
+                  (not o.layout == default_layout,
+                   not o.name.startswith(language),
+                   not o.layout.startswith(language_code),
                    o.name))
