@@ -95,13 +95,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         ]
 
     def _initialize_page(self, page_to_initialize):
-        if not page_to_initialize == None:
-            page = page_to_initialize()
-            wrapper = PageWrapper(page)
+        page = page_to_initialize()
+        wrapper = PageWrapper(page)
 
-            page_id = page.id()
-            self.main_stack.add_named(wrapper, page_id)
-            self.pages.append(page_id)
+        page_id = page.id()
+        self.main_stack.add_named(wrapper, page_id)
+        self.pages.append(page_id)
 
     def _initialize_pages_translated(self):
         # delete pages that are not the language page
@@ -111,9 +110,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         for unintialized_page in self.available_pages[1:]:
             self._initialize_page(unintialized_page)
 
-    def _remove_pages(self, pages):
-        for page in pages:
-            child = self.main_stack.get_child_by_name(page)
+    def _remove_pages(self, page_ids):
+        for page_id in page_ids:
+            child = self.main_stack.get_child_by_name(page_id)
             self.main_stack.remove(child)
 
     def _load_page(self, page_number):
