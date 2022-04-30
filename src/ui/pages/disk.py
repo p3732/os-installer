@@ -57,7 +57,10 @@ class DiskPage(Gtk.Box, Page):
         return DeviceRow(info, too_small)
 
     def _setup_disk_list(self):
-        disks = disk_provider.get_disks()
+        if global_state.demo_mode:
+            disks = disk_provider.get_testing_dummy_disks()
+        else:
+            disks = disk_provider.get_disks()
         reset_model(self.disk_list_model, disks)
         self.list_stack.set_visible_child_name('disks')
 

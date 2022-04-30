@@ -115,5 +115,17 @@ class DiskProvider:
 
         return disks
 
+    def get_testing_dummy_disks(self):
+        smol_partition = DeviceInfo("sm0l partiton", 1000, "/dev/00null")
+        smol_disk = Disk("Dummy", 10000, "/dev/null", ([smol_partition], None))
+
+        efi_partition = DeviceInfo("EFI", 200000000, "/dev/sda_efi")
+        partytion = DeviceInfo("PARTYtion", 20000000000, "/dev/sda_party")
+        disk = Disk("Totally real device", 50000000000, "/dev/sda", ([efi_partition, partytion], "EFI"))
+
+        unformated_big_disk = Disk("VERY BIG DISK", 10000000000000000, "/dev/sdb_very_big")
+
+        return [smol_disk, disk, unformated_big_disk]
+
 
 disk_provider = DiskProvider()
