@@ -18,10 +18,10 @@ headerbar {
 
 /* Indicate that container can be scrolled by setting an undershoot. TODO find a way to animate transition. */
 .scrollable-container > scrolledwindow undershoot.top {
-  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
+  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 1) 0px, alpha(@shaded_card_bg_color, 0) 18px);
 }
 .scrollable-container > scrolledwindow undershoot.bottom {
-  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 0.7) 0px, alpha(@shaded_card_bg_color, 0) 12px);
+  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 1) 0px, alpha(@shaded_card_bg_color, 0) 18px);
 }
 
 /* Make first/last row and list box borders angular. Used where a
