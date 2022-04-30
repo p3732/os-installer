@@ -11,6 +11,7 @@ template EncryptPage : Box {
 
     ListBox default_list {
       selection-mode: none;
+      styles ["boxed-list"]
 
       Adw.ActionRow {
         activatable: true;
@@ -42,13 +43,10 @@ template EncryptPage : Box {
           max-width-chars: 16;
           truncate-multiline: true;
           input-purpose: pin;
-
           /* Translators: Placeholder for disk encryption pin/password field */
           placeholder-text: _("PIN");
         }
       }
-
-      styles ["boxed-list"]
     }
   }
 

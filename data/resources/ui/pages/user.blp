@@ -7,12 +7,13 @@ template UserPage : Box {
 
   ListBox default_list {
     selection-mode: none;
+    styles ["boxed-list"]
 
     ListBoxRow {
       activatable: false;
       focusable: false;
       selectable: false;
-      child: 
+      child:
       Box {
         margin-start: 12;
         margin-end: 12;
@@ -22,7 +23,6 @@ template UserPage : Box {
 
         Label {
           hexpand: true;
-
           /* Translators: Used with entry field for User's name */
           label: _("Name");
           wrap: true;
@@ -33,9 +33,7 @@ template UserPage : Box {
           focusable: true;
           width-chars: 10;
           max-width-chars: 24;
-
           /* Translators: Placeholder in user name entry field */
-
           placeholder-text: _("Enter a Name");
         }
       };
@@ -45,7 +43,7 @@ template UserPage : Box {
       name: "automatic_login";
       focusable: false;
       selectable: false;
-      child: 
+      child:
       Box {
         margin-start: 12;
         margin-end: 12;
@@ -72,7 +70,7 @@ template UserPage : Box {
       activatable: false;
       focusable: false;
       selectable: false;
-      child: 
+      child:
       Box {
         margin-start: 12;
         margin-end: 12;
@@ -82,7 +80,6 @@ template UserPage : Box {
 
         Label {
           hexpand: true;
-
           /* Translators: Used with entry field for setting a password for new user */
           label: _("Password");
           wrap: true;
@@ -94,16 +91,12 @@ template UserPage : Box {
           visibility: false;
           width-chars: 10;
           max-width-chars: 24;
-
           /* Translators: Placeholder in password entry field */
-
           placeholder-text: _("Enter a Password");
           input-purpose: password;
         }
       };
     }
-
-    styles ["boxed-list"]
   }
 
   Button continue_button {

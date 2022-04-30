@@ -24,29 +24,25 @@ template InstallPage : Box {
       child: 
       Box {
         overflow: hidden;
+        styles ["card", "scrollable-container", "terminal-box"]
 
         Box terminal_box {
           margin-end: 12;
           margin-start: 12;
         }
-
-        styles ["card", "scrollable-container", "terminal-box"]
       };
     }
   }
 
   ToggleButton terminal_button {
     focusable: true;
-
     /* Translators: Hover information on toggle button that shows terminal output during installation. */
-
     tooltip-text: _("Show Terminal Output");
     halign: center;
+    styles ["pill"]
 
     Image {
       icon-name: "utilities-terminal-symbolic";
     }
-
-    styles ["pill"]
   }
 }

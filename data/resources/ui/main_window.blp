@@ -14,6 +14,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
     Adw.HeaderBar {
       show-start-title-buttons: false;
       show-end-title-buttons: false;
+      styles ["flat"]
 
       [start]
       Box {
@@ -26,7 +27,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
         Revealer previous_revealer {
           transition-type: crossfade;
           margin-end: 6;
-          child: 
+          child:
           Button {
             action-name: "app.previous-page";
             focusable: true;
@@ -37,7 +38,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
 
         Revealer next_revealer {
           transition-type: crossfade;
-          child: 
+          child:
           Button {
             action-name: "app.next-page";
             focusable: true;
@@ -55,7 +56,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
 
         StackPage {
           name: "1";
-          child: 
+          child:
           Image {
             pixel-size: 128;
           };
@@ -63,7 +64,7 @@ template OsInstallerWindow : .AdwApplicationWindow {
 
         StackPage {
           name: "2";
-          child: 
+          child:
           Image {
             pixel-size: 128;
           };
@@ -90,8 +91,6 @@ template OsInstallerWindow : .AdwApplicationWindow {
           side: end;
         }
       }
-
-      styles ["flat"]
     }
 
     WindowHandle {

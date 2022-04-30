@@ -9,6 +9,7 @@ template PageWrapper : Box {
     Box {
       orientation: vertical;
       spacing: 12;
+      styles ["clamped"]
 
       Label title {
         justify: center;
@@ -19,7 +20,6 @@ template PageWrapper : Box {
       Adw.Bin content {
         hexpand: true;
       }
-      styles ["clamped"]
     };
   }
 }
