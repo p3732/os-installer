@@ -125,12 +125,13 @@ template LocalePage : Box {
         }
 
         Box {
+          valign: start;
           overflow: hidden;
           styles ["card", "scrollable-container"]
 
           ScrolledWindow {
             hexpand: true;
-            vexpand: true;
+            propagate-natural-height: true;
             child:
             Stack list_stack {
               vhomogeneous: false;
