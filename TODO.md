@@ -1,5 +1,4 @@
 high prio:
-* keyboard layout sorting
 
 mid prio:
 
@@ -8,12 +7,7 @@ mid prio:
 * handle potentially needed legacy boot partition for MBR boot + GPT
 * script folder config option
 * convert TODO list into Gitlab issues when small enough
-* row selection
-* fix incorrectly expanded list in software
-* fix keyboard focus rounding (e.g. language row - keyboard)
-* disk: replace whole disk list with button
-* replace row-activated signal with actionrow activated: user, encrypted
-* software: port to glistmodel
+* allow software information to be translated (name + description)
 
 low prio:
 
@@ -26,7 +20,5 @@ low prio:
       * user
       * locale + timezone
     * allow specifying additional size needed by extra packages
-* focus entry field when clicking on row with entry field (encrypt, user*2)
-* fix focus inputs
 * fix progressing with enter for user, encrypt
 * find out if animating undershoot is somehow possible
