@@ -14,8 +14,18 @@ template LanguagePage : Box {
         orientation: vertical;
         spacing: 12;
 
-        ListBox default_list {
-          styles ["boxed-list"]
+        Box {
+          overflow: hidden;
+          styles ["card", "scrollable-container"]
+
+          ScrolledWindow {
+            propagate-natural-height: true;
+            child:
+            ListBox default_list {
+              hexpand: true;
+              styles ["boxed-list"]
+            };
+          }
         }
 
         Button show_all_button {
