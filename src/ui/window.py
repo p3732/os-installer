@@ -60,6 +60,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # set advancing functions in global state
         global_state.advance = self.advance
         global_state.advance_without_return = self.advance_without_return
+        global_state.set_title_image = self._set_title_image
         global_state.installation_failed = self.show_failed_page
 
         # determine available pages
@@ -136,16 +137,16 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.current_page = wrapper.get_page()
         if not self.current_page.load():
             self.main_stack.set_visible_child(wrapper)
-
-            # set icon
-            name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
-            new_image = self.image_stack.get_child_by_name(name)
-            new_image.set_from_icon_name(self.current_page.image_name)
-            self.image_stack.set_visible_child_name(name)
-
+            self._set_title_image(self.current_page.image_name)
             self._update_navigation_buttons()
         else:  # load next if load() returned True
             self._load_page(self.navigation_state.current + 1)
+
+    def _set_title_image(self, image_name):
+        name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
+        new_image = self.image_stack.get_child_by_name(name)
+        new_image.set_from_icon_name(image_name)
+        self.image_stack.set_visible_child_name(name)
 
     def _show_dialog(self, dialog):
         dialog.set_transient_for(self)

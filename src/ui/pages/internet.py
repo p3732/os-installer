@@ -24,6 +24,7 @@ class InternetPage(Gtk.Box, Page):
 
     def _set_connected(self):
         self.image_name = 'network-wireless-symbolic'
+        global_state.set_title_image(self.image_name)
         start_system_timesync()
 
     ### callbacks ###
