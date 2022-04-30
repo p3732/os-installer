@@ -3,14 +3,21 @@ using Gtk 4.0;
 template InternetPage : Box {
   name: _("Internet Connection Check");
   orientation: vertical;
+  margin-top: 12;
   spacing: 18;
 
+  Label {
+    label:_("No connection.");
+    justify: center;
+    styles ["title-4"]
+  }
+
   Button settings_button {
-    focusable: true;
     receives-default: true;
     halign: center;
     valign: center;
     use-underline: true;
+    styles ["suggested-action", "pill"]
 
     Label {
       /* Translators: On button for opening wifi settings. */
@@ -19,7 +26,5 @@ template InternetPage : Box {
       justify: center;
       wrap: true;
     }
-
-    styles ["suggested-action", "pill"]
   }
 }
