@@ -44,12 +44,15 @@ language_to_default_locale = {
     'yi': 'yi_US.UTF-8', 'yo': 'yo_NG.UTF-8', 'za': 'zu_ZA.UTF-8', 'zu': 'zu_ZA.UTF-8'}
 
 
-class LanguageInfo:
+class LanguageInfo(GObject.GObject):
+    __gtype_name__ = __qualname__
     name: str
     language_code: str
     locale: str
 
     def __init__(self, name, language_code, locale):
+        super().__init__()
+
         self.name = name
         self.language_code = language_code
         self.locale = locale
@@ -68,11 +71,9 @@ class LanguageProvider:
 
     def _get_all_languages(self, locale):
         translated = []
-        for language_info in self.all_languages:
-            language_info.name = GnomeDesktop.get_language_from_code(language_info.language_code, locale)
-            o = GObject.GObject()
-            o.language_info = language_info
-            translated.append(o)
+        for info in self.all_languages:
+            info.name = GnomeDesktop.get_language_from_code(info.language_code, locale)
+            translated.append(info)
         return translated
 
     def _get_default_locale(self, language):
