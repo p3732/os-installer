@@ -77,6 +77,7 @@ class DiskPage(Gtk.Box, Page):
         disk_uefi_okay = not is_booted_with_uefi() or disk_info.efi_partition
         if disk_uefi_okay and len(disk_info.partitions) > 0:
             partitions = disk_info.partitions
+            self.missing_things_info.set_visible(False)
         else:
             self.missing_things_info.set_visible(True)
         reset_model(self.partition_list_model, partitions)

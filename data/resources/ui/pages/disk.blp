@@ -78,14 +78,33 @@ template DiskPage : Box {
 
               Separator {}
 
-              ListBox partition_list {
-                visible: true;
-                valign: start;
-                styles ["boxed-list", "angular-first"]
+              Box partitions_section {
+                orientation: vertical;
+                  
+                Label {
+                  /*Translators: Heading of list of partitions*/
+                  label: _("Partitions");
+                  margin-start: 12;
+                  margin-end: 12;
+                  margin-top: 12;
+                  margin-bottom: 12;
+                  justify: center;
+                  wrap: true;
+                  styles ["heading"]
+                }
+
+                Separator {}
+
+                ListBox partition_list {
+                  selection-mode: none;
+                  visible: true;
+                  valign: start;
+                  styles ["boxed-list", "angular-first"]
+                }
               }
 
               Box missing_things_info {
-                visible: bind partition_list.visible inverted bidirectional;
+                visible: bind partitions_section.visible inverted bidirectional;
                 margin-start: 18;
                 margin-end: 18;
                 margin-top: 6;
