@@ -1,9 +1,5 @@
 @define-color shaded_card_bg_color shade(@card_bg_color, .95);
 
-scrolledwindow.scrollbar > scrollbar > range > trough {
-  background: 0;
-}
-
 .terminal-box {
   background-color: #000;
 }
