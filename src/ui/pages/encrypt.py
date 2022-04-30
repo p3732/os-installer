@@ -28,8 +28,8 @@ class EncryptPage(Gtk.Box, Page):
         self.switch.connect("state-set", self._on_switch_flipped)
         self.pin_field.connect("changed", self._on_pin_changed)
 
-    def _set_continue_button(self, needs_pin, has_pin):
-        can_continue = not needs_pin or has_pin
+    def _set_continue_button(self, needs_pin, pin):
+        can_continue = not needs_pin or len(pin) > 0
         self.continue_button.set_sensitive(can_continue)
 
     ### callbacks ###
@@ -43,15 +43,12 @@ class EncryptPage(Gtk.Box, Page):
 
     def _on_switch_flipped(self, switch, state):
         self.pin_row.set_sensitive(state)
-
-        needs_pin = state
-        has_pin = len(self.pin_field.get_text()) > 0
-        self._set_continue_button(needs_pin, has_pin)
+        self._set_continue_button(
+            needs_pin=state, pin=self.pin_field.get_text())
 
     def _on_pin_changed(self, editable):
-        needs_pin = self.switch.get_state()
-        has_pin = len(editable.get_text()) > 0
-        self._set_continue_button(needs_pin, has_pin)
+        self._set_continue_button(
+            needs_pin=self.switch.get_state(), pin=editable.get_text())
 
     ### public methods ###
 
