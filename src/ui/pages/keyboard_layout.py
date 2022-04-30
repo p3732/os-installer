@@ -48,6 +48,8 @@ class KeyboardLayoutPage(Gtk.Box, Page):
             self.language_list.append(row)
 
     def _load_layout_list(self, language, short_hand):
+        self.stack.set_visible_child_name('layouts')
+
         if self.loaded_language == short_hand:
             return
         self.loaded_language = short_hand
@@ -63,8 +65,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
         n_items = self.layout_list_model.get_n_items()
         self.layout_list_model.splice(0, n_items, layout_rows)
-
-        self.stack.set_visible_child_name('layouts')
 
     def _unselect_current_row(self):
         if self.current_row:
