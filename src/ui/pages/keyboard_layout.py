@@ -3,7 +3,7 @@
 from gi.repository import Gio, Gtk
 
 from .global_state import global_state
-from .keyboard_layout_provider import get_layouts_for
+from .keyboard_layout_provider import get_default_layout, get_layouts_for
 from .language_provider import language_provider
 from .page import Page
 from .system_calls import set_system_keyboard_layout
@@ -23,6 +23,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     languages_model = Gio.ListStore()
     layouts_model = Gio.ListStore()
 
+    current_keyboard_layout = None
     current_row = None
     language_list_setup = False
     loaded_language = ''
@@ -31,8 +32,14 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
 
         # models
-        self.layout_list.bind_model(self.layouts_model, lambda o: SelectionRow(o.name, o.layout))
+        self.layout_list.bind_model(self.layouts_model, self._create_keyboard_row)
         self.language_list.bind_model(self.languages_model, lambda o: LanguageRow(o))
+
+    def _create_keyboard_row(self, keyboard):
+        row = SelectionRow(keyboard.name, keyboard.layout)
+        if self.current_keyboard_layout == keyboard.layout:
+            self._select_row(row)
+        return row
 
     def _setup_languages_list(self):
         languages = language_provider.get_all_languages_translated()
@@ -103,9 +110,11 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     def load_once(self):
         # page gets reconstructed if different app language is chosen
-        short_hand = global_state.get_config('language_short_hand')
+        language_code = global_state.get_config('language_short_hand')
         language = global_state.get_config('language')
-        self._load_layout_list(language, short_hand)
+        self.current_keyboard_layout = get_default_layout(language_code)
+        set_system_keyboard_layout(self.current_keyboard_layout, language_code)
+        self._load_layout_list(language, language_code)
 
     def navigate_backward(self):
         self.can_navigate_backward = False
