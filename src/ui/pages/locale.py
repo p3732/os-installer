@@ -11,17 +11,10 @@ from .widgets import ProgressRow
 
 
 def get_location_children(location):
-    # this code is super ugly because libgweather decided to simplify their API into unusability
+    # this code is un-pythonesque because libgweather decided to simplify their API too much
     continents = [location.next_child(None)]
     while continent := location.next_child(continents[-1]):
         continents.append(continent)
-    #continents = [location.next_child(None)]
-    #while True:
-    #    continent = location.next_child(continents[-1])
-    #    if not continent:
-    #        break
-    #    continents.append(continent)
-
     return continents
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
