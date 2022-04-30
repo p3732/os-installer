@@ -52,7 +52,8 @@ class Application(Adw.Application):
             },
             {
                 'name': 'reload-page',
-                'func': self._on_reload_page
+                'func': self._on_reload_page,
+                'accels': ['F5']
             },
             {
                 'name': 'quit',

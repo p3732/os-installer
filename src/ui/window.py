@@ -202,7 +202,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def reload_page(self):
         with self.navigation_lock:
-            self.current_page.load()
+            if self.current_page.can_reload:
+                self.current_page.load()
 
     def show_confirm_quit_dialog(self):
         popup = ConfirmQuitPopup(self.quit_callback)
