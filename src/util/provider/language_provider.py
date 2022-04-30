@@ -8,7 +8,7 @@ from gi.repository import GObject, GnomeDesktop
 from .global_state import global_state
 
 
-# generated via language_codes_to_locales.py
+# generated via language_codes_to_x_generator.py
 language_to_default_locale = {
     'ab': 'ab_GE.UTF-8', 'aa': 'aa_DJ.UTF-8', 'af': 'af_ZA.UTF-8', 'ak': 'ak_GH.UTF-8', 'sq': 'sq_AL.UTF-8',
     'am': 'am_ET.UTF-8', 'ar': 'ar_EG.UTF-8', 'an': 'an_ES.UTF-8', 'hy': 'hy_AM.UTF-8', 'as': 'as_IN.UTF-8',
