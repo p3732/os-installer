@@ -56,6 +56,12 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         if self.current_row:
             self.current_row.set_activated(False)
 
+    def _select_row(self, row):
+        self._unselect_current_row()
+        self.current_row = row
+        self.current_row.set_activated(True)
+        self.continue_button.set_sensitive(True)
+
     ### callbacks ###
 
     @Gtk.Template.Callback('continue')
@@ -73,16 +79,14 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('layout_row_activated')
     def _layout_row_activated(self, list_box, row):
-        self._unselect_current_row()
-        self.current_row = row
-        row.set_activated(True)
+        if self.current_row == row:
+            return
+        self._select_row(row)
 
         # use selected keyboard layout
         keyboard_layout = row.get_label()
-        short_hand = row.info
-        set_system_keyboard_layout(keyboard_layout, short_hand)
-
-        self.continue_button.set_sensitive(True)
+        language_code = row.info
+        set_system_keyboard_layout(keyboard_layout, language_code)
 
     @Gtk.Template.Callback('show_language_selection')
     def _show_language_selection(self, button):
