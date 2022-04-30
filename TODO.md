@@ -1,20 +1,19 @@
 high prio:
-
-* icon colors in dark mode
-* user name sanity check
+* keyboard layout sorting
 
 mid prio:
 
-* move signals to .blp files
 * show notification on finisehd or failed install
 * highlight current keyboard layout (also before selecting anything)
 * handle potentially needed legacy boot partition for MBR boot + GPT
 * script folder config option
 * convert TODO list into Gitlab issues when small enough
-* disk: empty state (no disks)
 * row selection
 * fix incorrectly expanded list in software
 * fix keyboard focus rounding (e.g. language row - keyboard)
+* disk: replace whole disk list with button
+* replace row-activated signal with actionrow activated: user, encrypted
+* software: port to glistmodel
 
 low prio:
 
