@@ -163,6 +163,15 @@ template DiskPage : Box {
               }
             };
           }
+
+          StackPage {
+            name: "no-disks";
+            child:
+            Adw.StatusPage {
+              title: _("No Disks avaliable");
+              description: _("Connect a disk and reload this page.");
+            };
+          }
         };
       }
     }

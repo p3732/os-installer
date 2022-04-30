@@ -114,6 +114,9 @@ class DiskProvider:
         return disks
 
     def get_testing_dummy_disks(self):
+        self.flip = not self.flip if hasattr(self, 'flip') and self.flip else True
+        if self.flip:
+            return []
         smol_partition = DeviceInfo("sm0l partiton", 1000, "/dev/00null")
         smol_disk = Disk("Dummy", 10000, "/dev/null", ([smol_partition], None))
 

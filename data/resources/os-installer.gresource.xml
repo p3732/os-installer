@@ -10,8 +10,9 @@
 
     <!-- Icons -->
     <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">icon/scalable/actions/question-round-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/no-disk-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/question-round-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/user-symbolic.svg</file>
 
     <!-- UI Files -->
