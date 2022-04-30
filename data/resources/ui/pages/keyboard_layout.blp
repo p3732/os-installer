@@ -37,6 +37,7 @@ template KeyboardLayoutPage : Box {
           child:
           ListBox layout_list {
             valign: start;
+            selection-mode: none;
             row-activated => layout_row_activated();
             styles ["boxed-list", "angular-last"]
           };
@@ -44,28 +45,30 @@ template KeyboardLayoutPage : Box {
 
         Separator {}
 
-        Button {
-          clicked => show_language_selection();
-          styles ["flat"]
+        ListBox {
+          selection-mode: none;
+          styles ["boxed-list", "angular-first"]
 
-          Box {
-            spacing: 12;
-            styles ["marginalized"]
+          Adw.ActionRow whole_disk_row {
+            activatable: true;
+            focusable: true;
+            selectable: false;
+            /* Translators: Followed by a language name. */
+            title: _("Keyboard Language");
+            activated => show_language_selection();
 
-            Label {
-              /* Translators: Followed by a language name. */
-              label: _("Keyboard Language");
-              wrap: true;
-            }
+            Box {
+              spacing: 12;
 
-            Label language_label {
-              hexpand: true;
-              wrap: true;
-              xalign: 1;
-            }
+              Label language_label {
+                hexpand: true;
+                wrap: true;
+                xalign: 1;
+              }
 
-            Image {
-              icon-name: "emblem-system-symbolic";
+              Image {
+                icon-name: "emblem-system-symbolic";
+              }
             }
           }
         }
@@ -88,6 +91,7 @@ template KeyboardLayoutPage : Box {
             child:
             ListBox language_list {
               hexpand: true;
+              selection-mode: none;
               row-activated => language_row_activated();
               styles ["boxed-list"]
             };
@@ -101,8 +105,6 @@ template KeyboardLayoutPage : Box {
     /* Translators: On button. */
     label: _("_Continue");
     sensitive: false;
-    focusable: true;
-    receives-default: true;
     halign: center;
     valign: end;
     use-underline: true;
