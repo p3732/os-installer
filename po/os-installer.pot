@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-30 03:03+0200\n"
+"POT-Creation-Date: 2022-04-30 19:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr ""
 
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
-msgid "_Setup Internet Connection"
+msgid "_Open Settings"
 msgstr ""
 
 #: data/resources/ui/pages/keyboard_layout.blp
