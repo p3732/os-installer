@@ -77,6 +77,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         # show layouts for language
         language_info = row.info
         self._load_layout_list(language_info.name, language_info.language_code)
+        self.can_navigate_backward = False
 
     def _on_layout_row_activated(self, list_box, row):
         self._unselect_current_row()
