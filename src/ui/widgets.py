@@ -84,20 +84,18 @@ class PageWrapper(Gtk.Box):
         return self.content.get_child()
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/progress_row.ui')
-class ProgressRow(Gtk.ListBoxRow):
+class ProgressRow(Adw.ActionRow):
     __gtype_name__ = 'ProgressRow'
-
-    label = Gtk.Template.Child()
 
     def __init__(self, label, additional_info, **kwargs):
         super().__init__(**kwargs)
 
-        self.label.set_label(label)
+        self.set_title(label)
 
         self.info = additional_info
 
     def get_label(self):
-        return self.label.get_label()
+        return self.get_title()
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/selection_row.ui')
