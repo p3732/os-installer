@@ -6,7 +6,7 @@
 
 # Name of the distribution.
 # Default: None
-distribution_name: 'Debuntorch'
+distribution_name: 'Debuntorarch'
 
 # Whether the installation needs an internet connection.
 # Default: yes
@@ -19,10 +19,10 @@ internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 # A selection of languages the installer should present by default.
 # Note: For a language to be available, it needs to be provided by the system
 # and the installer needs to have a translation into that language.
-# Default: ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh']
-suggested_languages: 
+# Default: ['ar', 'de', 'en', 'es', 'fr', 'ja', 'ru', 'zh']
+suggested_languages:
     - 'ar'
-    - 'de' 
+    - 'de'
     - 'en'
     - 'es'
     - 'fr'
