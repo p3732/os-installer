@@ -5,6 +5,7 @@ from gi.repository import Gtk
 from .global_state import global_state
 from .installation_scripting import installation_scripting, Step
 from .page import Page
+from .widgets import reset_model, DeviceRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/confirm.ui')
@@ -12,8 +13,7 @@ class ConfirmPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image_name = 'question-round-symbolic'
 
-    disk_label = Gtk.Template.Child()
-    device_path = Gtk.Template.Child()
+    disk_row = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
@@ -28,8 +28,5 @@ class ConfirmPage(Gtk.Box, Page):
     ### public methods ###
 
     def load(self):
-        # set label
-        name = global_state.get_config('disk_name')
-        if name:
-            self.disk_label.set_label(name)
-        self.device_path.set_label(global_state.get_config('disk_device_path'))
+        self.disk_row.set_title(global_state.get_config('disk_name'))
+        self.disk_row.set_subtitle(global_state.get_config('disk_device_path'))
