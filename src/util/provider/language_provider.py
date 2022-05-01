@@ -121,9 +121,10 @@ class LanguageProvider:
 
         suggested_languages = []
         suggested_codes = global_state.get_config('suggested_languages')
-        for language_info in all_languages:
-            if language_info.language_code in suggested_codes:
-                suggested_languages.append(language_info)
+        if suggested_codes and len(suggested_codes) > 0:
+            for language_info in all_languages:
+                if language_info.language_code in suggested_codes:
+                    suggested_languages.append(language_info)
 
         return (suggested_languages, all_languages)
 
