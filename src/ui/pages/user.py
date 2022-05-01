@@ -48,8 +48,9 @@ class UserPage(Gtk.Box, Page):
         self._set_continue_button(self.autologin_switch.get_state())
 
     @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        global_state.advance(self)
+    def _continue(self, object):
+        if self.continue_button.get_sensitive():
+            global_state.advance(self)
 
     ### public methods ###
 

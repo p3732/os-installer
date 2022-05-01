@@ -25,6 +25,7 @@ template UserPage : Box {
         /* Translators: Placeholder in user name entry field */
         placeholder-text: _("Enter a Name");
         changed => entry_changed();
+        activate => focus_password();
       }
     }
 
@@ -60,6 +61,7 @@ template UserPage : Box {
         placeholder-text: _("Enter a Password");
         input-purpose: password;
         changed => entry_changed();
+        activate => continue();
       }
     }
   }
