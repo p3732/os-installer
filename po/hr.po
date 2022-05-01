@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-30 19:10+0200\n"
-"PO-Revision-Date: 2022-04-30 19:11+0200\n"
+"POT-Creation-Date: 2022-05-01 20:32+0200\n"
+"PO-Revision-Date: 2022-05-01 20:34+0200\n"
 "Last-Translator: Peter Eisenmann <p3732@getgoogleoff.me>\n"
 "Language-Team: German <->\n"
 "Language: de\n"
@@ -58,11 +58,6 @@ msgstr "Potvrda"
 msgid "This will delete all data on"
 msgstr "Ovo će obrisati sve podatke na"
 
-#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/widgets/device_row.blp
-msgid "Unnamed Partition"
-msgstr "Neimenovana particija"
-
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
@@ -107,7 +102,15 @@ msgstr ""
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS particija za pokretanje"
 
-#. Translators: Button label to open disk management tool. Underscore can not be for same as for 'Reload'
+#: data/resources/ui/pages/disk.blp
+msgid "No Disks avaliable"
+msgstr "Nema dostupnih diskova"
+
+#: data/resources/ui/pages/disk.blp
+msgid "Connect a disk and reload this page."
+msgstr "Spojite disk i ponovno učitajte stranicu"
+
+#. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr "_Upravljanje diskovima"
@@ -269,6 +272,11 @@ msgstr "Loznka"
 #: data/resources/ui/pages/user.blp
 msgid "Enter a Password"
 msgstr "Upišite lozinku"
+
+#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
+#: data/resources/ui/widgets/device_row.blp
+msgid "Unnamed Partition"
+msgstr "Neimenovana particija"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.blp

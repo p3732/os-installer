@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-01 03:37+0200\n"
+"POT-Creation-Date: 2022-05-01 20:32+0200\n"
 "PO-Revision-Date: 2022-04-18 01:15+0200\n"
 "Last-Translator: Peter Eisenmann <p3732@getgoogleoff.me>\n"
 "Language-Team: German <->\n"
@@ -56,11 +56,6 @@ msgstr "Bestätigung"
 #: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
 msgstr "Hiermit werden alle Dateien gelöscht von"
-
-#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/widgets/device_row.blp
-msgid "Unnamed Partition"
-msgstr "Namenlose Partition"
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
@@ -277,6 +272,11 @@ msgstr "Passwort"
 #: data/resources/ui/pages/user.blp
 msgid "Enter a Password"
 msgstr "Gebe ein Passwort ein"
+
+#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
+#: data/resources/ui/widgets/device_row.blp
+msgid "Unnamed Partition"
+msgstr "Namenlose Partition"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.blp
