@@ -34,6 +34,8 @@ class EncryptPage(Gtk.Box, Page):
     @Gtk.Template.Callback('switch_flipped')
     def _switch_flipped(self, switch, state):
         self.pin_row.set_sensitive(state)
+        if state:
+            self._focus_pin(self.pin_row)
         self._set_continue_button(
             needs_pin=state, pin=self.pin_field.get_text())
 
