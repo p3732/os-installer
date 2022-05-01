@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-30 19:10+0200\n"
+"POT-Creation-Date: 2022-05-01 03:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,7 +99,15 @@ msgstr ""
 msgid "  • BIOS boot partition"
 msgstr ""
 
-#. Translators: Button label to open disk management tool. Underscore can not be for same as for 'Reload'
+#: data/resources/ui/pages/disk.blp
+msgid "No Disks avaliable"
+msgstr ""
+
+#: data/resources/ui/pages/disk.blp
+msgid "Connect a disk and reload this page."
+msgstr ""
+
+#. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr ""
