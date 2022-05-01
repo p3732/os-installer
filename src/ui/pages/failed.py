@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+from gi.repository import Gio, Gtk
 
+from .global_state import global_state
 from .installation_scripting import installation_scripting
 from .system_calls import open_internet_search
 from .page import Page
@@ -27,3 +28,4 @@ class FailedPage(Gtk.Box, Page):
 
     def load_once(self):
         self.terminal_box.append(installation_scripting.terminal)
+        global_state.send_notification(self.get_name(),'')

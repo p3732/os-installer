@@ -29,6 +29,9 @@ class GlobalState:
     def advance_without_return(self, page):
         print('Advance called before window initalization compeleted!')
 
+    def send_notification(self, title, text):
+        print('Notification sending called before window initalization compeleted!')
+
     def set_title_image(self, image_name):
         print('Setting of title image called before window initalization compeleted!')
 

@@ -37,6 +37,7 @@ class Application(Adw.Application):
                              GLib.OptionArg.NONE, "Run in demo mode, don't alter the system", None)
 
         global_state.set_config('version', version)
+        global_state.send_notification = self._send_notification
 
     def _setup_actions(self):
         actions = [
@@ -127,6 +128,11 @@ class Application(Adw.Application):
         else:
             self.quit()
 
+    def _send_notification(self, title, text):
+        n = Gio.Notification()
+        n.set_title(title)
+        n.set_body(text)
+        self.send_notification('dummy_id', n)
 
 def main(version, localedir):
     global_state.set_config('localedir', localedir)
