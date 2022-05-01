@@ -18,7 +18,7 @@ class DeviceRow(Adw.ActionRow):
     stack = Gtk.Template.Child()
     size = Gtk.Template.Child()
 
-    def __init__(self, info, too_small, **kwargs):
+    def __init__(self, info, too_small=False, **kwargs):
         super().__init__(**kwargs)
 
         self.info = info

@@ -47,8 +47,9 @@ class EncryptPage(Gtk.Box, Page):
             needs_pin=self.switch.get_state(), pin=editable.get_text())
 
     @Gtk.Template.Callback('continue')
-    def _continue(self, button):
-        global_state.advance(self)
+    def _continue(self, object):
+        if self.continue_button.is_sensitive():
+            global_state.advance(self)
 
     ### public methods ###
 

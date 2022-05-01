@@ -41,13 +41,13 @@ template EncryptPage : Box {
           halign: center;
           valign: center;
           hexpand: true;
-          activates-default: true;
           width-chars: 10;
           max-width-chars: 16;
           truncate-multiline: true;
           input-purpose: pin;
           /* Translators: Placeholder for disk encryption pin/password field */
           placeholder-text: _("PIN");
+          activate => continue();
           changed => pin_changed();
         }
       }
