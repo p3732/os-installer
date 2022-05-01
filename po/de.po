@@ -112,7 +112,7 @@ msgid "_Manage Disks"
 msgstr "_Laufwerke verwalten"
 
 #: data/resources/ui/pages/done.blp
-msgid "Installation complete"
+msgid "Installation Complete"
 msgstr "Installation vollständig"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
