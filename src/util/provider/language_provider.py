@@ -103,7 +103,7 @@ class LanguageProvider:
             locale = self._get_default_locale(language_code)
         name = GnomeDesktop.get_language_from_code(language_code, locale)
         if not name:
-            print(f'Distribution developer hint: {name}'
+            print(f'Distribution developer hint: {language_code} '
                   'is not available as a locale in current system.')
         else:
             return LanguageInfo(name, language_code, locale)
