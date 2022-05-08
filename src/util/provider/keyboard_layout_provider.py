@@ -31,6 +31,10 @@ language_to_default_keyboard = {
     'xh': 'us', 'yi': 'us', 'yo': 'ng(yoruba)', 'za': 'us', 'zu': 'us'}
 
 
+fallback_codes = {
+    'oc': 'fr'
+}
+
 class KeyboardInfo(GObject.GObject):
     __gtype_name__ = __qualname__
     name: str
@@ -41,6 +45,13 @@ class KeyboardInfo(GObject.GObject):
 
         self.name = name
         self.layout = layout
+
+
+def _get_fallback_language_code(language_code):
+    if language_code in fallback_codes:
+        return fallback_codes[language_code]
+    else:
+        return 'us'
 
 
 def get_default_layout(language_code):
@@ -54,6 +65,12 @@ def get_layouts_for(language_code, language):
     xkb_info = XkbInfo()
     layouts = xkb_info.get_layouts_for_language(language_code)
     default_layout = get_default_layout(language_code)
+
+    if len(layouts) == 0:
+        fallback_code = _get_fallback_language_code(language_code)
+        print(f'Using fallback code {fallback_code} for {language_code}')
+        layouts = xkb_info.get_layouts_for_language(fallback_code)
+        language_code = fallback_code
 
     named_layouts = []
     for layout in layouts:
