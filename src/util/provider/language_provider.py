@@ -98,10 +98,15 @@ class LanguageProvider:
                             existing_translations.add(language)
         return existing_translations
 
-    def _get_language_info(self, language_code, locale=None):
-        if not locale:
-            locale = self._get_default_locale(language_code)
-        name = GnomeDesktop.get_language_from_code(language_code, locale)
+    def _get_language_info(self, language_code):
+        locale = self._get_default_locale(language_code)
+
+        name = GnomeDesktop.get_language_from_locale(locale, locale)
+        if not name:
+            # fallback
+            lang = GnomeDesktop.get_language_from_code(language_code.split('_')[0], locale)
+            name = f'{lang} ({language_code})'  
+
         if not name:
             print(f'Distribution developer hint: {language_code} '
                   'is not available as a locale in current system.')
