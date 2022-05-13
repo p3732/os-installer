@@ -55,7 +55,11 @@ class PageWrapper(Gtk.Box):
     def __init__(self, page, **kwargs):
         super().__init__(**kwargs)
 
-        self.title.set_label(page.get_name())
+        page_name = page.get_name()
+        if page_name and len(page_name) > 0:
+            self.title.set_label(page_name)
+        else:
+            self.title.set_visible(False)
         self.content.set_child(page)
 
     def get_page(self):
