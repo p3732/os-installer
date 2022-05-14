@@ -26,3 +26,17 @@ To try OS-Installer, without making any changes to your system, run it in debug 
 * Edit the translation file `po/xx.po` with an editor of your choice (normal text editor or a [Translator Editor](https://gitlab.gnome.org/GNOME/gtranslator/))
 * Try your new translation by following the '__Testing__' intructions
 * If everything works, commit your changes, push them to your repository and create a merge request. Thank you!
+
+# Distributions
+To use this in a distribution, place a configuration and installation scripts under `/etc/os-installer`.
+The file names need to match the example files found in the `example_config` folder.
+The example scripts list which environment variables are made available to them.
+General usage of these files is:
+1) Read configuration from `config.yaml`
+1) Call `prepare.sh` - can start updating mirror- or package lists, potentially cache packages.
+1) Call `install.sh` - can write data onto disk, installing kernel, packages, bootloader, etc.
+1) Call `configure.sh` - configure the system according to selected preferences (account, locale, more packages)
+
+Note that the installer will run scripts as the user it is started by.
+If the scripts require elevated priviledges (they probably do)
+these need to be granted to the script through other means.
