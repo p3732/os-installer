@@ -42,8 +42,17 @@ def language_2_x(func):
                     print('No translations exist.')
     return results, duplicates_set
 
+
+def normalize_keyboards(keyboards):
+    normalized = {}
+    for code in keyboards:
+        normalized[code] = keyboards[code].replace('(', '+').replace(')', '')
+    return normalized
+
+
 code_to_locale, locale_dups = language_2_x(langtable.list_locales)
 code_to_keyboard, keyboard_dups = language_2_x(langtable.list_common_keyboards)
+code_to_keyboard = normalize_keyboards(code_to_keyboard)
 
 print('-------------')
 print('---Results---')
