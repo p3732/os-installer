@@ -6,13 +6,15 @@
 # 
 # Nícolas Castillo <tecncr@proton.me>, 2022.-2022.
 #
+#
+# Haidar Alí Sinisterra. <haidarsinisterra@gmail.com>, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-05 21:04-0300\n"
-"PO-Revision-Date: 2022-05-13 04:20-0500\n"
-"Last-Translator: Nícolas Castillo <tecncr@proton.me>\n"
+"PO-Revision-Date: 2022-05-13 21:43-0000\n"
+"Last-Translator: Haidar Alí Sinisterra <haidarsinisterra@gmail.com>\n"
 "Language-Team: Spanish; Castilian <->\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +25,12 @@ msgstr ""
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
-msgstr "Instalador de SO"
+msgstr "Instalador de Sistemas Operativos"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
-msgstr "Instale un Sistema Operativo"
+msgstr "Instalar un Sistema Operativo"
 
 #. Translators: Shown if user wants to close window with running installation
 #: data/resources/ui/confirm_quit_popup.blp
@@ -36,13 +38,13 @@ msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Interrumpir una instalación dejará el disco en un estado indeterminado que "
+"Si interrumpes una instalación, dejarás el disco en un estado indeterminado que "
 "puede ser irrecuperable"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 #: data/resources/ui/confirm_quit_popup.blp
 msgid "_Continue Installation"
-msgstr "_Continuar con la Instalación"
+msgstr "_Resumir la Instalación"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 #: data/resources/ui/confirm_quit_popup.blp
@@ -51,7 +53,7 @@ msgstr "_Interrumpir la Instalación"
 
 #: data/resources/ui/pages/confirm.blp
 msgid "Confirmation"
-msgstr "Confirmación"
+msgstr "Confirmar"
 
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
@@ -66,7 +68,7 @@ msgstr "_Confirmar"
 
 #: data/resources/ui/pages/disk.blp
 msgid "Disk Selection"
-msgstr "Seleccione el disco"
+msgstr "Selecciona un disco"
 
 #. Translators: Label to use whole disk rather than a single partition.
 #: data/resources/ui/pages/disk.blp
@@ -108,7 +110,7 @@ msgstr "No hay discos disponibles"
 
 #: data/resources/ui/pages/disk.blp
 msgid "Connect a disk and reload this page."
-msgstr "Conecte un disco y recargue esta página."
+msgstr "Conecta un disco y recarga esta página."
 
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
@@ -117,7 +119,7 @@ msgstr "_Administrar Discos"
 
 #: data/resources/ui/pages/done.blp
 msgid "Installation Complete"
-msgstr "La instalación se ha completado"
+msgstr "Instalación finalizada"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
@@ -136,23 +138,23 @@ msgstr "Cifrado del disco"
 #. Translators: Used with option to enable disk encryption
 #: data/resources/ui/pages/encrypt.blp
 msgid "Encrypt Files"
-msgstr "Cifrar archivos"
+msgstr "Encriptar archivos"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
 #: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
-msgstr "Clave de cifrado"
+msgstr "PIN de cifrado"
 
 #. Translators: Hint for disk encryption
 #: data/resources/ui/pages/encrypt.blp
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
-msgstr "Recuerde bien esta clave. Sin ella no podrá acceder a sus archivos."
+msgstr "Memoriza este PIN. Sin él, no podrás acceder a tus archivos."
 
 #. Translators: Placeholder for disk encryption pin/password field
 #: data/resources/ui/pages/encrypt.blp
 msgid "PIN"
-msgstr "Clave"
+msgstr "PIN"
 
 #. Translators: On button.
 #: data/resources/ui/pages/encrypt.blp
@@ -181,7 +183,7 @@ msgstr "Mostrar salida de la terminal"
 
 #: data/resources/ui/pages/internet.blp
 msgid "Internet Connection Check"
-msgstr "Revisando la conexión a Internet"
+msgstr "Revisando tu conexión a Internet"
 
 #: data/resources/ui/pages/internet.blp
 msgid "No connection."
@@ -194,17 +196,17 @@ msgstr "_Abrir Configuración"
 
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Layout Selection"
-msgstr "Seleccione la distribución del teclado"
+msgstr "Selecciona la distribución de tu teclado"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Test the Keyboard Layout Here"
-msgstr "Pruebe la distribución del teclado aquí"
+msgstr "Prueba la distribución de tu teclado aquí"
 
 #. Translators: Followed by a language name.
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Language"
-msgstr "Idioma del teclado"
+msgstr "Idioma de tu teclado"
 
 #: data/resources/ui/pages/locale.blp
 msgid "Adapt to Location"
@@ -228,12 +230,12 @@ msgstr "Define el formato para fechas, horas, números, etc."
 #. Translators: Above list of continents and countries
 #: data/resources/ui/pages/locale.blp
 msgid "Select Location"
-msgstr "Seleccionar Ubicación"
+msgstr "Selecciona tu Ubicación"
 
 #. Translators: Above list of format locales
 #: data/resources/ui/pages/locale.blp
 msgid "Select Region"
-msgstr "Seleccionar Región"
+msgstr "Selecciona tu Región"
 
 #: data/resources/ui/pages/restart.blp
 msgid "Restarting"
@@ -255,12 +257,12 @@ msgstr "Nombre"
 #. Translators: Placeholder in user name entry field
 #: data/resources/ui/pages/user.blp
 msgid "Enter a Name"
-msgstr "Ingrese un nombre"
+msgstr "Ingresa un nombre"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 #: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
-msgstr "Inicio de sesión automático"
+msgstr "Iniciar sesión automáticamente"
 
 #. Translators: Used with entry field for setting a password for new user
 #: data/resources/ui/pages/user.blp
@@ -270,7 +272,7 @@ msgstr "Contraseña"
 #. Translators: Placeholder in password entry field
 #: data/resources/ui/pages/user.blp
 msgid "Enter a Password"
-msgstr "Ingrese una contraseña"
+msgstr "Ingresa una contraseña"
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 #: data/resources/ui/widgets/device_row.blp
@@ -280,4 +282,4 @@ msgstr "Partición sin nombre"
 #. Translators: Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.blp
 msgid "Not enough space for installation"
-msgstr "No tiene espacio suficiente para la instalación"
+msgstr "No tienes espacio suficiente para la instalación"
