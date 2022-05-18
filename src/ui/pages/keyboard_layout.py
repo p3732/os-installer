@@ -38,18 +38,17 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         languages = language_provider.get_all_languages_translated()
         reset_model(self.languages_model, languages)
 
-    def _load_layout_list(self, language, short_hand):
+    def _load_layout_list(self, language, language_code):
         self.stack.set_visible_child_name('layouts')
 
-        if self.loaded_language == short_hand:
+        if self.loaded_language == language_code:
             return
 
-        self.loaded_language = short_hand
+        self.loaded_language = language_code
         self.language_label.set_label(language)
 
         # fill list with all keyboard layouts for given language
-        layouts = get_layouts_for(short_hand, language)
-        assert len(layouts) > 0, f'Language {language} has no keyboard layouts! Please report this.'
+        layouts = get_layouts_for(language_code, language)
         reset_model(self.layouts_model, layouts)
         first_row = self.layout_list.get_row_at_index(0)
         self._activate_layout_row(self.layout_list, first_row)

@@ -47,11 +47,32 @@ class KeyboardInfo(GObject.GObject):
         self.layout = layout
 
 
-def _get_fallback_language_code(language_code):
+def _fallback_code(language_code):
     if language_code in fallback_codes:
         return fallback_codes[language_code]
+
+
+def _short_code(code):
+    return code.split('_')[0]
+
+
+def _get_existing_layouts(language_code):
+    xkb_info = XkbInfo()
+    layouts = xkb_info.get_layouts_for_language(language_code)
+    if len(layouts) > 0:
+        return layouts, language_code
+
+    if not (short_code := _short_code(language_code)) == language_code:
+        layouts = xkb_info.get_layouts_for_language(short_code)
+        if len(layouts) > 0:
+            return layouts, short_code
+
+    if fallback_code := _fallback_code(language_code):
+        layouts = xkb_info.get_layouts_for_language(fallback_code)
+        return layouts, fallback_code
     else:
-        return 'us'
+        print(f'Language {language} has no keyboard layouts! Please report this.')
+        return ['us'], 'en'
 
 
 def get_default_layout(language_code):
@@ -62,24 +83,17 @@ def get_default_layout(language_code):
 
 
 def get_layouts_for(language_code, language):
-    xkb_info = XkbInfo()
-    layouts = xkb_info.get_layouts_for_language(language_code)
-    default_layout = get_default_layout(language_code)
-
-    if len(layouts) == 0:
-        fallback_code = _get_fallback_language_code(language_code)
-        print(f'Using fallback code {fallback_code} for {language_code}')
-        layouts = xkb_info.get_layouts_for_language(fallback_code)
-        language_code = fallback_code
+    layouts, code = _get_existing_layouts(language_code)
 
     named_layouts = []
+    xkb_info = XkbInfo()
     for layout in layouts:
         name = xkb_info.get_layout_info(layout).display_name
         named_layouts.append(KeyboardInfo(name, layout))
 
+    default_layout = get_default_layout(code)
     # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
     return sorted(named_layouts, key=lambda o:
                   (not o.layout == default_layout,
                    not o.name.startswith(language),
-                   not o.layout.startswith(language_code),
                    o.name))
