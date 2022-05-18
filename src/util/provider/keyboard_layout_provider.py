@@ -28,7 +28,10 @@ language_to_default_keyboard = {
     'tg': 'tj', 'th': 'th', 'ti': 'et', 'bo': 'us', 'tk': 'tm', 'tl': 'ph', 'tn': 'za', 'to': 'us', 'tr': 'tr',
     'ts': 'us', 'tt': 'ru+tt', 'tw': 'us', 'ty': 'fr+oss', 'ug': 'cn+ug', 'uk': 'ua', 'ur': 'pk', 'uz': 'uz',
     've': 'za', 'vi': 'vn', 'vo': 'de+nodeadkeys', 'wa': 'be+oss', 'cy': 'gb', 'wo': 'sn', 'fy': 'us+euro',
-    'xh': 'us', 'yi': 'us', 'yo': 'ng+yoruba', 'za': 'us', 'zu': 'us'}
+    'xh': 'us', 'yi': 'us', 'yo': 'ng+yoruba', 'za': 'us', 'zu': 'us',
+    # manually added
+    'pt_PT': 'pt',
+}
 
 
 fallback_codes = {
@@ -60,30 +63,34 @@ def _get_existing_layouts(language_code):
     xkb_info = XkbInfo()
     layouts = xkb_info.get_layouts_for_language(language_code)
     if len(layouts) > 0:
-        return layouts, language_code
+        return layouts
 
     if not (short_code := _short_code(language_code)) == language_code:
         layouts = xkb_info.get_layouts_for_language(short_code)
         if len(layouts) > 0:
-            return layouts, short_code
+            return layouts
 
     if fallback_code := _fallback_code(language_code):
         layouts = xkb_info.get_layouts_for_language(fallback_code)
-        return layouts, fallback_code
+        return layouts
     else:
         print(f'Language {language} has no keyboard layouts! Please report this.')
-        return ['us'], 'en'
+        return ['us']
 
 
 def get_default_layout(language_code):
     if language_code in language_to_default_keyboard:
         return language_to_default_keyboard[language_code]
+    elif (short_code := _short_code(language_code)) in language_to_default_keyboard:
+        return language_to_default_keyboard[short_code]
+    elif (fallback_code := _fallback_code(language_code)) in language_to_default_keyboard:
+        return language_to_default_keyboard[fallback_code]
     else:
         return 'us'
 
 
 def get_layouts_for(language_code, language):
-    layouts, code = _get_existing_layouts(language_code)
+    layouts = _get_existing_layouts(language_code)
 
     named_layouts = []
     xkb_info = XkbInfo()
@@ -91,7 +98,7 @@ def get_layouts_for(language_code, language):
         name = xkb_info.get_layout_info(layout).display_name
         named_layouts.append(KeyboardInfo(name, layout))
 
-    default_layout = get_default_layout(code)
+    default_layout = get_default_layout(language_code)
     # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
     return sorted(named_layouts, key=lambda o:
                   (not o.layout == default_layout,
