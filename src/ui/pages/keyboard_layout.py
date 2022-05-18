@@ -23,7 +23,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     languages_model = Gio.ListStore()
     layouts_model = Gio.ListStore()
 
-    current_keyboard_layout = None
     current_row = None
     language_list_setup = False
     loaded_language = ''
@@ -32,14 +31,8 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
 
         # models
-        self.layout_list.bind_model(self.layouts_model, self._create_keyboard_row)
+        self.layout_list.bind_model(self.layouts_model, lambda o: SelectionRow(o.name, o.layout))
         self.language_list.bind_model(self.languages_model, lambda o: LanguageRow(o))
-
-    def _create_keyboard_row(self, keyboard):
-        row = SelectionRow(keyboard.name, keyboard.layout)
-        if self.current_keyboard_layout == keyboard.layout:
-            self._select_row(row)
-        return row
 
     def _setup_languages_list(self):
         languages = language_provider.get_all_languages_translated()
@@ -58,13 +51,12 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         layouts = get_layouts_for(short_hand, language)
         assert len(layouts) > 0, f'Language {language} has no keyboard layouts! Please report this.'
         reset_model(self.layouts_model, layouts)
+        first_row = self.layout_list.get_row_at_index(0)
+        self._activate_layout_row(self.layout_list, first_row)
 
-    def _unselect_current_row(self):
+    def _set_checkmark(self, row):
         if self.current_row:
             self.current_row.set_activated(False)
-
-    def _select_row(self, row):
-        self._unselect_current_row()
         self.current_row = row
         self.current_row.set_activated(True)
         self.continue_button.set_sensitive(True)
@@ -77,18 +69,16 @@ class KeyboardLayoutPage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        self._unselect_current_row()
-
         # show layouts for language
         language_info = row.info
         self._load_layout_list(language_info.name, language_info.language_code)
         self.can_navigate_backward = False
 
-    @Gtk.Template.Callback('layout_row_activated')
-    def _layout_row_activated(self, list_box, row):
+    @Gtk.Template.Callback('activate_layout_row')
+    def _activate_layout_row(self, list_box, row):
         if self.current_row == row:
             return
-        self._select_row(row)
+        self._set_checkmark(row)
 
         # use selected keyboard layout
         keyboard_layout = row.get_label()
@@ -104,7 +94,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         # show language selection
         self.stack.set_visible_child_name('languages')
         self.can_navigate_backward = True
-        self.continue_button.set_sensitive(False)
 
     ### public methods ###
 
@@ -112,8 +101,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         # page gets reconstructed if different app language is chosen
         language_code = global_state.get_config('language_short_hand')
         language = global_state.get_config('language')
-        self.current_keyboard_layout = get_default_layout(language_code)
-        set_system_keyboard_layout(self.current_keyboard_layout, language_code)
         self._load_layout_list(language, language_code)
 
     def navigate_backward(self):

@@ -38,7 +38,7 @@ template KeyboardLayoutPage : Box {
           ListBox layout_list {
             valign: start;
             selection-mode: none;
-            row-activated => layout_row_activated();
+            row-activated => activate_layout_row();
             styles ["boxed-list", "angular-last"]
           };
         }
