@@ -41,7 +41,9 @@ offer_disk_encryption: yes
 # A list of additional software packages that can be optionally be selected
 # from the installer. The package string will be passed to the installation
 # script without changes, so you can bundle multiple packages as one point.
-# All fields are required (package, default, name, description, icon_path).
+# Required fields are: package, default, name, description, icon_path
+# Additionally translations for name and description can be specified by
+# placing a language code at the end after an underscore, e.g.: 'name_jp'
 # Default: []
 additional_software:
     - package        : 'firefox'
