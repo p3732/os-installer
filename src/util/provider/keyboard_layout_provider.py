@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from email.policy import default
 from gi.repository import GObject
 from gi.repository.GnomeDesktop import XkbInfo
 
