@@ -75,9 +75,10 @@ class LanguageProvider:
     def _get_all_languages(self, locale):
         translated = []
         for info in self.all_languages:
-            info.name = GnomeDesktop.get_language_from_code(
-                info.language_code, locale)
-            translated.append(info)
+            info.name = self._get_language_name_localized(
+                info.locale, locale, info.language_code)
+            if info.name:
+                translated.append(info)
         return translated
 
     def _get_default_locale(self, language):
@@ -103,18 +104,19 @@ class LanguageProvider:
 
     def _get_language_info(self, language_code):
         locale = self._get_default_locale(language_code)
-
-        name = GnomeDesktop.get_language_from_locale(locale, locale)
-        if not name:
-            # fallback
-            lang = GnomeDesktop.get_language_from_code(language_code.split('_')[0], locale)
-            name = f'{lang} ({language_code})'  
-
+    
+        name = self._get_language_name_localized(locale, locale, language_code)
         if not name:
             print(f'Distribution developer hint: {language_code} '
                   'is not available as a locale in current system.')
         else:
             return LanguageInfo(name, language_code, locale)
+
+    def _get_language_name_localized(self, lang_locale, localization, lang_code):
+        if name := GnomeDesktop.get_language_from_locale(lang_locale, localization):
+            return name
+        elif lang := GnomeDesktop.get_language_from_code(lang_code.split('_')[0], localization):
+            return f'{lang} ({lang_code})'
 
     def _get_languages(self, localedir):
         translations = self._get_existing_translations(localedir)
@@ -122,9 +124,8 @@ class LanguageProvider:
         all_languages = []
         for language_code in translations:
             language_info = self._get_language_info(language_code)
-            if not language_info:
-                continue
-            all_languages.append(language_info)
+            if language_info:
+                all_languages.append(language_info)
         all_languages.sort(key=lambda k: k.name)
 
         suggested_languages = []
