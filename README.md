@@ -4,14 +4,24 @@ A simple operating system installer, intended to be used with live install syste
 Provides bootstrapping through language, keyboard, internet connection and disk selection.
 Allows defining of optional additional software to be installed.
 
-# Build and Install
+# Testing
+
+## Locally 
+Clone and install OS-Installer
 ```
+git clone https://gitlab.gnome.org/p3732/os-installer.git
+cd os-installer
 meson build
 sudo ninja -C build install
 ```
 
-# Test
-To try OS-Installer, without making any changes to your system, run it in debug mode with `os-installer -d`
+To try OS-Installer, without modifying any system settings, run it in debug mode with
+`os-installer -d`
+
+Uninstall with
+```
+sudo ninja -C build uninstall
+```
 
 # Translating
 ## Simple Way
