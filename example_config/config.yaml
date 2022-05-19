@@ -44,13 +44,16 @@ offer_disk_encryption: yes
 # All fields are required (package, default, name, description, icon_path).
 # Default: []
 additional_software:
-    - package     : 'firefox'
-      default     : yes
-      name        : 'Firefox'
-      description : 'Popular Web Browser from Mozilla'
-      icon_path   : '/etc/os-installer/icons/firefox.png'
-    - package     : 'libreoffice-fresh'
-      default     : no
-      name        : 'LibreOffice'
-      description : 'Office Suite for Documents, Tables, Presentations and more'
-      icon_path   : '/etc/os-installer/icons/libreoffice-main.png'
+    - package        : 'firefox'
+      default        : yes
+      name           : 'Firefox'
+      name_de        : 'Feuerfuchs'
+      description    : 'Popular Web Browser from Mozilla'
+      description_de : 'Beliebter Webbrowser entwickelt durch Mozilla'
+      icon_path      : '/etc/os-installer/icons/firefox.png'
+    - package        : 'libreoffice-fresh'
+      default        : no
+      name           : 'LibreOffice'
+      description    : 'Office Suite for Documents, Tables, Presentations and more'
+      description_de : 'Sammlung an BüroAnwendungen für Dokumente, Tabellen, Präsentationen und mehr'
+      icon_path      : '/etc/os-installer/icons/libreoffice-main.png'
