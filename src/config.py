@@ -5,6 +5,10 @@ import yaml
 DEFAULT_CONFIG_PATH = '/etc/os-installer/config.yaml'
 
 
+def _bool_to_int(b: bool):
+    return 1 if b else 0
+
+
 def _install_variables_set(config):
     return ('locale' in config and
             'disk_device_path' in config and
@@ -64,18 +68,20 @@ def create_envs(config, with_install_envs, with_configure_envs):
     envs = []
     if with_install_envs:
         envs += [
-            'OSI_LOCALE="' + config['locale'] + '"',
-            'OSI_DEVICE_PATH="' + config['disk_device_path'] + '"',
-            'OSI_DEVICE_IS_PARTITION=' + str(1 if config['disk_is_partition'] else 0),
-            'OSI_DEVICE_EFI_PARTITION="' + config['disk_efi_partition'] + '"',
-            'OSI_USE_ENCRYPTION=' + str(1 if config['use_encryption'] else 0),
-            'OSI_ENCRYPTION_PIN="' + config['encryption_pin'] + '"']
+            f'OSI_LOCALE="{config["locale"]}"',
+            f'OSI_DEVICE_PATH="{config["disk_device_path"]}"',
+            f'OSI_DEVICE_IS_PARTITION={_bool_to_int(config["disk_is_partition"])}',
+            f'OSI_DEVICE_EFI_PARTITION="{config["disk_efi_partition"]}"',
+            f'OSI_USE_ENCRYPTION={_bool_to_int(config["use_encryption"])}',
+            f'OSI_ENCRYPTION_PIN="{config["encryption_pin"]}"',
+        ]
     if with_configure_envs:
         envs += [
-            'OSI_USER_NAME="' + config['user_name'] + '"',
-            'OSI_USER_AUTOLOGIN=' + str(1 if config['user_autologin'] else 0),
-            'OSI_USER_PASSWORD="' + config['user_password'] + '"',
-            'OSI_FORMATS="' + config['formats'] + '"',
-            'OSI_TIMEZONE="' + config['timezone'] + '"',
-            'OSI_ADDITIONAL_SOFTWARE="' + config['chosen_additional_software'] + '"']
+            f'OSI_USER_NAME="{config["user_name"]}"',
+            f'OSI_USER_AUTOLOGIN={_bool_to_int(config["user_autologin"])}',
+            f'OSI_USER_PASSWORD="{config["user_password"]}"',
+            f'OSI_FORMATS="{config["formats"]}"',
+            f'OSI_TIMEZONE="{config["timezone"]}"',
+            f'OSI_ADDITIONAL_SOFTWARE="{config["chosen_additional_software"]}"',
+        ]
     return envs + [None]
