@@ -9,6 +9,16 @@ def _bool_to_int(b: bool):
     return 1 if b else 0
 
 
+def _match(config, prop, *ok_types):
+    has_type = type(config[prop])
+    for ok_type in ok_types:
+        if has_type == ok_type:
+            return True
+    print(f'Config error: {prop} not of expected type (expected',
+          f'{ok_types}, but got {has_type}')
+    return False
+
+
 def _install_variables_set(config):
     return ('locale' in config and
             'disk_device_path' in config and
@@ -58,6 +68,17 @@ def _set_testing_defaults(config):
     config["chosen_additional_software"] = ''
 
 
+def _valid(config):
+    return (
+        _match(config, 'internet_connection_required', bool) and
+        _match(config, 'internet_checker_url', str) and
+        _match(config, 'suggested_languages', list) and
+        _match(config, 'minimum_disk_size', int) and
+        _match(config, 'offer_disk_encryption', bool) and
+        _match(config, 'additional_software', list) and
+        _match(config, 'distribution_name', type(None), str))
+
+
 ### public methods ###
 def init_config():
     config = _load_default_config()
@@ -69,6 +90,9 @@ def init_config():
     except:
         print('No config provided or config contains syntax errors, '
               'using default config.')
+    if not _valid(config):
+        print('Config errors, loading default config.')
+        config = _load_default_config()
     _set_testing_defaults(config)
     return config
 
