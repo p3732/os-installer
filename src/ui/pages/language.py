@@ -28,8 +28,6 @@ class LanguagePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Overlay.__init__(self, **kwargs)
 
-        language_provider.prepare()
-
         # models
         self.default_list.bind_model(self.default_model, lambda o: LanguageRow(o))
         self.all_list.bind_model(self.all_model, lambda o: LanguageRow(o))

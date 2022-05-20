@@ -65,6 +65,13 @@ class LanguageProvider:
     languages_loaded = False
     languages_loading_lock = Lock()
 
+    def __init__(self, **kwargs):
+        # async load all languages from existing translations
+        localedir = global_state.get_config('localedir')
+        self.languages = global_state.thread_pool.submit(
+            self._get_languages, localedir=localedir)
+
+
     def _assert_languages_loaded(self):
         with self.languages_loading_lock:
             if not self.languages_loaded:
@@ -155,12 +162,6 @@ class LanguageProvider:
     def has_additional_languages(self):
         self._assert_languages_loaded()
         return len(self.suggested_languages) < len(self.all_languages)
-
-    def prepare(self):
-        # load all languages from existing translations
-        localedir = global_state.get_config('localedir')
-        self.languages = global_state.thread_pool.submit(
-            self._get_languages, localedir=localedir)
 
 
 language_provider = LanguageProvider()
