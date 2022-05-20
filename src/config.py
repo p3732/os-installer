@@ -42,6 +42,7 @@ def _load_default_config():
         'internet_connection_required': True,
         'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
         'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
+        'fixed_language': False,
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
         'additional_software': {},
@@ -69,6 +70,8 @@ def _set_testing_defaults(config):
 
 
 def _valid(config):
+    assert(not config['fixed_language'] == True,
+           'Need to specify or disable fixed language.')
     return (
         _match(config, 'internet_connection_required', bool) and
         _match(config, 'internet_checker_url', str) and
@@ -76,7 +79,8 @@ def _valid(config):
         _match(config, 'minimum_disk_size', int) and
         _match(config, 'offer_disk_encryption', bool) and
         _match(config, 'additional_software', list) and
-        _match(config, 'distribution_name', type(None), str))
+        _match(config, 'distribution_name', type(None), str) and
+        _match(config, 'fixed_language', bool, str))
 
 
 ### public methods ###

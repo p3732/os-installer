@@ -23,6 +23,9 @@ from .widgets import PageWrapper
 
 from .confirm_quit_popup import ConfirmQuitPopup
 
+from .language_provider import language_provider
+from .system_calls import set_system_language
+
 
 class NavigationState:
     current: int = -1
@@ -65,15 +68,20 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # determine available pages
         self._determine_available_pages()
+        first_page = self.available_pages[0]
 
-        # initialize language page
-        self._initialize_page(self.available_pages[0])
+        if type(first_page) == LanguagePage:
+            # only initialize language page, others depend on chosen language
+            self._initialize_page(first_page)
+        else:
+            for page in self.available_pages:
+                self._initialize_page(page)
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use
         pages = [
             # pre-installation section
-            (LanguagePage, True),
+            (LanguagePage, self._offer_language_selection()),
             (KeyboardLayoutPage, True),
             (InternetPage, global_state.get_config(
                 'internet_connection_required')),
@@ -94,6 +102,14 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         ]
         # filter out nonexistent pages
         self.available_pages = [page for page, condition in pages if condition]
+
+    def _offer_language_selection(self):
+            # only initialize language page, others depend on chosen language
+        if fixed_language := global_state.get_config('fixed_language'):
+            if fixed_info := language_provider.get_fixed_language(fixed_language):
+                set_system_language(fixed_info)
+                return False
+        return True
 
     def _initialize_page(self, page_to_initialize):
         page = page_to_initialize()
@@ -118,7 +134,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _load_page(self, page_number):
         # special case language page
-        if self.navigation_state.current == 0:
+        if type(self.current_page) == LanguagePage:
             self._initialize_pages_translated()
 
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'

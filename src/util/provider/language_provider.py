@@ -155,6 +155,19 @@ class LanguageProvider:
         locale = global_state.get_config('locale')
         return self._get_all_languages(locale)
 
+    def get_fixed_language(self, fixed_language):
+        self._assert_languages_loaded()
+
+        fixed = [info for info in self.all_languages
+                 if info.language_code == fixed_language]
+        if len(fixed) == 1:
+            return fixed[0]
+        else:
+            print('Distribution developer hint: Fixed language '
+                  f'{fixed_language} is not available in current system. '
+                  'Falling back to default language selection.')
+            return None
+
     def get_suggested_languages(self):
         self._assert_languages_loaded()
         return self.suggested_languages
