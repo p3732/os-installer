@@ -134,7 +134,6 @@ class Application(Adw.Application):
         n.set_body(text)
         self.send_notification('dummy_id', n)
 
-def main(version, localedir):
-    global_state.set_config('localedir', localedir)
+def main(version):
     app = Application(version)
     return app.run(sys.argv)
