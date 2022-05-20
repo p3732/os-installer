@@ -27,7 +27,7 @@ def _configure_variables_set(config):
             'chosen_additional_software' in config)
 
 
-def _get_fallback_config():
+def _load_default_config():
     return {
         'internet_connection_required': True,
         'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
@@ -60,14 +60,15 @@ def _set_testing_defaults(config):
 
 ### public methods ###
 def init_config():
-    config = _get_fallback_config()
+    config = _load_default_config()
     try:
         with open(DEFAULT_CONFIG_PATH, 'r') as file:
             config_from_file = yaml.load(file, Loader=yaml.Loader)
             for config_property in config_from_file:
                 config[config_property] = config_from_file[config_property]
     except:
-        print('No config provided, using fallback config.')
+        print('No config provided or config contains syntax errors, '
+              'using default config.')
     _set_testing_defaults(config)
     return config
 
