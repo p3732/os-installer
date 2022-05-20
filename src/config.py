@@ -41,10 +41,21 @@ def _get_fallback_config():
     }
 
 
-def _set_defaults_for_optional_pages(config):
-    config['use_encryption'] = 'en_US.utf-8'
-    config['chosen_additional_software'] = ''
-    config['disk_name'] = 'Test Dummy'  # for testing
+def _set_testing_defaults(config):
+    '''Default values used when skipping pages during testing.'''
+    config["locale"] = 'en_US.UTF-8'
+    config["disk_device_path"] = '/dev/null'
+    config["disk_is_partition"] = False
+    config["disk_efi_partition"] = '/dev/null'
+    config['use_encryption'] = False
+    config['encryption_pin'] = ''
+    config['disk_name'] = 'Test Dummy'
+    config["user_name"] = 'user'
+    config["user_autologin"] = True
+    config["user_password"] = 'password'
+    config["formats"] = 'en_US.UTF-8'
+    config["timezone"] = 'UTC'
+    config["chosen_additional_software"] = ''
 
 
 ### public methods ###
@@ -57,7 +68,7 @@ def init_config():
                 config[config_property] = config_from_file[config_property]
     except:
         print('No config provided, using fallback config.')
-    _set_defaults_for_optional_pages(config)
+    _set_testing_defaults(config)
     return config
 
 
