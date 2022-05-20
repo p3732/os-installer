@@ -70,33 +70,30 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self._initialize_page(self.available_pages[0])
 
     def _determine_available_pages(self):
-        offer_internet_connection = global_state.get_config('internet_connection_required')
-        offer_disk_encryption = global_state.get_config('offer_disk_encryption')
-        additional_software_config = global_state.get_config('additional_software')
-        offer_additional_software = len(additional_software_config) > 0 if additional_software_config else False
-
-        available_pages = [
+        # list page types tupled with condition on when to use
+        pages = [
             # pre-installation section
-            LanguagePage,
-            KeyboardLayoutPage,
-            InternetPage if offer_internet_connection else None,
-            DiskPage,
-            EncryptPage if offer_disk_encryption else None,
-            ConfirmPage,
+            (LanguagePage, True),
+            (KeyboardLayoutPage, True),
+            (InternetPage, global_state.get_config(
+                'internet_connection_required')),
+            (DiskPage, True),
+            (EncryptPage, global_state.get_config('offer_disk_encryption')),
+            (ConfirmPage, True),
             # configuration section
-            UserPage,
-            SoftwarePage if offer_additional_software else None,
-            LocalePage,
+            (UserPage, True),
+            (SoftwarePage, global_state.get_config('additional_software')),
+            (LocalePage, True),
             # installation
-            InstallPage,
+            (InstallPage, True),
             # post-installation
-            DonePage,
-            RestartPage,
+            (DonePage, True),
+            (RestartPage, True),
             # failed installation, keep at end
-            FailedPage
+            (FailedPage, True)
         ]
         # filter out nonexistent pages
-        self.available_pages = [page for page in available_pages if page]
+        self.available_pages = [page for page, condition in pages if condition]
 
     def _initialize_page(self, page_to_initialize):
         page = page_to_initialize()
