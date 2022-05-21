@@ -70,8 +70,7 @@ def _set_testing_defaults(config):
 
 
 def _valid(config):
-    assert(not config['fixed_language'] == True,
-           'Need to specify or disable fixed language.')
+    assert not config['fixed_language'] == True, 'Need to specify or disable fixed language.'
     return (
         _match(config, 'internet_connection_required', bool) and
         _match(config, 'internet_checker_url', str) and
