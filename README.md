@@ -7,6 +7,13 @@ Allows defining of optional additional software to be installed.
 # Testing
 
 ## Locally 
+### Easy
+Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) and run it: `https://gitlab.gnome.org/p3732/os-installer.git`
+
+### Manually
+Install the following dependencies: `gnome-desktop libgweather python-yaml udisks vte`.
+Note a GTK4 compatible versions of `gnome-desktop` and `vte` are required.
+
 Clone and install OS-Installer
 ```
 git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
