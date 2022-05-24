@@ -146,6 +146,31 @@
             ]
         },
         {
+            "name" : "parted",
+            "cleanup" : [
+                "/bin",
+                "/share"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://alpha.gnu.org/gnu/parted/parted-3.2.153.tar.xz",
+                    "sha256" : "a1445d837ac4bc809ff9146ab3ac112ecc1b5639d23b7ea7b668d45aca058a2a"
+                }
+            ]
+        },
+        {
+            "name" : "mpfr",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.mpfr.org/mpfr-4.0.2/mpfr-4.0.2.tar.xz",
+                    "sha256": "1d3be708604eae0e42d578ba93b390c2a145f17743a744d8f3f8c2ad5855a38a"
+                }
+            ]
+        },
+        {
             "name" : "bytesize",
             "config-opts" : [
                 "--with-gtk-doc=no"
@@ -159,6 +184,26 @@
             ]
         },
         {
+            "name" : "json-c",
+            "buildsystem" : "cmake",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://s3.amazonaws.com/json-c_releases/releases/json-c-0.15.tar.gz",
+                    "sha256" : "b8d80a1ddb718b3ba7492916237bbf86609e9709fb007e7f7d4322f02341a4c6"
+                }
+            ]
+        },
+        {
+            "name" : "popt",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/rpm-software-management/popt.git"
+                }
+            ]
+        },
+        {
             "name" : "cryptsetup",
             "buildsystem" : "autotools",
             "sources" : [
@@ -166,6 +211,31 @@
                     "type" : "archive",
                     "url" : "https://mirrors.edge.kernel.org/pub/linux/utils/cryptsetup/v2.3/cryptsetup-2.3.4.tar.gz",
                     "sha256" : "8bc16c0b1c987867f13f0f2114fc4182d92bc866d1f84bb725c2cb9bcc55bf93"
+                }
+            ]
+        },
+        {
+            "name" : "keyutils",
+            "buildsystem" : "simple",
+            "build-commands": [
+                "make",
+                "make LIBDIR=/app/lib BINDIR=/app/bin SBINDIR=/app/sbin INCLUDEDIR=/app/include MANDIR=/app/share/man SHAREDIR=/app/share/keyutils install"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://src.fedoraproject.org/repo/pkgs/keyutils/keyutils-1.6.1.tar.bz2/sha512/ea6e20b2594234c7f51581eef2b8fd19c109fa9eacaaef8dfbb4f237bd1d6fdf071ec23b4ff334cb22a46461d09d17cf499987fd1f00e66f27506888876961e1/keyutils-1.6.1.tar.bz2",
+                    "sha256" : "c8b15722ae51d95b9ad76cc6d49a4c2cc19b0c60f72f61fb9bf43eea7cbd64ce"
+                }
+            ]
+        },
+        {
+            "name" : "yaml",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-0.2.5.tar.gz",
+                    "sha256" : "c642ae9b75fee120b2d96c712538bd2cf283228d2337df2cf2988e3c02678ef4"
                 }
             ]
         },
