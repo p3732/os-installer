@@ -9,7 +9,7 @@ Allows defining of optional additional software to be installed.
 ## Locally 
 Clone and install OS-Installer
 ```
-git clone https://gitlab.gnome.org/p3732/os-installer.git
+git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
 cd os-installer
 meson build
 sudo ninja -C build install
