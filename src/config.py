@@ -45,7 +45,7 @@ def _load_default_config():
         'fixed_language': False,
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
-        'additional_software': {},
+        'additional_software': [],
 
         'version': -1,
         'distribution_name': None
