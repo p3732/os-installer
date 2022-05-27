@@ -13,8 +13,8 @@ Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-buil
 This will automatically run the program in debug mode.
 
 ### Manually
-Install the following dependencies: `gnome-desktop libgweather python-yaml udisks vte`.
-Note a GTK4 compatible versions of `gnome-desktop` and `vte` are required.
+Install the following dependencies: `gnome-desktop gtk4 libadwaita libgweather python-yaml udisks vte`.
+Note that GTK4 compatible versions of `gnome-desktop` and `vte` are required.
 
 Clone and install OS-Installer
 ```
