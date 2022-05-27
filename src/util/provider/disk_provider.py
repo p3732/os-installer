@@ -1,10 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import GLib, GObject, UDisks
-
-EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
-EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
-
+from gi.repository import GLib, GObject
 
 class DeviceInfo(GObject.GObject):
     __gtype_name__ = __qualname__
@@ -14,13 +10,13 @@ class DeviceInfo(GObject.GObject):
     size_text: str
     device_path: str
 
-    def __init__(self, name, size, device_path):
+    def __init__(self, name, size, size_text, device_path):
         super().__init__()
 
         if name:
             self.name = name.strip()
         self.size = size
-        self.size_text = disk_provider._size_to_str(size)
+        self.size_text = size_text
         self.device_path = device_path
 
 
@@ -28,24 +24,36 @@ class Disk(DeviceInfo):
     partitions: list = []
     efi_partition: str = ''
 
-    def __init__(self, name, size, device_path, partitions=None):
-        super().__init__(name, size, device_path)
+    def __init__(self, name, size, size_text, device_path, partitions=None):
+        super().__init__(name, size, size_text, device_path)
 
         if partitions:
             self.partitions, self.efi_partition = partitions
 
 class DiskProvider:
-    udisks_client = UDisks.Client.new_sync()
+    udisks_client = None
+
+    EFI_PARTITION_GUID = 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B'
+    EFI_PARTITON_FLAGS = None
+
+    def _init_client(self):
+        # avoids initializing udisks client in demo mode
+        import gi                           # noqa: E402
+        gi.require_version('UDisks', '2.0') # noqa: E402
+        from gi.repository import UDisks
+        self.EFI_PARTITON_FLAGS = UDisks.PartitionTypeInfoFlags.SYSTEM.numerator
+        self.udisks_client = UDisks.Client.new_sync()
 
     def _get_one_partition(self, partition, block):
         # partition info
         partition_info = DeviceInfo(
             name=block.props.id_label,
             size=block.props.size,
+            size_text=self._size_to_str(block.props.size),
             device_path=block.props.device)
 
         # check if EFI System Partiton
-        is_efi_partition = (partition.props.flags == EFI_PARTITON_FLAGS
+        is_efi_partition = (partition.props.flags == self.EFI_PARTITON_FLAGS
                             and partition.props.type == EFI_PARTITION_GUID)
 
         # add to disk info
@@ -78,6 +86,7 @@ class DiskProvider:
         disk = Disk(
             name=drive.props.vendor + ' ' + drive.props.model,
             size=block.props.size,
+            size_text=self._size_to_str(block.props.size),
             device_path=block.props.device,
             partitions=self._get_partitions(partition_table))
 
@@ -89,6 +98,9 @@ class DiskProvider:
     ### public methods ###
 
     def get_disks(self):
+        if not self.udisks_client:
+            self._init_client()
+        
         disks = []
 
         # get available devices
@@ -117,17 +129,17 @@ class DiskProvider:
         self.flip = not self.flip if hasattr(self, 'flip') and self.flip else True
         if not self.flip:
             return []
-        smol_partition = DeviceInfo("sm0l partiton", 1000, "/dev/00null")
-        smol_disk = Disk("Dummy", 10000, "/dev/null", ([smol_partition], None))
+        smol_partition = DeviceInfo("sm0l partiton", 1000, "1 KB", "/dev/00null")
+        smol_disk = Disk("Dummy", 10000, "/dev/null", "10 KB", ([smol_partition], None))
 
-        efi_partition = DeviceInfo("EFI", 200000000, "/dev/sda_efi")
-        unnamed_partition_1 = DeviceInfo(None, 20000000000, "/dev/sda_unnamed")
-        unnamed_partition_2 = DeviceInfo(None, 20000000000, "/dev/sda_unnamed2")
-        unnamed_partition_3 = DeviceInfo(None, 20000000000, "/dev/sda_unnamed3")
-        partytion = DeviceInfo("PARTYtion", 20000000000, "/dev/sda_party")
-        disk = Disk("Totally real device", 80000000000, "/dev/sda", ([efi_partition, partytion, unnamed_partition_1, unnamed_partition_2, unnamed_partition_3], "EFI"))
+        efi_partition = DeviceInfo("EFI", 200000000, "20 GB", "/dev/sda_efi")
+        unnamed_partition_1 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed")
+        unnamed_partition_2 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed2")
+        unnamed_partition_3 = DeviceInfo(None, 20000000000, "20 GB", "/dev/sda_unnamed3")
+        partytion = DeviceInfo("PARTYtion", 20000000000, "20 GB", "/dev/sda_party")
+        disk = Disk("Totally real device", 100000000000, "100 GB", "/dev/sda", ([efi_partition, partytion, unnamed_partition_1, unnamed_partition_2, unnamed_partition_3], "EFI"))
 
-        unformated_big_disk = Disk("VERY BIG DISK", 10000000000000000, "/dev/sdb_very_big")
+        unformated_big_disk = Disk("VERY BIG DISK", 1000000000000000, "1000 TB", "/dev/sdb_very_big")
 
         return [smol_disk, disk, unformated_big_disk]
 
