@@ -32,8 +32,8 @@ def open_disks():
 
 def open_internet_search():
     distribution_name = global_state.get_config('distribution_name')
-    name_snippet = f'"{distribution_name}" ' if distribution_name else ''
-    search_text = f'{name_snippet}"failed installation" "os-installer version {global_state.get_config("version")}"'
+    search_text = f'"{distribution_name}" "failed installation" '\
+        f'"os-installer version {global_state.get_config("version")}"'
     _run_program(['epiphany', '--search', search_text])
 
 

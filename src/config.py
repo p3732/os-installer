@@ -48,7 +48,7 @@ def _load_default_config():
         'additional_software': [],
 
         'version': -1,
-        'distribution_name': None
+        'distribution_name': 'Untitled'
     }
 
 
@@ -78,7 +78,7 @@ def _valid(config):
         _match(config, 'minimum_disk_size', int) and
         _match(config, 'offer_disk_encryption', bool) and
         _match(config, 'additional_software', list) and
-        _match(config, 'distribution_name', type(None), str) and
+        _match(config, 'distribution_name', str) and
         _match(config, 'fixed_language', bool, str))
 
 

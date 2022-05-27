@@ -5,7 +5,7 @@
 # If a value is not defined, it's default will be used.
 
 # Name of the distribution.
-# Default: None
+# Default: 'Untitled'
 distribution_name: 'Debuntorarch'
 
 # Whether the installation needs an internet connection.
