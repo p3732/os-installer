@@ -34,6 +34,11 @@ suggested_languages:
     - 'ru'
     - 'zh'
 
+# Show a welcome page after language selection.
+# Default: usage: yes
+welcome_page:
+    usage: yes
+
 # Minimum disk size needed for the installation (in Gigabyte)
 # Default: 5
 minimum_disk_size: 5

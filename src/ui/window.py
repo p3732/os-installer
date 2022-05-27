@@ -19,6 +19,7 @@ from .locale import LocalePage
 from .restart import RestartPage
 from .software import SoftwarePage
 from .user import UserPage
+from .welcome import WelcomePage
 from .widgets import PageWrapper
 
 from .confirm_quit_popup import ConfirmQuitPopup
@@ -82,6 +83,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         pages = [
             # pre-installation section
             (LanguagePage, self._offer_language_selection()),
+            (WelcomePage, global_state.get_config('welcome_page')['usage']),
             (KeyboardLayoutPage, True),
             (InternetPage, global_state.get_config(
                 'internet_connection_required')),

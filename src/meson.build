@@ -37,6 +37,7 @@ os_installer_sources = [
   'ui/pages/restart.py',
   'ui/pages/software.py',
   'ui/pages/user.py',
+  'ui/pages/welcome.py',
   'ui/widgets.py',
   'ui/window.py',
   'util/installation_scripting.py',

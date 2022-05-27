@@ -32,6 +32,7 @@
     <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/software.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/welcome.ui</file>
 
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/language_row.ui</file>

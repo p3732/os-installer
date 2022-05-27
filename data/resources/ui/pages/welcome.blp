@@ -1,0 +1,34 @@
+using Gtk 4.0;
+using Adw 1;
+
+template WelcomePage : Box {
+  name: _("Welcome");
+  orientation: vertical;
+  spacing: 30;
+
+  Adw.Clamp {
+    margin-top: 18;
+    maximum-size: 280;
+
+    Label description {
+      /* Translators: TODO */
+      label: _("This installer will guide you through the installation of {} onto your system.");
+      wrap: true;
+      justify: center;
+      styles ["heading"]
+    }
+  }
+
+  CenterBox {
+    [center]
+    Button {
+      /* Translators: On button. */
+      label: _("_Continue");
+      focusable: true;
+      receives-default: true;
+      use-underline: true;
+      clicked => continue();
+      styles ["suggested-action", "pill"]
+    }
+  }
+}
