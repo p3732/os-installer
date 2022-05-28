@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gio, Gtk
+from gi.repository import Gtk
 
 from .global_state import global_state
 from .installation_scripting import installation_scripting

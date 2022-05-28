@@ -4,7 +4,7 @@ from enum import Enum
 from threading import Lock
 import time
 
-from gi.repository import Gio, GLib, GObject, Vte
+from gi.repository import Gio, GLib, Vte
 
 from .global_state import global_state
 

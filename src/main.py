@@ -4,7 +4,6 @@ import sys
 
 import gi
 # set versions for all used submodules
-gi.require_version('Gdk', '4.0')           # noqa: E402
 gi.require_version('Gio', '2.0')           # noqa: E402
 gi.require_version('GLib', '2.0')          # noqa: E402
 gi.require_version('Gtk', '4.0')           # noqa: E402
@@ -12,7 +11,7 @@ gi.require_version('GnomeDesktop', '4.0')  # noqa: E402
 gi.require_version('GWeather', '4.0')      # noqa: E402
 gi.require_version('Adw', '1')             # noqa: E402
 gi.require_version('Vte', '3.91')          # noqa: E402
-from gi.repository import Gtk, Gdk, Gio, GLib, Adw
+from gi.repository import Adw, Gio, GLib, Gtk
 
 # local, import order is important
 from .global_state import global_state
