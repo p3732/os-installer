@@ -15,14 +15,12 @@ class ConfirmQuitPopup(Adw.Window):
 
         self.confirm_callback = confirm_callback
 
-        # signals
-        self.continue_button.connect('clicked', self._on_clicked_continue_button)
-        self.stop_button.connect('clicked', self._on_clicked_stop_button)
-
     ### callbacks ###
 
+    @Gtk.Template.Callback('stop_button_clicked')
     def _on_clicked_stop_button(self, button):
         self.confirm_callback()
 
+    @Gtk.Template.Callback('continue_button_clicked')
     def _on_clicked_continue_button(self, button):
         self.close()

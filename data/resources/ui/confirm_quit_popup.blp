@@ -38,7 +38,7 @@ template ConfirmQuitPopup : Adw.Window {
           focusable: true;
           receives-default: true;
           use-underline: true;
-
+          clicked => continue_button_clicked();
           styles ["suggested-action", "pill"]
         }
 
@@ -47,7 +47,7 @@ template ConfirmQuitPopup : Adw.Window {
           label: _("_Stop Installation");
           focusable: true;
           use-underline: true;
-
+          clicked => stop_button_clicked();
           styles ["destructive-action", "pill"]
         }
       }
