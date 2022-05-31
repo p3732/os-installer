@@ -7,7 +7,7 @@ template ConfirmQuitPopup : Adw.Window {
   WindowHandle {
     Box {
       orientation: vertical;
-      spacing: 12;
+      spacing: 18;
       styles ["marginalized"]
 
       Image {
@@ -15,22 +15,26 @@ template ConfirmQuitPopup : Adw.Window {
         icon-name: "dialog-warning-symbolic";
       }
 
-      Label {
-        halign: center;
-        valign: center;
+      Adw.Clamp {
+        maximum-size: 280;
 
-        /* Translators: Shown if user wants to close window with running installation */
-        label: _("Stopping a running installation will leave the disk in an undefined state that might potentially be harmful");
-        justify: center;
-        wrap: true;
-        max-width-chars: 45;
+        Label {
+          halign: center;
+          valign: center;
 
-        styles ["title-2"]
+          /* Translators: Shown if user wants to close window with running installation */
+          label: _("Stopping a running installation will leave the disk in an undefined state that might potentially be harmful");
+          justify: center;
+          wrap: true;
+          max-width-chars: 45;
+          styles ["heading"]
+        }
       }
 
       Box {
+        orientation: vertical;
+        halign: center;
         spacing: 6;
-        homogeneous: true;
 
         Button continue_button {
           /* Translators: Underscore can not be the same as for 'Stop Installation'. */
