@@ -169,6 +169,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     def _show_dialog(self, dialog):
         dialog.set_transient_for(self)
         dialog.set_modal(True)
+        dialog.present()
 
     def _update_navigation_buttons(self):
         # backward
