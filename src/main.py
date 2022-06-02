@@ -136,7 +136,7 @@ class Application(Adw.Application):
         n = Gio.Notification()
         n.set_title(title)
         n.set_body(text)
-        self.send_notification('dummy_id', n)
+        self.send_notification(APP_ID, n)
 
 def main(version):
     app = Application(version)
