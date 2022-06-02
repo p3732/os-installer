@@ -10,6 +10,9 @@ def _bool_to_int(b: bool):
 
 
 def _match(config, prop, *ok_types):
+    if not prop in config:
+        print(f'Config error: {prop} does not exist.')
+        return False
     has_type = type(config[prop])
     for ok_type in ok_types:
         if has_type == ok_type:
@@ -74,7 +77,6 @@ def _valid(config):
     assert not config['fixed_language'] == True, 'Need to specify or disable fixed language.'
     return (
         _match(config, 'welcome_page', dict) and
-        'usage' in config['welcome_page'] and
         _match(config['welcome_page'], 'usage', bool) and
         _match(config, 'internet_connection_required', bool) and
         _match(config, 'internet_checker_url', str) and
