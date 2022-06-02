@@ -156,15 +156,22 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.current_page = wrapper.get_page()
         if not self.current_page.load():
             self.main_stack.set_visible_child(wrapper)
-            self._set_title_image(self.current_page.image_name)
+            self._set_title_image(
+                self.current_page.image_name, self.current_page.image_path)
             self._update_navigation_buttons()
         else:  # load next if load() returned True
             self._load_page(self.navigation_state.current + 1)
 
-    def _set_title_image(self, image_name):
+    def _set_title_image(self, image_name=None, image_path=None):
         name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
         new_image = self.image_stack.get_child_by_name(name)
-        new_image.set_from_icon_name(image_name)
+        if image_name:
+            new_image.set_from_icon_name(image_name)
+        elif image_path:
+            new_image.set_from_file(image_path)            
+        else:
+            print('Developer hint: invalid request to set title image')
+            return # ignoring
         self.image_stack.set_visible_child_name(name)
 
     def _show_dialog(self, dialog):

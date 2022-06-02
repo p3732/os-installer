@@ -32,7 +32,7 @@ class GlobalState:
     def send_notification(self, title, text):
         print('Notification sending called before window initalization compeleted!')
 
-    def set_title_image(self, image_name):
+    def set_title_image(self, image_name=None, image_path=None):
         print('Setting of title image called before window initalization compeleted!')
 
     def installation_failed(self):

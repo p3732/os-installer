@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 class Page:
-    image_name: str
+    image_name: str = None
+    image_path: str = None
     can_navigate_backward: bool = False
     can_navigate_forward: bool = False
     can_reload: bool = False
