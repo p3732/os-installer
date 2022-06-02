@@ -95,7 +95,11 @@ def init_config():
         with open(DEFAULT_CONFIG_PATH, 'r') as file:
             config_from_file = yaml.load(file, Loader=yaml.Loader)
             for config_property in config_from_file:
-                config[config_property] = config_from_file[config_property]
+                if type(config[config_property]) is dict:
+                    for key, value in config_from_file[config_property].items():
+                        config[config_property][key] = value
+                else:
+                    config[config_property] = config_from_file[config_property]
     except:
         print('No config provided or config contains syntax errors, '
               'using default config.')
