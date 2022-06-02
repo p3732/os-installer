@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys
+from typing import Callable, NamedTuple
 
 import gi
 # set versions for all used submodules
@@ -19,6 +20,11 @@ from .window import OsInstallerWindow
 
 APP_ID = 'com.github.p3732.OS-Installer'
 
+
+class Action(NamedTuple):
+    name: str
+    func: Callable
+    accel: list = []
 
 class Application(Adw.Application):
     window = None
@@ -39,40 +45,24 @@ class Application(Adw.Application):
 
     def _setup_actions(self):
         actions = [
-            {
-                'name': 'next-page',
-                'func': self._on_next_page,
-                'accels': ['<Alt>Right']
-            },
-            {
-                'name': 'previous-page',
-                'func': self._on_previous_page,
-                'accels': ['<Alt>Left']
-            },
-            {
-                'name': 'reload-page',
-                'func': self._on_reload_page,
-                'accels': ['F5']
-            },
-            {
-                'name': 'about-page',
-                'func': self._on_about_page
-            },
-            {
-                'name': 'quit',
-                'func': self._on_quit,
-                'accels': ['<Ctl>q']
-            }
+            Action('next-page', self._on_next_page, ['<Alt>Right']),
+            Action('previous-page', self._on_previous_page, ['<Alt>Left']),
+            Action('reload-page', self._on_reload_page, ['F5']),
+            Action('about-page', self._on_about_page),
+            Action('quit', self._on_quit, ['<Ctl>q']),
         ]
 
-        for a in actions:
-            action = Gio.SimpleAction.new(a['name'], None)
-            action.connect('activate', a['func'])
+        for action in actions:
+            self._add_action(action)
 
-            self.add_action(action)
+    def _add_action(self, action):
+        gio_action = Gio.SimpleAction.new(action.name, None)
+        gio_action.connect('activate', action.func)
 
-            if 'accels' in a:
-                self.set_accels_for_action('app.' + a['name'], a['accels'])
+        self.add_action(gio_action)
+
+        if len(action.accel) > 0:
+            self.set_accels_for_action('app.' + action.name, action.accel)
 
     def _setup_icons(self):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
