@@ -83,8 +83,7 @@ class Application(Adw.Application):
 
     def do_activate(self):
         # create window if not existing
-        window = self.props.active_window
-        if window:
+        if window := self.props.active_window:
             window.present()
         else:
             self.window = OsInstallerWindow(self.quit, application=self)
