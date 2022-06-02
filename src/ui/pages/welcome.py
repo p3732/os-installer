@@ -17,8 +17,17 @@ class WelcomePage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        text = self.description.get_label()
-        text = text.format(global_state.get_config('distribution_name'))
+        config = global_state.get_config('welcome_page')
+
+        if config['logo']:
+            self.image_name = None
+            self.image_path = config['logo']
+
+        if config['text']:
+            text = config['text']
+        else:
+            text = self.description.get_label()
+            text = text.format(global_state.get_config('distribution_name'))
         self.description.set_label(text)
 
     ### callbacks ###

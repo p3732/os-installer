@@ -35,9 +35,12 @@ suggested_languages:
     - 'zh'
 
 # Show a welcome page after language selection.
-# Default: usage: yes
+# A custom logo and text can be defined. Otherwise a default is used.
+# Default: logo: None, text: None, usage: yes
 welcome_page:
-    usage: yes
+    logo    : '/your/distribution/logo.png'
+    text    : 'A welcoming text to inform about the installation.'
+    usage   : yes
 
 # Minimum disk size needed for the installation (in Gigabyte)
 # Default: 5

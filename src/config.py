@@ -42,7 +42,7 @@ def _configure_variables_set(config):
 
 def _load_default_config():
     return {
-        'welcome_page': {'usage': True},
+        'welcome_page': {'usage': True, 'logo': None, 'text': None},
         'internet_connection_required': True,
         'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
         'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
@@ -78,6 +78,8 @@ def _valid(config):
     return (
         _match(config, 'welcome_page', dict) and
         _match(config['welcome_page'], 'usage', bool) and
+        _match(config['welcome_page'], 'logo', str, type(None)) and
+        _match(config['welcome_page'], 'text', str, type(None)) and
         _match(config, 'internet_connection_required', bool) and
         _match(config, 'internet_checker_url', str) and
         _match(config, 'suggested_languages', list) and
