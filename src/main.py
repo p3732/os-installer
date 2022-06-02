@@ -45,10 +45,10 @@ class Application(Adw.Application):
 
     def _setup_actions(self):
         actions = [
-            Action('next-page', self._on_next_page, ['<Alt>Right']),
-            Action('previous-page', self._on_previous_page, ['<Alt>Left']),
-            Action('reload-page', self._on_reload_page, ['F5']),
-            Action('about-page', self._on_about_page),
+            Action('next-page', self._window('navigate_forward'), ['<Alt>Right']),
+            Action('previous-page', self._window('navigate_backward'), ['<Alt>Left']),
+            Action('reload-page', self._window('reload_page'), ['F5']),
+            Action('about-page', self._window('show_about_page')),
             Action('quit', self._on_quit, ['<Ctl>q']),
         ]
 
@@ -68,6 +68,9 @@ class Application(Adw.Application):
         icon_theme = Gtk.IconTheme.get_for_display(self.window.get_display())
         icon_theme.add_resource_path('/com/github/p3732/os-installer/')
         icon_theme.add_resource_path('/com/github/p3732/os-installer/icon')
+
+    def _window(self, method_name):
+        return (lambda _, __: getattr(self.window, method_name)())
 
     ### parent functions ###
 
@@ -100,18 +103,6 @@ class Application(Adw.Application):
         self._setup_actions()
 
     ### callbacks ###
-
-    def _on_next_page(self, action, param):
-        self.window.navigate_forward()
-
-    def _on_previous_page(self, action, param):
-        self.window.navigate_backward()
-
-    def _on_reload_page(self, action, param):
-        self.window.reload_page()
-
-    def _on_about_page(self, action, param):
-        self.window.show_about_page()
 
     def _on_quit(self, action, param=None):
         if global_state.installation_running:
