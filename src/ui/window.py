@@ -22,6 +22,7 @@ from .user import UserPage
 from .welcome import WelcomePage
 from .widgets import PageWrapper
 
+from .about_dialog import AboutDialog
 from .confirm_quit_popup import ConfirmQuitPopup
 
 from .language_provider import language_provider
@@ -220,6 +221,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             if self.current_page.can_reload:
                 self.current_page.load()
+
+    def show_about_page(self):
+        with self.navigation_lock:
+            popup = AboutDialog()
+            self._show_dialog(popup)
 
     def show_confirm_quit_dialog(self):
         popup = ConfirmQuitPopup(self.quit_callback)

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <template class="AboutDialog" parent="GtkAboutDialog">
+    <property name="destroy-with-parent">true</property>
+    <!-- keep program-name + comments in sync with .desktop -->
+    <property name="program-name" translatable="true">OS-Installer</property>
+    <property name="comments" translatable="true">Install an Operating System</property>
+    <property name="logo-icon-name">OS-Installer</property>
+    <property name="website">@website@</property>
+    <!--<property name="licence-type">GTK_LICENSE_GPL_3_0</property> -->
+    <property name="version">@version@</property>
+    <property name="authors">@contributors@</property>
+    <property name="translator-credits">@translators@</property>
+  </template>
+</interface>

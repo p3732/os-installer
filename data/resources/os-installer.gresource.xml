@@ -16,6 +16,7 @@
     <file preprocess="xml-stripblanks">icon/scalable/actions/user-symbolic.svg</file>
 
     <!-- UI Files -->
+    <file preprocess="xml-stripblanks">ui/about_dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/confirm_quit_popup.ui</file>
     <file preprocess="xml-stripblanks">ui/main_window.ui</file>
 

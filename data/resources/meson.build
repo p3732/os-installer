@@ -1,3 +1,5 @@
+subdir('ui')
+
 blueprints = custom_target('blueprints',
   input: files(
     'ui/confirm_quit_popup.blp',

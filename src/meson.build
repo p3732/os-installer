@@ -22,6 +22,7 @@ os_installer_sources = [
   'config.py',
   'global_state.py',
   'main.py',
+  'ui/about_dialog.py',
   'ui/confirm_quit_popup.py',
   'ui/page.py',
   'ui/pages/confirm.py',

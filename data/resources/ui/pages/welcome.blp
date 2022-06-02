@@ -20,15 +20,27 @@ template WelcomePage : Box {
   }
 
   CenterBox {
+    vexpand: true;
+
     [center]
     Button {
       /* Translators: On button. */
       label: _("_Continue");
       focusable: true;
+      valign: start;
       receives-default: true;
       use-underline: true;
       clicked => continue();
       styles ["suggested-action", "pill"]
+    }
+
+    [end]
+    Button {
+      action-name: "app.about-page";
+      icon-name: "help-about-symbolic";
+      focusable: true;
+      valign: end;
+      styles ["circular", "flat"]
     }
   }
 }
