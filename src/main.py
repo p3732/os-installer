@@ -92,6 +92,7 @@ class Application(Adw.Application):
 
         if 'demo-mode' in options:
             global_state.demo_mode = True
+            self._add_action(Action('fail-page', self._window('show_failed_page'), ['<Alt>F']))
 
         self.activate()
         return 0
