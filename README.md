@@ -6,11 +6,9 @@ Allows defining of optional additional software to be installed.
 
 # Testing
 
-## Locally 
+## Locally
 ### Easy
-Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) and run it: `https://gitlab.gnome.org/p3732/os-installer.git`
-
-This will automatically run the program in debug mode.
+Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) via `https://gitlab.gnome.org/p3732/os-installer.git` and run it (this will automatically run the program in debug mode).
 
 ### Manually
 Install the following dependencies: `gnome-desktop gtk4 libadwaita libgweather python-yaml udisks vte`.
@@ -21,7 +19,7 @@ Clone and install OS-Installer
 git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
 cd os-installer
 meson build
-sudo ninja -C build install
+sudo meson install -C build
 ```
 
 To try OS-Installer, without modifying any system settings, run it in debug mode with
