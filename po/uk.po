@@ -8,10 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-01 20:32+0200\n"
+"POT-Creation-Date: 2020-11-26 01:19+0100\n"
 "PO-Revision-Date: 2022-04-18 01:15+0200\n"
-"Last-Translator: DartDeaDia"
-"Language-Team: Ukrainian <->\n"
+"Last-Translator: DartDeaDiaLanguage-Team: Ukrainian <->\n"
 "Language: uk-UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,264 +18,175 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 42.0\n"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
 msgstr "Встановлення системи"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
-#: data/com.github.p3732.OS-Installer.appdata.xml.in
-msgid "Install an Operating System"
-msgstr "Встановіть операційну систему"
+#~ msgid "Install an Operating System"
+#~ msgstr "Встановіть операційну систему"
 
-#. Translators: Shown if user wants to close window with running installation
-#: data/resources/ui/confirm_quit_popup.blp
-msgid ""
-"Stopping a running installation will leave the disk in an undefined state "
-"that might potentially be harmful"
-msgstr ""
-"Зупинка запущеної установки залишить диск у невизначеному стані "
-"яке потенційно може бути шкідливим"
+#~ msgid ""
+#~ "Stopping a running installation will leave the disk in an undefined state "
+#~ "that might potentially be harmful"
+#~ msgstr ""
+#~ "Зупинка запущеної установки залишить диск у невизначеному стані яке "
+#~ "потенційно може бути шкідливим"
 
-#. Translators: Underscore can not be the same as for 'Stop Installation'.
-#: data/resources/ui/confirm_quit_popup.blp
-msgid "_Continue Installation"
-msgstr "_Продовжити встановлення"
+#~ msgid "_Continue Installation"
+#~ msgstr "_Продовжити встановлення"
 
-#. Translators: Underscore can not be the same as for 'Continue Installation'.
-#: data/resources/ui/confirm_quit_popup.blp
-msgid "_Stop Installation"
-msgstr "_Зупинити встановлення"
+#~ msgid "_Stop Installation"
+#~ msgstr "_Зупинити встановлення"
 
-#: data/resources/ui/pages/confirm.blp
-msgid "Confirmation"
-msgstr "Підтвердження"
+#~ msgid "Confirmation"
+#~ msgstr "Підтвердження"
 
-#. Translators: Followed by a disk or partition name
-#: data/resources/ui/pages/confirm.blp
-msgid "This will delete all data on"
-msgstr "Це призведе до видалення всіх даних на"
+#~ msgid "This will delete all data on"
+#~ msgstr "Це призведе до видалення всіх даних на"
 
-#. Translators: Button label to confirm disk deletion
-#. Translators: On button.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
-msgid "_Confirm"
-msgstr "_Підтвердити"
+#~ msgid "_Confirm"
+#~ msgstr "_Підтвердити"
 
-#: data/resources/ui/pages/disk.blp
-msgid "Disk Selection"
-msgstr "Вибір диска"
+#~ msgid "Disk Selection"
+#~ msgstr "Вибір диска"
 
-#. Translators: Label to use whole disk rather than a single partition.
-#: data/resources/ui/pages/disk.blp
-msgid "Use Whole Disk"
-msgstr "Використати весь диск"
+#~ msgid "Use Whole Disk"
+#~ msgstr "Використати весь диск"
 
-#. Translators: Heading of list of partitions
-#: data/resources/ui/pages/disk.blp
-msgid "Partitions"
-msgstr "Розділи"
+#~ msgid "Partitions"
+#~ msgstr "Розділи"
 
-#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#: data/resources/ui/pages/disk.blp
-msgid "Selecting a partition is not possible."
-msgstr "Вибрати розділ неможливо»."
+#~ msgid "Selecting a partition is not possible."
+#~ msgstr "Вибрати розділ неможливо»."
 
-#. Translators: Followed by a list of requirements
-#: data/resources/ui/pages/disk.blp
-msgid "The disk requires:"
-msgstr "Диск вимагає:"
+#~ msgid "The disk requires:"
+#~ msgstr "Диск вимагає:"
 
-#. Translators: Technical terms, the abbreviations should not be translated.
-#: data/resources/ui/pages/disk.blp
-msgid ""
-"  • GPT partitioning\n"
-"  • EFI partition"
-msgstr ""
-"  • Розділ GPT\n"
-"  • Розділ EFI"
+#~ msgid ""
+#~ "  • GPT partitioning\n"
+#~ "  • EFI partition"
+#~ msgstr ""
+#~ "  • Розділ GPT\n"
+#~ "  • Розділ EFI"
 
-#. Translators: Technical terms, the abbreviations should not be translated
-#: data/resources/ui/pages/disk.blp
-msgid "  • BIOS boot partition"
-msgstr "  • Завантажувальний розділ BIOS"
+#~ msgid "  • BIOS boot partition"
+#~ msgstr "  • Завантажувальний розділ BIOS"
 
-#: data/resources/ui/pages/disk.blp
-msgid "No Disks avaliable"
-msgstr "Немає доступних дисків"
+#~ msgid "No Disks avaliable"
+#~ msgstr "Немає доступних дисків"
 
-#: data/resources/ui/pages/disk.blp
-msgid "Connect a disk and reload this page."
-msgstr "Підключіть диск і перезавантажте цю сторінку."
+#~ msgid "Connect a disk and reload this page."
+#~ msgstr "Підключіть диск і перезавантажте цю сторінку."
 
-#. Translators: Button label to open disk management tool.
-#: data/resources/ui/pages/disk.blp
-msgid "_Manage Disks"
-msgstr "_Керування дисками"
+#~ msgid "_Manage Disks"
+#~ msgstr "_Керування дисками"
 
-#: data/resources/ui/pages/done.blp
-msgid "Installation Complete"
-msgstr "Встановлення завершено"
+#~ msgid "Installation Complete"
+#~ msgstr "Встановлення завершено"
 
-#. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
-#: data/resources/ui/pages/done.blp
-msgid "_Restart System"
-msgstr "Перезавантажити _систему"
+#~ msgid "_Restart System"
+#~ msgstr "Перезавантажити _систему"
 
-#. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
-#: data/resources/ui/pages/done.blp
-msgid "Restart _Later"
-msgstr "Перезавантажити _пізніше"
+#~ msgid "Restart _Later"
+#~ msgstr "Перезавантажити _пізніше"
 
-#: data/resources/ui/pages/encrypt.blp
-msgid "Disk Encryption"
-msgstr "Шифрування диска"
+#~ msgid "Disk Encryption"
+#~ msgstr "Шифрування диска"
 
-#. Translators: Used with option to enable disk encryption
-#: data/resources/ui/pages/encrypt.blp
-msgid "Encrypt Files"
-msgstr "Шифрування файлів"
+#~ msgid "Encrypt Files"
+#~ msgstr "Шифрування файлів"
 
-#. Translators: Description of entry field for pin/password used for disk encryption
-#: data/resources/ui/pages/encrypt.blp
-msgid "Encryption PIN"
-msgstr "PIN-код шифрування"
+#~ msgid "Encryption PIN"
+#~ msgstr "PIN-код шифрування"
 
-#. Translators: Hint for disk encryption
-#: data/resources/ui/pages/encrypt.blp
-msgid ""
-"Memorize this PIN well. Without it you will not be able to access your files."
-msgstr ""
-"«Добре запам’ятайте цей PIN-код.  Без нього ви не зможете отримати доступ до своїх файлів»."
+#~ msgid ""
+#~ "Memorize this PIN well. Without it you will not be able to access your "
+#~ "files."
+#~ msgstr ""
+#~ "«Добре запам’ятайте цей PIN-код.  Без нього ви не зможете отримати доступ "
+#~ "до своїх файлів»."
 
-#. Translators: Placeholder for disk encryption pin/password field
-#: data/resources/ui/pages/encrypt.blp
-msgid "PIN"
-msgstr "PIN-код"
+#~ msgid "PIN"
+#~ msgstr "PIN-код"
 
-#. Translators: On button.
-#: data/resources/ui/pages/encrypt.blp
-#: data/resources/ui/pages/keyboard_layout.blp
-#: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
-msgid "_Continue"
-msgstr "_Продовжити"
+#~ msgid "_Continue"
+#~ msgstr "_Продовжити"
 
-#: data/resources/ui/pages/failed.blp
-msgid "Installation Failed"
-msgstr "Не вдалося встановити"
+#~ msgid "Installation Failed"
+#~ msgstr "Не вдалося встановити"
 
-#. Translators: Shown if installation fails.
-#: data/resources/ui/pages/failed.blp
-msgid "Search for Help on the Internet"
-msgstr "Шукайте допомогу в Інтернеті"
+#~ msgid "Search for Help on the Internet"
+#~ msgstr "Шукайте допомогу в Інтернеті"
 
-#: data/resources/ui/pages/install.blp
-msgid "Installing"
-msgstr "Встановлення"
+#~ msgid "Installing"
+#~ msgstr "Встановлення"
 
-#. Translators: Hover information on toggle button that shows terminal output during installation.
-#: data/resources/ui/pages/install.blp
-msgid "Show Terminal Output"
-msgstr "Показати термінал"
+#~ msgid "Show Terminal Output"
+#~ msgstr "Показати термінал"
 
-#: data/resources/ui/pages/internet.blp
-msgid "Internet Connection Check"
-msgstr "Перевірка підключення до Інтернету"
+#~ msgid "Internet Connection Check"
+#~ msgstr "Перевірка підключення до Інтернету"
 
-#: data/resources/ui/pages/internet.blp
-msgid "No connection."
-msgstr "Немає підключення"
+#~ msgid "No connection."
+#~ msgstr "Немає підключення"
 
-#. Translators: On button for opening wifi settings.
-#: data/resources/ui/pages/internet.blp
-msgid "_Open Settings"
-msgstr "_Відкрити налаштування"
+#~ msgid "_Open Settings"
+#~ msgstr "_Відкрити налаштування"
 
-#: data/resources/ui/pages/keyboard_layout.blp
-msgid "Keyboard Layout Selection"
-msgstr "Вибір розкладки клавіатури"
+#~ msgid "Keyboard Layout Selection"
+#~ msgstr "Вибір розкладки клавіатури"
 
-#. Translators: Used as placeholder in a entry field to try out a keyboard layout
-#: data/resources/ui/pages/keyboard_layout.blp
-msgid "Test the Keyboard Layout Here"
-msgstr "Перевірте розкладку клавіатури тут"
+#~ msgid "Test the Keyboard Layout Here"
+#~ msgstr "Перевірте розкладку клавіатури тут"
 
-#. Translators: Followed by a language name.
-#: data/resources/ui/pages/keyboard_layout.blp
-msgid "Keyboard Language"
-msgstr "Мова клавіатури"
+#~ msgid "Keyboard Language"
+#~ msgstr "Мова клавіатури"
 
-#: data/resources/ui/pages/locale.blp
-msgid "Adapt to Location"
-msgstr "Налаштувати за місцем розташування"
+#~ msgid "Adapt to Location"
+#~ msgstr "Налаштувати за місцем розташування"
 
-#. Translators: Presented next to the current Timezone.
-#: data/resources/ui/pages/locale.blp
-msgid "Timezone"
-msgstr "Часовий пояс"
+#~ msgid "Timezone"
+#~ msgstr "Часовий пояс"
 
-#. Translators: Presented next to the current Formats.
-#: data/resources/ui/pages/locale.blp
-msgid "Formats"
-msgstr "Формати"
+#~ msgid "Formats"
+#~ msgstr "Формати"
 
-#. Translators: Description of what is covered by formats.
-#: data/resources/ui/pages/locale.blp
-msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Визначає формат за замовчуванням, який використовується для дат, часу, чисел тощо."
+#~ msgid "Defines the default format used for dates, times, numbers, etc."
+#~ msgstr ""
+#~ "Визначає формат за замовчуванням, який використовується для дат, часу, "
+#~ "чисел тощо."
 
-#. Translators: Above list of continents and countries
-#: data/resources/ui/pages/locale.blp
-msgid "Select Location"
-msgstr "Виберіть місцезнаходження"
+#~ msgid "Select Location"
+#~ msgstr "Виберіть місцезнаходження"
 
-#. Translators: Above list of format locales
-#: data/resources/ui/pages/locale.blp
-msgid "Select Region"
-msgstr "Виберіть регіон"
+#~ msgid "Select Region"
+#~ msgstr "Виберіть регіон"
 
-#: data/resources/ui/pages/restart.blp
-msgid "Restarting"
-msgstr "Перезапуск"
+#~ msgid "Restarting"
+#~ msgstr "Перезапуск"
 
-#: data/resources/ui/pages/software.blp
-msgid "Additional Software"
-msgstr "Додаткове програмне забезпечення"
+#~ msgid "Additional Software"
+#~ msgstr "Додаткове програмне забезпечення"
 
-#: data/resources/ui/pages/user.blp
-msgid "User Account"
-msgstr "Обліковий запис користувача"
+#~ msgid "User Account"
+#~ msgstr "Обліковий запис користувача"
 
-#. Translators: Used with entry field for User's name
-#: data/resources/ui/pages/user.blp
-msgid "Name"
-msgstr "Ім'я"
+#~ msgid "Name"
+#~ msgstr "Ім'я"
 
-#. Translators: Placeholder in user name entry field
-#: data/resources/ui/pages/user.blp
-msgid "Enter a Name"
-msgstr "Введіть ім'я"
+#~ msgid "Enter a Name"
+#~ msgstr "Введіть ім'я"
 
-#. Translators: Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.blp
-msgid "Automatic Login"
-msgstr "Автоматичний вхід"
+#~ msgid "Automatic Login"
+#~ msgstr "Автоматичний вхід"
 
-#. Translators: Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.blp
-msgid "Password"
-msgstr "Пароль"
+#~ msgid "Password"
+#~ msgstr "Пароль"
 
-#. Translators: Placeholder in password entry field
-#: data/resources/ui/pages/user.blp
-msgid "Enter a Password"
-msgstr "Введіть пароль"
+#~ msgid "Enter a Password"
+#~ msgstr "Введіть пароль"
 
-#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#: data/resources/ui/widgets/device_row.blp
-msgid "Unnamed Partition"
-msgstr "Безіменний розділ"
+#~ msgid "Unnamed Partition"
+#~ msgstr "Безіменний розділ"
 
-#. Translators: Shown for partitions that are not big enough to be installed on
-#: data/resources/ui/widgets/device_row.blp
-msgid "Not enough space for installation"
-msgstr "Недостатньо місця для установки"
+#~ msgid "Not enough space for installation"
+#~ msgstr "Недостатньо місця для установки"
