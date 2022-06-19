@@ -66,3 +66,7 @@ OS-Installer also expects these GNOME apps to be available:
 `epiphany`, `gnome-disk-utility`, `gnome-control-center`
 
 Similarly `systemd` is expected to be available, i.e. `localectl` and `timedatectl`.
+
+# Contact
+There is a matrix room https://matrix.to/#/#os-installer:matrix.org in which you can ask questions.
+Response time might vary.
