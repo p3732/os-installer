@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-01 20:32+0200\n"
+"POT-Creation-Date: 2022-06-20 01:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,6 +150,7 @@ msgstr ""
 #: data/resources/ui/pages/encrypt.blp
 #: data/resources/ui/pages/keyboard_layout.blp
 #: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
+#: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr ""
 
@@ -262,6 +263,17 @@ msgstr ""
 #. Translators: Placeholder in password entry field
 #: data/resources/ui/pages/user.blp
 msgid "Enter a Password"
+msgstr ""
+
+#: data/resources/ui/pages/welcome.blp
+msgid "Welcome"
+msgstr ""
+
+#. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
+#: data/resources/ui/pages/welcome.blp
+msgid ""
+"This application will guide you through the installation of {} onto your "
+"system."
 msgstr ""
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
