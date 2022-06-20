@@ -1,20 +1,28 @@
-# OS Installer
 A simple operating system installer, intended to be used with live install systems.
-
 Provides bootstrapping through language, keyboard, internet connection and disk selection.
 Allows defining of optional additional software to be installed.
 
+# Translations
+<a href="https://hosted.weblate.org/engage/os-installer/">
+<img src="https://hosted.weblate.org/widgets/os-installer/-/os-installer/multi-auto.svg" alt="Translation status" />
+</a>
+
+Help with translations is always welcome! The simplest way is via [__Weblate__](https://hosted.weblate.org/projects/os-installer/), which provides a very intuitive website.
+
+Alternatively you could try the autonomous way:
+* Fork, clone and build this repository.
+* Add your [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `xx` to the `po/LINGUAS` file.
+* Generate a new translation file with `ninja -C build os-installer-update-po` and [edit it](https://gitlab.gnome.org/GNOME/gtranslator/).
+* Test the translation, commit and push the changes to your fork and create a merge request. Thank you!
+
 # Testing
+Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) via `https://gitlab.gnome.org/p3732/os-installer.git` and run it (this will not make changes to your system).
 
-## Locally
-### Easy
-Clone the project with [GNOME Builder](https://gitlab.gnome.org/GNOME/gnome-builder) via `https://gitlab.gnome.org/p3732/os-installer.git` and run it (this will automatically run the program in debug mode).
-
-### Manually
+## Development Setup
 Install the following dependencies: `gnome-desktop gtk4 libadwaita libgweather python-yaml udisks vte`.
 Note that GTK4 compatible versions of `gnome-desktop` and `vte` are required.
+Then clone and install OS-Installer:
 
-Clone and install OS-Installer
 ```
 git clone --recursive https://gitlab.gnome.org/p3732/os-installer.git
 cd os-installer
@@ -23,26 +31,8 @@ sudo meson install -C build
 ```
 
 To try OS-Installer, without modifying any system settings, run it in debug mode with
-`os-installer -d`
-
-Uninstall with
-```
-sudo ninja -C build uninstall
-```
-
-# Translating
-## Simple Way
-* Create an issue [on Github](https://github.com/p3732/os-installer/issues/new) or [on Gitlab](https://gitlab.gnome.org/p3732/os-installer/-/issues/new) stating what language you want to translate `OS-Installer` into
-* A file will be provided to you. Add the translation underneath the English text [like in this example](https://gitlab.gnome.org/p3732/os-installer/-/blob/master/po/de.po)
-* Upload the translated file back into the issue. Thank you!
-
-## Autonomous Way
-* Fork this repository, clone the source code and create a build folder with `meson build`
-* Add your [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `xx` to the `po/LINGUAS` file
-* Generate a new translation file with `ninja -C build os-installer-update-po`
-* Edit the translation file `po/xx.po` with an editor of your choice (normal text editor or a [Translator Editor](https://gitlab.gnome.org/GNOME/gtranslator/))
-* Try your new translation by following the '__Testing__' intructions
-* If everything works, commit your changes, push them to your repository and create a merge request. Thank you!
+`os-installer -d`.
+Uninstall with `sudo ninja -C build uninstall `
 
 # Distributions
 The following describes how to use this in a distribution.
