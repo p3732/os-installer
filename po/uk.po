@@ -9,14 +9,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-04-18 01:15+0200\n"
-"Last-Translator: DartDeaDiaLanguage-Team: Ukrainian <->\n"
-"Language: uk-UA\n"
+"PO-Revision-Date: 2022-07-31 12:55+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/uk/>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 msgid "OS-Installer"
 msgstr "Встановлення системи"
@@ -219,14 +221,18 @@ msgstr "Пароль"
 msgid "Enter a Password"
 msgstr "Введіть пароль"
 
+#, fuzzy
 msgid "Welcome"
-msgstr ""
+msgstr "Welcome"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
+#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr ""
+"This application will guide you through the installation of {} onto your "
+"system."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
