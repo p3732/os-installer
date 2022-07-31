@@ -21,17 +21,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Gtranslator 40.0\n"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
 msgstr "OS-Instaler"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
-#: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
 msgstr "Instaliraj operacijski sustav"
 
 #. Translators: Shown if user wants to close window with running installation
-#: data/resources/ui/confirm_quit_popup.blp
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -40,56 +36,45 @@ msgstr ""
 "koje bi moglo biti štetno "
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
-#: data/resources/ui/confirm_quit_popup.blp
 msgid "_Continue Installation"
 msgstr "_Nastavi instalaciju"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
-#: data/resources/ui/confirm_quit_popup.blp
 msgid "_Stop Installation"
 msgstr "_Prekini instalaciju"
 
-#: data/resources/ui/pages/confirm.blp
 msgid "Confirmation"
 msgstr "Potvrda"
 
 #. Translators: Followed by a disk or partition name
-#: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
 msgstr "Ovo će obrisati sve podatke na"
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
 msgid "_Confirm"
 msgstr "_Potvrdi"
 
-#: data/resources/ui/pages/disk.blp
 msgid "Disk Selection"
 msgstr "Odabir diska"
 
 #. Translators: Label to use whole disk rather than a single partition.
-#: data/resources/ui/pages/disk.blp
 msgid "Use Whole Disk"
 msgstr "Koristi cijeli disk"
 
 #. Translators: Heading of list of partitions
-#: data/resources/ui/pages/disk.blp
 msgid "Partitions"
 msgstr "Particija"
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#: data/resources/ui/pages/disk.blp
 msgid "Selecting a partition is not possible."
 msgstr "Odabir particije nije moguć. "
 
 #. Translators: Followed by a list of requirements
-#: data/resources/ui/pages/disk.blp
 msgid "The disk requires:"
 msgstr "Disk zahtijeva:"
 
 #. Translators: Technical terms, the abbreviations should not be translated.
-#: data/resources/ui/pages/disk.blp
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -98,200 +83,156 @@ msgstr ""
 "  • EFI particija"
 
 #. Translators: Technical terms, the abbreviations should not be translated
-#: data/resources/ui/pages/disk.blp
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS particija za pokretanje"
 
-#: data/resources/ui/pages/disk.blp
 msgid "No Disks avaliable"
 msgstr "Nema dostupnih diskova"
 
-#: data/resources/ui/pages/disk.blp
 msgid "Connect a disk and reload this page."
 msgstr "Spojite disk i ponovno učitajte stranicu"
 
 #. Translators: Button label to open disk management tool.
-#: data/resources/ui/pages/disk.blp
 msgid "_Manage Disks"
 msgstr "_Upravljanje diskovima"
 
-#: data/resources/ui/pages/done.blp
 msgid "Installation Complete"
 msgstr "Instalacija je završena"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
-#: data/resources/ui/pages/done.blp
 msgid "_Restart System"
 msgstr "Ponovno pokreni _sustav"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
-#: data/resources/ui/pages/done.blp
 msgid "Restart _Later"
 msgstr "Ponovno pokreni _kasnije"
 
-#: data/resources/ui/pages/encrypt.blp
 msgid "Disk Encryption"
 msgstr "Šifriranje diska"
 
 #. Translators: Used with option to enable disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid "Encrypt Files"
 msgstr "Šifriranje datoteka"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
 msgstr "PIN za šifriranje"
 
 #. Translators: Hint for disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 "Dobro zapamtite ovaj PIN. Bez njega nećete moći pristupiti svojim datotekama."
 
 #. Translators: Placeholder for disk encryption pin/password field
-#: data/resources/ui/pages/encrypt.blp
 msgid "PIN"
 msgstr "PIN"
 
 #. Translators: On button.
-#: data/resources/ui/pages/encrypt.blp
-#: data/resources/ui/pages/keyboard_layout.blp
-#: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
-#: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr "_Nastavi"
 
-#: data/resources/ui/pages/failed.blp
 msgid "Installation Failed"
 msgstr "Instalacija nije upijela"
 
 #. Translators: Shown if installation fails.
-#: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
 msgstr "Potraži pomoć na Internetu"
 
-#: data/resources/ui/pages/install.blp
 msgid "Installing"
 msgstr "Instaliranje"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
-#: data/resources/ui/pages/install.blp
 msgid "Show Terminal Output"
 msgstr "Prikaži izlaz terminala"
 
-#: data/resources/ui/pages/internet.blp
 msgid "Internet Connection Check"
 msgstr "Provjera internetske veze"
 
-#: data/resources/ui/pages/internet.blp
 msgid "No connection."
 msgstr "Nema internetske veze."
 
 #. Translators: On button for opening wifi settings.
-#: data/resources/ui/pages/internet.blp
 msgid "_Open Settings"
 msgstr "Otvori postavke"
 
-#: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Layout Selection"
 msgstr "Odabir rasporeda tipkovnice"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
-#: data/resources/ui/pages/keyboard_layout.blp
 msgid "Test the Keyboard Layout Here"
 msgstr "Ovdje isprobajte odabrani raspored tipkovnice"
 
 #. Translators: Followed by a language name.
-#: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Language"
 msgstr "Jezik tipkovnice"
 
-#: data/resources/ui/pages/locale.blp
 msgid "Adapt to Location"
 msgstr "Prilagodba lokacije"
 
 #. Translators: Presented next to the current Timezone.
-#: data/resources/ui/pages/locale.blp
 msgid "Timezone"
 msgstr "Vremenska zona"
 
 #. Translators: Presented next to the current Formats.
-#: data/resources/ui/pages/locale.blp
 msgid "Formats"
 msgstr "Formati"
 
 #. Translators: Description of what is covered by formats.
-#: data/resources/ui/pages/locale.blp
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Definira format koji se koristi za datume, vremena, brojeve itd."
 
 #. Translators: Above list of continents and countries
-#: data/resources/ui/pages/locale.blp
 msgid "Select Location"
 msgstr "Odabir lokacije"
 
 #. Translators: Above list of format locales
-#: data/resources/ui/pages/locale.blp
 msgid "Select Region"
 msgstr "Odabir regije"
 
-#: data/resources/ui/pages/restart.blp
 msgid "Restarting"
 msgstr "Ponovno pokretanje"
 
-#: data/resources/ui/pages/software.blp
 msgid "Additional Software"
 msgstr "Dodatnih programi"
 
-#: data/resources/ui/pages/user.blp
 msgid "User Account"
 msgstr "Korisnički Račun"
 
 #. Translators: Used with entry field for User's name
-#: data/resources/ui/pages/user.blp
 msgid "Name"
 msgstr "Ime"
 
 #. Translators: Placeholder in user name entry field
-#: data/resources/ui/pages/user.blp
 msgid "Enter a Name"
 msgstr "Upišite ime"
 
 #. Translators: Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
 msgstr "Automatska prijava"
 
 #. Translators: Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.blp
 msgid "Password"
 msgstr "Loznka"
 
 #. Translators: Placeholder in password entry field
-#: data/resources/ui/pages/user.blp
 msgid "Enter a Password"
 msgstr "Upišite lozinku"
 
-#: data/resources/ui/pages/welcome.blp
 msgid "Welcome"
 msgstr ""
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#: data/resources/ui/pages/welcome.blp
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr ""
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#: data/resources/ui/widgets/device_row.blp
 msgid "Unnamed Partition"
 msgstr "Neimenovana particija"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
-#: data/resources/ui/widgets/device_row.blp
 msgid "Not enough space for installation"
 msgstr "Premalo prostora za instalaciju"
 
