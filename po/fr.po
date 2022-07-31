@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-26 01:19+0100\n"
+"POT-Creation-Date: 2022-07-31 14:44+0200\n"
 "PO-Revision-Date: 2022-05-06 23:01+0200\n"
 "Last-Translator: A. Pinsard <apinsard@protonmail.com>\n"
 "Language-Team: French - France <apinsard@protonmail.com>\n"
@@ -19,173 +19,277 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Gtranslator 42.0\n"
 
+#: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
 msgstr "Installeur de systèmes"
 
-#~ msgid "Install an Operating System"
-#~ msgstr "Installer un système d'exploitation"
+#: data/com.github.p3732.OS-Installer.desktop.in
+#: data/com.github.p3732.OS-Installer.appdata.xml.in
+msgid "Install an Operating System"
+msgstr "Installer un système d'exploitation"
 
-#~ msgid ""
-#~ "Stopping a running installation will leave the disk in an undefined state "
-#~ "that might potentially be harmful"
-#~ msgstr ""
-#~ "Arrêter une installation en cours va laisser le disque dans un état "
-#~ "indéterminé, ce qui est potentiellement dangereux"
+#. Translators: Shown if user wants to close window with running installation
+#: data/resources/ui/confirm_quit_popup.blp
+msgid ""
+"Stopping a running installation will leave the disk in an undefined state "
+"that might potentially be harmful"
+msgstr ""
+"Arrêter une installation en cours va laisser le disque dans un état "
+"indéterminé, ce qui est potentiellement dangereux"
 
-#~ msgid "_Continue Installation"
-#~ msgstr "_Continuer l'Installation"
+#. Translators: Underscore can not be the same as for 'Stop Installation'.
+#: data/resources/ui/confirm_quit_popup.blp
+msgid "_Continue Installation"
+msgstr "_Continuer l'Installation"
 
-#~ msgid "_Stop Installation"
-#~ msgstr "_Arrêter Installation"
+#. Translators: Underscore can not be the same as for 'Continue Installation'.
+#: data/resources/ui/confirm_quit_popup.blp
+msgid "_Stop Installation"
+msgstr "_Arrêter Installation"
 
-#~ msgid "Confirmation"
-#~ msgstr "Confirmer"
+#: data/resources/ui/pages/confirm.blp
+msgid "Confirmation"
+msgstr "Confirmer"
 
-#~ msgid "This will delete all data on"
-#~ msgstr "Cela supprimera toutes les données sur"
+#. Translators: Followed by a disk or partition name
+#: data/resources/ui/pages/confirm.blp
+msgid "This will delete all data on"
+msgstr "Cela supprimera toutes les données sur"
 
-#~ msgid "_Confirm"
-#~ msgstr "_Valider"
+#. Translators: Button label to confirm disk deletion
+#. Translators: On button.
+#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
+msgid "_Confirm"
+msgstr "_Valider"
 
-#~ msgid "Disk Selection"
-#~ msgstr "Sélection du disque"
+#: data/resources/ui/pages/disk.blp
+msgid "Disk Selection"
+msgstr "Sélection du disque"
 
-#~ msgid "Use Whole Disk"
-#~ msgstr "Utiliser le disque entier"
+#. Translators: Label to use whole disk rather than a single partition.
+#: data/resources/ui/pages/disk.blp
+msgid "Use Whole Disk"
+msgstr "Utiliser le disque entier"
 
-#~ msgid "Partitions"
-#~ msgstr "Partitions"
+#. Translators: Heading of list of partitions
+#: data/resources/ui/pages/disk.blp
+msgid "Partitions"
+msgstr "Partitions"
 
-#~ msgid "Selecting a partition is not possible."
-#~ msgstr "Sélectionner une partition est impossible."
+#. Translators: Shown if a disk is currently not compatible with the way a system was booted.
+#: data/resources/ui/pages/disk.blp
+msgid "Selecting a partition is not possible."
+msgstr "Sélectionner une partition est impossible."
 
-#~ msgid "The disk requires:"
-#~ msgstr "Le disque requiert:"
+#. Translators: Followed by a list of requirements
+#: data/resources/ui/pages/disk.blp
+msgid "The disk requires:"
+msgstr "Le disque requiert:"
 
-#~ msgid ""
-#~ "  • GPT partitioning\n"
-#~ "  • EFI partition"
-#~ msgstr ""
-#~ "  • Partitionnement GPT\n"
-#~ "  • Partition EFI"
+#. Translators: Technical terms, the abbreviations should not be translated.
+#: data/resources/ui/pages/disk.blp
+msgid ""
+"  • GPT partitioning\n"
+"  • EFI partition"
+msgstr ""
+"  • Partitionnement GPT\n"
+"  • Partition EFI"
 
-#~ msgid "  • BIOS boot partition"
-#~ msgstr "  • BIOS boot partition"
+#. Translators: Technical terms, the abbreviations should not be translated
+#: data/resources/ui/pages/disk.blp
+msgid "  • BIOS boot partition"
+msgstr "  • BIOS boot partition"
 
-#~ msgid "No Disks avaliable"
-#~ msgstr "Pas de disque disponible"
+#: data/resources/ui/pages/disk.blp
+msgid "No Disks avaliable"
+msgstr "Pas de disque disponible"
 
-#~ msgid "Connect a disk and reload this page."
-#~ msgstr "Connectez un disque et rechargez cette page."
+#: data/resources/ui/pages/disk.blp
+msgid "Connect a disk and reload this page."
+msgstr "Connectez un disque et rechargez cette page."
 
-#~ msgid "_Manage Disks"
-#~ msgstr "_Gérer les disques"
+#. Translators: Button label to open disk management tool.
+#: data/resources/ui/pages/disk.blp
+msgid "_Manage Disks"
+msgstr "_Gérer les disques"
 
-#~ msgid "Installation Complete"
-#~ msgstr "Installation terminée"
+#: data/resources/ui/pages/done.blp
+msgid "Installation Complete"
+msgstr "Installation terminée"
 
-#~ msgid "_Restart System"
-#~ msgstr "_Redémarrer le système"
+#. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
+#: data/resources/ui/pages/done.blp
+msgid "_Restart System"
+msgstr "_Redémarrer le système"
 
-#~ msgid "Restart _Later"
-#~ msgstr "Relancer _ultérieurement"
+#. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
+#: data/resources/ui/pages/done.blp
+msgid "Restart _Later"
+msgstr "Relancer _ultérieurement"
 
-#~ msgid "Disk Encryption"
-#~ msgstr "Chiffrement du disque"
+#: data/resources/ui/pages/encrypt.blp
+msgid "Disk Encryption"
+msgstr "Chiffrement du disque"
 
-#~ msgid "Encrypt Files"
-#~ msgstr "Chiffrer les fichiers"
+#. Translators: Used with option to enable disk encryption
+#: data/resources/ui/pages/encrypt.blp
+msgid "Encrypt Files"
+msgstr "Chiffrer les fichiers"
 
-#~ msgid "Encryption PIN"
-#~ msgstr "Code PIN de chiffrement"
+#. Translators: Description of entry field for pin/password used for disk encryption
+#: data/resources/ui/pages/encrypt.blp
+msgid "Encryption PIN"
+msgstr "Code PIN de chiffrement"
 
-#~ msgid ""
-#~ "Memorize this PIN well. Without it you will not be able to access your "
-#~ "files."
-#~ msgstr ""
-#~ "Retenez bien ce code PIN. Vous ne pourrez pas accéder à vos fichiers si "
-#~ "vous le perdez."
+#. Translators: Hint for disk encryption
+#: data/resources/ui/pages/encrypt.blp
+msgid ""
+"Memorize this PIN well. Without it you will not be able to access your files."
+msgstr ""
+"Retenez bien ce code PIN. Vous ne pourrez pas accéder à vos fichiers si vous "
+"le perdez."
 
-#~ msgid "PIN"
-#~ msgstr "Code PIN"
+#. Translators: Placeholder for disk encryption pin/password field
+#: data/resources/ui/pages/encrypt.blp
+msgid "PIN"
+msgstr "Code PIN"
 
-#~ msgid "_Continue"
-#~ msgstr "_Continuer"
+#. Translators: On button.
+#: data/resources/ui/pages/encrypt.blp
+#: data/resources/ui/pages/keyboard_layout.blp
+#: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
+#: data/resources/ui/pages/welcome.blp
+msgid "_Continue"
+msgstr "_Continuer"
 
-#~ msgid "Installation Failed"
-#~ msgstr "Installation échouée"
+#: data/resources/ui/pages/failed.blp
+msgid "Installation Failed"
+msgstr "Installation échouée"
 
-#~ msgid "Search for Help on the Internet"
-#~ msgstr "Chercher de l'aide sur Internet"
+#. Translators: Shown if installation fails.
+#: data/resources/ui/pages/failed.blp
+msgid "Search for Help on the Internet"
+msgstr "Chercher de l'aide sur Internet"
 
-#~ msgid "Installing"
-#~ msgstr "Installation"
+#: data/resources/ui/pages/install.blp
+msgid "Installing"
+msgstr "Installation"
 
-#~ msgid "Show Terminal Output"
-#~ msgstr "Afficher la sortie de la console"
+#. Translators: Hover information on toggle button that shows terminal output during installation.
+#: data/resources/ui/pages/install.blp
+msgid "Show Terminal Output"
+msgstr "Afficher la sortie de la console"
 
-#~ msgid "Internet Connection Check"
-#~ msgstr "Test de la connexion Internet"
+#: data/resources/ui/pages/internet.blp
+msgid "Internet Connection Check"
+msgstr "Test de la connexion Internet"
 
-#~ msgid "No connection."
-#~ msgstr "Pas de connexion."
+#: data/resources/ui/pages/internet.blp
+msgid "No connection."
+msgstr "Pas de connexion."
 
-#~ msgid "_Open Settings"
-#~ msgstr "_Ouvrir les paramètres"
+#. Translators: On button for opening wifi settings.
+#: data/resources/ui/pages/internet.blp
+msgid "_Open Settings"
+msgstr "_Ouvrir les paramètres"
 
-#~ msgid "Keyboard Layout Selection"
-#~ msgstr "Sélection de l'agencement du clavier"
+#: data/resources/ui/pages/keyboard_layout.blp
+msgid "Keyboard Layout Selection"
+msgstr "Sélection de l'agencement du clavier"
 
-#~ msgid "Test the Keyboard Layout Here"
-#~ msgstr "Tester l'agencement du clavier"
+#. Translators: Used as placeholder in a entry field to try out a keyboard layout
+#: data/resources/ui/pages/keyboard_layout.blp
+msgid "Test the Keyboard Layout Here"
+msgstr "Tester l'agencement du clavier"
 
-#~ msgid "Keyboard Language"
-#~ msgstr "Langue du clavier"
+#. Translators: Followed by a language name.
+#: data/resources/ui/pages/keyboard_layout.blp
+msgid "Keyboard Language"
+msgstr "Langue du clavier"
 
-#~ msgid "Adapt to Location"
-#~ msgstr "Adapter à la localisation"
+#: data/resources/ui/pages/locale.blp
+msgid "Adapt to Location"
+msgstr "Adapter à la localisation"
 
-#~ msgid "Timezone"
-#~ msgstr "Fuseau horaire"
+#. Translators: Presented next to the current Timezone.
+#: data/resources/ui/pages/locale.blp
+msgid "Timezone"
+msgstr "Fuseau horaire"
 
-#~ msgid "Formats"
-#~ msgstr "Formats"
+#. Translators: Presented next to the current Formats.
+#: data/resources/ui/pages/locale.blp
+msgid "Formats"
+msgstr "Formats"
 
-#~ msgid "Defines the default format used for dates, times, numbers, etc."
-#~ msgstr "Définit le format utilisé pour les dates, heures, nombres, etc."
+#. Translators: Description of what is covered by formats.
+#: data/resources/ui/pages/locale.blp
+msgid "Defines the default format used for dates, times, numbers, etc."
+msgstr "Définit le format utilisé pour les dates, heures, nombres, etc."
 
-#~ msgid "Select Location"
-#~ msgstr "Sélectionner une région"
+#. Translators: Above list of continents and countries
+#: data/resources/ui/pages/locale.blp
+msgid "Select Location"
+msgstr "Sélectionner une région"
 
-#~ msgid "Select Region"
-#~ msgstr "Sélectionner une langue"
+#. Translators: Above list of format locales
+#: data/resources/ui/pages/locale.blp
+msgid "Select Region"
+msgstr "Sélectionner une langue"
 
-#~ msgid "Restarting"
-#~ msgstr "Relancer"
+#: data/resources/ui/pages/restart.blp
+msgid "Restarting"
+msgstr "Relancer"
 
-#~ msgid "Additional Software"
-#~ msgstr "Programmes additionnels"
+#: data/resources/ui/pages/software.blp
+msgid "Additional Software"
+msgstr "Programmes additionnels"
 
-#~ msgid "User Account"
-#~ msgstr "Compte utilisateur"
+#: data/resources/ui/pages/user.blp
+msgid "User Account"
+msgstr "Compte utilisateur"
 
-#~ msgid "Name"
-#~ msgstr "Nom"
+#. Translators: Used with entry field for User's name
+#: data/resources/ui/pages/user.blp
+msgid "Name"
+msgstr "Nom"
 
-#~ msgid "Enter a Name"
-#~ msgstr "Entrez un nom"
+#. Translators: Placeholder in user name entry field
+#: data/resources/ui/pages/user.blp
+msgid "Enter a Name"
+msgstr "Entrez un nom"
 
-#~ msgid "Automatic Login"
-#~ msgstr "Connexion automatique"
+#. Translators: Used with option to enable automatic login of user upon booting
+#: data/resources/ui/pages/user.blp
+msgid "Automatic Login"
+msgstr "Connexion automatique"
 
-#~ msgid "Password"
-#~ msgstr "Mot de passe"
+#. Translators: Used with entry field for setting a password for new user
+#: data/resources/ui/pages/user.blp
+msgid "Password"
+msgstr "Mot de passe"
 
-#~ msgid "Enter a Password"
-#~ msgstr "Entrez un mot de passe"
+#. Translators: Placeholder in password entry field
+#: data/resources/ui/pages/user.blp
+msgid "Enter a Password"
+msgstr "Entrez un mot de passe"
 
-#~ msgid "Unnamed Partition"
-#~ msgstr "Partition sans nom"
+#: data/resources/ui/pages/welcome.blp
+msgid "Welcome"
+msgstr ""
 
-#~ msgid "Not enough space for installation"
-#~ msgstr "Pas assez d'espace disque pour l'installation"
+#. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
+#: data/resources/ui/pages/welcome.blp
+msgid ""
+"This application will guide you through the installation of {} onto your "
+"system."
+msgstr ""
+
+#. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
+#: data/resources/ui/widgets/device_row.blp
+msgid "Unnamed Partition"
+msgstr "Partition sans nom"
+
+#. Translators: Shown for partitions that are not big enough to be installed on
+#: data/resources/ui/widgets/device_row.blp
+msgid "Not enough space for installation"
+msgstr "Pas assez d'espace disque pour l'installation"
