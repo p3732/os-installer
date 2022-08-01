@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-07-31 12:54+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-01 13:19+0000\n"
+"Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/hr/>\n"
 "Language: hr\n"
@@ -34,7 +34,7 @@ msgid ""
 "that might potentially be harmful"
 msgstr ""
 "Zaustavljanje pokrenute instalacije će ostaviti disk u nedefiniranom stanju "
-"koje bi moglo biti štetno "
+"koje bi moglo biti štetno"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 msgid "_Continue Installation"
@@ -69,7 +69,7 @@ msgstr "Particija"
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
-msgstr "Odabir particije nije moguć. "
+msgstr "Odabir particije nije moguć."
 
 #. Translators: Followed by a list of requirements
 msgid "The disk requires:"
@@ -91,7 +91,7 @@ msgid "No Disks avaliable"
 msgstr "Nema dostupnih diskova"
 
 msgid "Connect a disk and reload this page."
-msgstr "Spojite disk i ponovno učitajte stranicu"
+msgstr "Spojite disk i ponovno učitajte stranicu."
 
 #. Translators: Button label to open disk management tool.
 msgid "_Manage Disks"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-07-31 12:55+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-01 13:19+0000\n"
+"Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/sv/>\n"
 "Language: sv\n"
@@ -78,8 +78,8 @@ msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
-"• GPT-partitionering\n"
-" • EFI-partition"
+"  • GPT-partitionering\n"
+"  • EFI-partition"
 
 #. Translators: Technical terms, the abbreviations should not be translated
 msgid "  • BIOS boot partition"
@@ -150,7 +150,7 @@ msgid "Internet Connection Check"
 msgstr "Kontrollerar internetanslutningen"
 
 msgid "No connection."
-msgstr "Ingen anslutning"
+msgstr "Ingen anslutning."
 
 #. Translators: On button for opening wifi settings.
 msgid "_Open Settings"
@@ -220,18 +220,15 @@ msgstr "Lösenord"
 msgid "Enter a Password"
 msgstr "Ange ett lösenord"
 
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Välkommen"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+"Den här applikationen guidar dig genom installationen av {} på din dator."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"

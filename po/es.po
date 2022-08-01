@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-07-31 12:54+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-01 13:19+0000\n"
+"Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/es/>\n"
 "Language: es\n"
@@ -221,18 +221,14 @@ msgstr "Contraseña"
 msgid "Enter a Password"
 msgstr "Ingresa una contraseña"
 
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Bienvenido"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+msgstr "Esta aplicación te guiará en la instalación de {} en tu sistema."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
