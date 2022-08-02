@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-08-01 16:40+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-02 17:19+0000\n"
+"Last-Translator: Henri <contact@hen.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/et/>\n"
 "Language: et\n"
@@ -20,15 +20,13 @@ msgstr ""
 "X-Generator: Weblate 4.14-dev\n"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
-#, fuzzy
 msgid "OS-Installer"
 msgstr "OS-Installer"
 
 #: data/com.github.p3732.OS-Installer.desktop.in
 #: data/com.github.p3732.OS-Installer.appdata.xml.in
-#, fuzzy
 msgid "Install an Operating System"
-msgstr "Install an Operating System"
+msgstr "Paigaldage opsüsteemi"
 
 #. Translators: Shown if user wants to close window with running installation
 #: data/resources/ui/confirm_quit_popup.blp
