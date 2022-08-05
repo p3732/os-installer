@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-07-31 12:55+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2022-08-05 00:18+0000\n"
+"Last-Translator: rebokdev <rebokbusiness@petalmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/pl/>\n"
 "Language: pl\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 msgid "_Continue Installation"
-msgstr "_Kontynuuj  instalację"
+msgstr "_Kontynuuj instalację"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 msgid "_Stop Installation"
@@ -62,7 +62,7 @@ msgstr "Partycje"
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
-msgstr "Wybranie partycji nie jest możliwe"
+msgstr "Wybranie partycji nie jest możliwe."
 
 #. Translators: Followed by a list of requirements
 msgid "The disk requires:"
@@ -128,7 +128,7 @@ msgid "_Continue"
 msgstr "_Kontynuuj"
 
 msgid "Installation Failed"
-msgstr "Instalacja nie przebiegła pomyślnie."
+msgstr "Instalacja nie przebiegła pomyślnie"
 
 #. Translators: Shown if installation fails.
 msgid "Search for Help on the Internet"
@@ -214,18 +214,14 @@ msgstr "Hasło"
 msgid "Enter a Password"
 msgstr "Wpisz hasło"
 
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Witaj"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+msgstr "Ta aplikacja poprowadzi cię w ci w instalacji {} na twoim komputerze."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
