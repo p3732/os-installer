@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-31 14:44+0200\n"
-"PO-Revision-Date: 2022-08-02 17:19+0000\n"
+"PO-Revision-Date: 2022-08-05 00:18+0000\n"
 "Last-Translator: Henri <contact@hen.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/os-installer/"
 "os-installer/et/>\n"
@@ -30,150 +30,126 @@ msgstr "Paigaldage opsüsteemi"
 
 #. Translators: Shown if user wants to close window with running installation
 #: data/resources/ui/confirm_quit_popup.blp
-#, fuzzy
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
 msgstr ""
-"Stopping a running installation will leave the disk in an undefined state "
-"that might potentially be harmful"
+"Käimasoleva paigalduse peatamine jätab ketta määramata olekusse, mis võib "
+"olla potentsiaalselt kahjulik"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
 #: data/resources/ui/confirm_quit_popup.blp
-#, fuzzy
 msgid "_Continue Installation"
-msgstr "_Continue Installation"
+msgstr "_Jätka paigaldamist"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
 #: data/resources/ui/confirm_quit_popup.blp
-#, fuzzy
 msgid "_Stop Installation"
-msgstr "_Stop Installation"
+msgstr "_Peata paigaldamine"
 
 #: data/resources/ui/pages/confirm.blp
-#, fuzzy
 msgid "Confirmation"
-msgstr "Confirmation"
+msgstr "Kinnitus"
 
 #. Translators: Followed by a disk or partition name
 #: data/resources/ui/pages/confirm.blp
-#, fuzzy
 msgid "This will delete all data on"
-msgstr "This will delete all data on"
+msgstr "See kustutab kõik andmed"
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
 #: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "_Confirm"
-msgstr "_Confirm"
+msgstr "_Kinnita"
 
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Disk Selection"
-msgstr "Disk Selection"
+msgstr "Ketta valik"
 
 #. Translators: Label to use whole disk rather than a single partition.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Use Whole Disk"
-msgstr "Use Whole Disk"
+msgstr "Kasuta tervet ketast"
 
 #. Translators: Heading of list of partitions
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Partitions"
-msgstr "Partitions"
+msgstr "Partitsioonid"
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Selecting a partition is not possible."
-msgstr "Selecting a partition is not possible."
+msgstr "Partitsiooni valimine ei ole võimalik."
 
 #. Translators: Followed by a list of requirements
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "The disk requires:"
-msgstr "The disk requires:"
+msgstr "Ketas vajab:"
 
 #. Translators: Technical terms, the abbreviations should not be translated.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
-"  • GPT partitioning\n"
-"  • EFI partition"
+"  • GPT partitsioneerimist\n"
+"  • EFI partitsiooni"
 
 #. Translators: Technical terms, the abbreviations should not be translated
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "  • BIOS boot partition"
-msgstr "  • BIOS boot partition"
+msgstr "  • BIOS boot partitsiooni"
 
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "No Disks avaliable"
-msgstr "No Disks avaliable"
+msgstr "Ühtegi ketast ei ole saadaval"
 
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "Connect a disk and reload this page."
-msgstr "Connect a disk and reload this page."
+msgstr "Ühenda ketas ja värskenda see lehekülg."
 
 #. Translators: Button label to open disk management tool.
 #: data/resources/ui/pages/disk.blp
-#, fuzzy
 msgid "_Manage Disks"
-msgstr "_Manage Disks"
+msgstr "_Ketaste haldamine"
 
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "Installation Complete"
-msgstr "Installation Complete"
+msgstr "Paigaldamine lõpetatud"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "_Restart System"
-msgstr "_Restart System"
+msgstr "_Taaskäivita süsteem"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
 #: data/resources/ui/pages/done.blp
-#, fuzzy
 msgid "Restart _Later"
-msgstr "Restart _Later"
+msgstr "Taaskäivita _hiljem"
 
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Disk Encryption"
-msgstr "Disk Encryption"
+msgstr "Ketta krüpteerimine"
 
 #. Translators: Used with option to enable disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Encrypt Files"
-msgstr "Encrypt Files"
+msgstr "Failide krüpteerimine"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "Encryption PIN"
-msgstr "Encryption PIN"
+msgstr "Krüpteerimise PIN-kood"
 
 #. Translators: Hint for disk encryption
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Memorize this PIN well. Without it you will not be able to access your files."
+"Jäta see PIN-kood hästi meelde. Ilma selleta ei pääse oma failidele ligi."
 
 #. Translators: Placeholder for disk encryption pin/password field
 #: data/resources/ui/pages/encrypt.blp
-#, fuzzy
 msgid "PIN"
 msgstr "PIN"
 
@@ -182,168 +158,137 @@ msgstr "PIN"
 #: data/resources/ui/pages/keyboard_layout.blp
 #: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid "_Continue"
-msgstr "_Continue"
+msgstr "_Jätka"
 
 #: data/resources/ui/pages/failed.blp
-#, fuzzy
 msgid "Installation Failed"
-msgstr "Installation Failed"
+msgstr "Paigaldamine ebaõnnestus"
 
 #. Translators: Shown if installation fails.
 #: data/resources/ui/pages/failed.blp
-#, fuzzy
 msgid "Search for Help on the Internet"
-msgstr "Search for Help on the Internet"
+msgstr "Otsi abi internetist"
 
 #: data/resources/ui/pages/install.blp
-#, fuzzy
 msgid "Installing"
-msgstr "Installing"
+msgstr "Paigaldamine"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
 #: data/resources/ui/pages/install.blp
-#, fuzzy
 msgid "Show Terminal Output"
-msgstr "Show Terminal Output"
+msgstr "Näita terminali väljundit"
 
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "Internet Connection Check"
-msgstr "Internet Connection Check"
+msgstr "Interneti-ühenduse kontroll"
 
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "No connection."
-msgstr "No connection."
+msgstr "Ei ole võrguga ühendatud."
 
 #. Translators: On button for opening wifi settings.
 #: data/resources/ui/pages/internet.blp
-#, fuzzy
 msgid "_Open Settings"
-msgstr "_Open Settings"
+msgstr "_Ava sätted"
 
 #: data/resources/ui/pages/keyboard_layout.blp
-#, fuzzy
 msgid "Keyboard Layout Selection"
-msgstr "Keyboard Layout Selection"
+msgstr "Klaviatuuri paigutuse valik"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
 #: data/resources/ui/pages/keyboard_layout.blp
-#, fuzzy
 msgid "Test the Keyboard Layout Here"
-msgstr "Test the Keyboard Layout Here"
+msgstr "Testi klaviatuuri siin"
 
 #. Translators: Followed by a language name.
 #: data/resources/ui/pages/keyboard_layout.blp
-#, fuzzy
 msgid "Keyboard Language"
-msgstr "Keyboard Language"
+msgstr "Sisestuskeel"
 
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Adapt to Location"
-msgstr "Adapt to Location"
+msgstr "Asukoha sätted"
 
 #. Translators: Presented next to the current Timezone.
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Timezone"
-msgstr "Timezone"
+msgstr "Ajavöönd"
 
 #. Translators: Presented next to the current Formats.
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Formats"
-msgstr "Formats"
+msgstr "Aja vorming"
 
 #. Translators: Description of what is covered by formats.
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Defines the default format used for dates, times, numbers, etc."
-msgstr "Defines the default format used for dates, times, numbers, etc."
+msgstr "Määratleb kuupäevade, kellaaegade, numbrite jne vaikimisi vormingu."
 
 #. Translators: Above list of continents and countries
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Select Location"
-msgstr "Select Location"
+msgstr "Vali asukoht"
 
 #. Translators: Above list of format locales
 #: data/resources/ui/pages/locale.blp
-#, fuzzy
 msgid "Select Region"
-msgstr "Select Region"
+msgstr "Vali piirkond"
 
 #: data/resources/ui/pages/restart.blp
-#, fuzzy
 msgid "Restarting"
-msgstr "Restarting"
+msgstr "Taaskäivitamine"
 
 #: data/resources/ui/pages/software.blp
-#, fuzzy
 msgid "Additional Software"
-msgstr "Additional Software"
+msgstr "Lisa tarkvara"
 
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "User Account"
-msgstr "User Account"
+msgstr "Kasutajakonto"
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Name"
-msgstr "Name"
+msgstr "Nimi"
 
 #. Translators: Placeholder in user name entry field
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Enter a Name"
-msgstr "Enter a Name"
+msgstr "Sisesta nimi"
 
 #. Translators: Used with option to enable automatic login of user upon booting
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Automatic Login"
-msgstr "Automatic Login"
+msgstr "Automaatne sisselogimine"
 
 #. Translators: Used with entry field for setting a password for new user
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Password"
-msgstr "Password"
+msgstr "Parool"
 
 #. Translators: Placeholder in password entry field
 #: data/resources/ui/pages/user.blp
-#, fuzzy
 msgid "Enter a Password"
-msgstr "Enter a Password"
+msgstr "Sisesta parool"
 
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid "Welcome"
-msgstr "Welcome"
+msgstr "Tere tulemast"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
 #: data/resources/ui/pages/welcome.blp
-#, fuzzy
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr ""
-"This application will guide you through the installation of {} onto your "
-"system."
+msgstr "See rakendus juhendab teid läbi {} paigaldamise."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 #: data/resources/ui/widgets/device_row.blp
-#, fuzzy
 msgid "Unnamed Partition"
-msgstr "Unnamed Partition"
+msgstr "Nimetu partitsioon"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
 #: data/resources/ui/widgets/device_row.blp
-#, fuzzy
 msgid "Not enough space for installation"
-msgstr "Not enough space for installation"
+msgstr "Paigaldamiseks ei ole piisavalt ruumi"
