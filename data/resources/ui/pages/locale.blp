@@ -1,181 +1,177 @@
 using Gtk 4.0;
 using Adw 1;
 
-template LocalePage : Box {
+template LocalePage : Stack {
   name: _("Adapt to Location");
-  orientation: vertical;
+  vhomogeneous: false;
+  transition-type: crossfade;
 
-  Stack overview_stack {
-    vhomogeneous: false;
-    transition-type: crossfade;
+  StackPage {
+    name: "overview";
+    child:
+    Box {
+      orientation: vertical;
+      spacing: 12;
 
-    StackPage {
-      name: "overview";
-      child:
-      Box {
-        orientation: vertical;
-        spacing: 12;
+      ListBox {
+        selection-mode: none;
+        row-activated => overview_row_activated();
+        styles ["boxed-list"]
 
-        ListBox {
-          selection-mode: none;
-          row-activated => overview_row_activated();
-          styles ["boxed-list"]
-
-          Adw.ActionRow {
-            name: "timezone";
-            activatable: true;
-            focusable: true;
-            selectable: false;
-            /* Translators: Presented next to the current Timezone. */
-            title: _("Timezone");
-
-            Box {
-              spacing: 12;
-
-              Label timezone_label {
-                ellipsize: end;
-                hexpand: true;
-                lines: 2;
-                wrap: true;
-                xalign: 1;
-              }
-
-              Image {
-                icon-name: "emblem-system-symbolic";
-              }
-            }
-          }
-
-          Adw.ActionRow {
-            name: "formats";
-            activatable: true;
-            focusable: true;
-            selectable: false;
-            /* Translators: Presented next to the current Formats. */
-            title: _("Formats");
-            /* Translators: Description of what is covered by formats. */
-            subtitle: _("Defines the default format used for dates, times, numbers, etc.");
-
-            Box {
-              spacing: 12;
-
-              Label formats_label {
-                ellipsize: end;
-                hexpand: true;
-                lines: 2;
-                wrap: true;
-                xalign: 1;
-              }
-
-              Image {
-                icon-name: "emblem-system-symbolic";
-              }
-            }
-          }
-        }
-
-        Button {
-          /* Translators: On button. */
-          label: _("_Confirm");
+        Adw.ActionRow {
+          name: "timezone";
+          activatable: true;
           focusable: true;
-          receives-default: true;
-          halign: center;
-          use-underline: true;
-          clicked => confirmed();
-          styles ["suggested-action", "pill"]
-        }
-      };
-    }
+          selectable: false;
+          /* Translators: Presented next to the current Timezone. */
+          title: _("Timezone");
 
-    StackPage {
-      name: "list";
-      child:
+          Box {
+            spacing: 12;
+
+            Label timezone_label {
+              ellipsize: end;
+              hexpand: true;
+              lines: 2;
+              wrap: true;
+              xalign: 1;
+            }
+
+            Image {
+              icon-name: "emblem-system-symbolic";
+            }
+          }
+        }
+
+        Adw.ActionRow {
+          name: "formats";
+          activatable: true;
+          focusable: true;
+          selectable: false;
+          /* Translators: Presented next to the current Formats. */
+          title: _("Formats");
+          /* Translators: Description of what is covered by formats. */
+          subtitle: _("Defines the default format used for dates, times, numbers, etc.");
+
+          Box {
+            spacing: 12;
+
+            Label formats_label {
+              ellipsize: end;
+              hexpand: true;
+              lines: 2;
+              wrap: true;
+              xalign: 1;
+            }
+
+            Image {
+              icon-name: "emblem-system-symbolic";
+            }
+          }
+        }
+      }
+
+      Button {
+        /* Translators: On button. */
+        label: _("_Confirm");
+        focusable: true;
+        receives-default: true;
+        halign: center;
+        use-underline: true;
+        clicked => confirmed();
+        styles ["suggested-action", "pill"]
+      }
+    };
+  }
+
+  StackPage {
+    name: "list";
+    child:
+    Box {
+      orientation: vertical;
+      spacing: 12;
+
+      Stack text_stack {
+        valign: start;
+
+        StackPage {
+          name: "timezone";
+          child:
+          Label {
+            valign: start;
+            /* Translators: Above list of continents and countries */
+            label: _("Select Location");
+            justify: center;
+            wrap: true;
+            styles ["heading"]
+          };
+        }
+
+        StackPage {
+          name: "formats";
+          child:
+          Label {
+            valign: start;
+            /* Translators: Above list of format locales */
+            label: _("Select Region");
+            justify: center;
+            wrap: true;
+            styles ["heading"]
+          };
+        }
+      }
+
       Box {
-        orientation: vertical;
-        spacing: 12;
+        valign: start;
+        overflow: hidden;
+        styles ["card", "scrollable-container"]
 
-        Stack text_stack {
-          valign: start;
+        ScrolledWindow {
+          hexpand: true;
+          propagate-natural-height: true;
+          child:
+          Stack list_stack {
+            vhomogeneous: false;
+            transition-type: crossfade;
 
-          StackPage {
-            name: "timezone";
-            child:
-            Label {
-              valign: start;
-              /* Translators: Above list of continents and countries */
-              label: _("Select Location");
-              justify: center;
-              wrap: true;
-              styles ["heading"]
-            };
-          }
+            StackPage {
+              name: "timezone_continents";
+              child:
+              ListBox continents_list {
+                row-activated => timezone_selected();
+                styles ["boxed-list"]
+              };
+            }
 
-          StackPage {
-            name: "formats";
-            child:
-            Label {
-              valign: start;
-              /* Translators: Above list of format locales */
-              label: _("Select Region");
-              justify: center;
-              wrap: true;
-              styles ["heading"]
-            };
-          }
+            StackPage {
+              name: "timezone_countries";
+              child:
+              ListBox countries_list {
+                row-activated => timezone_selected();
+                styles ["boxed-list"]
+              };
+            }
+
+            StackPage {
+              name: "timezone_subzones";
+              child:
+              ListBox subzones_list {
+                row-activated => timezone_selected();
+                styles ["boxed-list"]
+              };
+            }
+
+            StackPage {
+              name: "formats";
+              child:
+              ListBox formats_list {
+                row-activated => formats_selected();
+                styles ["boxed-list"]
+              };
+            }
+          };
         }
-
-        Box {
-          valign: start;
-          overflow: hidden;
-          styles ["card", "scrollable-container"]
-
-          ScrolledWindow {
-            hexpand: true;
-            propagate-natural-height: true;
-            child:
-            Stack list_stack {
-              vhomogeneous: false;
-              transition-type: crossfade;
-
-              StackPage {
-                name: "timezone_continents";
-                child:
-                ListBox continents_list {
-                  row-activated => timezone_selected();
-                  styles ["boxed-list"]
-                };
-              }
-
-              StackPage {
-                name: "timezone_countries";
-                child:
-                ListBox countries_list {
-                  row-activated => timezone_selected();
-                  styles ["boxed-list"]
-                };
-              }
-
-              StackPage {
-                name: "timezone_subzones";
-                child:
-                ListBox subzones_list {
-                  row-activated => timezone_selected();
-                  styles ["boxed-list"]
-                };
-              }
-
-              StackPage {
-                name: "formats";
-                child:
-                ListBox formats_list {
-                  row-activated => formats_selected();
-                  styles ["boxed-list"]
-                };
-              }
-            };
-          }
-        }
-      };
-    }
+      }
+    };
   }
 }

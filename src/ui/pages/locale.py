@@ -22,11 +22,10 @@ def create_location_row(location):
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
-class LocalePage(Gtk.Box, Page):
+class LocalePage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
     image_name = 'globe-symbolic'
 
-    overview_stack = Gtk.Template.Child()
     text_stack = Gtk.Template.Child()
     list_stack = Gtk.Template.Child()
 
@@ -51,7 +50,7 @@ class LocalePage(Gtk.Box, Page):
     continents_list_loaded = False
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        Gtk.Stack.__init__(self, **kwargs)
 
         self.formats_list.bind_model(
             self.formats_list_model, lambda f: ProgressRow(f.name, f.locale))
@@ -69,7 +68,7 @@ class LocalePage(Gtk.Box, Page):
                     continents.append(continent)            
             reset_model(self.continents_list_model, continents)
 
-        self.overview_stack.set_visible_child_name('list')
+        self.set_visible_child_name('list')
         self.list_stack.set_visible_child_name('timezone_continents')
         self.text_stack.set_visible_child_name('timezone')
 
@@ -85,7 +84,7 @@ class LocalePage(Gtk.Box, Page):
             formats = get_formats()
             reset_model(self.formats_list_model, formats)
 
-        self.overview_stack.set_visible_child_name('list')
+        self.set_visible_child_name('list')
         self.text_stack.set_visible_child_name('formats')
         self.list_stack.set_visible_child_name('formats')
 
@@ -105,7 +104,7 @@ class LocalePage(Gtk.Box, Page):
         self._show_overview()
 
     def _show_overview(self):
-        self.overview_stack.set_visible_child_name('overview')
+        self.set_visible_child_name('overview')
         self.can_navigate_backward = False
 
     ### callbacks ###
