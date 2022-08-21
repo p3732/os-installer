@@ -73,7 +73,7 @@ def _get_existing_layouts(language_code):
         layouts = xkb_info.get_layouts_for_language(fallback_code)
         return layouts
     else:
-        print(f'Language {language} has no keyboard layouts! Please report this.')
+        print(f'Language {language_code} has no keyboard layouts! Please report this.')
         return ['us']
 
 
