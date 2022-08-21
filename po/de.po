@@ -2,7 +2,6 @@
 # Copyright (C) 2021 THE OS-Installer'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the os-installer package.
 # Automatically generated, 2021.
-# p3732 <650-p3732@users.noreply.gitlab.gnome.org>, 2021.
 # Peter Eisenmann <p3732@getgoogleoff.me>, 2022.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022.
 #
