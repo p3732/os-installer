@@ -26,7 +26,7 @@ class LanguagePage(Gtk.Box, Page):
     all_shown = False
 
     def __init__(self, **kwargs):
-        Gtk.Overlay.__init__(self, **kwargs)
+        Gtk.Box.__init__(self, **kwargs)
 
         # models
         self.default_list.bind_model(self.default_model, lambda o: LanguageRow(o))
