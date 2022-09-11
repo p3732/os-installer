@@ -2,9 +2,15 @@ using Gtk 4.0;
 using Adw 1;
 
 template UserPage : Box {
-  name: _("User Account");
   orientation: vertical;
   spacing: 12;
+
+  Label {
+    label: _("User Account");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   ListBox {
     selection-mode: none;

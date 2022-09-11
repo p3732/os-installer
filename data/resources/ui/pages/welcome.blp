@@ -2,9 +2,15 @@ using Gtk 4.0;
 using Adw 1;
 
 template WelcomePage : Box {
-  name: _("Welcome");
   orientation: vertical;
   spacing: 30;
+
+  Label {
+    label: _("Welcome");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Adw.Clamp {
     margin-top: 18;

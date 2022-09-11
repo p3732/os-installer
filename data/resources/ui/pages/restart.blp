@@ -1,9 +1,15 @@
 using Gtk 4.0;
 
 template RestartPage : Box {
-  name: _("Restarting");
   orientation: vertical;
   spacing: 18;
+
+  Label {
+    label: _("Restarting");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Spinner spinner {
     valign: center;

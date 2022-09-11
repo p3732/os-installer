@@ -1,9 +1,15 @@
 using Gtk 4.0;
 
 template FailedPage : Box {
-  name: _("Installation Failed");
   orientation: vertical;
   spacing: 12;
+
+  Label {
+    label: _("Installation Failed");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Box {
     overflow: hidden;

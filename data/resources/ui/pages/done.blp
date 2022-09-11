@@ -1,8 +1,14 @@
 using Gtk 4.0;
 
 template DonePage : Box {
-  name: _("Installation Complete");
   orientation: vertical;
+
+  Label {
+    label: _("Installation Complete");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Box {
     halign: center;

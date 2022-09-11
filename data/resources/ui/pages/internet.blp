@@ -1,15 +1,21 @@
 using Gtk 4.0;
 
 template InternetPage : Box {
-  name: _("Internet Connection Check");
   orientation: vertical;
   margin-top: 12;
   spacing: 18;
 
   Label {
+    label: _("Internet Connection Check");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
+
+  Label {
     label:_("No connection.");
     justify: center;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Button {

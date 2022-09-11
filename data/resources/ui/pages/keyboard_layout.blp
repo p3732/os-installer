@@ -2,9 +2,15 @@ using Gtk 4.0;
 using Adw 1;
 
 template KeyboardLayoutPage : Box {
-  name: _("Keyboard Layout Selection");
   orientation: vertical;
   spacing: 12;
+
+  Label {
+    label: _("Keyboard Layout Selection");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Entry {
     focusable: true;

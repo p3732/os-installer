@@ -2,9 +2,15 @@ using Gtk 4.0;
 using Adw 1;
 
 template ConfirmPage : Box {
-  name: _("Confirmation");
   orientation: vertical;
   spacing: 18;
+
+  Label {
+    label: _("Confirmation");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Box {
     valign: end;

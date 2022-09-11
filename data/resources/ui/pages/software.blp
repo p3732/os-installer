@@ -1,9 +1,15 @@
 using Gtk 4.0;
 
 template SoftwarePage : Box {
-  name: _("Additional Software");
   orientation: vertical;
   spacing: 12;
+
+  Label {
+    label: _("Additional Software");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Box {
     overflow: hidden;

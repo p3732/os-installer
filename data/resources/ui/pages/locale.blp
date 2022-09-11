@@ -2,9 +2,15 @@ using Gtk 4.0;
 using Adw 1;
 
 template LocalePage : Stack {
-  name: _("Adapt to Location");
   vhomogeneous: false;
   transition-type: crossfade;
+
+  Label {
+    label: _("Adapt to Location");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   StackPage {
     name: "overview";

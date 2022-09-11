@@ -49,17 +49,11 @@ class LanguageRow(Adw.ActionRow):
 class PageWrapper(Gtk.Box):
     __gtype_name__ = 'PageWrapper'
 
-    title = Gtk.Template.Child()
     content = Gtk.Template.Child()
 
     def __init__(self, page, **kwargs):
         super().__init__(**kwargs)
 
-        page_name = page.get_name()
-        if page_name and len(page_name) > 0:
-            self.title.set_label(page_name)
-        else:
-            self.title.set_visible(False)
         self.content.set_child(page)
 
     def get_page(self):

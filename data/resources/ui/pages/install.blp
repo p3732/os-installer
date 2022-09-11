@@ -1,9 +1,15 @@
 using Gtk 4.0;
 
 template InstallPage : Box {
-  name: _("Installing");
   orientation: vertical;
   spacing: 12;
+
+  Label {
+    label: _("Installing");
+    justify: center;
+    wrap: true;
+    styles ["title-4"]
+  }
 
   Stack stack {
     vexpand: true;
