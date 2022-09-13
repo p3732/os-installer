@@ -6,14 +6,8 @@ template PageWrapper : Box {
     maximum-size: 420;
     tightening-threshold: 420;
     child:
-    Box {
-      orientation: vertical;
-      spacing: 12;
-      styles ["clamped"]
-
-      Adw.Bin content {
-        hexpand: true;
-      }
+    Adw.Bin content {
+      hexpand: true;
     };
   }
 }
