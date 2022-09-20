@@ -1,116 +1,145 @@
 using Gtk 4.0;
 using Adw 1;
 
-template DiskPage : Box {
-  orientation: vertical;
-  spacing: 12;
-  vexpand:true;
+template DiskPage : Stack {
+  hexpand: true;
+  vhomogeneous: false;
+  transition-type: crossfade;
 
-  Label {
-    label: _("Disk Selection");
-    justify: center;
-    wrap: true;
-    styles ["title-4"]
-  }
+  StackPage {
+    name: "disks";
+    child: Box {
+      orientation: vertical;
+      spacing: 12;
 
-  Box {
-    vexpand:true;
-
-    Box {
-      overflow: hidden;
-      valign: start;
-      styles ["card", "scrollable-container"]
+      Label {
+        label: _("Disk Selection");
+        justify: center;
+        wrap: true;
+        styles ["heading"]
+      }
 
       ScrolledWindow {
         propagate-natural-height: true;
-        child:
-        Stack list_stack {
-          hexpand: true;
-          vhomogeneous: false;
-          transition-type: crossfade;
+        styles ["embedded", "separate-bottom"]
+        child: Box {
+          orientation: vertical;
+          spacing: 12;
 
-          StackPage {
-            name: "disks";
-            child:
-            ListBox disk_list {
-              receives-default: true;
-              valign: start;
-              row-activated => disk_selected();
-              styles ["boxed-list"]
-            };
+          ListBox disk_list {
+            selection-mode: none;
+            receives-default: true;
+            valign: start;
+            row-activated => disk_selected();
+            styles ["boxed-list"]
           }
 
-          StackPage {
-            name: "partitions";
-            child:
-            Box {
-              orientation: vertical;
-                
-              Label disk_label {
-                justify: center;
-                wrap: true;
-                styles ["title-4", "marginalized"]
+          Button {
+            /* Translators: Button label to open disk management tool. */
+            label: _("_Manage Disks");
+            focusable: true;
+            halign: center;
+            valign: end;
+            use-underline: true;
+            clicked => clicked_disks_button();
+            styles ["pill", "bottom-button"]
+          }
+        };
+      }
+    };
+  }
+
+  StackPage {
+    name: "partitions";
+    child: Box {
+      orientation: vertical;
+      spacing: 12;
+
+      Label disk_label {
+        justify: center;
+        wrap: true;
+        styles ["heading"]
+      }
+
+      ScrolledWindow {
+        propagate-natural-height: true;
+        styles ["embedded"]
+        child: Box {
+          orientation: vertical;
+          spacing: 12;
+
+          ListBox {
+            selection-mode: none;
+            row-activated => use_whole_disk();
+            styles ["boxed-list"]
+
+            Adw.ActionRow whole_disk_row {
+              /* Translators: Label to use whole disk rather than a single partition. */
+              title: _("Use Whole Disk");
+              activatable: true;
+              focusable: true;
+              /*selectable: false; */
+
+              [prefix]
+              Label disk_size {
+                width-chars: 5;
+                max-width-chars: 7;
+                xalign: 1;
+                styles ["dim-label"]
               }
 
-              Separator {}
-
-              ListBox {
-                selection-mode: none;
-                row-activated => use_whole_disk();
-                styles ["boxed-list", "angular-first", "angular-last"]
-
-                Adw.ActionRow whole_disk_row {
-                  activatable: true;
-                  focusable: true;
-                  selectable: false;
-                  /* Translators: Label to use whole disk rather than a single partition. */
-                  title: _("Use Whole Disk");
-
-                  [prefix]
-                  Label disk_size {
-                    width-chars: 5;
-                    max-width-chars: 7;
-                    xalign: 1;
-                    styles ["dim-label"]
-                  }
-
-                  Image {
-                    icon-name: "go-next-symbolic";
-                  }
-                }
+              Image {
+                icon-name: "go-next-symbolic";
               }
+            }
+          }
 
-              Separator {}
+          Stack partition_stack {
+            vhomogeneous: false;
+            transition-type: crossfade;
 
-              Box partitions_section {
+            StackPage {
+              name: "available";
+              child: Box {
                 orientation: vertical;
-                  
+                spacing: 12;
+
                 Label {
                   /*Translators: Heading of list of partitions*/
                   label: _("Partitions");
                   justify: center;
                   wrap: true;
-                  styles ["heading", "marginalized"]
+                  styles ["heading"]
                 }
-
-                Separator {}
 
                 ListBox partition_list {
-                  selection-mode: none;
-                  visible: true;
+                  receives-default: true;
                   valign: start;
                   row-activated => use_partition();
-                  styles ["boxed-list", "angular-first"]
+                  styles ["boxed-list"]
                 }
-              }
+              };
+            }
 
-              Box missing_things_info {
-                visible: bind partitions_section.visible inverted bidirectional;
+            StackPage {
+              name: "no-partitions";
+              /* TODO: could probably use some more love */
+              child: Label {
+                valign: start;
+                justify: center;
+                label: _("Disk has no partitions.");
+              };
+            }
+
+            StackPage {
+              name: "no-boot-partition";
+              child: Box {
                 margin-start: 18;
                 margin-end: 18;
                 margin-top: 6;
                 margin-bottom: 6;
                 spacing: 18;
+                halign: center;
 
                 Image {
                   icon-name: "dialog-information-symbolic";
@@ -143,9 +172,8 @@ template DiskPage : Box {
 
                     StackPage {
                       name: "efi";
-                      child:
-                      Label {
-                        /* Translators: Technical terms, the abbreviations should not be translated. */
+                      child: Label {
+                        /* Translators: Bullet point listing. */
                         label: _("  • GPT partitioning\n  • EFI partition");
                         wrap: true;
                         xalign: 0;
@@ -155,9 +183,8 @@ template DiskPage : Box {
 
                     StackPage {
                       name: "bios";
-                      child:
-                      Label {
-                        /* Translators: Technical terms, the abbreviations should not be translated */
+                      child: Label {
+                        /* Translators: Bullet point listing. */
                         label: _("  • BIOS boot partition");
                         wrap: true;
                         xalign: 0;
@@ -166,31 +193,19 @@ template DiskPage : Box {
                     }
                   }
                 }
-              }
-            };
-          }
-
-          StackPage {
-            name: "no-disks";
-            child:
-            Adw.StatusPage {
-              title: _("No Disks avaliable");
-              description: _("Connect a disk and reload this page.");
-            };
+              };
+            }
           }
         };
       }
-    }
+    };
   }
 
-  Button {
-    /* Translators: Button label to open disk management tool. */
-    label: _("_Manage Disks");
-    focusable: true;
-    halign: center;
-    valign: end;
-    use-underline: true;
-    clicked => clicked_disks_button();
-    styles ["pill"]
+  StackPage {
+    name: "no-disks";
+    child: Adw.StatusPage {
+      title: _("No Disks avaliable");
+      description: _("Connect a disk and reload this page.");
+    };
   }
 }

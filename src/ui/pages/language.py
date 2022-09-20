@@ -10,11 +10,9 @@ from .widgets import reset_model, LanguageRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
-class LanguagePage(Gtk.Box, Page):
+class LanguagePage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
     image_name = 'language-symbolic'
-
-    stack = Gtk.Template.Child()
 
     default_list = Gtk.Template.Child()
     show_all_button = Gtk.Template.Child()
@@ -26,7 +24,7 @@ class LanguagePage(Gtk.Box, Page):
     all_shown = False
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        Gtk.Stack.__init__(self, **kwargs)
 
         # models
         self.default_list.bind_model(self.default_model, lambda o: LanguageRow(o))
@@ -45,7 +43,7 @@ class LanguagePage(Gtk.Box, Page):
         languages = language_provider.get_all_languages()
         reset_model(self.all_model, languages)
 
-        self.stack.set_visible_child_name('all')
+        self.set_visible_child_name('all')
         self.all_shown = True
 
     ### callbacks ###

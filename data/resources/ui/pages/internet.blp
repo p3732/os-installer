@@ -9,7 +9,7 @@ template InternetPage : Box {
     label: _("Internet Connection Check");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Label {
@@ -24,7 +24,7 @@ template InternetPage : Box {
     valign: center;
     use-underline: true;
     clicked => clicked_settings_button();
-    styles ["suggested-action", "pill"]
+    styles ["suggested-action", "pill", "bottom-button"]
 
     Label {
       /* Translators: On button for opening wifi settings. */

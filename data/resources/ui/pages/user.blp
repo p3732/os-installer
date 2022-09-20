@@ -9,7 +9,7 @@ template UserPage : Box {
     label: _("User Account");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   ListBox {
@@ -81,6 +81,6 @@ template UserPage : Box {
     halign: center;
     use-underline: true;
     clicked => continue();
-    styles ["suggested-action", "pill"]
+    styles ["suggested-action", "pill", "bottom-button"]
   }
 }

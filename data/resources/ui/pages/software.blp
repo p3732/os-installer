@@ -8,23 +8,18 @@ template SoftwarePage : Box {
     label: _("Additional Software");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
-  Box {
-    overflow: hidden;
-    styles ["card", "scrollable-container"]
-
-    ScrolledWindow {
-      propagate-natural-height: true;
-      child:
-      ListBox software_list {
-        hexpand: true;
-        selection-mode: none;
-        row-activated => software_row_activated();
-        styles ["boxed-list"]
-      };
-    }
+  ScrolledWindow {
+    propagate-natural-height: true;
+    styles ["embedded", "separate-bottom"]
+    child: ListBox software_list {
+      hexpand: true;
+      selection-mode: none;
+      row-activated => software_row_activated();
+      styles ["boxed-list"]
+    };
   }
 
   Button {
@@ -34,6 +29,6 @@ template SoftwarePage : Box {
     halign: center;
     use-underline: true;
     clicked => continue();
-    styles ["suggested-action", "pill"]
+    styles ["suggested-action", "pill", "bottom-button"]
   }
 }

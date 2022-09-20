@@ -5,19 +5,18 @@ template LocalePage : Stack {
   vhomogeneous: false;
   transition-type: crossfade;
 
-  Label {
-    label: _("Adapt to Location");
-    justify: center;
-    wrap: true;
-    styles ["title-4"]
-  }
-
   StackPage {
     name: "overview";
-    child:
-    Box {
+    child: Box {
       orientation: vertical;
       spacing: 12;
+
+      Label {
+        label: _("Adapt to Location");
+        justify: center;
+        wrap: true;
+        styles ["heading"]
+      }
 
       ListBox {
         selection-mode: none;
@@ -85,15 +84,14 @@ template LocalePage : Stack {
         halign: center;
         use-underline: true;
         clicked => confirmed();
-        styles ["suggested-action", "pill"]
+        styles ["suggested-action", "pill", "bottom-button"]
       }
     };
   }
 
   StackPage {
     name: "list";
-    child:
-    Box {
+    child: Box {
       orientation: vertical;
       spacing: 12;
 
@@ -102,8 +100,7 @@ template LocalePage : Stack {
 
         StackPage {
           name: "timezone";
-          child:
-          Label {
+          child: Label {
             valign: start;
             /* Translators: Above list of continents and countries */
             label: _("Select Location");
@@ -115,8 +112,7 @@ template LocalePage : Stack {
 
         StackPage {
           name: "formats";
-          child:
-          Label {
+          child: Label {
             valign: start;
             /* Translators: Above list of format locales */
             label: _("Select Region");
@@ -127,56 +123,46 @@ template LocalePage : Stack {
         }
       }
 
-      Box {
-        valign: start;
-        overflow: hidden;
-        styles ["card", "scrollable-container"]
+      ScrolledWindow {
+        hexpand: true;
+        propagate-natural-height: true;
+        styles ["embedded"]
+        child: Stack list_stack {
+          vhomogeneous: false;
+          transition-type: crossfade;
 
-        ScrolledWindow {
-          hexpand: true;
-          propagate-natural-height: true;
-          child:
-          Stack list_stack {
-            vhomogeneous: false;
-            transition-type: crossfade;
+          StackPage {
+            name: "timezone_continents";
+            child: ListBox continents_list {
+              row-activated => timezone_selected();
+              styles ["boxed-list"]
+            };
+          }
 
-            StackPage {
-              name: "timezone_continents";
-              child:
-              ListBox continents_list {
-                row-activated => timezone_selected();
-                styles ["boxed-list"]
-              };
-            }
+          StackPage {
+            name: "timezone_countries";
+            child: ListBox countries_list {
+              row-activated => timezone_selected();
+              styles ["boxed-list"]
+            };
+          }
 
-            StackPage {
-              name: "timezone_countries";
-              child:
-              ListBox countries_list {
-                row-activated => timezone_selected();
-                styles ["boxed-list"]
-              };
-            }
+          StackPage {
+            name: "timezone_subzones";
+            child: ListBox subzones_list {
+              row-activated => timezone_selected();
+              styles ["boxed-list"]
+            };
+          }
 
-            StackPage {
-              name: "timezone_subzones";
-              child:
-              ListBox subzones_list {
-                row-activated => timezone_selected();
-                styles ["boxed-list"]
-              };
-            }
-
-            StackPage {
-              name: "formats";
-              child:
-              ListBox formats_list {
-                row-activated => formats_selected();
-                styles ["boxed-list"]
-              };
-            }
-          };
-        }
+          StackPage {
+            name: "formats";
+            child: ListBox formats_list {
+              row-activated => formats_selected();
+              styles ["boxed-list"]
+            };
+          }
+        };
       }
     };
   }

@@ -9,7 +9,7 @@ template KeyboardLayoutPage : Box {
     label: _("Keyboard Layout Selection");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Entry {
@@ -115,6 +115,6 @@ template KeyboardLayoutPage : Box {
     valign: end;
     use-underline: true;
     clicked => continue();
-    styles ["suggested-action", "pill"]
+    styles ["suggested-action", "pill", "bottom-button"]
   }
 }

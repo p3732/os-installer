@@ -3,30 +3,35 @@ using Adw 1;
 
 template WelcomePage : Box {
   orientation: vertical;
-  spacing: 30;
+  spacing: 12;
 
   Label {
     label: _("Welcome");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
-  Adw.Clamp {
-    margin-top: 18;
-    maximum-size: 280;
+  ScrolledWindow {
+    propagate-natural-height: true;
+    styles ["embedded", "separate-bottom"]
+    child: Adw.Clamp {
+      maximum-size: 280;
 
-    Label description {
-      /* Translators: Default welcome text. Squiggly brackets are replaced by distribution name. */
-      label: _("This application will guide you through the installation of {} onto your system.");
-      wrap: true;
-      justify: center;
-      styles ["heading"]
-    }
+      Label description {
+        valign: center;
+        /* Translators: Default welcome text. Squiggly brackets are replaced by distribution name. */
+        label: _("This application will guide you through the installation of {} onto your system.");
+        wrap: true;
+        justify: center;
+        /*styles ["heading"]*/
+      }
+    };
   }
 
   CenterBox {
     vexpand: true;
+    styles ["bottom-button"]
 
     [center]
     Button {
@@ -37,7 +42,7 @@ template WelcomePage : Box {
       receives-default: true;
       use-underline: true;
       clicked => continue();
-      styles ["suggested-action", "pill"]
+      styles ["suggested-action", "pill", "bottom-button"]
     }
 
     [end]

@@ -15,7 +15,7 @@ GIGABYTE_FACTOR = 1024 * 1024 * 1024
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/disk.ui')
-class DiskPage(Gtk.Box, Page):
+class DiskPage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
     no_disk_image_name = 'no-disk-symbolic'
     default_image_name = 'drive-harddisk-system-symbolic'
@@ -23,12 +23,12 @@ class DiskPage(Gtk.Box, Page):
     can_reload = True
 
     disk_label = Gtk.Template.Child()
-    disk_list = Gtk.Template.Child()
     disk_size = Gtk.Template.Child()
-    list_stack = Gtk.Template.Child()
-    missing_things_info = Gtk.Template.Child()
-    partition_list = Gtk.Template.Child()
+    disk_list = Gtk.Template.Child()
+
     whole_disk_row = Gtk.Template.Child()
+    partition_stack = Gtk.Template.Child()
+    partition_list = Gtk.Template.Child()
 
     disk_list_model = Gio.ListStore()
     partition_list_model = Gio.ListStore()
@@ -37,7 +37,7 @@ class DiskPage(Gtk.Box, Page):
     lock = Lock()
 
     def __init__(self, **kwargs):
-        Gtk.Box.__init__(self, **kwargs)
+        Gtk.Stack.__init__(self, **kwargs)
 
         self.minimum_disk_size = global_state.get_config('minimum_disk_size') * GIGABYTE_FACTOR
 
@@ -55,11 +55,11 @@ class DiskPage(Gtk.Box, Page):
         else:
             disks = disk_provider.get_disks()
         if len(disks) == 0:
-            self.list_stack.set_visible_child_name('no-disks')
+            self.set_visible_child_name('no-disks')
             self.image_name = self.no_disk_image_name
         else:
             reset_model(self.disk_list_model, disks)
-            self.list_stack.set_visible_child_name('disks')
+            self.set_visible_child_name('disks')
             self.image_name = self.default_image_name
         global_state.set_title_image(self.image_name)
 
@@ -72,14 +72,17 @@ class DiskPage(Gtk.Box, Page):
         self.disk_size.set_label(disk_info.size_text)
 
         # reset partition list
-        list_partitions = (len(disk_info.partitions) > 0 and
-                           (not is_booted_with_uefi() or not disk_info.efi_partition is None))
-        self.missing_things_info.set_visible(not list_partitions)
-        reset_model(self.partition_list_model,
-                    disk_info.partitions if list_partitions else [])
+        if len(disk_info.partitions) == 0:
+            reset_model(self.partition_list_model, [])
+            self.partition_stack.set_visible_child_name("no-partitions")
+        elif is_booted_with_uefi() and disk_info.efi_partition is None:
+            self.partition_stack.set_visible_child_name("no-boot-partition")
+        else:
+            reset_model(self.partition_list_model, disk_info.partitions)
+            self.partition_stack.set_visible_child_name("available")
 
         # show
-        self.list_stack.set_visible_child_name('partitions')
+        self.set_visible_child_name('partitions')
 
     def _store_device_info(self, info):
         global_state.set_config('disk_name', info.name)
@@ -129,4 +132,4 @@ class DiskPage(Gtk.Box, Page):
     def navigate_backward(self):
         with self.lock:
             self.can_navigate_backward = False
-            self.list_stack.set_visible_child_name('disks')
+            self.set_visible_child_name('disks')

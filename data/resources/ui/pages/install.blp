@@ -8,7 +8,7 @@ template InstallPage : Box {
     label: _("Installing");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Stack stack {
@@ -17,8 +17,7 @@ template InstallPage : Box {
 
     StackPage {
       name: "spinner";
-      child: 
-      Spinner spinner {
+      child: Spinner spinner {
         halign: center;
         height-request: 64;
         width-request: 64;
@@ -27,8 +26,7 @@ template InstallPage : Box {
 
     StackPage {
       name: "terminal";
-      child: 
-      Box {
+      child: Box {
         overflow: hidden;
         styles ["card", "scrollable-container", "terminal-box"]
 
@@ -46,7 +44,7 @@ template InstallPage : Box {
     tooltip-text: _("Show Terminal Output");
     halign: center;
     clicked => terminal_button_toggled();
-    styles ["pill"]
+    styles ["pill", "bottom-button"]
 
     Image {
       icon-name: "utilities-terminal-symbolic";

@@ -7,7 +7,7 @@ template DonePage : Box {
     label: _("Installation Complete");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Box {
@@ -33,7 +33,7 @@ template DonePage : Box {
       action-name: "app.quit";
       use-underline: true;
 
-      styles ["pill"]
+      styles ["pill", "bottom-button"]
     }
   }
 }

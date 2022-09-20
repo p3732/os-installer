@@ -1,63 +1,50 @@
 using Gtk 4.0;
 
-template LanguagePage : Box {
-  Stack stack {
-    vhomogeneous: false;
-    transition-type: crossfade;
+template LanguagePage : Stack
+{
+  vhomogeneous: false;
+  transition-type: crossfade;
 
-    StackPage {
-      name: "default";
-      child:
-      Box {
-        orientation: vertical;
-        spacing: 12;
+  StackPage {
+    name: "default";
+    child: Box {
+      orientation: vertical;
+      spacing: 12;
 
-        Box {
-          overflow: hidden;
-          styles ["card", "scrollable-container"]
+      ScrolledWindow {
+        propagate-natural-height: true;
+        styles ["embedded", "separate-bottom"]
+        child: ListBox default_list {
+          hexpand: true;
+          row-activated => language_row_activated();
+          styles ["boxed-list"]
+        };
+      }
 
-          ScrolledWindow {
-            propagate-natural-height: true;
-            child:
-            ListBox default_list {
-              hexpand: true;
-              row-activated => language_row_activated();
-              styles ["boxed-list"]
-            };
-          }
+      Button show_all_button {
+        focusable: true;
+        halign: center;
+        clicked => show_all_button_clicked();
+        styles ["pill", "bottom-button"]
+
+        Image {
+          icon-name: "view-more-symbolic";
+          width-request: 32;
         }
+      }
+    };
+  }
 
-        Button show_all_button {
-          focusable: true;
-          halign: center;
-          clicked => show_all_button_clicked();
-          styles ["pill"]
-
-          Image {
-            icon-name: "view-more-symbolic";
-            width-request: 32;
-          }
-        }
+  StackPage {
+    name: "all";
+    child: ScrolledWindow {
+      propagate-natural-height: true;
+      styles ["embedded"]
+      child: ListBox all_list {
+        hexpand: true;
+        row-activated => language_row_activated();
+        styles ["boxed-list"]
       };
-    }
-
-    StackPage {
-      name: "all";
-      child:
-      Box {
-        overflow: hidden;
-        styles ["card", "scrollable-container"]
-
-        ScrolledWindow {
-          propagate-natural-height: true;
-          child:
-          ListBox all_list {
-            hexpand: true;
-            row-activated => language_row_activated();
-            styles ["boxed-list"]
-          };
-        }
-      };
-    }
+    };
   }
 }

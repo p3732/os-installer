@@ -9,7 +9,7 @@ template ConfirmPage : Box {
     label: _("Confirmation");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Box {
@@ -31,7 +31,6 @@ template ConfirmPage : Box {
       Adw.ActionRow disk_row {
         selectable: false;
 
-
         [prefix]
         Image {
           pixel-size: 16;
@@ -49,6 +48,6 @@ template ConfirmPage : Box {
     halign: center;
     use-underline: true;
     clicked => confirmed();
-    styles ["destructive-action", "pill"]
+    styles ["destructive-action", "pill", "bottom-button"]
   }
 }

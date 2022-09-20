@@ -8,7 +8,7 @@ template FailedPage : Box {
     label: _("Installation Failed");
     justify: center;
     wrap: true;
-    styles ["title-4"]
+    styles ["heading"]
   }
 
   Box {
@@ -27,7 +27,7 @@ template FailedPage : Box {
     receives-default: true;
     halign: center;
     clicked => search_button_clicked();
-    styles ["pill"]
+    styles ["pill", "bottom-button"]
 
     Label {
       /* Translators: Shown if installation fails. */
