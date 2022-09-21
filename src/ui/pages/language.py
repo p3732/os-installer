@@ -6,7 +6,7 @@ from .global_state import global_state
 from .language_provider import language_provider
 from .page import Page
 from .system_calls import set_system_language
-from .widgets import reset_model, LanguageRow
+from .widgets import reset_model, ProgressRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
@@ -27,8 +27,8 @@ class LanguagePage(Gtk.Stack, Page):
         Gtk.Stack.__init__(self, **kwargs)
 
         # models
-        self.default_list.bind_model(self.default_model, lambda o: LanguageRow(o))
-        self.all_list.bind_model(self.all_model, lambda o: LanguageRow(o))
+        self.default_list.bind_model(self.default_model, lambda o: ProgressRow(o.name, o))
+        self.all_list.bind_model(self.all_model, lambda o: ProgressRow(o.name, o))
 
     def _setup_default(self):
         suggested_languages = language_provider.get_suggested_languages()

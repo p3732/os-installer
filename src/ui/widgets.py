@@ -34,17 +34,6 @@ class DeviceRow(Adw.ActionRow):
             self.stack.set_visible_child_name('too_small')
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/language_row.ui')
-class LanguageRow(Adw.ActionRow):
-    __gtype_name__ = 'LanguageRow'
-
-    def __init__(self, info, **kwargs):
-        super().__init__(**kwargs)
-
-        self.info = info
-        self.set_title(info.name)
-
-
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/page_wrapper.ui')
 class PageWrapper(Gtk.Box):
     __gtype_name__ = 'PageWrapper'

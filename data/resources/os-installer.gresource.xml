@@ -36,7 +36,6 @@
     <file preprocess="xml-stripblanks">ui/pages/welcome.ui</file>
 
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
-    <file preprocess="xml-stripblanks">ui/widgets/language_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/page_wrapper.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
