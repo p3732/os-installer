@@ -13,24 +13,29 @@ template LanguagePage : Stack
 
       ScrolledWindow {
         propagate-natural-height: true;
-        styles ["embedded", "separate-bottom"]
-        child: ListBox default_list {
-          hexpand: true;
-          row-activated => language_row_activated();
-          styles ["boxed-list"]
+        styles ["embedded"]
+        child: Box {
+          orientation: vertical;
+          spacing: 12;
+
+          ListBox default_list {
+            hexpand: true;
+            row-activated => language_row_activated();
+            styles ["boxed-list"]
+          }
+
+          Button show_all_button {
+            focusable: true;
+            halign: center;
+            clicked => show_all_button_clicked();
+            styles ["pill", "bottom-button"]
+
+            Image {
+              icon-name: "view-more-symbolic";
+              width-request: 32;
+            }
+          }
         };
-      }
-
-      Button show_all_button {
-        focusable: true;
-        halign: center;
-        clicked => show_all_button_clicked();
-        styles ["pill", "bottom-button"]
-
-        Image {
-          icon-name: "view-more-symbolic";
-          width-request: 32;
-        }
       }
     };
   }
