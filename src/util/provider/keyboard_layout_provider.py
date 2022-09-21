@@ -37,6 +37,8 @@ fallback_codes = {
     'oc': 'fr'
 }
 
+xkb_info = XkbInfo()
+
 class KeyboardInfo(GObject.GObject):
     __gtype_name__ = __qualname__
     name: str
@@ -77,7 +79,7 @@ def _get_existing_layouts(language_code):
         return ['us']
 
 
-def get_default_layout(language_code):
+def _get_default_layout_code(language_code):
     if language_code in language_to_default_keyboard:
         return language_to_default_keyboard[language_code]
     elif (short_code := _short_code(language_code)) in language_to_default_keyboard:
@@ -87,17 +89,20 @@ def get_default_layout(language_code):
     else:
         return 'us'
 
+def get_default_layout(language_code):
+    layout_code = _get_default_layout_code(language_code)
+    name = xkb_info.get_layout_info(layout_code).display_name
+    return KeyboardInfo(name, layout_code)
 
 def get_layouts_for(language_code, language):
     layouts = _get_existing_layouts(language_code)
 
     named_layouts = []
-    xkb_info = XkbInfo()
     for layout in layouts:
         name = xkb_info.get_layout_info(layout).display_name
         named_layouts.append(KeyboardInfo(name, layout))
 
-    default_layout = get_default_layout(language_code)
+    default_layout = _get_default_layout_code(language_code)
     # Sort the layouts, prefer those starting with language name or matching language short hand. Then by name.
     return sorted(named_layouts, key=lambda o:
                   (not o.layout == default_layout,

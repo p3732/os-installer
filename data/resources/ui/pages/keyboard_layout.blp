@@ -12,53 +12,72 @@ template KeyboardLayoutPage : Box {
     styles ["heading"]
   }
 
-  Entry {
-    focusable: true;
-    valign: start;
-    activates-default: true;
-    truncate-multiline: true;
-    primary-icon-activatable: false;
-    primary-icon-sensitive: false;
-
-    /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
-
-    placeholder-text: _("Test the Keyboard Layout Here");
-  }
-
   Stack stack {
     vhomogeneous: false;
     transition-type: crossfade;
 
     StackPage {
-      name: "layouts";
-      child:
-      Box {
-        overflow: hidden;
-        orientation: vertical;
-        styles ["card", "scrollable-container"]
+      name: "overview";
+      child: ScrolledWindow {
+        propagate-natural-height: true;
+        styles ["embedded"]
+        child: Box {
+          orientation: vertical;
+          spacing: 12;
 
-        ScrolledWindow {
-          hexpand: true;
-          vexpand: true;
-          child:
-          ListBox layout_list {
-            valign: start;
+          Entry {
+            focusable: true;
+            activates-default: true;
+            truncate-multiline: true;
+            primary-icon-activatable: false;
+            primary-icon-sensitive: false;
+            /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
+            placeholder-text: _("Test the Keyboard Layout Here");
+            styles ["standalone-entry"]
+          }
+
+          ListBox chosen_layouts {
             selection-mode: none;
-            row-activated => activate_layout_row();
-            styles ["boxed-list", "angular-last"]
-          };
-        }
+            styles ["boxed-list"]
 
-        Separator {}
+            Adw.ActionRow primary_layout_row {
+              activatable: true;
+              focusable: true;
+              /*selectable: false; */
+              activated => show_layout_selection();
+
+              Image {
+                icon-name: "edit-symbolic";
+              }
+            }
+          }
+          Button continue_button {
+            /* Translators: On button. */
+            label: _("_Continue");
+            halign: center;
+            receives-default: true;
+            use-underline: true;
+            clicked => continue();
+            styles ["suggested-action", "pill", "bottom-button"]
+          }
+        };
+      };
+    }
+
+    StackPage {
+      name: "layouts";
+      child: Box {
+        orientation: vertical;
+        spacing: 12;
 
         ListBox {
           selection-mode: none;
-          styles ["boxed-list", "angular-first"]
+          styles ["boxed-list"]
 
-          Adw.ActionRow whole_disk_row {
+          Adw.ActionRow {
             activatable: true;
             focusable: true;
-            selectable: false;
+            /*selectable: false;*/
             /* Translators: Followed by a language name. */
             title: _("Keyboard Language");
             activated => show_language_selection();
@@ -78,43 +97,34 @@ template KeyboardLayoutPage : Box {
             }
           }
         }
+
+        ScrolledWindow {
+          propagate-natural-height: true;
+          styles ["embedded"]
+          child: ListBox layout_list {
+            valign: start;
+            selection-mode: none;
+            row-activated => layout_row_activated();
+            styles ["boxed-list"]
+          };
+        }
       };
     }
 
     StackPage {
       name: "languages";
-      child:
-      Box {
-        vexpand: true;
-        Box {
-          overflow: hidden;
-          valign: start;
-          styles ["card", "scrollable-container"]
-
-          ScrolledWindow {
-            propagate-natural-height: true;
-            valign: start;
-            child:
-            ListBox language_list {
-              hexpand: true;
-              selection-mode: none;
-              row-activated => language_row_activated();
-              styles ["boxed-list"]
-            };
-          }
-        }
+      child: ScrolledWindow {
+        propagate-natural-height: true;
+        valign: start;
+        styles ["embedded"]
+        child:
+        ListBox language_list {
+          hexpand: true;
+          selection-mode: none;
+          row-activated => language_row_activated();
+          styles ["boxed-list"]
+        };
       };
     }
-  }
-
-  Button continue_button {
-    /* Translators: On button. */
-    label: _("_Continue");
-    sensitive: false;
-    halign: center;
-    valign: end;
-    use-underline: true;
-    clicked => continue();
-    styles ["suggested-action", "pill", "bottom-button"]
   }
 }
