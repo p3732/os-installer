@@ -38,21 +38,6 @@ scrolledwindow.separate-bottom undershoot.bottom {
   border-style: none none solid none;
 }
 
-/* Make first/last row and list box borders angular. Used where a
- * list box does not fill up a complete scrollable-container. */
-.angular-first row:first-child,
-.boxed-list.angular-first
-{
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-}
-.angular-last row:last-child,
-.boxed-list.angular-last
-{
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-
 /* Margin around every boxed-list */
 .boxed-list,
 .standalone-entry {
