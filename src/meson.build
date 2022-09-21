@@ -22,6 +22,12 @@ os_installer_sources = [
   'config.py',
   'global_state.py',
   'main.py',
+  'provider/disk_provider.py',
+  'provider/internet_provider.py',
+  'provider/keyboard_layout_provider.py',
+  'provider/language_provider.py',
+  'provider/locale_provider.py',
+  'provider/software_provider.py',
   'ui/about_dialog.py',
   'ui/confirm_quit_popup.py',
   'ui/page.py',
@@ -43,12 +49,6 @@ os_installer_sources = [
   'ui/window.py',
   'util/installation_scripting.py',
   'util/system_calls.py',
-  'util/provider/disk_provider.py',
-  'util/provider/internet_provider.py',
-  'util/provider/keyboard_layout_provider.py',
-  'util/provider/language_provider.py',
-  'util/provider/locale_provider.py',
-  'util/provider/software_provider.py',
 ]
 
 install_data(os_installer_sources, install_dir: moduledir)
