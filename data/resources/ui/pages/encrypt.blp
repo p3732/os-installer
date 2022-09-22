@@ -12,50 +12,58 @@ template EncryptPage : Box {
     styles ["heading"]
   }
 
-  Box {
-    orientation: vertical;
+  ListBox {
+    selection-mode: none;
+    styles ["boxed-list"]
 
-    ListBox {
-      selection-mode: none;
-      styles ["boxed-list"]
+    Adw.ActionRow {
+      activatable: true;
+      /* Translators: Used with option to enable disk encryption */
+      title: _("Encrypt Files");
+      activated => encryption_row_clicked();
 
-      Adw.ActionRow {
-        activatable: true;
-        /* Translators: Used with option to enable disk encryption */
-        title: _("Encrypt Files");
-        activated => encryption_row_clicked();
-
-        Switch switch {
-          focusable: false;
-          halign: center;
-          valign: center;
-          state-set => switch_flipped();
-        }
-      }
-      Adw.ActionRow pin_row {
-        activatable: true;
+      Switch switch {
         focusable: false;
-        selectable: false;
-        sensitive: false;
-        /* Translators: Description of entry field for pin/password used for disk encryption */
-        title: _("Encryption PIN");
-        /* Translators: Hint for disk encryption */
-        subtitle: _("Memorize this PIN well. Without it you will not be able to access your files.");
-        activated => focus_pin();
+        halign: center;
+        valign: center;
+        state-set => switch_flipped();
+      }
+    }
 
-        Entry pin_field {
-          halign: center;
-          valign: center;
-          hexpand: true;
-          width-chars: 10;
-          max-width-chars: 16;
-          truncate-multiline: true;
-          input-purpose: pin;
-          /* Translators: Placeholder for disk encryption pin/password field */
-          placeholder-text: _("PIN");
-          activate => continue();
-          changed => pin_changed();
-        }
+    Adw.PasswordEntryRow pin_row {
+      sensitive: false;
+      activates-default: true;
+      use-underline: true;
+      width-chars: 10;
+      max-width-chars: 16;
+      /* Translators: Description of entry field for pin/password used for disk encryption */
+      title: _("Encryption PIN");
+      /* Translators: Hint for disk encryption */
+      /*input-hints: _("Memorize this PIN well. Without it you will not be able to access your files.");*/
+      changed => pin_changed();
+      entry-activated => continue();
+    }
+  }
+
+  Revealer info_revealer {
+    transition-type: crossfade;
+
+    Box {
+      halign:center;
+      spacing: 12;
+
+      Image {
+        icon-name: "dialog-information-symbolic";
+        styles ["dim-label"]
+      }
+
+      Label {
+        justify: center;
+        wrap: true;
+        max-width-chars: 50;
+
+        /* Translators: Hint for disk encryption */
+        label: _("Memorize this PIN well. Without it you will not be able to access your files.");
       }
     }
   }

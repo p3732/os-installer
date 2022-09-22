@@ -14,7 +14,7 @@ class EncryptPage(Gtk.Box, Page):
     switch = Gtk.Template.Child()
 
     pin_row = Gtk.Template.Child()
-    pin_field = Gtk.Template.Child()
+    info_revealer = Gtk.Template.Child()
 
     continue_button = Gtk.Template.Child()
 
@@ -34,14 +34,12 @@ class EncryptPage(Gtk.Box, Page):
     @Gtk.Template.Callback('switch_flipped')
     def _switch_flipped(self, switch, state):
         self.pin_row.set_sensitive(state)
-        if state:
-            self._focus_pin(self.pin_row)
-        self._set_continue_button(
-            needs_pin=state, pin=self.pin_field.get_text())
+        self.info_revealer.set_reveal_child(state)
 
-    @Gtk.Template.Callback('focus_pin')
-    def _focus_pin(self, row):
-        self.pin_field.grab_focus_without_selecting()
+        if state:
+            self.pin_row.grab_focus()
+        self._set_continue_button(
+            needs_pin=state, pin=self.pin_row.get_text())
 
     @Gtk.Template.Callback('pin_changed')
     def _pin_changed(self, editable):
@@ -57,6 +55,6 @@ class EncryptPage(Gtk.Box, Page):
 
     def unload(self):
         use_encryption = self.switch.get_state()
-        pin = self.pin_field.get_text()
+        pin = self.pin_row.get_text()
         global_state.set_config('use_encryption', use_encryption)
         global_state.set_config('encryption_pin', pin)
