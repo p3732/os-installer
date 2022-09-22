@@ -16,28 +16,17 @@ template UserPage : Box {
     selection-mode: none;
     styles ["boxed-list"]
 
-    Adw.ActionRow {
+    Adw.EntryRow user_name_row {
       activatable: true;
-      focusable: false;
-      selectable: false;
       /* Translators: Used with entry field for User's name */
-      title: _("Name");
-      activated => focus_user_name();
-
-      Entry user_name_field {
-        valign: center;
-        width-chars: 10;
-        max-width-chars: 24;
-        /* Translators: Placeholder in user name entry field */
-        placeholder-text: _("Enter a Name");
-        changed => entry_changed();
-        activate => focus_password();
-      }
+      title: _("_Name");
+      use-underline: true;
+      entry-activated => focus_password();
+      changed => entry_changed();
     }
 
     Adw.ActionRow {
       activatable: true;
-      selectable: false;
       /* Translators: Used with option to enable automatic login of user upon booting */
       title: _("Automatic Login");
       activated => autologin_row_clicked();
@@ -50,25 +39,14 @@ template UserPage : Box {
       }
     }
 
-    Adw.ActionRow {
+    Adw.PasswordEntryRow password_row {
       activatable: true;
-      focusable: false;
-      selectable: false;
+      activates-default: true;
+      use-underline: true;
       /* Translators: Used with entry field for setting a password for new user */
-      title: _("Password");
-      activated => focus_password();
-
-      Entry password_field {
-        valign: center;
-        visibility: false;
-        width-chars: 10;
-        max-width-chars: 24;
-        /* Translators: Placeholder in password entry field */
-        placeholder-text: _("Enter a Password");
-        input-purpose: password;
-        changed => entry_changed();
-        activate => continue();
-      }
+      title: _("_Password");
+      changed => entry_changed();
+      entry-activated => continue();
     }
   }
 
