@@ -48,7 +48,7 @@ class Application(Adw.Application):
             Action('next-page', self._window('navigate_forward'), ['<Alt>Right']),
             Action('previous-page', self._window('navigate_backward'), ['<Alt>Left']),
             Action('reload-page', self._window('reload_page'), ['F5']),
-            Action('about-page', self._window('show_about_page')),
+            Action('about-page', self._window('show_about_page'), ['<Alt>Return']),
             Action('quit', self._on_quit, ['<Ctl>q']),
         ]
 
