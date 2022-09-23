@@ -9,7 +9,6 @@ project('os-installer',
 i18n = import('i18n')
 
 application_id = 'com.github.p3732.OS-Installer'
-application_url = 'https://gitlab.gnome.org/p3732/os-installer/'
 
 subdir('.build_files')
 subdir('data')

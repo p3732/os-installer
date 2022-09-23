@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="AboutDialog" parent="GtkAboutDialog">
-    <property name="destroy-with-parent">true</property>
-    <!-- keep program-name + comments in sync with .desktop -->
-    <property name="program-name" translatable="true">OS-Installer</property>
+  <object class="AdwAboutWindow" id="about_window">
+    <property name="width-request">360</property>
+    <property name="height-request">480</property>
+    <property name="application-icon">OS-Installer</property>
+    <property name="application-name" translatable="true">OS-Installer</property>
     <property name="comments" translatable="true">Install an Operating System</property>
-    <property name="logo-icon-name">OS-Installer</property>
-    <property name="website">@website@</property>
-    <!--<property name="licence-type">GTK_LICENSE_GPL_3_0</property> -->
-    <property name="version">@version@</property>
-    <property name="authors">@contributors@</property>
+    <property name="developer-name">Peter Eisenmann (p3732)</property>
+    <property name="developers">@contributors@</property>
+    <property name="issue-url">https://gitlab.gnome.org/p3732/os-installer/-/issues/new</property>
+    <property name="license-type">GTK_LICENSE_GPL_3_0</property>
+    <property name="support-url">https://matrix.to/#/#os-installer:matrix.org</property>
     <property name="translator-credits">@translators@</property>
-  </template>
+    <property name="version">@version@</property>
+    <property name="website">https://gitlab.gnome.org/p3732/os-installer/</property>
+  </object>
 </interface>

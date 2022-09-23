@@ -5,5 +5,4 @@ configure_file(input: 'about_dialog.ui.in',
                  'contributors': contributors,
                  'translators': translators,
                  'version': meson.project_version(),
-                 'website': application_url,
                })

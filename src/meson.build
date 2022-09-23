@@ -28,7 +28,6 @@ os_installer_sources = [
   'provider/language_provider.py',
   'provider/locale_provider.py',
   'provider/software_provider.py',
-  'ui/about_dialog.py',
   'ui/confirm_quit_popup.py',
   'ui/page.py',
   'ui/pages/confirm.py',
