@@ -25,17 +25,7 @@ template KeyboardLayoutPage : Box {
           orientation: vertical;
           spacing: 12;
 
-          Entry {
-            focusable: true;
-            activates-default: true;
-            truncate-multiline: true;
-            primary-icon-activatable: false;
-            primary-icon-sensitive: false;
-            /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
-            placeholder-text: _("Test the Keyboard Layout Here");
-            styles ["standalone-entry"]
-          }
-
+          /* selected layouts */
           ListBox chosen_layouts {
             selection-mode: none;
             styles ["boxed-list"]
@@ -47,10 +37,24 @@ template KeyboardLayoutPage : Box {
               activated => show_layout_selection();
 
               Image {
-                icon-name: "edit-symbolic";
+                icon-name: "emblem-system-symbolic";
               }
             }
           }
+
+          /* test entry */
+          ListBox {
+            selection-mode: none;
+            styles ["boxed-list"]
+
+            Adw.EntryRow {
+              activatable: true;
+              /* Translators: Used as placeholder in a entry field to try out a keyboard layout */
+              title: _("Test the Keyboard Layout Here");
+              entry-activated => continue();
+            }
+          }
+
           Button continue_button {
             /* Translators: On button. */
             label: _("_Continue");
