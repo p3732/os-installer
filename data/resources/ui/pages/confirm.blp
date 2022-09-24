@@ -12,31 +12,25 @@ template ConfirmPage : Box {
     styles ["heading"]
   }
 
-  Box {
-    valign: end;
-    orientation: vertical;
-    spacing: 12;
+  Label {
+    /* Translators: Followed by a disk or partition name */
+    label: _("This will delete all data on");
+    wrap: true;
+    styles ["heading"]
+  }
 
-    Label {
-      /* Translators: Followed by a disk or partition name */
-      label: _("This will delete all data on");
-      wrap: true;
-      styles ["heading"]
-    }
+  ListBox {
+    selection-mode: none;
+    styles ["boxed-list"]
 
-    ListBox {
-      selection-mode: none;
-      styles ["boxed-list"]
+    Adw.ActionRow disk_row {
+      selectable: false;
+      focusable: false;
 
-      Adw.ActionRow disk_row {
-        selectable: false;
-        focusable: false;
-
-        [prefix]
-        Image {
-          pixel-size: 16;
-          icon-name: "drive-harddisk-system-symbolic";
-        }
+      [prefix]
+      Image {
+        pixel-size: 16;
+        icon-name: "drive-harddisk-system-symbolic";
       }
     }
   }
