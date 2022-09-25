@@ -23,15 +23,23 @@ class WelcomePage(Gtk.Box, Page):
             self.image_name = None
             self.image_path = config['logo']
 
-        if config['text']:
-            text = config['text']
-        else:
-            text = self.description.get_label()
-            text = text.format(global_state.get_config('distribution_name'))
-        self.description.set_label(text)
-
     ### callbacks ###
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
         global_state.advance(self)
+
+    ### public methods ###
+
+    def load_once(self):
+        config = global_state.get_config('welcome_page')
+        language_code = global_state.get_config('language_code')
+
+        if (text_key := f'text_{language_code}') in config:
+            text = config[text_key]
+        elif 'text' in config:
+            text = config['text']
+        else:
+            text = self.description.get_label()
+            text = text.format(global_state.get_config('distribution_name'))
+        self.description.set_label(text)

@@ -4,6 +4,10 @@
 # Place your config under /etc/os-installer/config.yaml for it to be used.
 # If a value is not defined, it's default will be used.
 
+# Some strings can have translations by appending an underscore followed by a
+# language code, e.g. "name_fr" or "description_pt_BR". These parameters have
+# the _LC suffix in their description. No suffix is needed for English.
+
 # Name of the distribution.
 # Default: 'Untitled'
 distribution_name: 'Debuntorarch'
@@ -35,11 +39,16 @@ suggested_languages:
     - 'zh'
 
 # Show a welcome page after language selection.
-# A custom logo and text can be defined. Otherwise a default is used.
+#
+# logo    string  Optional. Path to a logo (e.g. distribution logo)
+# text_LC string  Optional. Welcome text. Translatable.
+# usage   bool    Whether to show a welcome page at all.
+#
 # Default: logo: None, text: None, usage: yes
 welcome_page:
     logo    : '/your/distribution/logo.png'
     text    : 'A welcoming text to inform about the installation.'
+    text_de : 'Dinge werden installiert werden.'
     usage   : yes
 
 # Minimum disk size needed for the installation (in Gigabyte)
