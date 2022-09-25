@@ -38,6 +38,6 @@
     <file preprocess="xml-stripblanks">ui/widgets/device_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/page_wrapper.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
-    <file preprocess="xml-stripblanks">ui/widgets/software_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
   </gresource>
 </gresources>

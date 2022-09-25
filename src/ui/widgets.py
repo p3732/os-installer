@@ -63,21 +63,24 @@ class ProgressRow(Adw.ActionRow):
         return self.get_title()
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_row.ui')
-class SoftwareRow(Adw.ActionRow):
-    __gtype_name__ = 'SoftwareRow'
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/selection_row.ui')
+class SelectionRow(Adw.ActionRow):
+    __gtype_name__ = 'SelectionRow'
 
     icon = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    def __init__(self, package, **kwargs):
+    def __init__(self, title, description, icon_path, default_state, info, **kwargs):
         super().__init__(**kwargs)
-        self.set_title(package.name)
-        self.set_subtitle(package.description)
-        self.icon.set_from_file(package.icon_path)
-        self.switch.set_state(package.suggested)
+        self.set_title(title)
+        self.set_subtitle(description)
+        self.switch.set_state(default_state)
+        if icon_path == None:
+            self.icon.set_visible(False)
+        else:
+            self.icon.set_from_file(icon_path)
 
-        self.info = package.package
+        self.info = info
 
     def is_activated(self):
         return self.switch.get_active()
