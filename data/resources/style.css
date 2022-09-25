@@ -16,14 +16,6 @@ headerbar {
   margin: 12px;
 }
 
-/* Indicate that container can be scrolled by setting an undershoot. TODO find a way to animate transition. */
-.scrollable-container > scrolledwindow undershoot.top {
-  background: linear-gradient(to bottom, alpha(@shaded_card_bg_color, 1) 0px, alpha(@shaded_card_bg_color, 0) 18px);
-}
-.scrollable-container > scrolledwindow undershoot.bottom {
-  background: linear-gradient(to top, alpha(@shaded_card_bg_color, 1) 0px, alpha(@shaded_card_bg_color, 0) 18px);
-}
-
 scrolledwindow.embedded undershoot.top {
   border: 1px @borders;
   border-style: solid none none none;
@@ -40,7 +32,6 @@ scrolledwindow.separate-bottom undershoot.bottom {
 
 /* Margin around every boxed-list */
 .boxed-list,
-.standalone-entry,
 .terminal-box {
   margin-right: 12px;
   margin-left: 12px;
