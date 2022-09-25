@@ -59,7 +59,7 @@ def _load_default_config():
 def _set_testing_defaults(config):
     '''Default values used when skipping pages during testing.'''
     config["language"] = 'English for Dummies'
-    config["language_short_hand"] = 'en_US'
+    config["language_code"] = 'en_US'
     config["locale"] = 'en_US.UTF-8'
     config["disk_device_path"] = '/dev/null'
     config["disk_is_partition"] = False

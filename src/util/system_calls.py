@@ -56,7 +56,7 @@ def set_system_keyboard_layout(keyboard_layout, short_hand):
 
 def set_system_language(language_info):
     global_state.set_config('language', language_info.name)
-    global_state.set_config('language_short_hand', language_info.language_code)
+    global_state.set_config('language_code', language_info.language_code)
     locale = Locale.normalize(language_info.locale)
     global_state.set_config('locale', locale)
 

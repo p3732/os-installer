@@ -18,7 +18,7 @@ class SoftwarePage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        language_code = global_state.get_config('language_short_hand')
+        language_code = global_state.get_config('language_code')
         self.software_list.bind_model(
             self.software_model, lambda o: SoftwareRow(o.package, language_code))
 
