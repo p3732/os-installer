@@ -63,26 +63,6 @@ class ProgressRow(Adw.ActionRow):
         return self.get_title()
 
 
-@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/selection_row.ui')
-class SelectionRow(Adw.ActionRow):
-    __gtype_name__ = 'SelectionRow'
-
-    check_mark_revealer = Gtk.Template.Child()
-
-    def __init__(self, label, additional_info, **kwargs):
-        super().__init__(**kwargs)
-
-        self.set_title(label)
-
-        self.info = additional_info
-
-    def get_label(self):
-        return self.get_title()
-
-    def set_activated(self, active):
-        self.check_mark_revealer.set_reveal_child(active)
-
-
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_row.ui')
 class SoftwareRow(Adw.ActionRow):
     __gtype_name__ = 'SoftwareRow'
