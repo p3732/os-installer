@@ -18,9 +18,8 @@ class SoftwarePage(Gtk.Box, Page):
 
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
-        language_code = global_state.get_config('language_code')
         self.software_list.bind_model(
-            self.software_model, lambda o: SoftwareRow(o.package, language_code))
+            self.software_model, lambda o: SoftwareRow(o))
 
     def _setup_software(self):
         suggestions = get_software_suggestions()
@@ -46,6 +45,6 @@ class SoftwarePage(Gtk.Box, Page):
         to_install = ''
         for row in self.software_list:
             if row.is_activated():
-                to_install += ' ' + row.package_name
+                to_install += f' {row.info}'
 
         global_state.set_config('chosen_additional_software', to_install.strip())
