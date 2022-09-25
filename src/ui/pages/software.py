@@ -5,7 +5,7 @@ from gi.repository import Gio, Gtk
 from .global_state import global_state
 from .page import Page
 from .software_provider import get_software_suggestions
-from .widgets import reset_model, SoftwareRow
+from .widgets import reset_model, SelectionRow
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/software.ui')
@@ -19,7 +19,8 @@ class SoftwarePage(Gtk.Box, Page):
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
-            self.software_model, lambda o: SoftwareRow(o))
+            self.software_model,
+            lambda pkg: SelectionRow(pkg.name, pkg.description, pkg.icon_path, pkg.suggested, pkg.package))
 
     def _setup_software(self):
         suggestions = get_software_suggestions()
