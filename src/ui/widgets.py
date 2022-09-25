@@ -90,20 +90,14 @@ class SoftwareRow(Adw.ActionRow):
     icon = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    def __init__(self, package, language_code, **kwargs):
+    def __init__(self, package, **kwargs):
         super().__init__(**kwargs)
-        if (localized_name := f'name_{language_code}') in package:
-            self.set_title(package[localized_name])
-        else:
-            self.set_title(package['name'])
-        if (localized_description := f'description_{language_code}') in package:
-            self.set_subtitle(package[localized_description])
-        else:
-            self.set_subtitle(package['description'])
-        self.icon.set_from_file(package['icon_path'])
-        self.switch.set_state(package['default'])
+        self.set_title(package.name)
+        self.set_subtitle(package.description)
+        self.icon.set_from_file(package.icon_path)
+        self.switch.set_state(package.suggested)
 
-        self.package_name = package['package']
+        self.info = package.package
 
     def is_activated(self):
         return self.switch.get_active()

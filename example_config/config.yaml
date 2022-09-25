@@ -59,24 +59,29 @@ minimum_disk_size: 5
 # Default: yes
 offer_disk_encryption: yes
 
-# A list of additional software packages that can be optionally be selected
-# from the installer. The package string will be passed to the installation
-# script without changes, so you can bundle multiple packages as one point.
-# Required fields are: package, default, name, description, icon_path
-# Additionally translations for name and description can be specified by
-# placing a language code at the end after an underscore, e.g.: 'name_jp'
-# Default: []
+# List of software that can additionally be selected for installation.
+# Each packages requires all fields to be set.
+#
+# package         string  Forwarded to the installation script as is.
+# suggested       bool    Optional. Whether installation defaults to yes.
+# name_LC         string  Name presented to user. Translatable.
+#                         If no (English) name is available, it will only
+#                         be shown for translated languages.
+# description_LC  string  Optional. Description presented to user. Translatable.
+# icon_path       string  Optional. Absolute path to icon to be displayed.
+#
+# Default: [], suggested: False, description: '', icon_path: fallback icon
 additional_software:
     - package        : 'firefox'
-      default        : yes
+      suggested      : yes
       name           : 'Firefox'
       name_de        : 'Feuerfuchs'
       description    : 'Popular Web Browser from Mozilla'
-      description_de : 'Beliebter Webbrowser entwickelt durch Mozilla'
+      description_de : 'Beliebter Internet-Browser von Mozilla'
       icon_path      : '/etc/os-installer/icons/firefox.png'
-    - package        : 'libreoffice-fresh'
-      default        : no
-      name           : 'LibreOffice'
-      description    : 'Office Suite for Documents, Tables, Presentations and more'
-      description_de : 'Sammlung an BüroAnwendungen für Dokumente, Tabellen, Präsentationen und mehr'
+    - package        : 'some-backend'
+      name           : 'Iconless Backend Functionality'
+    - package        : 'japanese-input-program'
+      suggested      : yes
+      name_jp        : 'Input Program'
       icon_path      : '/etc/os-installer/icons/libreoffice-main.png'
