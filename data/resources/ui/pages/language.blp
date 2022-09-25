@@ -47,6 +47,7 @@ template LanguagePage : Stack
       styles ["embedded"]
       child: ListBox all_list {
         hexpand: true;
+        valign: start;
         row-activated => language_row_activated();
         styles ["boxed-list"]
       };
