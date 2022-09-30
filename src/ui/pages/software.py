@@ -20,7 +20,7 @@ class SoftwarePage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
             self.software_model,
-            lambda pkg: SelectionRow(pkg.name, pkg.description, pkg.icon_path, pkg.suggested, pkg.package))
+            lambda pkg: SelectionRow(pkg.name, pkg.description, pkg.icon_path, pkg.suggested, pkg))
 
     def _setup_software(self):
         suggestions = get_software_suggestions()
@@ -43,9 +43,7 @@ class SoftwarePage(Gtk.Box, Page):
         self._setup_software()
 
     def unload(self):
-        to_install = ''
-        for row in self.software_list:
-            if row.is_activated():
-                to_install += f' {row.info}'
-
-        global_state.set_config('chosen_additional_software', to_install.strip())
+        choices = [row.info for row in self.software_list if row.is_activated()]
+        packages = ' '.join([choice.package for choice in choices])
+        global_state.set_config('chosen_software_packages', packages)
+        global_state.set_config('chosen_software', choices)

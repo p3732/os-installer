@@ -37,7 +37,7 @@ def _configure_variables_set(config):
             'user_password' in config and
             'formats' in config and
             'timezone' in config and
-            'chosen_additional_software' in config)
+            'chosen_software_packages' in config)
 
 
 def _load_default_config():
@@ -72,7 +72,8 @@ def _set_testing_defaults(config):
     config["user_password"] = 'password'
     config["formats"] = 'en_US.UTF-8'
     config["timezone"] = 'UTC'
-    config["chosen_additional_software"] = ''
+    config["chosen_software_packages"] = ''
+    config["chosen_software"] = []
 
 
 def _valid(config):
@@ -135,6 +136,6 @@ def create_envs(config, with_install_envs, with_configure_envs):
             f'OSI_USER_PASSWORD="{config["user_password"]}"',
             f'OSI_FORMATS="{config["formats"]}"',
             f'OSI_TIMEZONE="{config["timezone"]}"',
-            f'OSI_ADDITIONAL_SOFTWARE="{config["chosen_additional_software"]}"',
+            f'OSI_ADDITIONAL_SOFTWARE="{config["chosen_software_packages"]}"',
         ]
     return envs + [None]
