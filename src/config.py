@@ -61,6 +61,8 @@ def _set_testing_defaults(config):
     config["language"] = 'English for Dummies'
     config["language_code"] = 'en_US'
     config["locale"] = 'en_US.UTF-8'
+    config["keyboard_layout"] = 'us'
+    config["keyboard_layout_ui"] = 'English (US)'
     config["disk_device_path"] = '/dev/null'
     config["disk_is_partition"] = False
     config["disk_efi_partition"] = '/dev/null'
