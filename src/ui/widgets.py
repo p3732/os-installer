@@ -70,13 +70,15 @@ class SelectionRow(Adw.ActionRow):
     icon = Gtk.Template.Child()
     switch = Gtk.Template.Child()
 
-    def __init__(self, title, description, icon_path, default_state, info, **kwargs):
+    def __init__(self, title, description, icon_path, default_state, info,
+                 fallback_icon, **kwargs):
         super().__init__(**kwargs)
         self.set_title(title)
         self.set_subtitle(description)
         self.switch.set_state(default_state)
-        if icon_path == None:
-            self.icon.set_visible(False)
+        if not icon_path:
+            self.icon.set_from_icon_name(fallback_icon)
+            self.icon.set_icon_size(Gtk.IconSize.LARGE)
         else:
             self.icon.set_from_file(icon_path)
 
