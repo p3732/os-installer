@@ -49,6 +49,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     def _load_overview(self, keyboard_info):
         self.stack.set_visible_child_name('overview')
         self.primary_layout_row.set_title(keyboard_info.name)
+        set_system_keyboard_layout(keyboard_info.name, keyboard_info.layout)
 
     def _load_layout_list(self, language, language_code):
         self.stack.set_visible_child_name('layouts')
@@ -80,7 +81,6 @@ class KeyboardLayoutPage(Gtk.Box, Page):
     def _layout_row_activated(self, list_box, row):
         # use selected keyboard layout
         keyboard_info = row.info
-        set_system_keyboard_layout(keyboard_info.name, keyboard_info.layout)
         self._load_overview(keyboard_info)
         self.can_navigate_backward = False
 
