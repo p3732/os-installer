@@ -73,8 +73,9 @@ def set_system_language(language_info):
     _exec(['localectl', '--no-ask-password', 'set-locale', 'LANG=en_US.UTF-8'])
 
 
-def set_system_formats(locale):
-    global_state.set_config('formats', locale)
+def set_system_formats(locale, formats_label):
+    global_state.set_config('formats_locale', locale)
+    global_state.set_config('formats_ui', formats_label)
     _exec(['gsettings', 'set', 'org.gnome.system.locale', 'region', f"'{locale}'"])
 
 

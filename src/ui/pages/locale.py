@@ -97,6 +97,10 @@ class LocalePage(Gtk.Stack, Page):
 
         self.list_stack.set_visible_child_name('timezone_subzones')
 
+    def _set_formats(self, formats_locale, name):
+        set_system_formats(formats_locale, name)
+        self.formats_label.set_label(name)
+
     def _set_timezone(self, timezone):
         set_system_timezone(timezone)
 
@@ -116,9 +120,7 @@ class LocalePage(Gtk.Stack, Page):
 
     @Gtk.Template.Callback('formats_selected')
     def _formats_selected(self, list_box, row):
-        set_system_formats(row.info)
-
-        self.formats_label.set_label(row.get_label())
+        self._set_formats(row.info, row.get_label())
         self._show_overview()
 
     @Gtk.Template.Callback('overview_row_activated')
@@ -146,9 +148,8 @@ class LocalePage(Gtk.Stack, Page):
     ### public methods ###
 
     def load_once(self):
-        name, locale = get_current_formats()
-        self.formats_label.set_label(name)
-        global_state.set_config('formats', locale)
+        locale, name = get_current_formats()
+        self._set_formats(locale, name)
 
         timezone = get_timezone()
         self.timezone_label.set_label(timezone)

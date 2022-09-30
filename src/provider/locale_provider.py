@@ -65,16 +65,16 @@ def get_timezone():
 
 
 def get_current_formats():
-    formats = global_state.get_config('formats')
+    formats = global_state.get_config('formats_locale')
     if not formats:
         formats = global_state.get_config('locale')
-        global_state.set_config('formats', formats)
+        global_state.set_config('formats_locale', formats)
     name = GnomeDesktop.get_country_from_locale(formats)
     if not name:
         # solely to prevent crashes, e.g. for Esperanto
         # TODO add to translatation
         name = 'Undefined'
-    return (name, formats)
+    return (formats, name)
 
 
 def get_formats():
