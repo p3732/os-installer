@@ -69,41 +69,40 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # determine available pages
         self._determine_available_pages()
-        first_page = self.available_pages[0]
 
-        if type(first_page) == LanguagePage:
+        if 'language' in self.available_pages:
             # only initialize language page, others depend on chosen language
-            self._initialize_page(first_page)
+            self._initialize_page('language')
         else:
-            for page in self.available_pages:
-                self._initialize_page(page)
+            for page_name in self.available_pages.keys():
+                self._initialize_page(page_name)
 
     def _determine_available_pages(self):
         # list page types tupled with condition on when to use
         pages = [
             # pre-installation section
-            (LanguagePage, self._offer_language_selection()),
-            (WelcomePage, global_state.get_config('welcome_page')['usage']),
-            (KeyboardLayoutPage, True),
-            (InternetPage, global_state.get_config(
+            ('language', LanguagePage, self._offer_language_selection()),
+            ('welcome', WelcomePage, global_state.get_config('welcome_page')['usage']),
+            ('keyboard', KeyboardLayoutPage, True),
+            ('internet', InternetPage, global_state.get_config(
                 'internet_connection_required')),
-            (DiskPage, True),
-            (EncryptPage, global_state.get_config('offer_disk_encryption')),
-            (ConfirmPage, True),
+            ('disk', DiskPage, True),
+            ('encrypt', EncryptPage, global_state.get_config('offer_disk_encryption')),
+            ('confirm', ConfirmPage, True),
             # configuration section
-            (UserPage, True),
-            (SoftwarePage, global_state.get_config('additional_software')),
-            (LocalePage, True),
+            ('user', UserPage, True),
+            ('software', SoftwarePage, global_state.get_config('additional_software')),
+            ('locale', LocalePage, True),
             # installation
-            (InstallPage, True),
+            ('install', InstallPage, True),
             # post-installation
-            (DonePage, True),
-            (RestartPage, True),
+            ('done', DonePage, True),
+            ('restart', RestartPage, True),
             # failed installation, keep at end
-            (FailedPage, True)
+            ('failed', FailedPage, True)
         ]
         # filter out nonexistent pages
-        self.available_pages = [page for page, condition in pages if condition]
+        self.available_pages = {page_name: page for page_name, page, condition in pages if condition}
 
     def _offer_language_selection(self):
             # only initialize language page, others depend on chosen language
@@ -113,25 +112,25 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 return False
         return True
 
-    def _initialize_page(self, page_to_initialize):
-        page = page_to_initialize()
-        wrapper = PageWrapper(page)
+    def _initialize_page(self, page_name):
+        page_type = self.available_pages[page_name]
+        page = PageWrapper(page_type())
 
-        page_id = page.id()
-        self.main_stack.add_named(wrapper, page_id)
-        self.pages.append(page_id)
+        self.main_stack.add_named(page, page_name)
+        self.pages.append(page_name)
 
     def _initialize_pages_translated(self):
         # delete pages that are not the language page
         self._remove_pages(self.pages[1:])
-        self.pages = [self.current_page.id()]
+        self.pages = ['language']
 
-        for unintialized_page in self.available_pages[1:]:
-            self._initialize_page(unintialized_page)
+        for page_name in self.available_pages.keys():
+            if page_name != 'language':
+                self._initialize_page(page_name)
 
-    def _remove_pages(self, page_ids):
-        for page_id in page_ids:
-            child = self.main_stack.get_child_by_name(page_id)
+    def _remove_pages(self, page_names):
+        for page_name in page_names:
+            child = self.main_stack.get_child_by_name(page_name)
             self.main_stack.remove(child)
 
     def _load_page(self, page_number):
