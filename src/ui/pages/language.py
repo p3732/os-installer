@@ -30,15 +30,6 @@ class LanguagePage(Gtk.Stack, Page):
         self.default_list.bind_model(self.default_model, lambda o: ProgressRow(o.name, o))
         self.all_list.bind_model(self.all_model, lambda o: ProgressRow(o.name, o))
 
-    def _setup_default(self):
-        suggested_languages = language_provider.get_suggested_languages()
-        if len(suggested_languages) > 0:
-            reset_model(self.default_model, suggested_languages)
-            present_show_all = language_provider.has_additional_languages()
-            self.show_all_button.set_visible(present_show_all)
-        else:
-            self._setup_all()
-
     def _setup_all(self):
         languages = language_provider.get_all_languages()
         reset_model(self.all_model, languages)
@@ -61,4 +52,10 @@ class LanguagePage(Gtk.Stack, Page):
     ### public methods ###
 
     def load_once(self):
-        self._setup_default()
+        suggested_languages = language_provider.get_suggested_languages()
+        if len(suggested_languages) > 0:
+            reset_model(self.default_model, suggested_languages)
+            present_show_all = language_provider.has_additional_languages()
+            self.show_all_button.set_visible(present_show_all)
+        else:
+            self._setup_all()
