@@ -22,6 +22,7 @@ class LanguagePage(Gtk.Stack, Page):
     all_model = Gio.ListStore()
 
     all_shown = False
+    language_chosen = False
 
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
@@ -46,7 +47,10 @@ class LanguagePage(Gtk.Stack, Page):
 
     @Gtk.Template.Callback('language_row_activated')
     def _language_row_activated(self, list_box, row):
-        set_system_language(row.info)
+        if (not self.language_chosen or
+                global_state.get_config('language_code') != row.info.language_code):
+            self.language_chosen = True
+            set_system_language(row.info)
         global_state.advance(self)
 
     ### public methods ###
