@@ -24,7 +24,7 @@ def create_location_row(location):
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/locale.ui')
 class LocalePage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
-    image_name = 'globe-symbolic'
+    image = 'globe-symbolic'
 
     text_stack = Gtk.Template.Child()
     list_stack = Gtk.Template.Child()

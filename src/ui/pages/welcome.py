@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from pathlib import Path
+
 from gi.repository import Gtk
 
 from .global_state import global_state
@@ -11,7 +13,7 @@ from .widgets import reset_model, DeviceRow
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/welcome.ui')
 class WelcomePage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image_name = 'weather-clear-symbolic'
+    image = 'weather-clear-symbolic'
 
     description = Gtk.Template.Child()
 
@@ -20,8 +22,7 @@ class WelcomePage(Gtk.Box, Page):
         config = global_state.get_config('welcome_page')
 
         if config['logo']:
-            self.image_name = None
-            self.image_path = config['logo']
+            self.image = Path(config['logo'])
 
     ### callbacks ###
 

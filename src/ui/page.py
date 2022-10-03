@@ -1,8 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from  pathlib import Path
+from  typing import Union
+
 class Page:
-    image_name: str = None
-    image_path: str = None
+    image: Union[str, Path, None] = None
     can_navigate_backward: bool = False
     can_navigate_forward: bool = False
     can_reload: bool = False

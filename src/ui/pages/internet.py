@@ -13,7 +13,7 @@ from .system_calls import open_wifi_settings, start_system_timesync
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/internet.ui')
 class InternetPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image_name = 'network-wireless-disabled-symbolic'
+    image = 'network-wireless-disabled-symbolic'
 
     can_proceed_automatically = False
     connected = False
@@ -23,8 +23,8 @@ class InternetPage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
 
     def _set_connected(self):
-        self.image_name = 'network-wireless-symbolic'
-        global_state.set_title_image(self.image_name)
+        self.image = 'network-wireless-symbolic'
+        global_state.reload_title_image()
         start_system_timesync()
 
     ### callbacks ###

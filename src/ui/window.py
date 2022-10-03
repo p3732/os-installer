@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from pathlib import Path
 from threading import Lock
 
 from gi.repository import Gtk, Adw
@@ -64,7 +65,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # set advancing functions in global state
         global_state.advance = self.advance
         global_state.advance_without_return = self.advance_without_return
-        global_state.set_title_image = self._set_title_image
+        global_state.reload_title_image = self._reload_title_image
         global_state.installation_failed = self.show_failed_page
 
         # determine available pages
@@ -154,19 +155,19 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.current_page = wrapper.get_page()
         if not self.current_page.load():
             self.main_stack.set_visible_child(wrapper)
-            self._set_title_image(
-                self.current_page.image_name, self.current_page.image_path)
+            self._reload_title_image()
             self._update_navigation_buttons()
         else:  # load next if load() returned True
             self._load_page(self.navigation_state.current + 1)
 
-    def _set_title_image(self, image_name=None, image_path=None):
+    def _reload_title_image(self):
         name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
         new_image = self.image_stack.get_child_by_name(name)
-        if image_name:
-            new_image.set_from_icon_name(image_name)
-        elif image_path:
-            new_image.set_from_file(image_path)            
+        image_source = self.current_page.image
+        if isinstance(image_source, str):
+            new_image.set_from_icon_name(image_source)
+        elif isinstance(image_source, Path):
+            new_image.set_from_file(str(image_source))
         else:
             print('Developer hint: invalid request to set title image')
             return # ignoring

@@ -12,7 +12,7 @@ from .widgets import reset_model, ProgressRow
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
 class KeyboardLayoutPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image_name = 'input-keyboard-symbolic'
+    image = 'input-keyboard-symbolic'
 
     stack = Gtk.Template.Child()
 

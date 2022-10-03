@@ -19,7 +19,7 @@ class DiskPage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
     no_disk_image_name = 'no-disk-symbolic'
     default_image_name = 'drive-harddisk-system-symbolic'
-    image_name = default_image_name
+    image = default_image_name
     can_reload = True
 
     disk_label = Gtk.Template.Child()
@@ -54,14 +54,15 @@ class DiskPage(Gtk.Stack, Page):
             disks = disk_provider.get_testing_dummy_disks()
         else:
             disks = disk_provider.get_disks()
+
         if len(disks) == 0:
             self.set_visible_child_name('no-disks')
-            self.image_name = self.no_disk_image_name
+            self.image = self.no_disk_image_name
         else:
             reset_model(self.disk_list_model, disks)
             self.set_visible_child_name('disks')
-            self.image_name = self.default_image_name
-        global_state.set_title_image(self.image_name)
+            self.image = self.default_image_name
+        global_state.reload_title_image()
 
     def _setup_partition_list(self, disk_info):
         self.current_disk = disk_info

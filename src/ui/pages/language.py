@@ -12,7 +12,7 @@ from .widgets import reset_model, ProgressRow
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/language.ui')
 class LanguagePage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
-    image_name = 'language-symbolic'
+    image = 'language-symbolic'
 
     default_list = Gtk.Template.Child()
     show_all_button = Gtk.Template.Child()

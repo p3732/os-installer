@@ -9,7 +9,7 @@ from .page import Page
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/encrypt.ui')
 class EncryptPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
-    image_name = 'dialog-password-symbolic'
+    image = 'dialog-password-symbolic'
 
     switch = Gtk.Template.Child()
 
