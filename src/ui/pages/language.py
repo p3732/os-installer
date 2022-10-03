@@ -51,6 +51,7 @@ class LanguagePage(Gtk.Stack, Page):
                 global_state.get_config('language_code') != row.info.language_code):
             self.language_chosen = True
             set_system_language(row.info)
+            global_state.load_translated_pages()
         global_state.advance(self)
 
     ### public methods ###

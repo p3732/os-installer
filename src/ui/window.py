@@ -65,6 +65,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         # set advancing functions in global state
         global_state.advance = self.advance
         global_state.advance_without_return = self.advance_without_return
+        global_state.load_translated_pages = self.load_translated_pages
         global_state.reload_title_image = self._reload_title_image
         global_state.installation_failed = self.show_failed_page
 
@@ -120,25 +121,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.main_stack.add_named(page, page_name)
         self.pages.append(page_name)
 
-    def _initialize_pages_translated(self):
-        # delete pages that are not the language page
-        self._remove_pages(self.pages[1:])
-        self.pages = ['language']
-
-        for page_name in self.available_pages.keys():
-            if page_name != 'language':
-                self._initialize_page(page_name)
-
     def _remove_pages(self, page_names):
         for page_name in page_names:
             child = self.main_stack.get_child_by_name(page_name)
             self.main_stack.remove(child)
 
     def _load_page(self, page_number):
-        # special case language page
-        if type(self.current_page) == LanguagePage:
-            self._initialize_pages_translated()
-
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
         assert page_number < len(self.pages), 'Tried to go to non-existent page (overflow)'
 
@@ -208,6 +196,16 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
                 for page in previous_pages:
                     del page
+
+    def load_translated_pages(self):
+        with self.navigation_lock:
+            # delete pages that are not the language page
+            self._remove_pages(self.pages[1:])
+            self.pages = ['language']
+
+            for page_name in self.available_pages.keys():
+                if page_name != 'language':
+                    self._initialize_page(page_name)
 
     def navigate_backward(self):
         with self.navigation_lock:

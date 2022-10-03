@@ -34,6 +34,9 @@ class GlobalState:
     def advance_without_return(self, page):
         self._uninitialized()
 
+    def load_translated_pages(self):
+        self._uninitialized()
+
     def reload_title_image(self):
         self._uninitialized()
 
