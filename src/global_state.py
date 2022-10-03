@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from concurrent.futures import ThreadPoolExecutor
+import traceback
 from .config import create_envs, init_config
 
 
@@ -14,6 +15,10 @@ class GlobalState:
     def __init__(self):
         self.set_config('disk_name', 'Test Dummy')
 
+    def _uninitialized(self):
+        print('Window method called before initialization.')
+        traceback.print_stack()
+
     def get_config(self, setting):
         if setting in self.config:
             return self.config[setting]
@@ -24,19 +29,19 @@ class GlobalState:
         self.config[setting] = value
 
     def advance(self, page):
-        print('Advance called before window initalization compeleted!')
+        self._uninitialized()
 
     def advance_without_return(self, page):
-        print('Advance called before window initalization compeleted!')
+        self._uninitialized()
 
     def reload_title_image(self):
-        print('Reloading of title image called before window initalization compeleted!')
+        self._uninitialized()
 
     def send_notification(self, title, text):
-        print('Notification sending called before window initalization compeleted!')
+        self._uninitialized()
 
     def installation_failed(self):
-        print('Installation failed before window initalization compeleted!')
+        self._uninitialized()
 
     def create_envs(self, with_install_envs=False, with_configure_envs=False):
         return create_envs(self.config, with_install_envs, with_configure_envs)
