@@ -120,17 +120,17 @@ class LocalePage(Gtk.Stack, Page):
 
     @Gtk.Template.Callback('overview_row_activated')
     def _overview_row_activated(self, list_box, row):
-        if row.get_name() == 'timezone':
-            self._load_continents_list()
-        elif row.get_name() == 'formats':
-            self._load_formats_list()
+        match row.get_name():
+            case 'timezone':
+                self._load_continents_list()
+            case 'formats':
+                self._load_formats_list()
         self.can_navigate_backward = True
 
     @Gtk.Template.Callback('timezone_selected')
     def _timezone_selected(self, list_box, row):
         location = row.info
-        timezone = location.get_timezone_str()
-        if timezone:
+        if (timezone :=  location.get_timezone_str()):
             self._set_timezone(timezone)
         elif list_box == self.subzones_list:
             print('Subzone', location.get_name(), 'does not have any timezone attached to it! Falling back to UTC.')
