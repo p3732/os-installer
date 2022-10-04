@@ -26,9 +26,6 @@ class LocalePage(Gtk.Stack, Page):
     __gtype_name__ = __qualname__
     image = 'globe-symbolic'
 
-    text_stack = Gtk.Template.Child()
-    list_stack = Gtk.Template.Child()
-
     # overview
     formats_label = Gtk.Template.Child()
     timezone_label = Gtk.Template.Child()
@@ -39,7 +36,9 @@ class LocalePage(Gtk.Stack, Page):
     formats_list_model = Gio.ListStore()
 
     # locale
+    timezone_stack = Gtk.Template.Child()
     continents_list = Gtk.Template.Child()
+    continents_list_loaded = False
     countries_list = Gtk.Template.Child()
     subzones_list = Gtk.Template.Child()
 
@@ -47,7 +46,6 @@ class LocalePage(Gtk.Stack, Page):
     countries_list_model = Gio.ListStore()
     subzones_list_model = Gio.ListStore()
 
-    continents_list_loaded = False
 
     def __init__(self, **kwargs):
         Gtk.Stack.__init__(self, **kwargs)
@@ -68,15 +66,14 @@ class LocalePage(Gtk.Stack, Page):
                     continents.append(continent)            
             reset_model(self.continents_list_model, continents)
 
-        self.set_visible_child_name('list')
-        self.list_stack.set_visible_child_name('timezone_continents')
-        self.text_stack.set_visible_child_name('timezone')
+        self.set_visible_child_name('timezone')
+        self.timezone_stack.set_visible_child_name('continents')
 
     def _load_countries_list(self, continent):
         countries = get_location_children(continent)
         reset_model(self.countries_list_model, countries)
 
-        self.list_stack.set_visible_child_name('timezone_countries')
+        self.timezone_stack.set_visible_child_name('countries')
 
     def _load_formats_list(self):
         if not self.formats_list_loaded:
@@ -84,9 +81,7 @@ class LocalePage(Gtk.Stack, Page):
             formats = get_formats()
             reset_model(self.formats_list_model, formats)
 
-        self.set_visible_child_name('list')
-        self.text_stack.set_visible_child_name('formats')
-        self.list_stack.set_visible_child_name('formats')
+        self.set_visible_child_name('formats')
 
     def _load_subzones_list(self, country):
         subzones = []
@@ -95,7 +90,7 @@ class LocalePage(Gtk.Stack, Page):
                 subzones.append(subzone)
         reset_model(self.subzones_list_model, subzones)
 
-        self.list_stack.set_visible_child_name('timezone_subzones')
+        self.timezone_stack.set_visible_child_name('subzones')
 
     def _set_formats(self, formats_locale, name):
         set_system_formats(formats_locale, name)
@@ -156,10 +151,10 @@ class LocalePage(Gtk.Stack, Page):
         global_state.set_config('timezone', timezone)
 
     def navigate_backward(self):
-        current_list = self.list_stack.get_visible_child()
-        if current_list == self.formats_list or current_list == self.continents_list:
-            self._show_overview()
-        elif current_list == self.countries_list:
-            self.list_stack.set_visible_child_name('timezone_continents')
-        elif current_list == self.subzones_list:
-            self.list_stack.set_visible_child_name('timezone_countries')
+        match (self.get_visible_child_name(), self.timezone_stack.get_visible_child_name()):
+            case ("timezone", 'countries'):
+                self.timezone_stack.set_visible_child_name('continents')
+            case ("timezone", 'subzones'):
+                self.timezone_stack.set_visible_child_name('countries')
+            case _,_:
+                self._show_overview()

@@ -90,49 +90,30 @@ template LocalePage : Stack {
   }
 
   StackPage {
-    name: "list";
+    name: "timezone";
     child: Box {
       orientation: vertical;
       spacing: 12;
 
-      Stack text_stack {
+      Label {
         valign: start;
-
-        StackPage {
-          name: "timezone";
-          child: Label {
-            valign: start;
-            /* Translators: Above list of continents and countries */
-            label: _("Select Location");
-            justify: center;
-            wrap: true;
-            styles ["heading"]
-          };
-        }
-
-        StackPage {
-          name: "formats";
-          child: Label {
-            valign: start;
-            /* Translators: Above list of format locales */
-            label: _("Select Region");
-            justify: center;
-            wrap: true;
-            styles ["heading"]
-          };
-        }
+        /* Translators: Above list of continents and countries */
+        label: _("Select Location");
+        justify: center;
+        wrap: true;
+        styles ["heading"]
       }
 
       ScrolledWindow {
         hexpand: true;
         propagate-natural-height: true;
         styles ["embedded"]
-        child: Stack list_stack {
+        child: Stack timezone_stack {
           vhomogeneous: false;
           transition-type: crossfade;
 
           StackPage {
-            name: "timezone_continents";
+            name: "continents";
             child: ListBox continents_list {
               row-activated => timezone_selected();
               styles ["boxed-list"]
@@ -140,7 +121,7 @@ template LocalePage : Stack {
           }
 
           StackPage {
-            name: "timezone_countries";
+            name: "countries";
             child: ListBox countries_list {
               row-activated => timezone_selected();
               styles ["boxed-list"]
@@ -148,20 +129,39 @@ template LocalePage : Stack {
           }
 
           StackPage {
-            name: "timezone_subzones";
+            name: "subzones";
             child: ListBox subzones_list {
               row-activated => timezone_selected();
               styles ["boxed-list"]
             };
           }
+        };
+      }
+    };
+  }
 
-          StackPage {
-            name: "formats";
-            child: ListBox formats_list {
-              row-activated => formats_selected();
-              styles ["boxed-list"]
-            };
-          }
+  StackPage {
+    name: "formats";
+    child: Box {
+      orientation: vertical;
+      spacing: 12;
+
+      Label {
+        valign: start;
+        /* Translators: Above list of format locales */
+        label: _("Select Region");
+        justify: center;
+        wrap: true;
+        styles ["heading"]
+      }
+
+      ScrolledWindow {
+        hexpand: true;
+        propagate-natural-height: true;
+        styles ["embedded"]
+        child: ListBox formats_list {
+          row-activated => formats_selected();
+          styles ["boxed-list"]
         };
       }
     };
