@@ -34,6 +34,10 @@ class NavigationState:
     earliest: int = 0
     furthest: int = 0
 
+    def set(self, state: int):
+        self.current = state
+        self.furthest = max(self.furthest, state)
+
     def is_not_earliest(self):
         return self.current > self.earliest
 
@@ -130,36 +134,35 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
         assert page_number < len(self.pages), 'Tried to go to non-existent page (overflow)'
 
-        # unload previous page
+        # unload old page
         if self.current_page:
             self.current_page.unload()
 
-        self.navigation_state.current = page_number
-        self.navigation_state.furthest = max(self.navigation_state.furthest, page_number)
-
         # load page
-        current_page_name = self.pages[self.navigation_state.current]
-        wrapper = self.main_stack.get_child_by_name(current_page_name)
+        page_name = self.pages[page_number]
+        wrapper = self.main_stack.get_child_by_name(page_name)
         self.current_page = wrapper.get_page()
-        if not self.current_page.load():
+        if self.current_page.load():
+            # load next if load() returned True
+            self._load_page(page_number + 1)
+        else:
             self.main_stack.set_visible_child(wrapper)
+            self.navigation_state.set(page_number)
             self._reload_title_image()
             self._update_navigation_buttons()
-        else:  # load next if load() returned True
-            self._load_page(self.navigation_state.current + 1)
 
     def _reload_title_image(self):
-        name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
-        new_image = self.image_stack.get_child_by_name(name)
+        next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
+        next_image = self.image_stack.get_child_by_name(next_image_name)
         image_source = self.current_page.image
         if isinstance(image_source, str):
-            new_image.set_from_icon_name(image_source)
+            next_image.set_from_icon_name(image_source)
         elif isinstance(image_source, Path):
-            new_image.set_from_file(str(image_source))
+            next_image.set_from_file(str(image_source))
         else:
             print('Developer hint: invalid request to set title image')
             return # ignoring
-        self.image_stack.set_visible_child_name(name)
+        self.image_stack.set_visible_child_name(next_image_name)
 
     def _show_dialog(self, dialog):
         dialog.set_transient_for(self)
