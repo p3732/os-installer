@@ -70,7 +70,7 @@ def set_system_language(language_info):
         Locale.setlocale(Locale.LC_ALL, 'en_US.UTF-8')
 
     # TODO find correct way to set system locale without user authentication
-    _exec(['localectl', '--no-ask-password', 'set-locale', 'LANG=en_US.UTF-8'])
+    _exec(['localectl', '--no-ask-password', 'set-locale', f'LANG={locale}'])
 
 
 def set_system_formats(locale, formats_label):
