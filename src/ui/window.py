@@ -57,6 +57,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     reload_revealer = Gtk.Template.Child()
 
     current_page = None
+    # when changing pages by name return to this page on advancing
+    original_page_name: str = ''
     navigation_lock = Lock()
     navigation_state = NavigationState()
     pages = []
@@ -70,6 +72,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         global_state.advance = self.advance
         global_state.advance_without_return = self.advance_without_return
         global_state.load_translated_pages = self.load_translated_pages
+        global_state.navigate_to_page = self.navigate_to_page
         global_state.reload_title_image = self._reload_title_image
         global_state.installation_failed = self.show_failed_page
 
@@ -151,6 +154,34 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self._reload_title_image()
             self._update_navigation_buttons()
 
+    def _load_page_by_name(self, page_name: str) -> None:
+        self.current_page.unload()
+
+        wrapper = self.main_stack.get_child_by_name(page_name)
+        if wrapper == None:
+            print(f'Page named {page_name} does not exist. Are you testing things and forget to comment it back in?')
+            return
+        self.current_page = wrapper.get_page()
+        self.current_page.load()
+        self.main_stack.set_visible_child(wrapper)
+
+        self._reload_title_image()
+        self.previous_revealer.set_reveal_child(True)
+        self.next_revealer.set_reveal_child(False)
+        self.reload_revealer.set_reveal_child(self.current_page.can_reload)
+
+    def _load_original_page(self):
+        self.current_page.unload()
+
+        original_page = self.main_stack.get_child_by_name(self.original_page_name)
+        self.current_page = original_page.get_page()
+        self.current_page.load()
+        self.main_stack.set_visible_child(original_page)
+        self.original_page_name = None
+
+        self._reload_title_image()
+        self._update_navigation_buttons()
+
     def _reload_title_image(self):
         next_image_name = '1' if self.image_stack.get_visible_child_name() == '2' else '2'
         next_image = self.image_stack.get_child_by_name(next_image_name)
@@ -187,18 +218,24 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             # to prevent incorrect navigation, confirm that calling page is current page
             if not page or page.id() == self.current_page.id():
-                self._load_page(self.navigation_state.current + 1)
+                if self.original_page_name:
+                    self._load_original_page()
+                else:
+                    self._load_page(self.navigation_state.current + 1)
 
     def advance_without_return(self, page):
         with self.navigation_lock:
             if not page or page.id() == self.current_page.id():
-                previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
-                self.navigation_state.earliest = self.navigation_state.current + 1
+                if self.original_page_name:
+                    self._load_original_page()
+                else:
+                    previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
+                    self.navigation_state.earliest = self.navigation_state.current + 1
 
-                self._load_page(self.navigation_state.current + 1)
+                    self._load_page(self.navigation_state.current + 1)
 
-                for page in previous_pages:
-                    del page
+                    for page in previous_pages:
+                        del page
 
     def load_translated_pages(self):
         with self.navigation_lock:
@@ -214,6 +251,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             if self.current_page.can_navigate_backward:
                 self.current_page.navigate_backward()
+            elif self.original_page_name:
+                self._load_original_page()
             elif self.navigation_state.is_not_earliest():
                 self._load_page(self.navigation_state.current - 1)
 
@@ -247,3 +286,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             failed_page_position = len(self.available_pages)-1
             self.navigation_state.earliest = failed_page_position
             self._load_page(failed_page_position)
+
+    def navigate_to_page(self, page_name):
+        self.original_page_name = self.main_stack.get_visible_child_name()
+        self._load_page_by_name(page_name)

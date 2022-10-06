@@ -37,6 +37,9 @@ class GlobalState:
     def load_translated_pages(self):
         self._uninitialized()
 
+    def navigate_to_page(self):
+        self._uninitialized()
+
     def reload_title_image(self):
         self._uninitialized()
 
