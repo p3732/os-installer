@@ -4,10 +4,16 @@
   background-color: #000;
 }
 
-/* flat style does not seem to work, this is a fallback */
-headerbar {
+/* Flat style for headerbar and nested-list. */
+headerbar, .nested-list {
   background: none;
   box-shadow:none;
+}
+
+/* Use AdwActionRow style where they are not usable. */
+.row-content {
+  margin-bottom: 12px;
+  margin-top: 12px;
 }
 
 /* Default margin in all directions. */

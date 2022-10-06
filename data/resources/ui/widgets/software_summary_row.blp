@@ -1,0 +1,22 @@
+using Gtk 4.0;
+
+template SoftwareSummaryRow : ListBoxRow {
+  activatable: false;
+  focusable: false;
+  selectable: false;
+
+  Box {
+    spacing: 6;
+
+    Image icon {
+      width-request: 16;
+      height-request: 16;
+      valign: center;
+      styles ["icon-dropshadow"]
+    }
+
+    Label name {
+      wrap: true;
+    }
+  }
+}

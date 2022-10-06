@@ -1,0 +1,181 @@
+using Gtk 4.0;
+using Adw 1;
+
+template SummaryPage : Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    label: _("Summary");
+    justify: center;
+    wrap: true;
+    styles ["heading"]
+  }
+
+  ScrolledWindow {
+    propagate-natural-height: true;
+    styles ["embedded", "separate-bottom"] 
+
+    child: ListBox {
+      hexpand: true;
+      selection-mode: none;
+      row-activated => summary_row_activated();
+      styles ["boxed-list"]
+
+      Adw.ActionRow Language_row {
+        name: "language";
+        activatable: true;
+        /* Translators: Description of selected language. */
+        title: _("Language");
+
+        Label language_label {
+          hexpand: true;
+          wrap: true;
+          xalign: 1;
+          styles ["row-content"]
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
+
+      Adw.ActionRow keyboard_row {
+        name: "keyboard";
+        activatable: true;
+        /* Translators: Description of selected keyboard layout. */
+        title: _("Keyboard Layout");
+
+        Label keyboard_label {
+          hexpand: true;
+          wrap: true;
+          xalign: 1;
+          styles ["row-content"]
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
+
+      Adw.ActionRow user_row {
+        name: "user";
+        activatable: true;
+        /* Translators: Description of defined user account name and autologin status. */
+        title: _("User Account");
+
+        Box {
+          orientation: vertical;
+          valign: center;
+          styles ["row-content"]
+
+          Label user_label {
+            hexpand: true;
+            wrap: true;
+            xalign: 1;
+          }
+
+          Label user_autologin {
+            /* Translators: Gets shown when autologin is enabled. */
+            label: _("Automatic Login");
+            margin-top: 6;
+            hexpand: true;
+            wrap: true;
+            xalign: 1;
+            styles ["dim-label"]
+          }
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
+
+      Adw.ActionRow format_row {
+        name: "format";
+        activatable: true;
+        /* Translators: Description of selected format. */
+        title: _("Formats");
+
+        Label format_label {
+          hexpand: true;
+          wrap: true;
+          xalign: 1;
+          styles ["row-content"]
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
+
+      Adw.ActionRow timezone_row {
+        name: "timezone";
+        activatable: true;
+        /* Translators: Description of selected timezone. */
+        title: _("Timezone");
+
+        Label timezone_label {
+          hexpand: true;
+          wrap: true;
+          xalign: 1;
+          styles ["row-content"]
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
+
+      Adw.ActionRow software_row {
+        name: "software";
+        activatable: true;
+        /* Translators: Description of selected additional software. */
+        title: _("Additional Software");
+
+        Stack software_stack {
+          vhomogeneous: false;
+          transition-type: crossfade;
+          styles ["row-content"]
+
+          StackPage {
+            name: "used";
+            child: ListBox software_list {
+              halign: end;
+              valign: center;
+              selection-mode: none;
+              styles ["nested-list"]
+            };
+          }
+
+          StackPage {
+            name: "none";
+            child: Label {
+              label: _("None");
+              hexpand: true;
+              valign: center;
+              wrap: true;
+              xalign: 1;
+              styles ["dim-label"]
+            };
+          }
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
+    };
+  }
+
+  Button {
+    /* Translators: On button. */
+    label: _("_Confirm");
+    focusable: true;
+    receives-default: true;
+    halign: center;
+    use-underline: true;
+    clicked => continue();
+    styles ["suggested-action", "pill", "bottom-button"]
+  }
+}

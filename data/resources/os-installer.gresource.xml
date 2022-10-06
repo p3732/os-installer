@@ -35,6 +35,7 @@
     <file preprocess="xml-stripblanks">ui/pages/locale.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/software.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/summary.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/timezone.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/welcome.ui</file>
@@ -43,5 +44,6 @@
     <file preprocess="xml-stripblanks">ui/widgets/page_wrapper.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/progress_row.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/selection_row.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/software_summary_row.ui</file>
   </gresource>
 </gresources>

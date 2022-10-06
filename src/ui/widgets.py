@@ -89,3 +89,19 @@ class SelectionRow(Adw.ActionRow):
 
     def set_activated(self, state):
         return self.switch.set_active(state)
+
+
+@Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_summary_row.ui')
+class SoftwareSummaryRow(Gtk.ListBoxRow):
+    __gtype_name__ = 'SoftwareSummaryRow'
+
+    icon = Gtk.Template.Child()
+    name = Gtk.Template.Child()
+
+    def __init__(self, name, icon_path, **kwargs):
+        super().__init__(**kwargs)
+        self.name.set_label(name)
+        if not icon_path:
+            self.icon.set_from_icon_name('application-x-executable-symbolic')
+        else:
+            self.icon.set_from_file(icon_path)

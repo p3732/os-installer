@@ -17,6 +17,7 @@ data/resources/ui/pages/keyboard_layout.blp
 data/resources/ui/pages/locale.blp
 data/resources/ui/pages/restart.blp
 data/resources/ui/pages/software.blp
+data/resources/ui/pages/summary.blp
 data/resources/ui/pages/timezone.blp
 data/resources/ui/pages/user.blp
 data/resources/ui/pages/welcome.blp

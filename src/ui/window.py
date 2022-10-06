@@ -20,6 +20,7 @@ from .language import LanguagePage
 from .locale import LocalePage
 from .restart import RestartPage
 from .software import SoftwarePage
+from .summary import SummaryPage
 from .timezone import TimezonePage
 from .user import UserPage
 from .welcome import WelcomePage
@@ -106,6 +107,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('locale', LocalePage, True),
             ('format', FormatPage, True),
             ('timezone', TimezonePage, True),
+            # summary
+            ('summary', SummaryPage, True),
             # installation
             ('install', InstallPage, True),
             # post-installation
@@ -137,7 +140,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             child = self.main_stack.get_child_by_name(page_name)
             self.main_stack.remove(child)
 
-    def _load_page(self, page_number):
+    def _load_page(self, page_number: int):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
         assert page_number < len(self.pages), 'Tried to go to non-existent page (overflow)'
 
@@ -238,8 +241,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
                     self._load_page(self.navigation_state.current + 1)
 
-                    for page in previous_pages:
-                        del page
+                    if page == None or self.pages[self.navigation_state.current] == 'summary':
+                        for page in previous_pages:
+                            del page
 
     def load_translated_pages(self):
         with self.navigation_lock:
