@@ -11,6 +11,7 @@
     <!-- Icons -->
     <file preprocess="xml-stripblanks">icon/scalable/actions/globe-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/language-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icon/scalable/actions/map-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/no-disk-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/question-round-symbolic.svg</file>
     <file preprocess="xml-stripblanks">icon/scalable/actions/user-symbolic.svg</file>
@@ -25,6 +26,7 @@
     <file preprocess="xml-stripblanks">ui/pages/done.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/encrypt.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/failed.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/format.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/install.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/internet.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/keyboard_layout.ui</file>
@@ -32,6 +34,7 @@
     <file preprocess="xml-stripblanks">ui/pages/locale.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/restart.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/software.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/timezone.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/user.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/welcome.ui</file>
 

@@ -1,0 +1,26 @@
+using Gtk 4.0;
+using Adw 1;
+
+template FormatPage : Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    valign: start;
+    /* Translators: Above list of format locales */
+    label: _("Select Region");
+    justify: center;
+    wrap: true;
+    styles ["heading"]
+  }
+
+  ScrolledWindow {
+    hexpand: true;
+    propagate-natural-height: true;
+    styles ["embedded"]
+    child: ListBox list {
+      row-activated => formats_selected();
+      styles ["boxed-list"]
+    };
+  }
+}

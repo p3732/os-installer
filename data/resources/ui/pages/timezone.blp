@@ -1,0 +1,50 @@
+using Gtk 4.0;
+using Adw 1;
+
+template TimezonePage : Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    valign: start;
+    /* Translators: Above list of continents and countries */
+    label: _("Select Location");
+    justify: center;
+    wrap: true;
+    styles ["heading"]
+  }
+
+  ScrolledWindow {
+    hexpand: true;
+    propagate-natural-height: true;
+    styles ["embedded"]
+    child: Stack list_stack {
+      vhomogeneous: false;
+      transition-type: crossfade;
+
+      StackPage {
+        name: "continents";
+        child: ListBox continents {
+          row-activated => timezone_selected();
+          styles ["boxed-list"]
+        };
+      }
+
+      StackPage {
+        name: "countries";
+        child: ListBox countries {
+          row-activated => timezone_selected();
+          styles ["boxed-list"]
+        };
+      }
+
+      StackPage {
+        name: "subzones";
+        child: ListBox subzones {
+          row-activated => timezone_selected();
+          styles ["boxed-list"]
+        };
+      }
+    };
+  }
+}

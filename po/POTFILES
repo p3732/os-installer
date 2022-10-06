@@ -10,12 +10,14 @@ data/resources/ui/pages/disk.blp
 data/resources/ui/pages/done.blp
 data/resources/ui/pages/encrypt.blp
 data/resources/ui/pages/failed.blp
+data/resources/ui/pages/format.blp
 data/resources/ui/pages/install.blp
 data/resources/ui/pages/internet.blp
 data/resources/ui/pages/keyboard_layout.blp
 data/resources/ui/pages/locale.blp
 data/resources/ui/pages/restart.blp
 data/resources/ui/pages/software.blp
+data/resources/ui/pages/timezone.blp
 data/resources/ui/pages/user.blp
 data/resources/ui/pages/welcome.blp
 

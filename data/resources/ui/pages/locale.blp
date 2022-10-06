@@ -1,169 +1,82 @@
 using Gtk 4.0;
 using Adw 1;
 
-template LocalePage : Stack {
-  vhomogeneous: false;
-  transition-type: crossfade;
+template LocalePage : Box {
+  orientation: vertical;
+  spacing: 12;
 
-  StackPage {
-    name: "overview";
-    child: Box {
-      orientation: vertical;
-      spacing: 12;
-
-      Label {
-        label: _("Adapt to Location");
-        justify: center;
-        wrap: true;
-        styles ["heading"]
-      }
-
-      ListBox {
-        selection-mode: none;
-        row-activated => overview_row_activated();
-        styles ["boxed-list"]
-
-        Adw.ActionRow {
-          name: "timezone";
-          activatable: true;
-          focusable: true;
-          selectable: false;
-          /* Translators: Presented next to the current Timezone. */
-          title: _("Timezone");
-
-          Box {
-            spacing: 12;
-
-            Label timezone_label {
-              ellipsize: end;
-              hexpand: true;
-              lines: 2;
-              wrap: true;
-              xalign: 1;
-            }
-
-            Image {
-              icon-name: "emblem-system-symbolic";
-            }
-          }
-        }
-
-        Adw.ActionRow {
-          name: "formats";
-          activatable: true;
-          focusable: true;
-          selectable: false;
-          /* Translators: Presented next to the current Formats. */
-          title: _("Formats");
-          /* Translators: Description of what is covered by formats. */
-          subtitle: _("Defines the default format used for dates, times, numbers, etc.");
-
-          Box {
-            spacing: 12;
-
-            Label formats_label {
-              ellipsize: end;
-              hexpand: true;
-              lines: 2;
-              wrap: true;
-              xalign: 1;
-            }
-
-            Image {
-              icon-name: "emblem-system-symbolic";
-            }
-          }
-        }
-      }
-
-      Button {
-        /* Translators: On button. */
-        label: _("_Confirm");
-        focusable: true;
-        receives-default: true;
-        halign: center;
-        use-underline: true;
-        clicked => confirmed();
-        styles ["suggested-action", "pill", "bottom-button"]
-      }
-    };
+  Label {
+    label: _("Adapt to Location");
+    justify: center;
+    wrap: true;
+    styles ["heading"]
   }
 
-  StackPage {
-    name: "timezone";
-    child: Box {
-      orientation: vertical;
-      spacing: 12;
+  ListBox {
+    selection-mode: none;
+    row-activated => overview_row_activated();
+    styles ["boxed-list"]
 
-      Label {
-        valign: start;
-        /* Translators: Above list of continents and countries */
-        label: _("Select Location");
-        justify: center;
-        wrap: true;
-        styles ["heading"]
+    Adw.ActionRow {
+      name: "timezone";
+      activatable: true;
+      focusable: true;
+      selectable: false;
+      /* Translators: Presented next to the current Timezone. */
+      title: _("Timezone");
+
+      Box {
+        spacing: 12;
+
+        Label timezone_label {
+          ellipsize: end;
+          hexpand: true;
+          lines: 2;
+          wrap: true;
+          xalign: 1;
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
       }
+    }
 
-      ScrolledWindow {
-        hexpand: true;
-        propagate-natural-height: true;
-        styles ["embedded"]
-        child: Stack timezone_stack {
-          vhomogeneous: false;
-          transition-type: crossfade;
+    Adw.ActionRow {
+      name: "format";
+      activatable: true;
+      focusable: true;
+      selectable: false;
+      /* Translators: Presented next to the current Formats. */
+      title: _("Formats");
+      /* Translators: Description of what is covered by formats. */
+      subtitle: _("Defines the default format used for dates, times, numbers, etc.");
 
-          StackPage {
-            name: "continents";
-            child: ListBox continents_list {
-              row-activated => timezone_selected();
-              styles ["boxed-list"]
-            };
-          }
+      Box {
+        spacing: 12;
 
-          StackPage {
-            name: "countries";
-            child: ListBox countries_list {
-              row-activated => timezone_selected();
-              styles ["boxed-list"]
-            };
-          }
+        Label formats_label {
+          ellipsize: end;
+          hexpand: true;
+          lines: 2;
+          wrap: true;
+          xalign: 1;
+        }
 
-          StackPage {
-            name: "subzones";
-            child: ListBox subzones_list {
-              row-activated => timezone_selected();
-              styles ["boxed-list"]
-            };
-          }
-        };
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
       }
-    };
+    }
   }
 
-  StackPage {
-    name: "formats";
-    child: Box {
-      orientation: vertical;
-      spacing: 12;
-
-      Label {
-        valign: start;
-        /* Translators: Above list of format locales */
-        label: _("Select Region");
-        justify: center;
-        wrap: true;
-        styles ["heading"]
-      }
-
-      ScrolledWindow {
-        hexpand: true;
-        propagate-natural-height: true;
-        styles ["embedded"]
-        child: ListBox formats_list {
-          row-activated => formats_selected();
-          styles ["boxed-list"]
-        };
-      }
-    };
+  Button {
+    /* Translators: On button. */
+    label: _("_Continue");
+    focusable: true;
+    halign: center;
+    use-underline: true;
+    clicked => continue();
+    styles ["suggested-action", "pill", "bottom-button"]
   }
 }

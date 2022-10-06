@@ -12,6 +12,7 @@ from .disk import DiskPage
 from .done import DonePage
 from .encrypt import EncryptPage
 from .failed import FailedPage
+from .format import FormatPage
 from .install import InstallPage
 from .internet import InternetPage
 from .keyboard_layout import KeyboardLayoutPage
@@ -19,6 +20,7 @@ from .language import LanguagePage
 from .locale import LocalePage
 from .restart import RestartPage
 from .software import SoftwarePage
+from .timezone import TimezonePage
 from .user import UserPage
 from .welcome import WelcomePage
 from .widgets import PageWrapper
@@ -102,6 +104,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('user', UserPage, True),
             ('software', SoftwarePage, global_state.get_config('additional_software')),
             ('locale', LocalePage, True),
+            ('format', FormatPage, True),
+            ('timezone', TimezonePage, True),
             # installation
             ('install', InstallPage, True),
             # post-installation
