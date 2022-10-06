@@ -26,7 +26,7 @@ template TimezonePage : Box {
         name: "continents";
         child: ListBox continents {
           row-activated => timezone_selected();
-          styles ["boxed-list"]
+          styles ["boxed-list", "bottom-spacing"]
         };
       }
 
@@ -34,7 +34,7 @@ template TimezonePage : Box {
         name: "countries";
         child: ListBox countries {
           row-activated => timezone_selected();
-          styles ["boxed-list"]
+          styles ["boxed-list", "bottom-spacing"]
         };
       }
 
@@ -42,7 +42,7 @@ template TimezonePage : Box {
         name: "subzones";
         child: ListBox subzones {
           row-activated => timezone_selected();
-          styles ["boxed-list"]
+          styles ["boxed-list", "bottom-spacing"]
         };
       }
     };

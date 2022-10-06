@@ -109,7 +109,7 @@ template KeyboardLayoutPage : Box {
             valign: start;
             selection-mode: none;
             row-activated => layout_row_activated();
-            styles ["boxed-list"]
+            styles ["boxed-list", "bottom-spacing"]
           };
         }
       };
@@ -126,7 +126,7 @@ template KeyboardLayoutPage : Box {
           hexpand: true;
           selection-mode: none;
           row-activated => language_row_activated();
-          styles ["boxed-list"]
+          styles ["boxed-list", "bottom-spacing"]
         };
       };
     }
