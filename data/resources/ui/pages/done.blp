@@ -2,6 +2,8 @@ using Gtk 4.0;
 
 template DonePage : Box {
   orientation: vertical;
+  halign: center;
+  spacing: 12;
 
   Label {
     label: _("Installation Complete");
@@ -10,30 +12,24 @@ template DonePage : Box {
     styles ["heading"]
   }
 
-  Box {
-    halign: center;
-    orientation: vertical;
-    spacing: 12;
+  Button {
+    /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */
+    label: _("_Restart System");
+    focusable: true;
+    receives-default: true;
+    use-underline: true;
+    clicked => restart_button_clicked();
+    styles ["suggested-action", "pill"]
+  }
 
-    Button {
-      /* Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'. */
-      label: _("_Restart System");
-      focusable: true;
-      receives-default: true;
-      use-underline: true;
-      clicked => restart_button_clicked();
-      styles ["suggested-action", "pill"]
-    }
+  Button {
+    /* Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'. */
+    label: _("Restart _Later");
+    focusable: true;
+    receives-default: true;
+    action-name: "app.quit";
+    use-underline: true;
 
-    Button {
-      /* Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'. */
-      label: _("Restart _Later");
-      focusable: true;
-      receives-default: true;
-      action-name: "app.quit";
-      use-underline: true;
-
-      styles ["pill", "bottom-button"]
-    }
+    styles ["pill", "bottom-button"]
   }
 }
