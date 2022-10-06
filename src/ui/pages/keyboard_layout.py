@@ -112,9 +112,9 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self._load_overview(keyboard_info)
 
     def navigate_backward(self):
-        visible = self.stack.get_visible_child_name()
-        if visible == 'layouts':
-            self.stack.set_visible_child_name('overview')
-            self.can_navigate_backward = False
-        elif visible == 'languages':
-            self.stack.set_visible_child_name('layouts')
+        match self.stack.get_visible_child_name():
+            case 'layouts':
+                self.stack.set_visible_child_name('overview')
+                self.can_navigate_backward = False
+            case 'languages':
+                self.stack.set_visible_child_name('layouts')
