@@ -32,7 +32,7 @@ from .language_provider import language_provider
 from .system_calls import set_system_language
 
 
-class NavigationState:
+class Navigation:
     current: int = -1
     earliest: int = 0
     furthest: int = 0
@@ -63,7 +63,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
     # when changing pages by name return to this page on advancing
     original_page_name: str = ''
     navigation_lock = Lock()
-    navigation_state = NavigationState()
+    navigation = Navigation()
     pages = []
 
     def __init__(self, quit_callback, **kwargs):
@@ -157,7 +157,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self._load_page(page_number + 1)
         else:
             self.main_stack.set_visible_child(wrapper)
-            self.navigation_state.set(page_number)
+            self.navigation.set(page_number)
             self._reload_title_image()
             self._update_navigation_buttons()
 
@@ -209,11 +209,11 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     def _update_navigation_buttons(self):
         # backward
-        show_backward = self.current_page.can_navigate_backward or self.navigation_state.is_not_earliest()
+        show_backward = self.current_page.can_navigate_backward or self.navigation.is_not_earliest()
         self.previous_revealer.set_reveal_child(show_backward)
 
         # forward
-        show_forward = self.current_page.can_navigate_forward or self.navigation_state.is_not_furthest()
+        show_forward = self.current_page.can_navigate_forward or self.navigation.is_not_furthest()
         self.next_revealer.set_reveal_child(show_forward)
 
         # reload
@@ -228,7 +228,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 if self.original_page_name:
                     self._load_original_page()
                 else:
-                    self._load_page(self.navigation_state.current + 1)
+                    self._load_page(self.navigation.current + 1)
 
     def advance_without_return(self, page):
         with self.navigation_lock:
@@ -236,12 +236,12 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 if self.original_page_name:
                     self._load_original_page()
                 else:
-                    previous_pages = self.pages[self.navigation_state.earliest:self.navigation_state.current]
-                    self.navigation_state.earliest = self.navigation_state.current + 1
+                    previous_pages = self.pages[self.navigation.earliest:self.navigation.current]
+                    self.navigation.earliest = self.navigation.current + 1
 
-                    self._load_page(self.navigation_state.current + 1)
+                    self._load_page(self.navigation.current + 1)
 
-                    if page == None or self.pages[self.navigation_state.current] == 'summary':
+                    if page == None or self.pages[self.navigation.current] == 'summary':
                         for page in previous_pages:
                             del page
 
@@ -261,15 +261,15 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 self.current_page.navigate_backward()
             elif self.original_page_name:
                 self._load_original_page()
-            elif self.navigation_state.is_not_earliest():
-                self._load_page(self.navigation_state.current - 1)
+            elif self.navigation.is_not_earliest():
+                self._load_page(self.navigation.current - 1)
 
     def navigate_forward(self):
         with self.navigation_lock:
             if self.current_page.can_navigate_forward:
                 self.current_page.navigate_forward()
-            elif self.navigation_state.is_not_furthest():
-                self._load_page(self.navigation_state.current + 1)
+            elif self.navigation.is_not_furthest():
+                self._load_page(self.navigation.current + 1)
 
     def reload_page(self):
         with self.navigation_lock:
@@ -292,7 +292,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             global_state.installation_running = False
 
             failed_page_position = len(self.available_pages)-1
-            self.navigation_state.earliest = failed_page_position
+            self.navigation.earliest = failed_page_position
             self._load_page(failed_page_position)
 
     def navigate_to_page(self, page_name):
