@@ -28,25 +28,25 @@ class GlobalState:
     def set_config(self, setting, value):
         self.config[setting] = value
 
-    def advance(self, page):
+    def advance(self, *args):
         self._uninitialized()
 
-    def advance_without_return(self, page):
+    def advance_without_return(self, *args):
         self._uninitialized()
 
-    def load_translated_pages(self):
+    def load_translated_pages(self, *args):
         self._uninitialized()
 
-    def navigate_to_page(self):
+    def navigate_to_page(self, *args):
         self._uninitialized()
 
-    def reload_title_image(self):
+    def reload_title_image(self, *args):
         self._uninitialized()
 
-    def send_notification(self, title, text):
+    def send_notification(self, *args):
         self._uninitialized()
 
-    def installation_failed(self):
+    def installation_failed(self, *args):
         self._uninitialized()
 
     def create_envs(self, with_install_envs=False, with_configure_envs=False):
