@@ -73,7 +73,6 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
         # set advancing functions in global state
         global_state.advance = self.advance
-        global_state.advance_without_return = self.advance_without_return
         global_state.load_translated_pages = self.load_translated_pages
         global_state.navigate_to_page = self.navigate_to_page
         global_state.reload_title_image = self._reload_title_image
@@ -139,6 +138,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         for page_name in page_names:
             child = self.main_stack.get_child_by_name(page_name)
             self.main_stack.remove(child)
+            del child
 
     def _load_page(self, page_number: int):
         assert page_number >= 0, 'Tried to go to non-existent page (underflow)'
@@ -221,29 +221,24 @@ class OsInstallerWindow(Adw.ApplicationWindow):
 
     ### public methods ###
 
-    def advance(self, page):
+    def advance(self, page, allow_return: bool = True, cleanup: bool = False):
+        if cleanup and allow_return:
+            return print('Logic Error: Combining of return and cleanup not possible!')
         with self.navigation_lock:
-            # to prevent incorrect navigation, confirm that calling page is current page
-            if not page or page.id() == self.current_page.id():
+            # confirm calling page is current page to prevent incorrect navigation
+            if not page or page == self.current_page:
                 if self.original_page_name:
+                    if not allow_return:
+                        return print('Logic Error: Returning unpreventable, page name mode')
                     self._load_original_page()
                 else:
-                    self._load_page(self.navigation.current + 1)
-
-    def advance_without_return(self, page):
-        with self.navigation_lock:
-            if not page or page.id() == self.current_page.id():
-                if self.original_page_name:
-                    self._load_original_page()
-                else:
-                    previous_pages = self.pages[self.navigation.earliest:self.navigation.current]
-                    self.navigation.earliest = self.navigation.current + 1
+                    if not allow_return:
+                        self.navigation.earliest = self.navigation.current + 1
 
                     self._load_page(self.navigation.current + 1)
 
-                    if page == None or self.pages[self.navigation.current] == 'summary':
-                        for page in previous_pages:
-                            del page
+                    if cleanup:
+                        self._remove_pages(self.pages[:self.navigation.current - 1])
 
     def load_translated_pages(self):
         with self.navigation_lock:

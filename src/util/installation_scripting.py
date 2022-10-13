@@ -86,7 +86,7 @@ class InstallationScripting():
                     # allow returning in demo
                     global_state.advance(None)
                 else:
-                    global_state.advance_without_return(None)
+                    global_state.advance(None, allow_return=False, cleanup=True)
             else:
                 self._start_next_script()
 

@@ -31,9 +31,6 @@ class GlobalState:
     def advance(self, *args):
         self._uninitialized()
 
-    def advance_without_return(self, *args):
-        self._uninitialized()
-
     def load_translated_pages(self, *args):
         self._uninitialized()
 

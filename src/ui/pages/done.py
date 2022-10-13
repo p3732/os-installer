@@ -18,7 +18,7 @@ class DonePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('restart_button_clicked')
     def _restart_button_clicked(self, button):
-        global_state.advance_without_return(self)
+        global_state.advance(self, allow_return=False)
 
     ### public methods ###
 

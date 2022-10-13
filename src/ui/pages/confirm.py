@@ -23,7 +23,7 @@ class ConfirmPage(Gtk.Box, Page):
     @Gtk.Template.Callback('confirmed')
     def _confirmed(self, button):
         installation_scripting.set_ok_to_start_step(Step.install)
-        global_state.advance_without_return(self)
+        global_state.advance(self, allow_return=False)
 
     ### public methods ###
 
