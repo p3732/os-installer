@@ -102,10 +102,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('confirm', ConfirmPage, True),
             # configuration section
             ('user', UserPage, True),
-            ('software', SoftwarePage, global_state.get_config('additional_software')),
             ('locale', LocalePage, True),
             ('format', FormatPage, True),
             ('timezone', TimezonePage, True),
+            ('software', SoftwarePage, global_state.get_config('additional_software')),
             # summary
             ('summary', SummaryPage, True),
             # installation

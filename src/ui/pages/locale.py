@@ -22,7 +22,7 @@ class LocalePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        global_state.advance(self, allow_return=False)
+        global_state.advance(self)
 
     @Gtk.Template.Callback('overview_row_activated')
     def _overview_row_activated(self, list_box, row):
