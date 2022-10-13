@@ -111,6 +111,7 @@ def init_config():
     except:
         print('No config provided or config contains syntax errors, '
               'using default config.')
+        config = _load_default_config()
     if not _valid(config):
         print('Config errors, loading default config.')
         config = _load_default_config()
