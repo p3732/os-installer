@@ -15,7 +15,7 @@ class SummaryPage(Gtk.Box, Page):
     image = 'checkbox-checked-symbolic'
 
     # rows
-    Language_row = Gtk.Template.Child()
+    language_row = Gtk.Template.Child()
     keyboard_row = Gtk.Template.Child()
     user_row = Gtk.Template.Child()
     format_row = Gtk.Template.Child()
@@ -39,6 +39,7 @@ class SummaryPage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
             self.software_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
+        self.language_row.set_visible(global_state.get_config('fixed_language'))
 
     ### callbacks ###
 
