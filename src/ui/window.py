@@ -152,15 +152,18 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         page_name = self.pages[page_number]
         wrapper = self.main_stack.get_child_by_name(page_name)
         self.current_page = wrapper.get_page()
-        if self.current_page.load():
-            # load next if load() returned True
-            self._load_page(page_number + 1)
-        else:
-            self.main_stack.set_visible_child(wrapper)
-            self.navigation.set(page_number)
-            self._reload_title_image()
-            self._update_navigation_buttons()
 
+        match self.current_page.load():
+            case "load_next":
+                self._load_page(page_number + 1)
+                return
+            case "prevent_back_navigation":
+                self.navigation.earliest = page_number
+
+        self.main_stack.set_visible_child(wrapper)
+        self.navigation.set(page_number)
+        self._reload_title_image()
+        self._update_navigation_buttons()
     def _load_page_by_name(self, page_name: str) -> None:
         self.current_page.unload()
 

@@ -93,7 +93,7 @@ class TimezonePage(Gtk.Box, Page):
             reset_model(self.continents_model, continents)
 
         self.list_stack.set_visible_child_name('continents')
-        return True
+        return "load_next"
 
     def navigate_backward(self):
         match self.list_stack.get_visible_child_name():

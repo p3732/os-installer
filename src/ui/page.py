@@ -41,7 +41,7 @@ class Page:
     def load_once(self):
         '''
         Called once on first page construction. Used for e.g. filling lists.
-        Returning True means the page can be skipped.
+        Special return values: "load_next" (skips page), "prevent_back_navigation"
         '''
         return
 

@@ -48,6 +48,6 @@ class InternetPage(Gtk.Box, Page):
             if internet_provider.is_connected_now_or_later(self._on_connected):
                 # already connected
                 self._set_connected()
-                return True
+                return "load_next"
             if global_state.demo_mode:
-                return True
+                return "load_next"
