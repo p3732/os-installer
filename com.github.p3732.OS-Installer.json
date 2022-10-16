@@ -24,39 +24,29 @@
     ],
     "modules": [
         {
-            "name": "gnome-desktop",
+            "name": "vte",
             "buildsystem": "meson",
             "config-opts": [
-                "-Ddebug_tools=false",
-                "-Ddesktop_docs=false",
-                "-Dudev=disabled"
+                "-Ddocs=false",
+                "-Dgtk3=false",
+                "-Dgtk4=true",
+                "-Dvapi=false",
+                "-Dglade=false"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop/-/archive/42.1/gnome-desktop-42.1.tar.gz",
-                    "sha256": "7fb9cf326af88fbaed057a1e680199b6827c08bdfbf2e7fc754df2dc996a2d4b"
-                }
-            ]
-        },
-        {
-            "name": "python-yaml",
-            "buildsystem": "simple",
-            "build-commands": [
-                "python setup.py install --prefix=/app"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://pyyaml.org/download/pyyaml/PyYAML-5.3.1.tar.gz",
-                    "sha256": "b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/vte.git",
+                    "commit": "ae4a5d7df9e32ab40ceca5e06240561e819db148"
                 }
             ]
         },
         {
             "name": "geocode-glib",
             "config-opts": [
+                "-Denable-gtk-doc=false",
                 "-Denable-installed-tests=false",
+                "-Dsoup2=false",
                 "-Denable-gtk-doc=false"
             ],
             "buildsystem": "meson",
@@ -64,7 +54,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/geocode-glib.git",
-                    "commit": "34f420cbe1ff3f45fde9179ba07e0259b9ce505b"
+                    "commit": "11db75f37b77faa900255cc4835f4ab390e323bc"
                 }
             ]
         },
@@ -79,26 +69,39 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.gnome.org/GNOME/libgweather/-/archive/4.0.0/libgweather-4.0.0.tar.gz",
-                    "sha256": "7a9e2e80a120db83c7a4e0629d602e0f3d6ae7eb731acee7969119f2ccfff3a3"
+                    "url": "https://gitlab.gnome.org/GNOME/libgweather/-/archive/4.2.0/libgweather-4.2.0.tar.gz",
+                    "sha256": "37d4c41547df512a6a602df1b859c12b1bb77bf7e9075756fac2742ac298a459"
                 }
             ]
         },
         {
-            "name": "vte",
+            "name": "gnome-desktop",
             "buildsystem": "meson",
             "config-opts": [
-                "-Ddocs=false",
-                "-Dgtk3=false",
-                "-Dgtk4=true",
-                "-Dvapi=false",
-                "-Dglade=false"
+                "-Ddebug_tools=false",
+                "-Ddesktop_docs=false",
+                "-Dudev=disabled",
+                "-Dlegacy_library=false"
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/vte.git",
-                    "commit": "b51feeca889d4b597e95b21bc77dc078892af11d"
+                    "type": "archive",
+                    "url": "https://gitlab.gnome.org/GNOME/gnome-desktop/-/archive/43/gnome-desktop-43.tar.gz",
+                    "sha256": "f12300f57c9c886bf4a45b486d1168c18da7a03d6a8ae62697ae43637dfe184d"
+                }
+            ]
+        },
+        {
+            "name": "pyYAML",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pyYAML\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/36/2b/61d51a2c4f25ef062ae3f74576b01638bebad5e045f747ff12643df63844/PyYAML-6.0.tar.gz",
+                    "sha256": "68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"
                 }
             ]
         },
