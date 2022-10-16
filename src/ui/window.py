@@ -297,5 +297,8 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             self._load_page(failed_page_position)
 
     def navigate_to_page(self, page_name):
-        self.original_page_name = self.main_stack.get_visible_child_name()
-        self._load_page_by_name(page_name)
+        with self.navigation_lock:
+            if self.original_page_name:
+                return print('Logic Error: can only navigate by page name once in a row')
+            self.original_page_name = self.main_stack.get_visible_child_name()
+            self._load_page_by_name(page_name)
