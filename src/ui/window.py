@@ -125,6 +125,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             if fixed_info := language_provider.get_fixed_language(fixed_language):
                 set_system_language(fixed_info)
                 return False
+            else:
+                print('Developer hint: defined fixed language not available')
+                global_state.set_config('fixed_language', '')
         return True
 
     def _initialize_page(self, page_name):
