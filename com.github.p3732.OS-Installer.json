@@ -3,7 +3,6 @@
     "runtime": "org.gnome.Platform",
     "runtime-version": "43",
     "sdk": "org.gnome.Sdk",
-    "sdk-version": "master",
     "command": "os-installer-demo",
     "finish-args": [
         "--share=network",
