@@ -49,12 +49,14 @@ locales = {
 class Format(GObject.GObject):
     __gtype_name__ = __qualname__
     name: str
+    lower_case_name: str
     locale: str
 
     def __init__(self, name, locale):
         super().__init__()
 
         self.name = name
+        self.lower_case_name = name.lower()
         self.locale = locale
 
 

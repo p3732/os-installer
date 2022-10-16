@@ -1,5 +1,6 @@
 using Gtk 4.0;
 using Adw 1;
+using Gio 2.0;
 
 template FormatPage : Box {
   orientation: vertical;
@@ -14,13 +15,52 @@ template FormatPage : Box {
     styles ["heading"]
   }
 
-  ScrolledWindow {
-    hexpand: true;
-    propagate-natural-height: true;
-    styles ["embedded"]
-    child: ListBox list {
-      row-activated => formats_selected();
-      styles ["boxed-list", "bottom-spacing"]
-    };
+  ListBox {
+    selection-mode: none;
+    styles ["boxed-list"]
+    ListBoxRow {
+      child: SearchEntry search_entry {
+        hexpand: true;
+        placeholder-text: _("Filter");
+        receives-default: true;
+        styles ["nested-list"]
+      };
+    }
   }
+
+  Stack stack {
+    transition-type: crossfade;
+    vhomogeneous: false;
+
+    StackPage {
+      name: "list";
+      child:
+      ScrolledWindow {
+        hexpand: true;
+        propagate-natural-height: true;
+        styles ["embedded"]
+        child: ListBox list {
+          row-activated => formats_selected();
+          styles ["boxed-list", "bottom-spacing"]
+        };
+      };
+    }
+
+    StackPage {
+      name: "none";
+      child: Adw.StatusPage {
+        title: _("No Results");
+        description: _("Try a different search");
+      };
+    }
+  }
+}
+
+Gio.ListStore list_model {}
+
+CustomFilter custom_filter {}
+
+FilterListModel filter_list_model {
+  filter: custom_filter;
+  model: list_model;
 }
