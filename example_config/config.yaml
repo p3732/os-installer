@@ -48,7 +48,7 @@ suggested_languages:
 welcome_page:
     logo    : '/your/distribution/logo.png'
     text    : 'A welcoming text to inform about the installation.'
-    text_de : ''Ein Begrüßungstext um die Installation zu erklären.'
+    text_de : 'Ein Begrüßungstext um die Installation zu erklären.'
     usage   : yes
 
 # Minimum disk size needed for the installation (in Gigabyte)
