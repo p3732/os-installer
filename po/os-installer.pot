@@ -284,6 +284,7 @@ msgstr ""
 msgid "Automatic Login"
 msgstr ""
 
+#. Translators: Shown when list of selected software is empty.
 #: data/resources/ui/pages/summary.blp
 msgid "None"
 msgstr ""
