@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 14:44+0200\n"
+"POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-08-01 13:19+0000\n"
 "Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/sv/>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +42,7 @@ msgstr "_Fortsätt installation"
 msgid "_Stop Installation"
 msgstr "_Avbryt installation"
 
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Bekräftelse"
 
@@ -54,8 +55,13 @@ msgstr "Detta kommer att radera all data på"
 msgid "_Confirm"
 msgstr "_Bekräfta"
 
+#. Translators: Page title
 msgid "Disk Selection"
 msgstr "Diskval"
+
+#. Translators: Button label to open disk management tool.
+msgid "_Manage Disks"
+msgstr "_Hantera diskar"
 
 #. Translators: Label to use whole disk rather than a single partition.
 msgid "Use Whole Disk"
@@ -65,6 +71,9 @@ msgstr "Använda hela disken"
 msgid "Partitions"
 msgstr "Partitioner"
 
+msgid "Disk has no partitions."
+msgstr ""
+
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
 msgstr "Det går inte att välja en partition."
@@ -73,7 +82,7 @@ msgstr "Det går inte att välja en partition."
 msgid "The disk requires:"
 msgstr "Denna disk kräver:"
 
-#. Translators: Technical terms, the abbreviations should not be translated.
+#. Translators: Bullet point listing.
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -81,7 +90,7 @@ msgstr ""
 "  • GPT-partitionering\n"
 "  • EFI-partition"
 
-#. Translators: Technical terms, the abbreviations should not be translated
+#. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS-startpartition"
 
@@ -91,10 +100,7 @@ msgstr "Inga diskar tillgängliga"
 msgid "Connect a disk and reload this page."
 msgstr "Anslut en disk och ladda om denna sidan."
 
-#. Translators: Button label to open disk management tool.
-msgid "_Manage Disks"
-msgstr "_Hantera diskar"
-
+#. Translators: Page title
 msgid "Installation Complete"
 msgstr "Installationen är klar"
 
@@ -106,6 +112,7 @@ msgstr "_Starta om system"
 msgid "Restart _Later"
 msgstr "Starta om _senare"
 
+#. Translators: Page title
 msgid "Disk Encryption"
 msgstr "Diskkryptering"
 
@@ -124,14 +131,11 @@ msgstr ""
 "Memorera denna PIN-kod väl. Utan den kommer du inte att kunna komma åt dina "
 "filer."
 
-#. Translators: Placeholder for disk encryption pin/password field
-msgid "PIN"
-msgstr "PIN-kod"
-
 #. Translators: On button.
 msgid "_Continue"
 msgstr "_Fortsätt"
 
+#. Translators: Page title
 msgid "Installation Failed"
 msgstr "Installationen misslyckades"
 
@@ -139,6 +143,20 @@ msgstr "Installationen misslyckades"
 msgid "Search for Help on the Internet"
 msgstr "Sök efter hjälp på Internet"
 
+#. Translators: Page title
+msgid "Select Region"
+msgstr "Välj region"
+
+msgid "Filter"
+msgstr ""
+
+msgid "No Results"
+msgstr ""
+
+msgid "Try a different search"
+msgstr ""
+
+#. Translators: Page title
 msgid "Installing"
 msgstr "Installerar"
 
@@ -146,6 +164,7 @@ msgstr "Installerar"
 msgid "Show Terminal Output"
 msgstr "Visa terminalutdata"
 
+#. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Kontrollerar internetanslutningen"
 
@@ -156,6 +175,7 @@ msgstr "Ingen anslutning."
 msgid "_Open Settings"
 msgstr "_Öppna Inställningar"
 
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
 msgstr "Val av tangentbordslayout"
 
@@ -163,18 +183,22 @@ msgstr "Val av tangentbordslayout"
 msgid "Test the Keyboard Layout Here"
 msgstr "Testa tangentbordslayouten här"
 
+#. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Tangentbordsspråk"
 
+#. Translators: Page title
 msgid "Adapt to Location"
 msgstr "Anpassa till plats"
 
 #. Translators: Presented next to the current Timezone.
+#. Translators: Description of selected timezone.
 msgid "Timezone"
 msgstr "Tidszon"
 
 #. Translators: Presented next to the current Formats.
+#. Translators: Description of selected format.
 msgid "Formats"
 msgstr "Format"
 
@@ -183,43 +207,61 @@ msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr ""
 "Definierar standardformatet som används för datum, tider, siffror, etc."
 
-#. Translators: Above list of continents and countries
-msgid "Select Location"
-msgstr "Välj plats"
-
-#. Translators: Above list of format locales
-msgid "Select Region"
-msgstr "Välj region"
-
+#. Translators: Page title
 msgid "Restarting"
 msgstr "Startar om"
 
+#. Translators: Page title
+#. Translators: Description of selected additional software.
 msgid "Additional Software"
 msgstr "Ytterligare programvara"
 
+#. Translators: Page title
+msgid "Summary"
+msgstr ""
+
+#. Translators: Description of selected language.
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "Language"
+msgstr "Tangentbordsspråk"
+
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
+msgstr "Val av tangentbordslayout"
+
+#. Translators: Description of defined user account name and autologin status.
+#. Translators: Page title
 msgid "User Account"
 msgstr "Användarkonto"
 
-#. Translators: Used with entry field for User's name
-msgid "Name"
-msgstr "Namn"
-
-#. Translators: Placeholder in user name entry field
-msgid "Enter a Name"
-msgstr "Ange ett namn"
-
+#. Translators: Gets shown when autologin is enabled.
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
 msgstr "Automatisk inloggning"
 
+msgid "None"
+msgstr ""
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Välj plats"
+
+#. Translators: Used with entry field for User's name
+#, fuzzy
+#| msgid "Name"
+msgid "_Name"
+msgstr "Namn"
+
 #. Translators: Used with entry field for setting a password for new user
-msgid "Password"
+#, fuzzy
+#| msgid "Password"
+msgid "_Password"
 msgstr "Lösenord"
 
-#. Translators: Placeholder in password entry field
-msgid "Enter a Password"
-msgstr "Ange ett lösenord"
-
+#. Translators: Page title
 msgid "Welcome"
 msgstr "Välkommen"
 
@@ -237,3 +279,12 @@ msgstr "Namnlös partition"
 #. Translators: Shown for partitions that are not big enough to be installed on
 msgid "Not enough space for installation"
 msgstr "Inte tillräckligt med utrymme för installation"
+
+#~ msgid "PIN"
+#~ msgstr "PIN-kod"
+
+#~ msgid "Enter a Name"
+#~ msgstr "Ange ett namn"
+
+#~ msgid "Enter a Password"
+#~ msgstr "Ange ett lösenord"

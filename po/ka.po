@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 14:44+0200\n"
+"POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-08-16 11:15+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/ka/>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,17 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.14-dev\n"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
 msgid "OS-Installer"
 msgstr "OS-Installer"
 
-#: data/com.github.p3732.OS-Installer.desktop.in
-#: data/com.github.p3732.OS-Installer.appdata.xml.in
 msgid "Install an Operating System"
 msgstr "ოპერაციული სისტემის დაყენება"
 
 #. Translators: Shown if user wants to close window with running installation
-#: data/resources/ui/confirm_quit_popup.blp
 msgid ""
 "Stopping a running installation will leave the disk in an undefined state "
 "that might potentially be harmful"
@@ -38,56 +34,54 @@ msgstr ""
 "შეიძლება საზიანოც იყოს"
 
 #. Translators: Underscore can not be the same as for 'Stop Installation'.
-#: data/resources/ui/confirm_quit_popup.blp
 msgid "_Continue Installation"
 msgstr "_დაყენების გაგრძელება"
 
 #. Translators: Underscore can not be the same as for 'Continue Installation'.
-#: data/resources/ui/confirm_quit_popup.blp
 msgid "_Stop Installation"
 msgstr "დაყენების _შეწყვეტა"
 
-#: data/resources/ui/pages/confirm.blp
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "დადასტურება"
 
 #. Translators: Followed by a disk or partition name
-#: data/resources/ui/pages/confirm.blp
 msgid "This will delete all data on"
 msgstr "ეს ყველაფერს წაშლის"
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
 msgid "_Confirm"
 msgstr "_დადასტურება"
 
-#: data/resources/ui/pages/disk.blp
+#. Translators: Page title
 msgid "Disk Selection"
 msgstr "დისკის არჩევანი"
 
+#. Translators: Button label to open disk management tool.
+msgid "_Manage Disks"
+msgstr "_დისკების მართვა"
+
 #. Translators: Label to use whole disk rather than a single partition.
-#: data/resources/ui/pages/disk.blp
 msgid "Use Whole Disk"
 msgstr "დისკის სრულად გამოყენება"
 
 #. Translators: Heading of list of partitions
-#: data/resources/ui/pages/disk.blp
 msgid "Partitions"
 msgstr "დანაყოფები"
 
+msgid "Disk has no partitions."
+msgstr ""
+
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
-#: data/resources/ui/pages/disk.blp
 msgid "Selecting a partition is not possible."
 msgstr "დანაყოფის არჩევა შეუძლებელია."
 
 #. Translators: Followed by a list of requirements
-#: data/resources/ui/pages/disk.blp
 msgid "The disk requires:"
 msgstr "დისკს სჭირდება:"
 
-#. Translators: Technical terms, the abbreviations should not be translated.
-#: data/resources/ui/pages/disk.blp
+#. Translators: Bullet point listing.
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -95,199 +89,197 @@ msgstr ""
 "  • GPT დანაყოფები\n"
 "  • EFI დანაყოფი"
 
-#. Translators: Technical terms, the abbreviations should not be translated
-#: data/resources/ui/pages/disk.blp
+#. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS ჩატვირთვადი დანაყოფი"
 
-#: data/resources/ui/pages/disk.blp
 msgid "No Disks avaliable"
 msgstr "დისკების გარეშე"
 
-#: data/resources/ui/pages/disk.blp
 msgid "Connect a disk and reload this page."
 msgstr "მიუერთეთ დისკი და განაახლეთ ეს გვერდი."
 
-#. Translators: Button label to open disk management tool.
-#: data/resources/ui/pages/disk.blp
-msgid "_Manage Disks"
-msgstr "_დისკების მართვა"
-
-#: data/resources/ui/pages/done.blp
+#. Translators: Page title
 msgid "Installation Complete"
 msgstr "დაყენება დასრულდა"
 
 #. Translators: Button label to restart system directly after successful installation. Underscore can not be for same letter as 'Restart Later'.
-#: data/resources/ui/pages/done.blp
 msgid "_Restart System"
 msgstr "_სისტემის გადატვირთვა"
 
 #. Translators: Button label to delay restart after successful installation. Underscore can not be for same letter as 'Restart System'.
-#: data/resources/ui/pages/done.blp
 msgid "Restart _Later"
 msgstr "_მოგვიანებით გადატვირთვა"
 
-#: data/resources/ui/pages/encrypt.blp
+#. Translators: Page title
 msgid "Disk Encryption"
 msgstr "დისკის დაშიფვრა"
 
 #. Translators: Used with option to enable disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid "Encrypt Files"
 msgstr "ფაილების დაშიფვრა"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid "Encryption PIN"
 msgstr "დაშიფვრის PIN"
 
 #. Translators: Hint for disk encryption
-#: data/resources/ui/pages/encrypt.blp
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr "კარგად დაიმახსოვრეთ PIN კოდი. მის გარეშე ფაილებამდე ვერ მიხვალთ."
 
-#. Translators: Placeholder for disk encryption pin/password field
-#: data/resources/ui/pages/encrypt.blp
-msgid "PIN"
-msgstr "PIN კოდი"
-
 #. Translators: On button.
-#: data/resources/ui/pages/encrypt.blp
-#: data/resources/ui/pages/keyboard_layout.blp
-#: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
-#: data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr "_გაგრძელება"
 
-#: data/resources/ui/pages/failed.blp
+#. Translators: Page title
 msgid "Installation Failed"
 msgstr "დაყენების შეცდომა"
 
 #. Translators: Shown if installation fails.
-#: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
 msgstr "დახმარების ინტერნეტში ძებნა"
 
-#: data/resources/ui/pages/install.blp
+#. Translators: Page title
+msgid "Select Region"
+msgstr "აირჩიეთ რეგიონი"
+
+msgid "Filter"
+msgstr ""
+
+msgid "No Results"
+msgstr ""
+
+msgid "Try a different search"
+msgstr ""
+
+#. Translators: Page title
 msgid "Installing"
 msgstr "დაყენება"
 
 #. Translators: Hover information on toggle button that shows terminal output during installation.
-#: data/resources/ui/pages/install.blp
 msgid "Show Terminal Output"
 msgstr "ტერმინალზე გამონატანის ჩვენება"
 
-#: data/resources/ui/pages/internet.blp
+#. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "ინტერნეტთან მიერთების შემოწმება"
 
-#: data/resources/ui/pages/internet.blp
 msgid "No connection."
 msgstr "მიერთების გარეშე."
 
 #. Translators: On button for opening wifi settings.
-#: data/resources/ui/pages/internet.blp
 msgid "_Open Settings"
 msgstr "პარამეტრების _გახსნა"
 
-#: data/resources/ui/pages/keyboard_layout.blp
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
 msgstr "კლავიატურის განლაგების არჩევა"
 
 #. Translators: Used as placeholder in a entry field to try out a keyboard layout
-#: data/resources/ui/pages/keyboard_layout.blp
 msgid "Test the Keyboard Layout Here"
 msgstr "კლავიატურის განლაგება არ გამოსცადეთ"
 
+#. selectable: false;
 #. Translators: Followed by a language name.
-#: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Language"
 msgstr "კლავიატურის ენა"
 
-#: data/resources/ui/pages/locale.blp
+#. Translators: Page title
 msgid "Adapt to Location"
 msgstr "მდებარეობაზე მორგება"
 
 #. Translators: Presented next to the current Timezone.
-#: data/resources/ui/pages/locale.blp
+#. Translators: Description of selected timezone.
 msgid "Timezone"
 msgstr "დროის სარტყელი"
 
 #. Translators: Presented next to the current Formats.
-#: data/resources/ui/pages/locale.blp
+#. Translators: Description of selected format.
 msgid "Formats"
 msgstr "ფორმატები"
 
 #. Translators: Description of what is covered by formats.
-#: data/resources/ui/pages/locale.blp
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "თარიღის, დროის და ა.შ. ნაგულისხმები ფორმატის აღწერა."
 
-#. Translators: Above list of continents and countries
-#: data/resources/ui/pages/locale.blp
-msgid "Select Location"
-msgstr "აირჩიეთ მდებარეობა"
-
-#. Translators: Above list of format locales
-#: data/resources/ui/pages/locale.blp
-msgid "Select Region"
-msgstr "აირჩიეთ რეგიონი"
-
-#: data/resources/ui/pages/restart.blp
+#. Translators: Page title
 msgid "Restarting"
 msgstr "გადატვირთვა"
 
-#: data/resources/ui/pages/software.blp
+#. Translators: Page title
+#. Translators: Description of selected additional software.
 msgid "Additional Software"
 msgstr "დამატებითი პროგრამები"
 
-#: data/resources/ui/pages/user.blp
+#. Translators: Page title
+msgid "Summary"
+msgstr ""
+
+#. Translators: Description of selected language.
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "Language"
+msgstr "კლავიატურის ენა"
+
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
+msgstr "კლავიატურის განლაგების არჩევა"
+
+#. Translators: Description of defined user account name and autologin status.
+#. Translators: Page title
 msgid "User Account"
 msgstr "მომხმარებლის ანგარიში"
 
-#. Translators: Used with entry field for User's name
-#: data/resources/ui/pages/user.blp
-msgid "Name"
-msgstr "სახელი"
-
-#. Translators: Placeholder in user name entry field
-#: data/resources/ui/pages/user.blp
-msgid "Enter a Name"
-msgstr "შეიყვანეთ სახელი"
-
+#. Translators: Gets shown when autologin is enabled.
 #. Translators: Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.blp
 msgid "Automatic Login"
 msgstr "ავტომატურად შესვლა"
 
+msgid "None"
+msgstr ""
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "აირჩიეთ მდებარეობა"
+
+#. Translators: Used with entry field for User's name
+#, fuzzy
+#| msgid "Name"
+msgid "_Name"
+msgstr "სახელი"
+
 #. Translators: Used with entry field for setting a password for new user
-#: data/resources/ui/pages/user.blp
-msgid "Password"
+#, fuzzy
+#| msgid "Password"
+msgid "_Password"
 msgstr "პაროლი"
 
-#. Translators: Placeholder in password entry field
-#: data/resources/ui/pages/user.blp
-msgid "Enter a Password"
-msgstr "შეიყვანეთ პაროლი"
-
-#: data/resources/ui/pages/welcome.blp
+#. Translators: Page title
 msgid "Welcome"
 msgstr "მოგესალმებით"
 
 #. Translators: Default welcome text. Squiggly brackets are replaced by distribution name.
-#: data/resources/ui/pages/welcome.blp
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
 msgstr "აპლიკაცია {}-ის თქვენს სისტემაზე დაყენებაში დაგეხმარებათ."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
-#: data/resources/ui/widgets/device_row.blp
 msgid "Unnamed Partition"
 msgstr "უსახელო დანაყოფი"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
-#: data/resources/ui/widgets/device_row.blp
 msgid "Not enough space for installation"
 msgstr "დასაყენებლად საჭირო ადგილის გარეშე"
+
+#~ msgid "PIN"
+#~ msgstr "PIN კოდი"
+
+#~ msgid "Enter a Name"
+#~ msgstr "შეიყვანეთ სახელი"
+
+#~ msgid "Enter a Password"
+#~ msgstr "შეიყვანეთ პაროლი"

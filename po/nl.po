@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 14:44+0200\n"
+"POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-10-28 08:09+0000\n"
 "Last-Translator: Gerben Droogers <gerben@droogers.eu>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +42,7 @@ msgstr "Installatie _voortzetten"
 msgid "_Stop Installation"
 msgstr "Installatie _afbreken"
 
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Bevestiging"
 
@@ -54,8 +55,13 @@ msgstr "Dit zal alle data wissen op"
 msgid "_Confirm"
 msgstr "_Bevestigen"
 
+#. Translators: Page title
 msgid "Disk Selection"
 msgstr "Schijfselectie"
+
+#. Translators: Button label to open disk management tool.
+msgid "_Manage Disks"
+msgstr "_Schijven beheren"
 
 #. Translators: Label to use whole disk rather than a single partition.
 msgid "Use Whole Disk"
@@ -65,6 +71,9 @@ msgstr "Gebruik hele schijf"
 msgid "Partitions"
 msgstr "Partities"
 
+msgid "Disk has no partitions."
+msgstr ""
+
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
 msgstr "Een partitie selecteren is niet mogelijk."
@@ -73,7 +82,7 @@ msgstr "Een partitie selecteren is niet mogelijk."
 msgid "The disk requires:"
 msgstr "De schijf vereist:"
 
-#. Translators: Technical terms, the abbreviations should not be translated.
+#. Translators: Bullet point listing.
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -81,7 +90,7 @@ msgstr ""
 "  • GPT-partitionering\n"
 "  • EFI-partitie"
 
-#. Translators: Technical terms, the abbreviations should not be translated
+#. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
 msgstr "  • BIOS-opstart-partitie"
 
@@ -91,10 +100,7 @@ msgstr "Geen schijven beschikbaar"
 msgid "Connect a disk and reload this page."
 msgstr "Sluit een schijf aan en herlaad deze pagina"
 
-#. Translators: Button label to open disk management tool.
-msgid "_Manage Disks"
-msgstr "_Schijven beheren"
-
+#. Translators: Page title
 msgid "Installation Complete"
 msgstr "Installatie afgerond"
 
@@ -106,6 +112,7 @@ msgstr "Systeem _herstarten"
 msgid "Restart _Later"
 msgstr "_Later herstarten"
 
+#. Translators: Page title
 msgid "Disk Encryption"
 msgstr "Schijfversleuteling"
 
@@ -124,14 +131,11 @@ msgstr ""
 "Houd deze PIN-code goed bij. Zonder deze code kan je later geen toegang meer "
 "krijgen tot je bestanden."
 
-#. Translators: Placeholder for disk encryption pin/password field
-msgid "PIN"
-msgstr "PIN-code"
-
 #. Translators: On button.
 msgid "_Continue"
 msgstr "_Verder gaan"
 
+#. Translators: Page title
 msgid "Installation Failed"
 msgstr "Installatie mislukt"
 
@@ -139,6 +143,20 @@ msgstr "Installatie mislukt"
 msgid "Search for Help on the Internet"
 msgstr "Op het internet naar hulp zoeken"
 
+#. Translators: Page title
+msgid "Select Region"
+msgstr "Regio selecteren"
+
+msgid "Filter"
+msgstr ""
+
+msgid "No Results"
+msgstr ""
+
+msgid "Try a different search"
+msgstr ""
+
+#. Translators: Page title
 msgid "Installing"
 msgstr "Installeren"
 
@@ -146,6 +164,7 @@ msgstr "Installeren"
 msgid "Show Terminal Output"
 msgstr "Terminal-uitvoer tonen"
 
+#. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Internetverbinding controleren"
 
@@ -156,6 +175,7 @@ msgstr "Geen verbinding."
 msgid "_Open Settings"
 msgstr "Instellingen _openen"
 
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
 msgstr "Toetsenbordindeling selecteren"
 
@@ -163,18 +183,22 @@ msgstr "Toetsenbordindeling selecteren"
 msgid "Test the Keyboard Layout Here"
 msgstr "Test hier de gekozen toetsenbordindeling"
 
+#. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Taal toetsenbord"
 
+#. Translators: Page title
 msgid "Adapt to Location"
 msgstr "Aan locatie aanpassen"
 
 #. Translators: Presented next to the current Timezone.
+#. Translators: Description of selected timezone.
 msgid "Timezone"
 msgstr "Tijdzone"
 
 #. Translators: Presented next to the current Formats.
+#. Translators: Description of selected format.
 msgid "Formats"
 msgstr "Formaten"
 
@@ -184,43 +208,61 @@ msgstr ""
 "Defineert het standaardformaat dat gebruikt wordt voor datums, tijdstippen, "
 "nummers, enzovoort."
 
-#. Translators: Above list of continents and countries
-msgid "Select Location"
-msgstr "Locatie selecteren"
-
-#. Translators: Above list of format locales
-msgid "Select Region"
-msgstr "Regio selecteren"
-
+#. Translators: Page title
 msgid "Restarting"
 msgstr "Herstarten"
 
+#. Translators: Page title
+#. Translators: Description of selected additional software.
 msgid "Additional Software"
 msgstr "Bijkomende software"
 
+#. Translators: Page title
+msgid "Summary"
+msgstr ""
+
+#. Translators: Description of selected language.
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "Language"
+msgstr "Taal toetsenbord"
+
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
+msgstr "Toetsenbordindeling selecteren"
+
+#. Translators: Description of defined user account name and autologin status.
+#. Translators: Page title
 msgid "User Account"
 msgstr "Gebruikersaccount"
 
-#. Translators: Used with entry field for User's name
-msgid "Name"
-msgstr "Naam"
-
-#. Translators: Placeholder in user name entry field
-msgid "Enter a Name"
-msgstr "Vul een naam in"
-
+#. Translators: Gets shown when autologin is enabled.
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
 msgstr "Automatisch aanmelden"
 
+msgid "None"
+msgstr ""
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Locatie selecteren"
+
+#. Translators: Used with entry field for User's name
+#, fuzzy
+#| msgid "Name"
+msgid "_Name"
+msgstr "Naam"
+
 #. Translators: Used with entry field for setting a password for new user
-msgid "Password"
+#, fuzzy
+#| msgid "Password"
+msgid "_Password"
 msgstr "Wachtwoord"
 
-#. Translators: Placeholder in password entry field
-msgid "Enter a Password"
-msgstr "Geef een wachtwoord in"
-
+#. Translators: Page title
 msgid "Welcome"
 msgstr "Welkom"
 
@@ -237,3 +279,12 @@ msgstr "Onbenoemde partitie"
 #. Translators: Shown for partitions that are not big enough to be installed on
 msgid "Not enough space for installation"
 msgstr "Onvoldoende ruimte voor installatie"
+
+#~ msgid "PIN"
+#~ msgstr "PIN-code"
+
+#~ msgid "Enter a Name"
+#~ msgstr "Vul een naam in"
+
+#~ msgid "Enter a Password"
+#~ msgstr "Geef een wachtwoord in"

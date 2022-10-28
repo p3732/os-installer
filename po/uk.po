@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 14:44+0200\n"
+"POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-07-31 12:55+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/os-installer/"
@@ -42,6 +42,7 @@ msgstr "_Продовжити встановлення"
 msgid "_Stop Installation"
 msgstr "_Зупинити встановлення"
 
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Підтвердження"
 
@@ -54,8 +55,13 @@ msgstr "Це призведе до видалення всіх даних на"
 msgid "_Confirm"
 msgstr "_Підтвердити"
 
+#. Translators: Page title
 msgid "Disk Selection"
 msgstr "Вибір диска"
+
+#. Translators: Button label to open disk management tool.
+msgid "_Manage Disks"
+msgstr "_Керування дисками"
 
 #. Translators: Label to use whole disk rather than a single partition.
 msgid "Use Whole Disk"
@@ -65,6 +71,9 @@ msgstr "Використати весь диск"
 msgid "Partitions"
 msgstr "Розділи"
 
+msgid "Disk has no partitions."
+msgstr ""
+
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
 msgstr "Вибрати розділ неможливо»."
@@ -73,7 +82,7 @@ msgstr "Вибрати розділ неможливо»."
 msgid "The disk requires:"
 msgstr "Диск вимагає:"
 
-#. Translators: Technical terms, the abbreviations should not be translated.
+#. Translators: Bullet point listing.
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -81,7 +90,7 @@ msgstr ""
 "  • Розділ GPT\n"
 "  • Розділ EFI"
 
-#. Translators: Technical terms, the abbreviations should not be translated
+#. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
 msgstr "  • Завантажувальний розділ BIOS"
 
@@ -91,10 +100,7 @@ msgstr "Немає доступних дисків"
 msgid "Connect a disk and reload this page."
 msgstr "Підключіть диск і перезавантажте цю сторінку."
 
-#. Translators: Button label to open disk management tool.
-msgid "_Manage Disks"
-msgstr "_Керування дисками"
-
+#. Translators: Page title
 msgid "Installation Complete"
 msgstr "Встановлення завершено"
 
@@ -106,6 +112,7 @@ msgstr "Перезавантажити _систему"
 msgid "Restart _Later"
 msgstr "Перезавантажити _пізніше"
 
+#. Translators: Page title
 msgid "Disk Encryption"
 msgstr "Шифрування диска"
 
@@ -124,14 +131,11 @@ msgstr ""
 "«Добре запам’ятайте цей PIN-код.  Без нього ви не зможете отримати доступ до "
 "своїх файлів»."
 
-#. Translators: Placeholder for disk encryption pin/password field
-msgid "PIN"
-msgstr "PIN-код"
-
 #. Translators: On button.
 msgid "_Continue"
 msgstr "_Продовжити"
 
+#. Translators: Page title
 msgid "Installation Failed"
 msgstr "Не вдалося встановити"
 
@@ -139,6 +143,20 @@ msgstr "Не вдалося встановити"
 msgid "Search for Help on the Internet"
 msgstr "Шукайте допомогу в Інтернеті"
 
+#. Translators: Page title
+msgid "Select Region"
+msgstr "Виберіть регіон"
+
+msgid "Filter"
+msgstr ""
+
+msgid "No Results"
+msgstr ""
+
+msgid "Try a different search"
+msgstr ""
+
+#. Translators: Page title
 msgid "Installing"
 msgstr "Встановлення"
 
@@ -146,6 +164,7 @@ msgstr "Встановлення"
 msgid "Show Terminal Output"
 msgstr "Показати термінал"
 
+#. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Перевірка підключення до Інтернету"
 
@@ -156,6 +175,7 @@ msgstr "Немає підключення"
 msgid "_Open Settings"
 msgstr "_Відкрити налаштування"
 
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
 msgstr "Вибір розкладки клавіатури"
 
@@ -163,18 +183,22 @@ msgstr "Вибір розкладки клавіатури"
 msgid "Test the Keyboard Layout Here"
 msgstr "Перевірте розкладку клавіатури тут"
 
+#. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Мова клавіатури"
 
+#. Translators: Page title
 msgid "Adapt to Location"
 msgstr "Налаштувати за місцем розташування"
 
 #. Translators: Presented next to the current Timezone.
+#. Translators: Description of selected timezone.
 msgid "Timezone"
 msgstr "Часовий пояс"
 
 #. Translators: Presented next to the current Formats.
+#. Translators: Description of selected format.
 msgid "Formats"
 msgstr "Формати"
 
@@ -184,43 +208,61 @@ msgstr ""
 "Визначає формат за замовчуванням, який використовується для дат, часу, чисел "
 "тощо."
 
-#. Translators: Above list of continents and countries
-msgid "Select Location"
-msgstr "Виберіть місцезнаходження"
-
-#. Translators: Above list of format locales
-msgid "Select Region"
-msgstr "Виберіть регіон"
-
+#. Translators: Page title
 msgid "Restarting"
 msgstr "Перезапуск"
 
+#. Translators: Page title
+#. Translators: Description of selected additional software.
 msgid "Additional Software"
 msgstr "Додаткове програмне забезпечення"
 
+#. Translators: Page title
+msgid "Summary"
+msgstr ""
+
+#. Translators: Description of selected language.
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "Language"
+msgstr "Мова клавіатури"
+
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
+msgstr "Вибір розкладки клавіатури"
+
+#. Translators: Description of defined user account name and autologin status.
+#. Translators: Page title
 msgid "User Account"
 msgstr "Обліковий запис користувача"
 
-#. Translators: Used with entry field for User's name
-msgid "Name"
-msgstr "Ім'я"
-
-#. Translators: Placeholder in user name entry field
-msgid "Enter a Name"
-msgstr "Введіть ім'я"
-
+#. Translators: Gets shown when autologin is enabled.
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
 msgstr "Автоматичний вхід"
 
+msgid "None"
+msgstr ""
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Виберіть місцезнаходження"
+
+#. Translators: Used with entry field for User's name
+#, fuzzy
+#| msgid "Name"
+msgid "_Name"
+msgstr "Ім'я"
+
 #. Translators: Used with entry field for setting a password for new user
-msgid "Password"
+#, fuzzy
+#| msgid "Password"
+msgid "_Password"
 msgstr "Пароль"
 
-#. Translators: Placeholder in password entry field
-msgid "Enter a Password"
-msgstr "Введіть пароль"
-
+#. Translators: Page title
 #, fuzzy
 msgid "Welcome"
 msgstr "Welcome"
@@ -241,3 +283,12 @@ msgstr "Безіменний розділ"
 #. Translators: Shown for partitions that are not big enough to be installed on
 msgid "Not enough space for installation"
 msgstr "Недостатньо місця для установки"
+
+#~ msgid "PIN"
+#~ msgstr "PIN-код"
+
+#~ msgid "Enter a Name"
+#~ msgstr "Введіть ім'я"
+
+#~ msgid "Enter a Password"
+#~ msgstr "Введіть пароль"

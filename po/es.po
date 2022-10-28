@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 14:44+0200\n"
+"POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-08-01 13:19+0000\n"
 "Last-Translator: Peter Eisenmann <p3732@disroot.org>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/es/>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,6 +46,7 @@ msgstr "_Resumir la Instalación"
 msgid "_Stop Installation"
 msgstr "_Interrumpir la Instalación"
 
+#. Translators: Page title
 msgid "Confirmation"
 msgstr "Confirmar"
 
@@ -58,8 +59,13 @@ msgstr "Esto eliminará todos los datos de"
 msgid "_Confirm"
 msgstr "_Confirmar"
 
+#. Translators: Page title
 msgid "Disk Selection"
 msgstr "Selecciona un disco"
+
+#. Translators: Button label to open disk management tool.
+msgid "_Manage Disks"
+msgstr "_Administrar Discos"
 
 #. Translators: Label to use whole disk rather than a single partition.
 msgid "Use Whole Disk"
@@ -69,6 +75,9 @@ msgstr "Usar todo el disco"
 msgid "Partitions"
 msgstr "Particiones"
 
+msgid "Disk has no partitions."
+msgstr ""
+
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
 msgstr "No es posible seleccionar una partición."
@@ -77,7 +86,7 @@ msgstr "No es posible seleccionar una partición."
 msgid "The disk requires:"
 msgstr "Este disco necesita:"
 
-#. Translators: Technical terms, the abbreviations should not be translated.
+#. Translators: Bullet point listing.
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
@@ -85,7 +94,7 @@ msgstr ""
 "  • Particionado GPT\n"
 "  • Partición EFI"
 
-#. Translators: Technical terms, the abbreviations should not be translated
+#. Translators: Bullet point listing.
 msgid "  • BIOS boot partition"
 msgstr "  • Partición de arranque BIOS"
 
@@ -95,10 +104,7 @@ msgstr "No hay discos disponibles"
 msgid "Connect a disk and reload this page."
 msgstr "Conecta un disco y recarga esta página."
 
-#. Translators: Button label to open disk management tool.
-msgid "_Manage Disks"
-msgstr "_Administrar Discos"
-
+#. Translators: Page title
 msgid "Installation Complete"
 msgstr "Instalación finalizada"
 
@@ -110,6 +116,7 @@ msgstr "_Reiniciar Sistema"
 msgid "Restart _Later"
 msgstr "Reiniciar _Después"
 
+#. Translators: Page title
 msgid "Disk Encryption"
 msgstr "Cifrado del disco"
 
@@ -126,14 +133,11 @@ msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr "Memoriza este PIN. Sin él, no podrás acceder a tus archivos."
 
-#. Translators: Placeholder for disk encryption pin/password field
-msgid "PIN"
-msgstr "PIN"
-
 #. Translators: On button.
 msgid "_Continue"
 msgstr "_Continuar"
 
+#. Translators: Page title
 msgid "Installation Failed"
 msgstr "La instalación falló"
 
@@ -141,6 +145,20 @@ msgstr "La instalación falló"
 msgid "Search for Help on the Internet"
 msgstr "Buscar ayuda en Internet"
 
+#. Translators: Page title
+msgid "Select Region"
+msgstr "Selecciona tu Región"
+
+msgid "Filter"
+msgstr ""
+
+msgid "No Results"
+msgstr ""
+
+msgid "Try a different search"
+msgstr ""
+
+#. Translators: Page title
 msgid "Installing"
 msgstr "Instalando"
 
@@ -148,6 +166,7 @@ msgstr "Instalando"
 msgid "Show Terminal Output"
 msgstr "Mostrar salida de la terminal"
 
+#. Translators: Page title
 msgid "Internet Connection Check"
 msgstr "Revisando tu conexión a Internet"
 
@@ -158,6 +177,7 @@ msgstr "Sin conexión."
 msgid "_Open Settings"
 msgstr "_Abrir Configuración"
 
+#. Translators: Page title
 msgid "Keyboard Layout Selection"
 msgstr "Selecciona la distribución de tu teclado"
 
@@ -165,18 +185,22 @@ msgstr "Selecciona la distribución de tu teclado"
 msgid "Test the Keyboard Layout Here"
 msgstr "Prueba la distribución de tu teclado aquí"
 
+#. selectable: false;
 #. Translators: Followed by a language name.
 msgid "Keyboard Language"
 msgstr "Idioma de tu teclado"
 
+#. Translators: Page title
 msgid "Adapt to Location"
 msgstr "Configuración regional"
 
 #. Translators: Presented next to the current Timezone.
+#. Translators: Description of selected timezone.
 msgid "Timezone"
 msgstr "Zona horaria"
 
 #. Translators: Presented next to the current Formats.
+#. Translators: Description of selected format.
 msgid "Formats"
 msgstr "Formatos"
 
@@ -184,43 +208,61 @@ msgstr "Formatos"
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr "Define el formato para fechas, horas, números, etc."
 
-#. Translators: Above list of continents and countries
-msgid "Select Location"
-msgstr "Selecciona tu Ubicación"
-
-#. Translators: Above list of format locales
-msgid "Select Region"
-msgstr "Selecciona tu Región"
-
+#. Translators: Page title
 msgid "Restarting"
 msgstr "Reiniciando"
 
+#. Translators: Page title
+#. Translators: Description of selected additional software.
 msgid "Additional Software"
 msgstr "Software Adicional"
 
+#. Translators: Page title
+msgid "Summary"
+msgstr ""
+
+#. Translators: Description of selected language.
+#, fuzzy
+#| msgid "Keyboard Language"
+msgid "Language"
+msgstr "Idioma de tu teclado"
+
+#. Translators: Description of selected keyboard layout.
+#, fuzzy
+#| msgid "Keyboard Layout Selection"
+msgid "Keyboard Layout"
+msgstr "Selecciona la distribución de tu teclado"
+
+#. Translators: Description of defined user account name and autologin status.
+#. Translators: Page title
 msgid "User Account"
 msgstr "Cuenta de usuario"
 
-#. Translators: Used with entry field for User's name
-msgid "Name"
-msgstr "Nombre"
-
-#. Translators: Placeholder in user name entry field
-msgid "Enter a Name"
-msgstr "Ingresa un nombre"
-
+#. Translators: Gets shown when autologin is enabled.
 #. Translators: Used with option to enable automatic login of user upon booting
 msgid "Automatic Login"
 msgstr "Iniciar sesión automáticamente"
 
+msgid "None"
+msgstr ""
+
+#. Translators: Page title
+msgid "Select Location"
+msgstr "Selecciona tu Ubicación"
+
+#. Translators: Used with entry field for User's name
+#, fuzzy
+#| msgid "Name"
+msgid "_Name"
+msgstr "Nombre"
+
 #. Translators: Used with entry field for setting a password for new user
-msgid "Password"
+#, fuzzy
+#| msgid "Password"
+msgid "_Password"
 msgstr "Contraseña"
 
-#. Translators: Placeholder in password entry field
-msgid "Enter a Password"
-msgstr "Ingresa una contraseña"
-
+#. Translators: Page title
 msgid "Welcome"
 msgstr "Bienvenido"
 
@@ -237,3 +279,12 @@ msgstr "Partición sin nombre"
 #. Translators: Shown for partitions that are not big enough to be installed on
 msgid "Not enough space for installation"
 msgstr "No tienes espacio suficiente para la instalación"
+
+#~ msgid "PIN"
+#~ msgstr "PIN"
+
+#~ msgid "Enter a Name"
+#~ msgstr "Ingresa un nombre"
+
+#~ msgid "Enter a Password"
+#~ msgstr "Ingresa una contraseña"
