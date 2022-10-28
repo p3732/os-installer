@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-31 14:44+0200\n"
+"POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,7 @@ msgstr ""
 msgid "_Stop Installation"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/confirm.blp
 msgid "Confirmation"
 msgstr ""
@@ -54,12 +55,18 @@ msgstr ""
 
 #. Translators: Button label to confirm disk deletion
 #. Translators: On button.
-#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/locale.blp
+#: data/resources/ui/pages/confirm.blp data/resources/ui/pages/summary.blp
 msgid "_Confirm"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/disk.blp
 msgid "Disk Selection"
+msgstr ""
+
+#. Translators: Button label to open disk management tool.
+#: data/resources/ui/pages/disk.blp
+msgid "_Manage Disks"
 msgstr ""
 
 #. Translators: Label to use whole disk rather than a single partition.
@@ -72,6 +79,10 @@ msgstr ""
 msgid "Partitions"
 msgstr ""
 
+#: data/resources/ui/pages/disk.blp
+msgid "Disk has no partitions."
+msgstr ""
+
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 #: data/resources/ui/pages/disk.blp
 msgid "Selecting a partition is not possible."
@@ -82,14 +93,14 @@ msgstr ""
 msgid "The disk requires:"
 msgstr ""
 
-#. Translators: Technical terms, the abbreviations should not be translated.
+#. Translators: Bullet point listing.
 #: data/resources/ui/pages/disk.blp
 msgid ""
 "  • GPT partitioning\n"
 "  • EFI partition"
 msgstr ""
 
-#. Translators: Technical terms, the abbreviations should not be translated
+#. Translators: Bullet point listing.
 #: data/resources/ui/pages/disk.blp
 msgid "  • BIOS boot partition"
 msgstr ""
@@ -102,11 +113,7 @@ msgstr ""
 msgid "Connect a disk and reload this page."
 msgstr ""
 
-#. Translators: Button label to open disk management tool.
-#: data/resources/ui/pages/disk.blp
-msgid "_Manage Disks"
-msgstr ""
-
+#. Translators: Page title
 #: data/resources/ui/pages/done.blp
 msgid "Installation Complete"
 msgstr ""
@@ -121,6 +128,7 @@ msgstr ""
 msgid "Restart _Later"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/encrypt.blp
 msgid "Disk Encryption"
 msgstr ""
@@ -141,19 +149,15 @@ msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
 
-#. Translators: Placeholder for disk encryption pin/password field
-#: data/resources/ui/pages/encrypt.blp
-msgid "PIN"
-msgstr ""
-
 #. Translators: On button.
 #: data/resources/ui/pages/encrypt.blp
 #: data/resources/ui/pages/keyboard_layout.blp
-#: data/resources/ui/pages/software.blp data/resources/ui/pages/user.blp
-#: data/resources/ui/pages/welcome.blp
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/software.blp
+#: data/resources/ui/pages/user.blp data/resources/ui/pages/welcome.blp
 msgid "_Continue"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/failed.blp
 msgid "Installation Failed"
 msgstr ""
@@ -163,6 +167,24 @@ msgstr ""
 msgid "Search for Help on the Internet"
 msgstr ""
 
+#. Translators: Page title
+#: data/resources/ui/pages/format.blp
+msgid "Select Region"
+msgstr ""
+
+#: data/resources/ui/pages/format.blp data/resources/ui/pages/timezone.blp
+msgid "Filter"
+msgstr ""
+
+#: data/resources/ui/pages/format.blp data/resources/ui/pages/timezone.blp
+msgid "No Results"
+msgstr ""
+
+#: data/resources/ui/pages/format.blp data/resources/ui/pages/timezone.blp
+msgid "Try a different search"
+msgstr ""
+
+#. Translators: Page title
 #: data/resources/ui/pages/install.blp
 msgid "Installing"
 msgstr ""
@@ -172,6 +194,7 @@ msgstr ""
 msgid "Show Terminal Output"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/internet.blp
 msgid "Internet Connection Check"
 msgstr ""
@@ -185,6 +208,7 @@ msgstr ""
 msgid "_Open Settings"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Layout Selection"
 msgstr ""
@@ -194,22 +218,26 @@ msgstr ""
 msgid "Test the Keyboard Layout Here"
 msgstr ""
 
+#. selectable: false;
 #. Translators: Followed by a language name.
 #: data/resources/ui/pages/keyboard_layout.blp
 msgid "Keyboard Language"
 msgstr ""
 
+#. Translators: Page title
 #: data/resources/ui/pages/locale.blp
 msgid "Adapt to Location"
 msgstr ""
 
 #. Translators: Presented next to the current Timezone.
-#: data/resources/ui/pages/locale.blp
+#. Translators: Description of selected timezone.
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Timezone"
 msgstr ""
 
 #. Translators: Presented next to the current Formats.
-#: data/resources/ui/pages/locale.blp
+#. Translators: Description of selected format.
+#: data/resources/ui/pages/locale.blp data/resources/ui/pages/summary.blp
 msgid "Formats"
 msgstr ""
 
@@ -218,53 +246,64 @@ msgstr ""
 msgid "Defines the default format used for dates, times, numbers, etc."
 msgstr ""
 
-#. Translators: Above list of continents and countries
-#: data/resources/ui/pages/locale.blp
-msgid "Select Location"
-msgstr ""
-
-#. Translators: Above list of format locales
-#: data/resources/ui/pages/locale.blp
-msgid "Select Region"
-msgstr ""
-
+#. Translators: Page title
 #: data/resources/ui/pages/restart.blp
 msgid "Restarting"
 msgstr ""
 
-#: data/resources/ui/pages/software.blp
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+#: data/resources/ui/pages/software.blp data/resources/ui/pages/summary.blp
 msgid "Additional Software"
 msgstr ""
 
-#: data/resources/ui/pages/user.blp
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp
+msgid "Summary"
+msgstr ""
+
+#. Translators: Description of selected language.
+#: data/resources/ui/pages/summary.blp
+msgid "Language"
+msgstr ""
+
+#. Translators: Description of selected keyboard layout.
+#: data/resources/ui/pages/summary.blp
+msgid "Keyboard Layout"
+msgstr ""
+
+#. Translators: Description of defined user account name and autologin status.
+#. Translators: Page title
+#: data/resources/ui/pages/summary.blp data/resources/ui/pages/user.blp
 msgid "User Account"
+msgstr ""
+
+#. Translators: Gets shown when autologin is enabled.
+#. Translators: Used with option to enable automatic login of user upon booting
+#: data/resources/ui/pages/summary.blp data/resources/ui/pages/user.blp
+msgid "Automatic Login"
+msgstr ""
+
+#: data/resources/ui/pages/summary.blp
+msgid "None"
+msgstr ""
+
+#. Translators: Page title
+#: data/resources/ui/pages/timezone.blp
+msgid "Select Location"
 msgstr ""
 
 #. Translators: Used with entry field for User's name
 #: data/resources/ui/pages/user.blp
-msgid "Name"
-msgstr ""
-
-#. Translators: Placeholder in user name entry field
-#: data/resources/ui/pages/user.blp
-msgid "Enter a Name"
-msgstr ""
-
-#. Translators: Used with option to enable automatic login of user upon booting
-#: data/resources/ui/pages/user.blp
-msgid "Automatic Login"
+msgid "_Name"
 msgstr ""
 
 #. Translators: Used with entry field for setting a password for new user
 #: data/resources/ui/pages/user.blp
-msgid "Password"
+msgid "_Password"
 msgstr ""
 
-#. Translators: Placeholder in password entry field
-#: data/resources/ui/pages/user.blp
-msgid "Enter a Password"
-msgstr ""
-
+#. Translators: Page title
 #: data/resources/ui/pages/welcome.blp
 msgid "Welcome"
 msgstr ""
