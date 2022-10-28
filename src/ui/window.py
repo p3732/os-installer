@@ -113,7 +113,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             # post-installation
             ('done', DonePage, True),
             ('restart', RestartPage, True),
-            # failed installation, keep at end
+            # failed installation
             ('failed', FailedPage, True)
         ]
         # filter out nonexistent pages
@@ -167,6 +167,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         self.navigation.set(page_number)
         self._reload_title_image()
         self._update_navigation_buttons()
+
     def _load_page_by_name(self, page_name: str) -> None:
         self.current_page.unload()
 
@@ -292,9 +293,9 @@ class OsInstallerWindow(Adw.ApplicationWindow):
         with self.navigation_lock:
             global_state.installation_running = False
 
-            failed_page_position = len(self.available_pages)-1
-            self.navigation.earliest = failed_page_position
-            self._load_page(failed_page_position)
+            self._load_page_by_name('failed')
+            self.navigation.earliest = len(self.available_pages)
+            self._update_navigation_buttons()
 
     def navigate_to_page(self, page_name):
         with self.navigation_lock:
