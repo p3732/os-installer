@@ -9,6 +9,7 @@ from .page import Page
 from .system_calls import set_system_keyboard_layout
 from .widgets import reset_model, ProgressRow
 
+
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/pages/keyboard_layout.ui')
 class KeyboardLayoutPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
@@ -85,7 +86,7 @@ class KeyboardLayoutPage(Gtk.Box, Page):
         self.can_navigate_backward = False
 
     @Gtk.Template.Callback('show_language_selection')
-    def _show_language_selection(self, button):
+    def _show_language_selection(self, row):
         if not self.language_list_setup:
             self.language_list_setup = True
             self._setup_languages_list()

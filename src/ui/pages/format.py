@@ -33,14 +33,14 @@ class FormatPage(Gtk.Box, Page):
 
     def _filter(self, *args):
         self.search_text = self.search_entry.get_text().lower()
-        self.custom_filter.set_filter_func(self.format_filter)
+        self.custom_filter.set_filter_func(self._format_filter)
 
         if self.filter_list_model.get_n_items() > 0:
             self.stack.set_visible_child_name('list')
         else:
             self.stack.set_visible_child_name('none')
 
-    def format_filter(self, format):
+    def _format_filter(self, format):
         return self.search_text in format.lower_case_name or format.locale.startswith(self.search_text)
 
     ### callbacks ###
