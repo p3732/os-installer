@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 19:12+0200\n"
-"PO-Revision-Date: 2022-10-28 08:09+0000\n"
-"Last-Translator: Gerben Droogers <gerben@droogers.eu>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/nl/>\n"
+"PO-Revision-Date: 2022-10-28 17:14+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,8 +71,9 @@ msgstr "Gebruik hele schijf"
 msgid "Partitions"
 msgstr "Partities"
 
+#, fuzzy
 msgid "Disk has no partitions."
-msgstr ""
+msgstr "Disk has no partitions."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -147,14 +148,17 @@ msgstr "Op het internet naar hulp zoeken"
 msgid "Select Region"
 msgstr "Regio selecteren"
 
+#, fuzzy
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
+#, fuzzy
 msgid "No Results"
-msgstr ""
+msgstr "No Results"
 
+#, fuzzy
 msgid "Try a different search"
-msgstr ""
+msgstr "Try a different search"
 
 #. Translators: Page title
 msgid "Installing"
@@ -218,8 +222,9 @@ msgid "Additional Software"
 msgstr "Bijkomende software"
 
 #. Translators: Page title
+#, fuzzy
 msgid "Summary"
-msgstr ""
+msgstr "Summary"
 
 #. Translators: Description of selected language.
 #, fuzzy
@@ -243,8 +248,9 @@ msgstr "Gebruikersaccount"
 msgid "Automatic Login"
 msgstr "Automatisch aanmelden"
 
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "None"
 
 #. Translators: Page title
 msgid "Select Location"

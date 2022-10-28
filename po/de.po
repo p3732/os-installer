@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 19:12+0200\n"
-"PO-Revision-Date: 2022-07-31 16:32+0200\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
+"PO-Revision-Date: 2022-10-28 17:14+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 msgid "OS-Installer"
 msgstr "OS-Installer"
@@ -71,8 +72,9 @@ msgstr "Das gesamte Laufwerk nutzen"
 msgid "Partitions"
 msgstr "Partitionen"
 
+#, fuzzy
 msgid "Disk has no partitions."
-msgstr ""
+msgstr "Disk has no partitions."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -147,14 +149,17 @@ msgstr "Im Internet nach Hilfe suchen"
 msgid "Select Region"
 msgstr "Wählen Sie eine Region"
 
+#, fuzzy
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
+#, fuzzy
 msgid "No Results"
-msgstr ""
+msgstr "No Results"
 
+#, fuzzy
 msgid "Try a different search"
-msgstr ""
+msgstr "Try a different search"
 
 #. Translators: Page title
 msgid "Installing"
@@ -216,8 +221,9 @@ msgid "Additional Software"
 msgstr "Zusätzliche Programme"
 
 #. Translators: Page title
+#, fuzzy
 msgid "Summary"
-msgstr ""
+msgstr "Summary"
 
 #. Translators: Description of selected language.
 #, fuzzy
@@ -241,8 +247,9 @@ msgstr "Benutzerkonto"
 msgid "Automatic Login"
 msgstr "Automatische Anmeldung"
 
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "None"
 
 #. Translators: Page title
 msgid "Select Location"
