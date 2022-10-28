@@ -61,10 +61,6 @@ class Format(GObject.GObject):
 
 
 ### public methods ###
-def get_timezone():
-    timezone = GnomeDesktop.WallClock().get_timezone()
-    return timezone.get_identifier()
-
 
 def get_current_formats():
     formats = global_state.get_config('formats_locale')

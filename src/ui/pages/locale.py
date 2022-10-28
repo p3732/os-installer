@@ -2,8 +2,10 @@
 
 from gi.repository import Gtk
 
+from .format_provider import get_current_formats
 from .global_state import global_state
-from .locale_provider import get_current_formats, get_timezone
+from .timezone_provider import get_current_timezone
+from .system_calls import set_system_formats
 from .page import Page
 
 
@@ -40,6 +42,6 @@ class LocalePage(Gtk.Box, Page):
 
         timezone = global_state.get_config('timezone')
         if not timezone:
-            timezone = get_timezone()
+            timezone = get_current_timezone()
             global_state.set_config('timezone', timezone)
         self.timezone_label.set_label(timezone)

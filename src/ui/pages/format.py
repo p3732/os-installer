@@ -2,8 +2,8 @@
 
 from gi.repository import Gio, Gtk
 
+from .format_provider import get_formats
 from .global_state import global_state
-from .locale_provider import get_formats
 from .page import Page
 from .system_calls import set_system_formats
 from .widgets import reset_model, ProgressRow
