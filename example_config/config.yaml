@@ -85,3 +85,10 @@ additional_software:
       suggested      : yes
       name_jp        : 'Input Program'
       icon_path      : '/etc/os-installer/icons/libreoffice-main.png'
+
+# Upon failure an option to search for help on the internet is given.
+# The url this leads to can be defined here. The squiggly brackets are
+# replaced with the os-installer version.
+#
+# Default: 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"'
+failure_help_url: 'https://support.dist.ro/new_issue?q="failed"+"os-installer {}"'

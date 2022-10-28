@@ -50,7 +50,7 @@ def _load_default_config():
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
         'additional_software': [],
-
+        'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
         'version': -1,
         'distribution_name': 'Untitled'
     }

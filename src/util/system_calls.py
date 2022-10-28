@@ -31,10 +31,9 @@ def open_disks():
 
 
 def open_internet_search():
-    distribution_name = global_state.get_config('distribution_name')
-    search_text = f'"{distribution_name}" "failed installation" '\
-        f'"os-installer version {global_state.get_config("version")}"'
-    _run_program(['epiphany', '--search', search_text])
+    failure_help_url = global_state.get_config('failure_help_url')
+    version = global_state.get_config("version")
+    _run_program(['epiphany', failure_help_url.format(version)])
 
 
 def open_wifi_settings():
