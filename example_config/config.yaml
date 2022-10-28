@@ -21,7 +21,7 @@ internet_connection_required: yes
 internet_checker_url: 'http://nmcheck.gnome.org/check_network_status.txt'
 
 # Skip the language selection dialog by specifing a language, e.g. 'pt_BR'
-# Default: no
+# Default: no (No fixed language, not Norwegian)
 fixed_language: no
 
 # A selection of languages the installer should present by default.
