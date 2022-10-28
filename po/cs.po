@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-10-28 17:14+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/cs/>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -285,6 +285,7 @@ msgstr "User Account"
 msgid "Automatic Login"
 msgstr "Automatic Login"
 
+#. Translators: Shown when list of selected software is empty.
 #, fuzzy
 msgid "None"
 msgstr "None"

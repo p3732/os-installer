@@ -248,6 +248,7 @@ msgstr "Обліковий запис користувача"
 msgid "Automatic Login"
 msgstr "Автоматичний вхід"
 
+#. Translators: Shown when list of selected software is empty.
 #, fuzzy
 msgid "None"
 msgstr "None"

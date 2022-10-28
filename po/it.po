@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2022-10-28 19:12+0200\n"
 "PO-Revision-Date: 2022-10-28 17:14+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Italian <https://hosted.weblate.org/projects/os-installer/"
-"os-installer/it/>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/os-installer/os-"
+"installer/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -246,6 +246,7 @@ msgstr "Account Utente"
 msgid "Automatic Login"
 msgstr "Login Automatico"
 
+#. Translators: Shown when list of selected software is empty.
 #, fuzzy
 msgid "None"
 msgstr "None"
