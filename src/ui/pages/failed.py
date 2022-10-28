@@ -13,6 +13,7 @@ class FailedPage(Gtk.Box, Page):
     __gtype_name__ = __qualname__
     image = 'computer-fail-symbolic'
 
+    page_title = Gtk.Template.Child()
     terminal_box = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
@@ -28,4 +29,4 @@ class FailedPage(Gtk.Box, Page):
 
     def load_once(self):
         self.terminal_box.append(installation_scripting.terminal)
-        global_state.send_notification(self.get_name(),'')
+        global_state.send_notification(self.page_title.get_label(),'')
