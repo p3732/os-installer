@@ -28,6 +28,7 @@ os_installer_sources = [
   'provider/language_provider.py',
   'provider/locale_provider.py',
   'provider/software_provider.py',
+  'provider/timezone_provider.py',
   'ui/confirm_quit_popup.py',
   'ui/page.py',
   'ui/pages/confirm.py',
