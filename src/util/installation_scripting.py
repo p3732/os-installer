@@ -2,7 +2,7 @@
 
 from enum import Enum
 from threading import Lock
-import time
+import os
 
 from gi.repository import Gio, GLib, Vte
 
@@ -65,11 +65,17 @@ class InstallationScripting():
                 return
 
             # start script
-            self.script_running, _ = self.terminal.spawn_sync(
-                Vte.PtyFlags.DEFAULT, '/', ['sh', f'/etc/os-installer/scripts/{self.current_step.name}.sh'],
-                envs, GLib.SpawnFlags.DEFAULT, None, None, self.cancel)
-            if not self.script_running:
-                print(f'Could not start {self.current_step.name} script! Ignoring.')
+            file_name = f'/etc/os-installer/scripts/{self.current_step.name}.sh'
+            if os.path.exists(file_name):
+                self.script_running, _ = self.terminal.spawn_sync(
+                    Vte.PtyFlags.DEFAULT, '/', ['sh', file_name],
+                    envs, GLib.SpawnFlags.DEFAULT, None, None, self.cancel)
+                if not self.script_running:
+                    print(f'Could not start {self.current_step.name} script! Ignoring.')
+                    self._start_next_script()
+            else:
+                print(f'No script for step {self.current_step.name} exists.')
+                self._start_next_script()
 
     ### callbacks ###
 
