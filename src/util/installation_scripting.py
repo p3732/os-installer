@@ -82,11 +82,8 @@ class InstallationScripting():
                 global_state.installation_failed()
             elif self.current_step is Step.configure:
                 global_state.installation_running = False
-                if global_state.demo_mode:
-                    # allow returning in demo
-                    global_state.advance(None)
-                else:
-                    global_state.advance(None, allow_return=False, cleanup=True)
+                global_state.advance(None, allow_return=global_state.demo_mode,
+                                     cleanup=not global_state.demo_mode,)
             else:
                 self._start_next_script()
 
