@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from threading import Lock
+from os.path import exists
 
 from gi.repository import Gtk, Adw
 
@@ -99,7 +100,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
                 'internet_connection_required')),
             ('disk', DiskPage, True),
             ('encrypt', EncryptPage, global_state.get_config('offer_disk_encryption')),
-            ('confirm', ConfirmPage, True),
+            ('confirm', ConfirmPage, exists('/etc/os-installer/scripts/install.sh')),
             # configuration section
             ('user', UserPage, True),
             ('locale', LocalePage, True),
