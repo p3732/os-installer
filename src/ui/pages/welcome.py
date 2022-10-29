@@ -21,7 +21,7 @@ class WelcomePage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
         config = global_state.get_config('welcome_page')
 
-        if config['logo']:
+        if 'logo' in config:
             self.image = Path(config['logo'])
 
     ### callbacks ###
