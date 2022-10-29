@@ -40,6 +40,7 @@ class SummaryPage(Gtk.Box, Page):
         self.software_list.bind_model(
             self.software_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
         self.language_row.set_visible(global_state.get_config('fixed_language'))
+        self.software_row.set_visible(global_state.get_config('additional_software'))
 
     ### callbacks ###
 
