@@ -52,7 +52,10 @@ def _load_default_config():
         'additional_software': [],
         'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
         'version': -1,
-        'distribution_name': 'Untitled'
+        'distribution_name': 'Untitled',
+        'browser_cmd': 'epiphany',
+        'disks_cmd': 'gnome-disks',
+        'wifi_cmd': 'gnome-control-center wifi'
     }
 
 

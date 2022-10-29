@@ -92,3 +92,13 @@ additional_software:
 #
 # Default: 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"'
 failure_help_url: 'https://support.dist.ro/new_issue?q="failed"+"os-installer {}"'
+
+# Certain parts of the installer launch external programs. These can be configured here.
+# Note: For calling the command, the string is split up by spaces.
+#
+# The browser_cmd will be called followed by a url.
+#
+# Default: browser_cmd: 'epiphany', disks_cmd: 'gnome-disks', wifi_cmd: 'gnome-control-center wifi'
+browser_cmd: 'firefox'
+disks_cmd  : 'gnome-disks'
+wifi_cmd   : 'gnome-control-center wifi'

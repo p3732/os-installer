@@ -27,17 +27,19 @@ def is_booted_with_uefi():
 
 
 def open_disks():
-    _run_program(['gnome-disks'])
+    _run_program(global_state.get_config('disks_cmd').split())
 
 
 def open_internet_search():
+    browser_cmd = global_state.get_config('browser_cmd').split()
     failure_help_url = global_state.get_config('failure_help_url')
     version = global_state.get_config("version")
-    _run_program(['epiphany', failure_help_url.format(version)])
+    browser_cmd.append(failure_help_url.format(version))
+    _run_program(browser_cmd)
 
 
 def open_wifi_settings():
-    _run_program(['gnome-control-center', 'wifi'])
+    _run_program(global_state.get_config('wifi_cmd').split())
 
 
 def reboot_system():
