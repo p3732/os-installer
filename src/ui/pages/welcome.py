@@ -21,7 +21,7 @@ class WelcomePage(Gtk.Box, Page):
         Gtk.Box.__init__(self, **kwargs)
         config = global_state.get_config('welcome_page')
 
-        if 'logo' in config:
+        if config['logo']:
             self.image = Path(config['logo'])
 
     ### callbacks ###
@@ -38,7 +38,7 @@ class WelcomePage(Gtk.Box, Page):
 
         if (text_key := f'text_{language_code}') in config:
             text = config[text_key]
-        elif 'text' in config:
+        elif config['text']:
             text = config['text']
         else:
             text = self.description.get_label()
