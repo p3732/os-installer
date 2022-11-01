@@ -23,21 +23,15 @@ def _match(config, prop, *ok_types):
 
 
 def _install_variables_set(config):
-    return ('locale' in config and
-            'disk_device_path' in config and
-            'disk_is_partition' in config and
-            'disk_efi_partition' in config and
-            'use_encryption' in config and
-            'encryption_pin' in config)
+    install_variables = ['locale', 'disk_device_path', 'disk_is_partition',
+                         'disk_efi_partition', 'use_encryption', 'encryption_pin']
+    return all([var in config for var in install_variables])
 
 
 def _configure_variables_set(config):
-    return ('user_name' in config and
-            'user_autologin' in config and
-            'user_password' in config and
-            'formats_locale' in config and
-            'timezone' in config and
-            'chosen_software_packages' in config)
+    configure_variables = ['user_name', 'user_autologin', 'user_password',
+                           'formats_locale', 'timezone', 'chosen_software_packages']
+    return all([var in config for var in configure_variables])
 
 
 def _load_default_config():
