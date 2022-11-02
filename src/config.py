@@ -63,6 +63,19 @@ def _load_default_config():
     }
 
 
+def _load_optional_defaults(config):
+    config['use_encryption'] = False
+    config['encryption_pin'] = ''
+    config['user_name'] = 'user'
+    config['user_autologin'] = True
+    config['user_password'] = 'password'
+    config['formats_locale'] = 'en_US.UTF-8'
+    config['formats_ui'] = 'United States'
+    config['timezone'] = 'UTC'
+    config['chosen_software_packages'] = ''
+    config['chosen_software'] = []
+
+
 def _set_testing_defaults(config):
     '''Default values used when skipping pages during testing.'''
     config["language"] = 'English for Dummies'
@@ -73,17 +86,7 @@ def _set_testing_defaults(config):
     config["disk_device_path"] = '/dev/null'
     config["disk_is_partition"] = False
     config["disk_efi_partition"] = '/dev/null'
-    config['use_encryption'] = False
-    config['encryption_pin'] = ''
     config['disk_name'] = 'Test Dummy'
-    config["user_name"] = 'user'
-    config["user_autologin"] = True
-    config["user_password"] = 'password'
-    config["formats_locale"] = 'en_US.UTF-8'
-    config["formats_ui"] = 'United States'
-    config["timezone"] = 'UTC'
-    config["chosen_software_packages"] = ''
-    config["chosen_software"] = []
 
 
 def _valid(config):
@@ -122,6 +125,7 @@ def init_config():
     if not _valid(config):
         print('Config errors, loading default config.')
         config = _load_default_config()
+    _load_optional_defaults(config)
     _set_testing_defaults(config)
     return config
 
