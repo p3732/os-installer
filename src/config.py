@@ -36,20 +36,30 @@ def _configure_variables_set(config):
 
 def _load_default_config():
     return {
-        'welcome_page': {'usage': True, 'logo': None, 'text': None},
+        # general
+        'distribution_name': 'Untitled',
+        # internet
         'internet_connection_required': True,
         'internet_checker_url': 'http://nmcheck.gnome.org/check_network_status.txt',
+        # language
         'suggested_languages': ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ru', 'zh'],
         'fixed_language': False,
+        # welcome
+        'welcome_page': {'usage': True, 'logo': None, 'text': None},
+        # disk
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
+        # software
         'additional_software': [],
+        # fail
         'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
-        'version': -1,
-        'distribution_name': 'Untitled',
+        # commands
         'browser_cmd': 'epiphany',
         'disks_cmd': 'gnome-disks',
-        'wifi_cmd': 'gnome-control-center wifi'
+        'wifi_cmd': 'gnome-control-center wifi',
+
+        # not configurable
+        'version': -1,
     }
 
 
