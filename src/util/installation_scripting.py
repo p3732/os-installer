@@ -45,6 +45,11 @@ class InstallationScripting():
         self.terminal.connect('child-exited', self._on_child_exited)
 
     def _start_next_script(self):
+        if self.current_step is Step.configure:
+            global_state.installation_running = False
+            global_state.advance(None, allow_return=global_state.demo_mode,
+                                 cleanup=not global_state.demo_mode,)
+
         if self.current_step.value < self.step_ready.value and not self.script_running:
             self.current_step = Step(self.current_step.value + 1)
             print(f'Starting step "{self.current_step.name}"...')
@@ -86,10 +91,6 @@ class InstallationScripting():
 
             if not status == 0 and not global_state.demo_mode:
                 global_state.installation_failed()
-            elif self.current_step is Step.configure:
-                global_state.installation_running = False
-                global_state.advance(None, allow_return=global_state.demo_mode,
-                                     cleanup=not global_state.demo_mode,)
             else:
                 self._start_next_script()
 
