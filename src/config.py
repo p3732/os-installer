@@ -49,6 +49,9 @@ def _load_default_config():
         # disk
         'minimum_disk_size': 5,
         'offer_disk_encryption': True,
+        # optional pages
+        'skip_user': False,
+        'skip_locale': False,
         # software
         'additional_software': [],
         # fail

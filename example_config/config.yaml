@@ -59,6 +59,13 @@ minimum_disk_size: 5
 # Default: yes
 offer_disk_encryption: yes
 
+# gnome-initial-setup can handle user and locale setup.
+# These settings allow to disable these pages.
+#
+# Default: skip_user: no, skip_locale: no
+skip_user: no
+skip_locale: no
+
 # List of software that can additionally be selected for installation.
 # Each packages requires all fields to be set.
 #

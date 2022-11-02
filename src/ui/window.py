@@ -102,10 +102,10 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('encrypt', EncryptPage, global_state.get_config('offer_disk_encryption')),
             ('confirm', ConfirmPage, exists('/etc/os-installer/scripts/install.sh')),
             # configuration section
-            ('user', UserPage, True),
-            ('locale', LocalePage, True),
-            ('format', FormatPage, True),
-            ('timezone', TimezonePage, True),
+            ('user', UserPage, not global_state.get_config('skip_user')),
+            ('locale', LocalePage, not global_state.get_config('skip_locale')),
+            ('format', FormatPage, not global_state.get_config('skip_locale')),
+            ('timezone', TimezonePage, not global_state.get_config('skip_locale')),
             ('software', SoftwarePage, global_state.get_config('additional_software')),
             # summary
             ('summary', SummaryPage, True),

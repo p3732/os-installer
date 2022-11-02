@@ -41,13 +41,16 @@ class SummaryPage(Gtk.Box, Page):
             self.software_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
         self.language_row.set_visible(global_state.get_config('fixed_language'))
         self.software_row.set_visible(global_state.get_config('additional_software'))
+        self.user_row.set_visible(not global_state.get_config('skip_user'))
+        self.format_row.set_visible(not global_state.get_config('skip_locale'))
+        self.timezone_row.set_visible(not global_state.get_config('skip_locale'))
 
     ### callbacks ###
 
     @Gtk.Template.Callback('continue')
     def _continue(self, button):
-        installation_scripting.set_ok_to_start_step(Step.configure)
         global_state.advance(self, allow_return=False, cleanup=True)
+        installation_scripting.set_ok_to_start_step(Step.configure)
 
     @Gtk.Template.Callback('summary_row_activated')
     def _summary_row_activated(self, list_box, row):
