@@ -140,20 +140,20 @@ def create_envs(config, with_install_envs, with_configure_envs):
     envs = []
     if with_install_envs:
         envs += [
-            f'OSI_LOCALE="{config["locale"]}"',
-            f'OSI_DEVICE_PATH="{config["disk_device_path"]}"',
+            f'OSI_LOCALE={config["locale"]}',
+            f'OSI_DEVICE_PATH={config["disk_device_path"]}',
             f'OSI_DEVICE_IS_PARTITION={_bool_to_int(config["disk_is_partition"])}',
-            f'OSI_DEVICE_EFI_PARTITION="{config["disk_efi_partition"]}"',
+            f'OSI_DEVICE_EFI_PARTITION={config["disk_efi_partition"]}',
             f'OSI_USE_ENCRYPTION={_bool_to_int(config["use_encryption"])}',
-            f'OSI_ENCRYPTION_PIN="{config["encryption_pin"]}"',
+            f'OSI_ENCRYPTION_PIN={config["encryption_pin"]}',
         ]
     if with_configure_envs:
         envs += [
-            f'OSI_USER_NAME="{config["user_name"]}"',
+            f'OSI_USER_NAME={config["user_name"]}',
             f'OSI_USER_AUTOLOGIN={_bool_to_int(config["user_autologin"])}',
-            f'OSI_USER_PASSWORD="{config["user_password"]}"',
-            f'OSI_FORMATS="{config["formats_locale"]}"',
-            f'OSI_TIMEZONE="{config["timezone"]}"',
-            f'OSI_ADDITIONAL_SOFTWARE="{config["chosen_software_packages"]}"',
+            f'OSI_USER_PASSWORD={config["user_password"]}',
+            f'OSI_FORMATS={config["formats_locale"]}',
+            f'OSI_TIMEZONE={config["timezone"]}',
+            f'OSI_ADDITIONAL_SOFTWARE={config["chosen_software_packages"]}',
         ]
     return envs + [None]
