@@ -81,14 +81,14 @@ def _load_optional_defaults(config):
 
 def _set_testing_defaults(config):
     '''Default values used when skipping pages during testing.'''
-    config["language"] = 'English for Dummies'
-    config["language_code"] = 'en_US'
-    config["locale"] = 'en_US.UTF-8'
-    config["keyboard_layout"] = 'us'
-    config["keyboard_layout_ui"] = 'English (US)'
-    config["disk_device_path"] = '/dev/null'
-    config["disk_is_partition"] = False
-    config["disk_efi_partition"] = '/dev/null'
+    config['language'] = 'English for Dummies'
+    config['language_code'] = 'en_US'
+    config['locale'] = 'en_US.UTF-8'
+    config['keyboard_layout'] = 'us'
+    config['keyboard_layout_ui'] = 'English (US)'
+    config['disk_device_path'] = '/dev/null'
+    config['disk_is_partition'] = False
+    config['disk_efi_partition'] = '/dev/null'
     config['disk_name'] = 'Test Dummy'
 
 
