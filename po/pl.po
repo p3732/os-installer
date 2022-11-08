@@ -3,17 +3,17 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 19:12+0200\n"
-"PO-Revision-Date: 2022-10-28 17:14+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/pl/>\n"
+"PO-Revision-Date: 2022-11-08 00:13+0000\n"
+"Last-Translator: Matthaiks <kitynska@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.14.2\n"
 
 msgid "OS-Installer"
 msgstr "Instalator systemu operacyjnego"
@@ -66,9 +66,8 @@ msgstr "Użyj całego dysku"
 msgid "Partitions"
 msgstr "Partycje"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "Dysk nie ma partycji."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -114,17 +113,17 @@ msgstr "Szyfrowanie dysku"
 
 #. Translators: Used with option to enable disk encryption
 msgid "Encrypt Files"
-msgstr "Szyfruj Pliki"
+msgstr "Szyfruj pliki"
 
 #. Translators: Description of entry field for pin/password used for disk encryption
 msgid "Encryption PIN"
-msgstr "Pin do szyfrowania"
+msgstr "PIN szyfrujący"
 
 #. Translators: Hint for disk encryption
 msgid ""
 "Memorize this PIN well. Without it you will not be able to access your files."
 msgstr ""
-"Dobrze zapamiętaj swój pin. Bez niego nie będziesz mógł uzyskać dostępu do "
+"Zapamiętaj dobrze ten PIN. Bez niego nie będziesz mógł uzyskać dostępu do "
 "swoich plików."
 
 #. Translators: On button.
@@ -137,23 +136,20 @@ msgstr "Instalacja nie przebiegła pomyślnie"
 
 #. Translators: Shown if installation fails.
 msgid "Search for Help on the Internet"
-msgstr "Wyszukaj Pomoc w internecie"
+msgstr "Szukaj pomocy w Internecie"
 
 #. Translators: Page title
 msgid "Select Region"
 msgstr "Wybierz region"
 
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtruj"
 
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Brak wyników"
 
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Wypróbuj inne wyszukiwanie"
 
 #. Translators: Page title
 msgid "Installing"
@@ -215,21 +211,16 @@ msgid "Additional Software"
 msgstr "Dodatkowe oprogramowanie"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Podsumowanie"
 
 #. Translators: Description of selected language.
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "Language"
-msgstr "Język klawiatury"
+msgstr "Język"
 
 #. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
 msgid "Keyboard Layout"
-msgstr "Wybierz układ klawiatury"
+msgstr "Układ klawiatury"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -242,25 +233,20 @@ msgid "Automatic Login"
 msgstr "Automatyczne logowanie"
 
 #. Translators: Shown when list of selected software is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Brak"
 
 #. Translators: Page title
 msgid "Select Location"
 msgstr "Wybierz lokalizację"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
-#| msgid "Name"
 msgid "_Name"
-msgstr "Nazwa"
+msgstr "_Nazwa"
 
 #. Translators: Used with entry field for setting a password for new user
-#, fuzzy
-#| msgid "Password"
 msgid "_Password"
-msgstr "Hasło"
+msgstr "_Hasło"
 
 #. Translators: Page title
 msgid "Welcome"
@@ -270,7 +256,8 @@ msgstr "Witaj"
 msgid ""
 "This application will guide you through the installation of {} onto your "
 "system."
-msgstr "Ta aplikacja poprowadzi cię w ci w instalacji {} na twoim komputerze."
+msgstr ""
+"Ta aplikacja poprowadzi Cię przez proces instalacji {} w Twoim systemie."
 
 #. Translators: Fallback name for partitions that don't have a name. Can be followed by a number.
 msgid "Unnamed Partition"
@@ -278,7 +265,7 @@ msgstr "Nienazwana partycja"
 
 #. Translators: Shown for partitions that are not big enough to be installed on
 msgid "Not enough space for installation"
-msgstr "Masz za mało miejsca na zainstalowanie tego systemu operacyjnego"
+msgstr "Za mało miejsca na instalację"
 
 #~ msgid "PIN"
 #~ msgstr "PIN"
