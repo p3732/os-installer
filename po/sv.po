@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-28 19:12+0200\n"
-"PO-Revision-Date: 2022-10-28 17:14+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/os-"
-"installer/sv/>\n"
+"PO-Revision-Date: 2022-11-10 12:49+0000\n"
+"Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/os-installer/"
+"os-installer/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "OS-Installer"
 msgstr "Oprativsysteminstallatör"
@@ -71,9 +71,8 @@ msgstr "Använda hela disken"
 msgid "Partitions"
 msgstr "Partitioner"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "Disk har inga partitioner."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -148,17 +147,14 @@ msgstr "Sök efter hjälp på Internet"
 msgid "Select Region"
 msgstr "Välj region"
 
-#, fuzzy
 msgid "Filter"
 msgstr "Filter"
 
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Inga resultat"
 
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Prova med en annan sökning"
 
 #. Translators: Page title
 msgid "Installing"
@@ -221,21 +217,16 @@ msgid "Additional Software"
 msgstr "Ytterligare programvara"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Sammanfattning"
 
 #. Translators: Description of selected language.
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "Language"
-msgstr "Tangentbordsspråk"
+msgstr "Språk"
 
 #. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
 msgid "Keyboard Layout"
-msgstr "Val av tangentbordslayout"
+msgstr "Tangentbordslayout"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -248,25 +239,20 @@ msgid "Automatic Login"
 msgstr "Automatisk inloggning"
 
 #. Translators: Shown when list of selected software is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Inga"
 
 #. Translators: Page title
 msgid "Select Location"
 msgstr "Välj plats"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
-#| msgid "Name"
 msgid "_Name"
-msgstr "Namn"
+msgstr "_Namn"
 
 #. Translators: Used with entry field for setting a password for new user
-#, fuzzy
-#| msgid "Password"
 msgid "_Password"
-msgstr "Lösenord"
+msgstr "_Lösenord"
 
 #. Translators: Page title
 msgid "Welcome"
