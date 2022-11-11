@@ -89,8 +89,8 @@ class SelectionRow(Adw.ActionRow):
     def is_activated(self):
         return self.switch.get_active()
 
-    def set_activated(self, state):
-        return self.switch.set_active(state)
+    def flip_switch(self):
+        return self.switch.set_active(not self.switch.get_active())
 
 
 @Gtk.Template(resource_path='/com/github/p3732/os-installer/ui/widgets/software_summary_row.ui')

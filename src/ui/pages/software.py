@@ -35,8 +35,7 @@ class SoftwarePage(Gtk.Box, Page):
 
     @Gtk.Template.Callback('software_row_activated')
     def _software_row_activated(self, list_box, row):
-        new_state = not row.is_activated()
-        row.set_activated(new_state)
+        row.flip_switch()
 
     ### public methods ###
 
