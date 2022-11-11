@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-28 19:12+0200\n"
+"POT-Creation-Date: 2022-11-11 03:10+0100\n"
 "PO-Revision-Date: 2022-10-29 10:05+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -159,7 +159,7 @@ msgstr ""
 "Dateien zugreifen können."
 
 #. Translators: On button.
-#: data/resources/ui/pages/encrypt.blp
+#: data/resources/ui/pages/encrypt.blp data/resources/ui/pages/feature.blp
 #: data/resources/ui/pages/keyboard_layout.blp
 #: data/resources/ui/pages/locale.blp data/resources/ui/pages/software.blp
 #: data/resources/ui/pages/user.blp data/resources/ui/pages/welcome.blp
@@ -175,6 +175,12 @@ msgstr "Installation fehlgeschlagen"
 #: data/resources/ui/pages/failed.blp
 msgid "Search for Help on the Internet"
 msgstr "Im Internet nach Hilfe suchen"
+
+#. Translators: Page title
+#. Translators: Description of selected additional software.
+#: data/resources/ui/pages/feature.blp data/resources/ui/pages/summary.blp
+msgid "Additional Features"
+msgstr "Zusätzliche Funktionalität"
 
 #. Translators: Page title
 #: data/resources/ui/pages/format.blp
@@ -294,6 +300,7 @@ msgid "Automatic Login"
 msgstr "Automatische Anmeldung"
 
 #. Translators: Shown when list of selected software is empty.
+#. Translators: Shown when list of selected features is empty.
 #: data/resources/ui/pages/summary.blp
 msgid "None"
 msgstr "Keine"
