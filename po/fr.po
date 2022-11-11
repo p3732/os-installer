@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-28 19:12+0200\n"
+"POT-Creation-Date: 2022-11-11 03:09+0100\n"
 "PO-Revision-Date: 2022-10-28 17:14+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/os-installer/os-"
@@ -145,6 +145,13 @@ msgid "Search for Help on the Internet"
 msgstr "Chercher de l'aide sur Internet"
 
 #. Translators: Page title
+#. Translators: Description of selected additional software.
+#, fuzzy
+#| msgid "Additional Software"
+msgid "Additional Features"
+msgstr "Programmes additionnels"
+
+#. Translators: Page title
 msgid "Select Region"
 msgstr "Sélectionner une langue"
 
@@ -247,6 +254,7 @@ msgid "Automatic Login"
 msgstr "Connexion automatique"
 
 #. Translators: Shown when list of selected software is empty.
+#. Translators: Shown when list of selected features is empty.
 #, fuzzy
 msgid "None"
 msgstr "None"
