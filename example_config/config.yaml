@@ -90,8 +90,8 @@ additional_software:
       name           : 'Iconless Backend Functionality'
     - package        : 'japanese-input-program'
       suggested      : yes
-      name_jp        : 'Input Program'
-      icon_path      : '/etc/os-installer/icons/libreoffice-main.png'
+      name_jp        : '入力プログラム'
+      icon_path      : '/etc/os-installer/icons/jp-symbol.svg'
 
 # Upon failure an option to search for help on the internet is given.
 # The url this leads to can be defined here. The squiggly brackets are
