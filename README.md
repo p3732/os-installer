@@ -36,24 +36,33 @@ Uninstall with `sudo ninja -C build uninstall `
 
 # Distributions
 The following describes how to use this in a distribution.
+
 ## Configuration
-Place a configuration and installation scripts under `/etc/os-installer`.
-The file names need to match the example files found in the `example_config` folder.
-The example scripts list which environment variables are made available to them.
+Place a configuration and installation scripts under `/etc/os-installer` (or symlink it to another folder).
+An example structure is given in the `example_config` folder.
 General usage of these files is:
 1) Read configuration from `config.yaml`
-1) Call `prepare.sh` - can start updating mirror or package lists, potentially cache packages.
-1) Call `install.sh` - can write data onto disk, installing kernel, packages, bootloader, etc.
-1) Call `configure.sh` - configure the system according to selected preferences (account, locale, more packages)
+1) After establishing an internet connection `prepare.sh` is started.
+    * Useful for starting mirror updates, getting package lists or pre-caching packages.
+1) After chosing a disk and confirming the deletion of files on it, `install.sh` is started.
+    * Can be used to write basic system and other data onto disk, installing kernel, packages, bootloader, etc.
+    * If `install.sh` does not exist, there will be no confirmation page.
+1) After giving all other information is confirmed via the summary page, `configure.sh` is started.
+    * This can be used to either handle the full installation or to finish up configuring the system according to selected preferences (account, locale, additional packages and features)
 
-Note that the installer will run scripts as the user it is started by.
-If the scripts require elevated priviledges (they probably do)
+Not all scripts need to exist, if one does not, this step is simply skipped.
+The example scripts list which environment variables are made available to each script.
+
+The scripts can be written in any language as long as a shell can correctly execute them.
+Also, the installer will run scripts as the user it is started by.
+If they require elevated priviledges (hint: they probably do),
 these need to be granted to the script through other means.
 
 ## Dependencies
 In addition to the dependencies [listed under Testing](#manually),
-OS-Installer also expects these GNOME apps to be available:
+the default OS-Installer config also expects these GNOME apps to be available:
 `epiphany`, `gnome-disk-utility`, `gnome-control-center`
+(These can be changed via `config.yaml`)
 
 Similarly `systemd` is expected to be available, i.e. `localectl` and `timedatectl`.
 
