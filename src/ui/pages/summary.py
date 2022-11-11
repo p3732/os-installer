@@ -5,7 +5,6 @@ from gi.repository import Gio, Gtk
 from .global_state import global_state
 from .installation_scripting import installation_scripting, Step
 from .page import Page
-#from .software_provider import get_software_suggestions
 from .widgets import reset_model, SoftwareSummaryRow
 
 
@@ -21,6 +20,7 @@ class SummaryPage(Gtk.Box, Page):
     format_row = Gtk.Template.Child()
     timezone_row = Gtk.Template.Child()
     software_row = Gtk.Template.Child()
+    feature_row = Gtk.Template.Child()
 
     # row content
     language_label = Gtk.Template.Child()
@@ -35,12 +35,20 @@ class SummaryPage(Gtk.Box, Page):
     software_list = Gtk.Template.Child()
     software_model = Gio.ListStore()
 
+    # feature list
+    feature_stack = Gtk.Template.Child()
+    feature_list = Gtk.Template.Child()
+    feature_model = Gio.ListStore()
+
     def __init__(self, **kwargs):
         Gtk.Box.__init__(self, **kwargs)
         self.software_list.bind_model(
             self.software_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
+        self.feature_list.bind_model(
+            self.feature_model, lambda pkg: SoftwareSummaryRow(pkg.name, pkg.icon_path))
         self.language_row.set_visible(global_state.get_config('fixed_language'))
         self.software_row.set_visible(global_state.get_config('additional_software'))
+        self.feature_row.set_visible(global_state.get_config('additional_features'))
         self.user_row.set_visible(not global_state.get_config('skip_user'))
         self.format_row.set_visible(not global_state.get_config('skip_locale'))
         self.timezone_row.set_visible(not global_state.get_config('skip_locale'))
@@ -74,5 +82,12 @@ class SummaryPage(Gtk.Box, Page):
             reset_model(self.software_model, software)
         else:
             self.software_stack.set_visible_child_name('none')
+
+        features = global_state.get_config('chosen_feature_names')
+        if len(features) > 0:
+            self.feature_stack.set_visible_child_name('used')
+            reset_model(self.feature_model, features)
+        else:
+            self.feature_stack.set_visible_child_name('none')
 
         return "prevent_back_navigation"

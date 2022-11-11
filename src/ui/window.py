@@ -13,6 +13,7 @@ from .disk import DiskPage
 from .done import DonePage
 from .encrypt import EncryptPage
 from .failed import FailedPage
+from .feature import FeaturePage
 from .format import FormatPage
 from .install import InstallPage
 from .internet import InternetPage
@@ -107,6 +108,7 @@ class OsInstallerWindow(Adw.ApplicationWindow):
             ('format', FormatPage, not global_state.get_config('skip_locale')),
             ('timezone', TimezonePage, not global_state.get_config('skip_locale')),
             ('software', SoftwarePage, global_state.get_config('additional_software')),
+            ('feature', FeaturePage, global_state.get_config('additional_features')),
             # summary
             ('summary', SummaryPage, True),
             # installation

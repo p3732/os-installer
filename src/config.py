@@ -54,6 +54,8 @@ def _load_default_config():
         'skip_locale': False,
         # software
         'additional_software': [],
+        # feature
+        'additional_features': [],
         # fail
         'failure_help_url': 'https://duckduckgo.com/?q="os-installer {}"+"failed installation"',
         # commands
@@ -77,6 +79,8 @@ def _load_optional_defaults(config):
     config['timezone'] = 'UTC'
     config['chosen_software_packages'] = ''
     config['chosen_software'] = []
+    config['chosen_features'] = ''
+    config['chosen_feature_names'] = []
 
 
 def _set_testing_defaults(config):
@@ -105,6 +109,7 @@ def _valid(config):
         _match(config, 'minimum_disk_size', int) and
         _match(config, 'offer_disk_encryption', bool) and
         _match(config, 'additional_software', list) and
+        _match(config, 'additional_features', list) and
         _match(config, 'distribution_name', str) and
         _match(config, 'fixed_language', bool, str))
 
@@ -155,5 +160,6 @@ def create_envs(config, with_install_envs, with_configure_envs):
             f'OSI_FORMATS={config["formats_locale"]}',
             f'OSI_TIMEZONE={config["timezone"]}',
             f'OSI_ADDITIONAL_SOFTWARE={config["chosen_software_packages"]}',
+            f'OSI_ADDITIONAL_FEATURES={config["chosen_features"]}',
         ]
     return envs + [None]

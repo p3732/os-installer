@@ -1,0 +1,35 @@
+using Gtk 4.0;
+
+template FeaturePage : Box {
+  orientation: vertical;
+  spacing: 12;
+
+  Label {
+    /* Translators: Page title */
+    label: _("Additional Features");
+    justify: center;
+    wrap: true;
+    styles ["heading"]
+  }
+
+  ScrolledWindow {
+    propagate-natural-height: true;
+    styles ["embedded", "separate-bottom"]
+    child: ListBox list {
+      hexpand: true;
+      selection-mode: none;
+      row-activated => row_activated();
+      styles ["boxed-list"]
+    };
+  }
+
+  Button {
+    /* Translators: On button. */
+    label: _("_Continue");
+    focusable: true;
+    halign: center;
+    use-underline: true;
+    clicked => continue();
+    styles ["suggested-action", "pill", "bottom-button"]
+  }
+}

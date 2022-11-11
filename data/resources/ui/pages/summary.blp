@@ -167,6 +167,46 @@ template SummaryPage : Box {
           icon-name: "emblem-system-symbolic";
         }
       }
+
+      Adw.ActionRow feature_row {
+        name: "feature";
+        activatable: true;
+        /* Translators: Description of selected additional software. */
+        title: _("Additional Features");
+
+        Stack feature_stack {
+          vhomogeneous: false;
+          transition-type: crossfade;
+          styles ["row-content"]
+
+          StackPage {
+            name: "used";
+            child: ListBox feature_list {
+              halign: end;
+              valign: center;
+              selection-mode: none;
+              styles ["nested-list"]
+            };
+          }
+
+          StackPage {
+            name: "none";
+            child: Label {
+              /* Translators: Shown when list of selected feature is empty. */
+              label: _("None");
+              hexpand: true;
+              valign: center;
+              wrap: true;
+              xalign: 1;
+              styles ["dim-label"]
+            };
+          }
+        }
+
+        Image {
+          icon-name: "emblem-system-symbolic";
+        }
+      }
     };
   }
 

@@ -10,6 +10,7 @@
 # OSI_FORMATS            : Locale of formats to be used
 # OSI_TIMEZONE           : Timezone to be used
 # OSI_ADDITIONAL_SOFTWARE: Space-separated list of additional packages to install
+# OSI_ADDITIONAL_FEATURES: Space-separated list of additional features chosen
 
 # sanity check that all variables were set
 if [ -z ${OSI_LOCALE+x} ] || \
@@ -23,7 +24,8 @@ if [ -z ${OSI_LOCALE+x} ] || \
    [ -z ${OSI_USER_PASSWORD+x} ] || \
    [ -z ${OSI_FORMATS+x} ] || \
    [ -z ${OSI_TIMEZONE+x} ] || \
-   [ -z ${OSI_ADDITIONAL_SOFTWARE+x} ]
+   [ -z ${OSI_ADDITIONAL_SOFTWARE+x} ] || \
+   [ -z ${OSI_ADDITIONAL_FEATURES+x} ]
 then
     echo "Installer script called without all environment variables set!"
     exit 1
@@ -44,6 +46,7 @@ echo 'OSI_USER_PASSWORD        ' $OSI_USER_PASSWORD
 echo 'OSI_FORMATS              ' $OSI_FORMATS
 echo 'OSI_TIMEZONE             ' $OSI_TIMEZONE
 echo 'OSI_ADDITIONAL_SOFTWARE  ' $OSI_ADDITIONAL_SOFTWARE
+echo 'OSI_ADDITIONAL_FEATURES  ' $OSI_ADDITIONAL_FEATURES
 echo ''
 
 # Pretending to do something

@@ -100,6 +100,31 @@ additional_software:
       name_jp        : '入力プログラム'
       icon_path      : '/etc/os-installer/icons/jp-symbol.svg'
 
+# List of features that can additionally be selected. Very similar
+# to `additional_software`, but meant for more generic features. Can
+# be used instead of or in combination with `additional_software`.
+#
+# feature         string  Forwarded to the installation script as is.
+# suggested       bool    Optional. Whether installation defaults to yes.
+# name_LC         string  Name presented to user. Translatable.
+#                         If no (English) name is available, it will only
+#                         be shown for translated languages.
+# description_LC  string  Optional. Description presented to user. Translatable.
+# icon_path       string  Optional. Absolute path to icon to be displayed.
+#
+# Default: [], suggested: False, description: '', icon_path: no icon
+additional_features:
+    - feature        : 'snapshots'
+      suggested      : yes
+      name           : 'Snapshots'
+      name_et        : 'Vahepildid'
+      description    : 'Snapshots allow restoring a previous state of your system'
+      description_et : 'Vahepildid võimaldavad taastada teie süsteemi eelmise seisundi'
+      icon_path      : '/etc/os-installer/icons/snapshot.svg'
+    - feature        : 'dummy'
+      name           : 'Dummy'
+      description    : 'This does not do anything'
+
 # Upon failure an option to search for help on the internet is given.
 # The url this leads to can be defined here. The squiggly brackets are
 # replaced with the os-installer version.
