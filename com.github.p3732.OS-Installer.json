@@ -45,8 +45,7 @@
             "config-opts": [
                 "-Denable-gtk-doc=false",
                 "-Denable-installed-tests=false",
-                "-Dsoup2=false",
-                "-Denable-gtk-doc=false"
+                "-Dsoup2=false"
             ],
             "buildsystem": "meson",
             "sources": [
