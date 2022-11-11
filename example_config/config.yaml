@@ -86,6 +86,13 @@ additional_software:
       description    : 'Popular Web Browser from Mozilla'
       description_de : 'Beliebter Internet-Browser von Mozilla'
       icon_path      : '/etc/os-installer/icons/firefox.png'
+    - package        : 'nautilus'
+      suggested      : yes
+      name           : 'Files'
+      name_de        : 'Dateien'
+      description    : 'Access and organize files'
+      description_de : 'Auf Dateien zugreifen und diese organisieren'
+      icon_path      : '/etc/os-installer/icons/nautilus.svg'
     - package        : 'some-backend'
       name           : 'Iconless Backend Functionality'
     - package        : 'japanese-input-program'
