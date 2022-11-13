@@ -16,10 +16,12 @@ template LanguagePage : Stack
         styles ["embedded"]
         child: Box {
           orientation: vertical;
-          spacing: 12;
+          spacing: 6;
 
           ListBox default_list {
             hexpand: true;
+            /* In case there is no show all button */
+            margin-bottom: 6;
             row-activated => language_row_activated();
             styles ["boxed-list"]
           }
