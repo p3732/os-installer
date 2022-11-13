@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: os-installer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-11 03:09+0100\n"
-"PO-Revision-Date: 2022-10-28 17:14+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/os-"
-"installer/os-installer/pt_BR/>\n"
+"PO-Revision-Date: 2022-11-13 14:47+0000\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"os-installer/os-installer/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "OS-Installer"
 msgstr "Instalador de SO"
@@ -70,9 +70,8 @@ msgstr "Usar todo o disco"
 msgid "Partitions"
 msgstr "Partições"
 
-#, fuzzy
 msgid "Disk has no partitions."
-msgstr "Disk has no partitions."
+msgstr "O disco não tem partições."
 
 #. Translators: Shown if a disk is currently not compatible with the way a system was booted.
 msgid "Selecting a partition is not possible."
@@ -144,26 +143,21 @@ msgstr "Procurar ajuda na Internet"
 
 #. Translators: Page title
 #. Translators: Description of selected additional software.
-#, fuzzy
-#| msgid "Additional Software"
 msgid "Additional Features"
-msgstr "Software Adicional"
+msgstr "Recursos adicionais"
 
 #. Translators: Page title
 msgid "Select Region"
 msgstr "Selecionar Região"
 
-#, fuzzy
 msgid "Filter"
-msgstr "Filter"
+msgstr "Filtro"
 
-#, fuzzy
 msgid "No Results"
-msgstr "No Results"
+msgstr "Nenhum resultado"
 
-#, fuzzy
 msgid "Try a different search"
-msgstr "Try a different search"
+msgstr "Tente uma pesquisa diferente"
 
 #. Translators: Page title
 msgid "Installing"
@@ -225,21 +219,16 @@ msgid "Additional Software"
 msgstr "Software Adicional"
 
 #. Translators: Page title
-#, fuzzy
 msgid "Summary"
-msgstr "Summary"
+msgstr "Resumo"
 
 #. Translators: Description of selected language.
-#, fuzzy
-#| msgid "Keyboard Language"
 msgid "Language"
-msgstr "Linguagem do Teclado"
+msgstr "Idioma"
 
 #. Translators: Description of selected keyboard layout.
-#, fuzzy
-#| msgid "Keyboard Layout Selection"
 msgid "Keyboard Layout"
-msgstr "Seleção de Disposição de Teclado"
+msgstr "Layout do teclado"
 
 #. Translators: Description of defined user account name and autologin status.
 #. Translators: Page title
@@ -253,25 +242,20 @@ msgstr "Login automático"
 
 #. Translators: Shown when list of selected software is empty.
 #. Translators: Shown when list of selected features is empty.
-#, fuzzy
 msgid "None"
-msgstr "None"
+msgstr "Nenhum"
 
 #. Translators: Page title
 msgid "Select Location"
 msgstr "Selecionar Localização"
 
 #. Translators: Used with entry field for User's name
-#, fuzzy
-#| msgid "Name"
 msgid "_Name"
-msgstr "Nome de usuário"
+msgstr "_Nome"
 
 #. Translators: Used with entry field for setting a password for new user
-#, fuzzy
-#| msgid "Password"
 msgid "_Password"
-msgstr "Senha"
+msgstr "_Senha"
 
 #. Translators: Page title
 msgid "Welcome"
