@@ -53,8 +53,7 @@ class DiskProvider:
             device_path=block.props.device)
 
         # check if EFI System Partiton
-        is_efi_partition = (partition.props.flags == self.EFI_PARTITON_FLAGS
-                            and partition.props.type == EFI_PARTITION_GUID)
+        is_efi_partition = (partition.props.type.upper() == self.EFI_PARTITION_GUID)
 
         # add to disk info
         return (partition_info, is_efi_partition)
